@@ -44,13 +44,15 @@ Fridgey is a mobile/web app that wants to become your go-to place for at-home fo
 
 To date, the Fridgey team has completed a wireframe and clickable prototype for the application.  
 
+[Link to CONTRIBUTING.md](https://github.com/agile-dev-assignments/project-setup-team-fridgey/blob/master/CONTRIBUTING.md)
+
 # Instructions
 ### Meeting Times
 - Sunday 11am
 - Tuesday 10pm
 - Thursday 10pm
 
-Link to CONTRIBUTING.md
+[Link to CONTRIBUTING.md](https://github.com/agile-dev-assignments/project-setup-team-fridgey/blob/master/CONTRIBUTING.md)
 
 # Relevant Links
 [Link to prototype](https://projects.invisionapp.com/d/main/default/#/projects/prototypes/21165790) 
