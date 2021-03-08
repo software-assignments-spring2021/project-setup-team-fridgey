@@ -43,3 +43,6 @@
 # Instructions for setting up the local development environment
 Clone local copy of fridgey repo. Pull before pushing. 
 
+# Instructions for building and testing the product
+TBD
+
