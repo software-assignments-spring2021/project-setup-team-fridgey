@@ -36,7 +36,9 @@
 - Reduce merge conflicts by working on separate files
 
 # Rules of contributing
-
+- Include a detailed explanation of proposed changes, including screenshots or line references whenever possible
+- Read and apply the coding standards
+- Your pull request should be on a separate branch, ideally with descriptive names of the new addition/modifications
 
 # Instructions for setting up the local development environment
 Clone local copy of fridgey repo. Pull before pushing. 
