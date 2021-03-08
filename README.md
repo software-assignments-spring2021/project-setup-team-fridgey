@@ -1,6 +1,6 @@
 # Project Description
 ## Product Vision Statement
-Fridgey is a mobile/web app that wants to become your go-to place for at-home food management. The app aims to help users track the food in their fridge, notify users when their food is going bad, provide simple analytics on what types of food are in their fridge, and even provide recommendations on what food they should buy next or what recipes they should try based on the food in their fridge with built-in shopping lists.
+For the everyday grocery shopper, who needs help keeping track of items in their fridge, Fridgey is a mobile/web application simplifies fridge management and shopping planning.
 
 ## Minimum Viable Product
 Our Minimum Viable Product (MVP) will allow users to keep track of the items in their fridge and plan their shopping list ahead of time.
@@ -37,6 +37,8 @@ Our Minimum Viable Product includes the implementation of user-stories 1-3, corr
 - Kevin Ho - https://github.com/kh2576
 
 # History
+Fridgey was proposed in early February of 2021, as a mobile/web app that wants to become your go-to place for at-home food management. The app aims to help users track the food in their fridge, notify users when their food is going bad, provide simple analytics on what types of food are in their fridge, and even provide recommendations on what food they should buy next or what recipes they should try based on the food in their fridge with built-in shopping lists.
+
 To date, the Fridgey team has completed a wireframe and clickable prototype for the application.  
 
 [Link to CONTRIBUTING.md](https://github.com/agile-dev-assignments/project-setup-team-fridgey/blob/master/CONTRIBUTING.md)
