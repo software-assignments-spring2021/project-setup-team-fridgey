@@ -14,14 +14,26 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  /* From Example App */
+  border: 1px solid black;
+  max-width: 800px;
+  margin: 20px auto;
+
+  background-color: #ffffff;
   min-height: 100vh;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
+}
+
+/* Header for Fridgey */
+h1 {
+  text-align: left;
+  margin-left: 50px;
+  font-size: 30px;
 }
 
 .App-link {
