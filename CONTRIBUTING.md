@@ -13,9 +13,9 @@
 ## Daily Standups
 
 ### Meeting Times
-- Sunday 11am
-- Tuesday 10pm
-- Thursday 10pm
+- Sunday 11am [(Meeting Link)](https://us02web.zoom.us/j/83769775387?pwd=OUM0MlBrbU4xRHpRMkF1ZHE3WHpCUT09)
+- Tuesday 10pm [(Meeting Link)](https://us02web.zoom.us/j/83769775387?pwd=OUM0MlBrbU4xRHpRMkF1ZHE3WHpCUT09)
+- Thursday 10pm [(Meeting Link)](https://us02web.zoom.us/j/83769775387?pwd=OUM0MlBrbU4xRHpRMkF1ZHE3WHpCUT09)
 
 ### Standup Norms
 - 15 minute standups
