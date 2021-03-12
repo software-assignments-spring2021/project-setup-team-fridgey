@@ -28,7 +28,7 @@ function App() {
           <Route path="/Storage-Time-Search">
             <NavBar />
             <header className="App-header">
-              <h1> Hello </h1>
+              <h1> Hello Guys </h1>
             </header>
           </Route>
 
