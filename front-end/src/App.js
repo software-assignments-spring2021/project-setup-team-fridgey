@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar";
+import MyFridge from "./MyFridge";
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
           <Route path="/" exact>
             <NavBar />
             <header className="App-header">
-              <h1> Fridgey </h1>
+              <h1 className="fridgey"> Fridgey </h1>
+              <MyFridge />
               <img src={logo} className="App-logo" alt="logo" />
               <p>Fridgey</p>
               <a
@@ -28,7 +30,7 @@ function App() {
           <Route path="/Storage-Time-Search">
             <NavBar />
             <header className="App-header">
-              <h1> Hello Guys Yuh </h1>
+              <h1> Hello </h1>
             </header>
           </Route>
 
