@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 
+// NavBar from example project
 const NavBar = (props) => {
   return (
     <nav>
