@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-
+import "./StorageTimeSearch.css";
 import NavBar from "./NavBar";
 import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Button from "@material-ui/core/Button";
