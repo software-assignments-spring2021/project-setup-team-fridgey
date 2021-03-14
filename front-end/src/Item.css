@@ -1,0 +1,26 @@
+.Item {
+  border: 2px solid #bbb;
+  font-size: 15px;
+  margin: 0px;
+  padding: 20px;
+  position: sticky;
+}
+
+.Item-name {
+  margin: 0px;
+  position: absolute;
+  left: 60px;
+}
+
+.Spoil-time {
+  margin: 0px;
+  font-size: 10px;
+  position: absolute;
+}
+
+.Default-time {
+  margin: 0px;
+  font-size: 10px;
+  position: absolute;
+  right: 60px;
+}
