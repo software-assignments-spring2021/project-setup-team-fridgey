@@ -12,7 +12,7 @@ function App() {
           <Route path="/" exact>
             <NavBar />
             <header className="App-header">
-              <h1 className="fridgey"> Fridgey </h1>
+              <h1 className="fridgey"> MyFridge </h1>
               <MyFridge />
               <img src={logo} className="App-logo" alt="logo" />
               <p>Fridgey</p>

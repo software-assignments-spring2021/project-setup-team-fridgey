@@ -2,23 +2,17 @@ import React from "react";
 import "./MyFridge.css";
 import * as ReactBootStrap from "react-bootstrap";
 import { groups } from "./fridgeDataFake";
-import { dot, chipDays } from "./dotColor";
+import { dot, chipDays, chipAmount } from "./itemColoring";
 
 const MyFridge = (props) => {
   const renderItem = (data) => {
     return (
       <tr>
         <td>
-          {dot(data.daysLeft)}
-          {/* <dot days={data.daysLeft} /> */}
+          <span>{dot(data.daysLeft)}</span>
           <span class="title">{data.title}</span>
-          <span>
-            <p class="chip"> {data.amount}</p>
-          </span>
-          <span>
-            {chipDays(data.daysLeft)}
-            {/* <p class="chip chip2"> {data.daysLeft + " Days"}</p> */}
-          </span>
+          <span>{chipAmount(data.amount)}</span>
+          <span>{chipDays(data.daysLeft)}</span>
         </td>
       </tr>
     );
@@ -38,6 +32,12 @@ const MyFridge = (props) => {
 
 // make this available to other modules as an import
 export default MyFridge;
+
+// ITEM COMPONENTS WITHOUT CSS CLASSES
+
+/* <dot days={data.daysLeft} /> */
+/* <p class="chip"> {data.amount}</p> */
+/* <p class="chip chip2"> {data.daysLeft + " Days"}</p> */
 
 // const getDot = (days) => {
 //   if (days < 2) {

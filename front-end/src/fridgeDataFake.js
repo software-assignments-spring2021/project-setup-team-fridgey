@@ -1,7 +1,7 @@
 const fruits = [
   {
     title: "Oranges",
-    amount: "Lots",
+    amount: "Few",
     daysLeft: 10,
   },
   {
@@ -16,7 +16,7 @@ const fruits = [
   },
   {
     title: "Pears",
-    amount: "Few",
+    amount: "Lots",
     daysLeft: 0,
   },
 ];
@@ -24,7 +24,7 @@ const fruits = [
 const grains = [
   {
     title: "Apples",
-    amount: "Lots",
+    amount: "Some",
     daysLeft: "10",
   },
   {
