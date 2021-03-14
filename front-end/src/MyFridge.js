@@ -1,6 +1,5 @@
 import React from "react";
 import "./MyFridge.css";
-import * as ReactBootStrap from "react-bootstrap";
 import { groups } from "./fridgeDataFake";
 import { dot, chipDays, chipAmount } from "./itemColoring";
 
