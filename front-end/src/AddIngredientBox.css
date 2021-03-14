@@ -1,0 +1,19 @@
+.box {
+    text-align: center;
+    width: 80%;
+    border: solid 0.05rem #000;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.7rem;
+    margin: 3rem;
+  }
+  
+  .ingredientButton {
+    font-size: 2rem;
+    font-weight: bolder;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  

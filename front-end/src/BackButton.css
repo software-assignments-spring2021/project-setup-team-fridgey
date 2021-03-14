@@ -1,0 +1,9 @@
+.backButton {
+  position: absolute;
+  left: 22%;
+  margin-left:1rem;
+  margin-top: 2rem;
+  font-size: 1rem;
+  border: solid 0.05rem #000;
+  background-color: rgb(180, 175, 175);
+}
