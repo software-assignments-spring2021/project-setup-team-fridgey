@@ -2,7 +2,6 @@ import logo from "./logo.svg";
 import "./App.css";
 import "./StorageTimeSearch.css";
 import "./Item.css";
-
 import {
   StorageTimeSearchListFruits,
   StorageTimeSearchListDairy,
@@ -14,6 +13,7 @@ import NavBar from "./NavBar";
 import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import MyFridge from "./MyFridge";
 
 function App() {
   return (
@@ -58,6 +58,7 @@ const Home = () => (
     <NavBar />
     <header className="App-header">
       <h1> Fridgey </h1>
+      <MyFridge />
       <img src={logo} className="App-logo" alt="logo" />
       <p>Fridgey</p>
       <a

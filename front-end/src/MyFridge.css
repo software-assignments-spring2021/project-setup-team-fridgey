@@ -1,0 +1,98 @@
+/* List View Table Stuff */
+.header {
+  text-align: left;
+  padding-left: 40px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+table {
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.5rem;
+  border-spacing: 10;
+  width: 85%;
+  border: 1px solid #ddd;
+}
+
+td {
+  text-align: left;
+  font-size: 1rem;
+  padding: 10px;
+}
+
+/* tr:nth-child(even) {
+  background-color: aqua;
+}
+ */
+
+td:nth-child(even):hover {
+  background-color: black;
+  color: white;
+}
+td:nth-child(odd):hover {
+  background-color: #ddd;
+  /* color: white; */
+}
+
+/* Item Stuff */
+.title {
+  margin-right: 0.6rem;
+}
+
+.chip {
+  margin-right: 0.7rem;
+  font-size: 1rem;
+  font-weight: bold;
+  display: inline;
+  border-radius: 10px;
+  padding-left: 0.3rem;
+  padding-right: 0.5rem;
+}
+.chipFilled {
+  font-weight: 500;
+  background-color: rgb(129, 205, 150);
+  color: white;
+}
+
+.dot {
+  height: 0.8rem;
+  width: 0.75rem;
+  border-radius: 100%;
+  display: inline-block;
+  margin-right: 0.8rem;
+}
+
+.dotGreen,
+.chipGreen {
+  background-color: rgb(129, 205, 150);
+  border: 1px solid rgb(129, 205, 150);
+}
+
+.dotYellow,
+.chipYellow {
+  background-color: rgb(200, 205, 129);
+  border: 1px solid rgb(200, 205, 129);
+}
+
+.dotRed,
+.chipRed {
+  background-color: rgb(205, 129, 129);
+  border: 1px solid rgb(205, 129, 129);
+}
+
+.chipLots {
+  border: 1px solid rgb(129, 205, 150);
+  color: rgb(129, 205, 150);
+}
+
+.chipSome {
+  border: 1px solid rgb(200, 205, 129);
+  color: rgb(200, 205, 129);
+}
+
+.chipFew {
+  border: 1px solid rgb(205, 129, 129);
+  color: rgb(205, 129, 129);
+}
