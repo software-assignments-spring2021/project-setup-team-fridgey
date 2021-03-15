@@ -1,15 +1,28 @@
 import React from "react";
+import Modal from "./Modal"
 import "./MyFridge.css";
+
 import { groups } from "./fridgeDataFake";
 import { dot, chipDays, chipAmount } from "./itemColoring";
 
+// do we still need props?
 const MyFridge = (props) => {
+
+  // click function
+  function handleClick(e) {
+    e.preventDefault();
+    
+  }
+
+
   const renderItem = (data) => {
     return (
+      // table elements
       <tr>
-        <td>
+        {/* whenever you click the item (whole row) */}
+        <td onClick={handleClick}>
           <span>{dot(data.daysLeft)}</span>
-          <span class="title">{data.title}</span>
+          <span className="title">{data.title}</span>
           <span>{chipAmount(data.amount)}</span>
           <span>{chipDays(data.daysLeft)}</span>
         </td>
@@ -22,6 +35,7 @@ const MyFridge = (props) => {
       {groups.map((item) => (
         <div>
           <h2 className="header">{item.header}</h2>
+          {/* do we need a key? */}
           <table>{item.object.map(renderItem)}</table>
         </div>
       ))}
@@ -31,6 +45,11 @@ const MyFridge = (props) => {
 
 // make this available to other modules as an import
 export default MyFridge;
+
+
+
+
+
 
 // ITEM COMPONENTS WITHOUT CSS CLASSES
 

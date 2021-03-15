@@ -15,6 +15,8 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import MyFridge from "./MyFridge";
 
+// the app itself and the links for everything
+// the components are at the bottom and they are simply the pages and its contents
 function App() {
   return (
     <div className="App">
@@ -53,12 +55,20 @@ function App() {
   );
 }
 
+
+
+
+// the home page with the items and the stuff at the bottom
 const Home = () => (
   <div>
     <NavBar />
     <header className="App-header">
       <h1> Fridgey </h1>
       <MyFridge />
+
+
+
+      {/* the bottom part of the page....prob unnecessary */}
       <img src={logo} className="App-logo" alt="logo" />
       <p>Fridgey</p>
       <a
@@ -73,6 +83,10 @@ const Home = () => (
   </div>
 );
 
+
+
+
+// the Storage Time Search page
 const StorageTimeSearch = () => (
   <div>
     <NavBar />

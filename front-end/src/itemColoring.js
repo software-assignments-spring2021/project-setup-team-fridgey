@@ -1,5 +1,8 @@
 import React from "react";
 
+// the css page for this is MyFridge.css
+
+// these are all functions!!
 export const dot = (days) => {
   if (days < 2) {
     return <span class="dot dotRed"></span>;

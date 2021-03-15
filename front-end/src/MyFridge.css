@@ -27,6 +27,7 @@ td {
 }
  */
 
+/* what is this? */
 td:nth-child(even):hover {
   background-color: black;
   color: white;

@@ -1,3 +1,4 @@
+// each item in these categories has a title, amount (few, some, lots), and days left
 const fruits = [
   {
     title: "Oranges",
@@ -38,6 +39,7 @@ const grains = [
     daysLeft: "0",
   },
 ];
+
 const dairy = [
   {
     title: "Apples",
@@ -55,6 +57,7 @@ const dairy = [
     daysLeft: "0",
   },
 ];
+
 const meats = [
   {
     title: "Apples",
@@ -73,6 +76,7 @@ const meats = [
   },
 ];
 
+// exports the groups as an array of objects and their headers
 export const groups = [
   {
     object: fruits,
