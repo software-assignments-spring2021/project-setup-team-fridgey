@@ -1,13 +1,13 @@
 .GridButton {
-    width: 200px;
-    height: 300px;
+    width: 13rem;
+    height: 17rem;
 }
 
 #Button1 {
-    margin-right: 3vw;
-    margin-bottom: 5vw;
+    margin-right: 1rem;
+    margin-bottom: 3rem;
 }
 
 #Button2 {
-    margin-right: 3vw;
+    margin-right: 1rem;
 }
