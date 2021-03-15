@@ -5,13 +5,13 @@ import "./MyFridge.css";
 import { groups } from "./fridgeDataFake";
 import { dot, chipDays, chipAmount } from "./itemColoring";
 
-// do we still need props?
-const MyFridge = (props) => {
+// MyFridge shouldnt need one
+// The Items do
+const MyFridge = () => {
 
   // click function
   function handleClick(e) {
-    e.preventDefault();
-    
+    e.preventDefault()
   }
 
 
