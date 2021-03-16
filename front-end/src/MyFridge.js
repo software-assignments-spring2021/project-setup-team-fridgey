@@ -1,56 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import "./MyFridge.css";
 import { groups } from "./fridgeDataFake";
 import { dot, chipDays, chipAmount } from "./itemColoring";
+import Modal from "./deleteModal";
 
 const MyFridge = (props) => {
-  const renderItem = (data) => {
-    // const [popUpInfo, setPopUpInfo] = useState(0);
-    // const [showPopUp, setShowPopUp] = useState(false);
+  const [show, setShow] = useState(false);
+  const [itemName, setItemName] = useState("Hello");
 
-    // const [show, setShow] = useState(false);
-    // const handleClose = () => setShow(false);
-    // const handleShow = () => setShow(true);
-
-    // // const rowEvents = {
-    // //   onClick: () => {
-    // //     console.log("hi");
-    // //   },
-    // // };
-
-    // const toggleTF = () => {
-    //   setShowPopUp(handleShow)
-    // }
-
-    const rowEvent = (a) => {
-      const title = a.target.getAttribute("title");
-      const amount = a.target.getAttribute("amount");
-      const daysLeft = a.target.getAttribute("daysLeft");
-      alert(title + "-" + amount + "-" + daysLeft);
+  const renderItem = (data, j) => {
+    const rowEvent = (event) => {
+      const title = event.currentTarget.getAttribute("title");
+      // https://stackoverflow.com/questions/43335452/pass-item-data-to-a-react-modal
+      setItemName(title);
+      setShow(true);
+      // alert(title + "-" + amount + "-" + daysleft);
     };
     // dot, chipAmount, and chipDays can be found in itemColoring.js
     return (
-      <tr>
-        <td
-          title={data.title}
-          amount={data.amount}
-          daysLeft={data.daysLeft}
-          onClick={rowEvent}
-        >
-          <span key={data.daysLeft}>{dot(data.daysLeft)}</span>
-          <span className="title">{data.title}</span>
-          <span key={data.amount}>{chipAmount(data.amount)}</span>
-          <span key={data.daysLeft}>{chipDays(data.daysLeft)}</span>
-          {/* <span> <button onC></button> </span> */}
-        </td>
-      </tr>
+      <tbody key={j}>
+        <tr>
+          <td
+            title={data.title}
+            amount={data.amount}
+            daysleft={data.daysleft}
+            onClick={rowEvent}
+          >
+            <span>{dot(data.daysleft)}</span>
+            <span className="title">{data.title}</span>
+            <span>{chipAmount(data.amount)}</span>
+            <span>{chipDays(data.daysleft)}</span>
+          </td>
+        </tr>
+        <Modal onClose={() => setShow(false)} show={show} itemName={itemName} />
+      </tbody>
     );
   };
   // groups is an object in fridgeDataFake.js
   return (
     <div>
-      {groups.map((item) => (
-        <div>
+      {groups.map((item, i) => (
+        <div key={i}>
           <h2 className="header">{item.header}</h2>
           <table>{item.object.map(renderItem)}</table>
         </div>
@@ -62,11 +52,30 @@ const MyFridge = (props) => {
 // make this available to other modules as an import
 export default MyFridge;
 
+// const [popUpInfo, setPopUpInfo] = useState(0);
+// const [showPopUp, setShowPopUp] = useState(false);
+
+// const [show, setShow] = useState(false);
+// const handleClose = () => setShow(false);
+// const handleShow = () => setShow(true);
+
+// // const rowEvents = {
+// //   onClick: () => {
+// //     console.log("hi");
+// //   },
+// // };
+
+// const toggleTF = () => {
+//   setShowPopUp(handleShow)
+// }
+
+// State for the Delete Modal
+
 // ITEM COMPONENTS WITHOUT CSS CLASSES
 
-/* <dot days={data.daysLeft} /> */
+/* <dot days={data.daysleft} /> */
 /* <p class="chip"> {data.amount}</p> */
-/* <p class="chip chip2"> {data.daysLeft + " Days"}</p> */
+/* <p class="chip chip2"> {data.daysleft + " Days"}</p> */
 
 // const getDot = (days) => {
 //   if (days < 2) {
@@ -85,7 +94,7 @@ export default MyFridge;
           </List>
 */
 /* <td className="amountChip">{data.amount}</td>
-        <td>{data.daysLeft}</td> */
+        <td>{data.daysleft}</td> */
 
 /* <div>
 {groups.map((item) => (
@@ -104,5 +113,15 @@ export default MyFridge;
 
 /* {itemData.map((item) => (
         <p>
-          {item.title} -- {item.amount} -- {item.daysLeft} Days Left
+          {item.title} -- {item.amount} -- {item.daysleft} Days Left
         </p> */
+
+// function test() {
+//   // const [itemName1, setItemName1] = useState("Hello");
+//   return (
+//     <div>
+//       <button onClick={() => setShow1(true)}> Show Modal</button>
+//       <Modal onClose={() => setShow1(false)} show={show1} />
+//     </div>
+//   );
+// }
