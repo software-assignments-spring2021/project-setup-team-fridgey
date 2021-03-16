@@ -14,6 +14,7 @@ import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import MyFridge from "./MyFridge";
+import Modal from "./deleteModal";
 
 function App() {
   return (
@@ -57,10 +58,11 @@ const Home = () => (
   <div>
     <NavBar />
     <header className="App-header">
-      <h1> Fridgey </h1>
+      <h1> MyFridge </h1>
       <MyFridge />
+      {/* <Modal /> */}
       <img src={logo} className="App-logo" alt="logo" />
-      <p>Fridgey</p>
+
       <a
         className="App-link"
         href="https://reactjs.org"

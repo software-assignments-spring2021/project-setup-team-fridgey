@@ -5,18 +5,48 @@ import { dot, chipDays, chipAmount } from "./itemColoring";
 
 const MyFridge = (props) => {
   const renderItem = (data) => {
+    // const [popUpInfo, setPopUpInfo] = useState(0);
+    // const [showPopUp, setShowPopUp] = useState(false);
+
+    // const [show, setShow] = useState(false);
+    // const handleClose = () => setShow(false);
+    // const handleShow = () => setShow(true);
+
+    // // const rowEvents = {
+    // //   onClick: () => {
+    // //     console.log("hi");
+    // //   },
+    // // };
+
+    // const toggleTF = () => {
+    //   setShowPopUp(handleShow)
+    // }
+
+    const rowEvent = (a) => {
+      const title = a.target.getAttribute("title");
+      const amount = a.target.getAttribute("amount");
+      const daysLeft = a.target.getAttribute("daysLeft");
+      alert(title + "-" + amount + "-" + daysLeft);
+    };
+    // dot, chipAmount, and chipDays can be found in itemColoring.js
     return (
       <tr>
-        <td>
-          <span>{dot(data.daysLeft)}</span>
-          <span class="title">{data.title}</span>
-          <span>{chipAmount(data.amount)}</span>
-          <span>{chipDays(data.daysLeft)}</span>
+        <td
+          title={data.title}
+          amount={data.amount}
+          daysLeft={data.daysLeft}
+          onClick={rowEvent}
+        >
+          <span key={data.daysLeft}>{dot(data.daysLeft)}</span>
+          <span className="title">{data.title}</span>
+          <span key={data.amount}>{chipAmount(data.amount)}</span>
+          <span key={data.daysLeft}>{chipDays(data.daysLeft)}</span>
+          {/* <span> <button onC></button> </span> */}
         </td>
       </tr>
     );
   };
-
+  // groups is an object in fridgeDataFake.js
   return (
     <div>
       {groups.map((item) => (
