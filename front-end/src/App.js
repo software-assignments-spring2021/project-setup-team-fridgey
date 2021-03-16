@@ -86,7 +86,7 @@ export const StorageTimeSearchList = (props) => {
 export const Item = ({ item, key }) => {
   const [buttonPopup, setButtonPopup] = useState(false);
   return (
-    <div>
+    <div className="Temp">
       <button className="Item" onClick={() => setButtonPopup(true)}>
         <img className="Item-img" src={item.img}></img>
         <text className="Item-name">{item.name}</text>
@@ -99,7 +99,7 @@ export const Item = ({ item, key }) => {
           <p>Longer {item.longTime} days</p>
         </EditStoragePopup>
       </button>
-      <button className="Line"></button>
+      {/* <button className="Line"></button> */}
     </div>
   );
 };

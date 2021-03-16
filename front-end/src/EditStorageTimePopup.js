@@ -14,3 +14,9 @@ const EditStoragePopup = (props) => {
 }
 
 export default EditStoragePopup
+
+//- proper line
+//- functional close button
+//- proper sizing and putting lines on top of each other
+//- spacing in the appropriate times between words/lines
+//- functional popup button with greyed out background

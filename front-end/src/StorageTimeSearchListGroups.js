@@ -11,7 +11,7 @@ const StorageTimeSearchListFruits = () => {
       shortTime: 1,
       averageTime: 2,
       longTime: 3,
-      img: url(https://bit.ly/3qXaQr0)
+      //img: url(https://bit.ly/3qXaQr0)
     },
     {
       id: 2,
@@ -21,7 +21,7 @@ const StorageTimeSearchListFruits = () => {
       shortTime: 1,
       averageTime: 2,
       longTime: 3,
-      img: url(https://bit.ly/3qXaQr0)
+      //img: url(https://bit.ly/3qXaQr0)
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ const StorageTimeSearchListFruits = () => {
       shortTime: 1,
       averageTime: 2,
       longTime: 3,
-      img: url(https://bit.ly/3qXaQr0)
+      //img: url(https://bit.ly/3qXaQr0)
     },
   ];
   const itemList = items.map((item) => <Item key={item.id} item={item}></Item>);
@@ -55,7 +55,7 @@ const StorageTimeSearchListMeats = () => {
       shortTime: 1,
       averageTime: 2,
       longTime: 3,
-      img: https://bit.ly/3qXaQr0
+      //img: https://bit.ly/3qXaQr0
     },
     {
       id: 2,
@@ -65,7 +65,7 @@ const StorageTimeSearchListMeats = () => {
       shortTime: 1,
       averageTime: 2,
       longTime: 3,
-      img: https://bit.ly/3qXaQr0
+      //img: https://bit.ly/3qXaQr0
     },
     {
       id: 3,
@@ -75,7 +75,7 @@ const StorageTimeSearchListMeats = () => {
       shortTime: 1,
       averageTime: 2,
       longTime: 3,
-      img: https://bit.ly/3qXaQr0
+      //img: https://bit.ly/3qXaQr0
     },
   ];
   const itemList = items.map((item) => <Item key={item.id} item={item}></Item>);
@@ -99,7 +99,7 @@ const StorageTimeSearchListDairy = () => {
       shortTime: 1,
       averageTime: 2,
       longTime: 3,
-      img: https://bit.ly/3qXaQr0
+      //img: https://bit.ly/3qXaQr0
     },
     {
       id: 2,
@@ -109,7 +109,7 @@ const StorageTimeSearchListDairy = () => {
       shortTime: 1,
       averageTime: 2,
       longTime: 3,
-      img: https://bit.ly/3qXaQr0
+      //img: https://bit.ly/3qXaQr0
     },
     {
       id: 3,
@@ -119,7 +119,7 @@ const StorageTimeSearchListDairy = () => {
       shortTime: 1,
       averageTime: 2,
       longTime: 3,
-      img: https://bit.ly/3qXaQr0
+      //img: https://bit.ly/3qXaQr0
     },
   ];
   const itemList = items.map((item) => <Item key={item.id} item={item}></Item>);
@@ -143,7 +143,7 @@ const StorageTimeSearchListGrain = () => {
       shortTime: 1,
       averageTime: 2,
       longTime: 3,
-      img: https://bit.ly/3qXaQr0
+      //img: https://bit.ly/3qXaQr0
     },
     {
       id: 2,
@@ -153,7 +153,7 @@ const StorageTimeSearchListGrain = () => {
       shortTime: 1,
       averageTime: 2,
       longTime: 3,
-      img: https://bit.ly/3qXaQr0
+      //img: https://bit.ly/3qXaQr0
     },
     {
       id: 3,
@@ -163,7 +163,7 @@ const StorageTimeSearchListGrain = () => {
       shortTime: 1,
       averageTime: 2,
       longTime: 3,
-      img: https://bit.ly/3qXaQr0
+      //img: https://bit.ly/3qXaQr0
     },
   ];
   const itemList = items.map((item) => <Item key={item.id} item={item}></Item>);
