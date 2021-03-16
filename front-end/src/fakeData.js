@@ -1,5 +1,6 @@
 const Data = [
     {
+        "id": 1,
         "type": "Fruits",
         "food": [
             {
@@ -29,6 +30,7 @@ const Data = [
         ],
     },
     {
+        "id": 2,
         "type": "Grains",
         "food": [
             {
@@ -52,6 +54,7 @@ const Data = [
         ],
     },
     {
+        "id": 3,
         "type": "Dairy",
         "food": [
             {
@@ -75,6 +78,7 @@ const Data = [
         ],
     },
     {
+        "id": 4,
         "type": "Meats",
         "food": [
             {

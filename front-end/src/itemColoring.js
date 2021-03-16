@@ -5,30 +5,30 @@ import React from "react";
 // these are all functions!!
 export const dot = (days) => {
   if (days < 2) {
-    return <span class="dot dotRed"></span>;
+    return <span className="dot dotRed"></span>;
   } else if (days >= 2 && days < 6) {
-    return <span class="dot dotYellow"></span>;
+    return <span className="dot dotYellow"></span>;
   } else {
-    return <span class="dot dotGreen"></span>;
+    return <span className="dot dotGreen"></span>;
   }
 };
 
 export const chipDays = (days) => {
   if (days < 2) {
-    return <p class="chip chipFilled chipRed"> {days + " Days"}</p>;
+    return <p className="chip chipFilled chipRed"> {days + " Days"}</p>;
   } else if (days >= 2 && days < 6) {
-    return <p class="chip chipFilled chipYellow"> {days + " Days"}</p>;
+    return <p className="chip chipFilled chipYellow"> {days + " Days"}</p>;
   } else {
-    return <p class="chip chipFilled chipGreen"> {days + " Days"}</p>;
+    return <p className="chip chipFilled chipGreen"> {days + " Days"}</p>;
   }
 };
 
 export const chipAmount = (amount) => {
   if (amount === "Lots") {
-    return <p class="chip chipLots"> {amount}</p>;
+    return <p className="chip chipLots"> {amount}</p>;
   } else if (amount === "Some") {
-    return <p class="chip chipSome"> {amount}</p>;
+    return <p className="chip chipSome"> {amount}</p>;
   } else {
-    return <p class="chip chipFew"> {amount}</p>;
+    return <p className="chip chipFew"> {amount}</p>;
   }
 };

@@ -16,7 +16,7 @@ const MyFridge = () => {
     <div>
       {/* map the types (Fruits, Grains, Dairy, Meats) */}
       {data.map(item => (
-        <div>
+        <div key={item.id}>
           <h2 className="header">{item.type}</h2>
           {/* the table for each type is madde */}
           <table>
