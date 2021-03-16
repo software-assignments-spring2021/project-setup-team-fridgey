@@ -4,8 +4,6 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-
-// what connects react to the HTML
 ReactDOM.render(
   <React.StrictMode>
     <App />

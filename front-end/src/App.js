@@ -66,9 +66,6 @@ const Home = () => (
       <h1> Fridgey </h1>
       <MyFridge />
 
-
-
-      {/* the bottom part of the page....prob unnecessary */}
       <img src={logo} className="App-logo" alt="logo" />
       <p>Fridgey</p>
       <a
