@@ -20,22 +20,19 @@ const MyFridge = (props) => {
     return (
       <tbody key={j}>
         <tr>
-          <td
-            title={data.title}
-            amount={data.amount}
-            daysleft={data.daysleft}
-            onClick={rowEvent}
-          >
+          <td title={data.title} amount={data.amount} daysleft={data.daysleft}>
             <span>{dot(data.daysleft)}</span>
             <span className="title">{data.title}</span>
             <span>{chipAmount(data.amount, data.daysleft)}</span>
             <span>{chipDays(data.daysleft)}</span>
           </td>
+          <button onClick={rowEvent}>X</button>
         </tr>
         <Modal onClose={() => setShow(false)} show={show} itemName={itemName} />
       </tbody>
     );
   };
+
   // groups is an object in fridgeDataFake.js
   return (
     <div>
