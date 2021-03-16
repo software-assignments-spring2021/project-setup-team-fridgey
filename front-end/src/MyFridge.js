@@ -17,22 +17,16 @@ const MyFridge = (props) => {
       setItemName(title);
       setItemId(id);
       setShow(true);
-      // alert(title + "-" + amount + "-" + daysleft);
     };
 
     const onDelete = (itemInput, groups) => {
-      // const currId = itemInput.currentTarget.getAttribute("itemId");
       let matchIndex = parseInt(itemId);
-      // alert("this is matchIndex " + matchIndex);
       for (let i = 0; i < groups.length; i++) {
         var removeIndex = groups[i].object
           .map(function (item) {
-            // alert(item.id);
             return item.id;
           })
           .indexOf(matchIndex);
-        // alert("this is itemInput ID " + matchIndex);
-        // alert(removeIndex);
         if (removeIndex !== -1) {
           groups[i].object.splice(removeIndex, 1);
         }
