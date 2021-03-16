@@ -1,14 +1,24 @@
 .Item {
-  border: 2px solid #bbb;
+  border: 2px solid white;
   font-size: 15px;
   margin: 0px;
   padding: 20px;
   position: sticky;
+  width: 100%;
+  background-color: white;
+}
+
+.Line{
+  margin:0px;
+  padding:0px;
+  width: 100%;
+  height: 0px;
 }
 
 .Item-name {
   margin: 0px;
   position: absolute;
+  height: 60px;
   left: 60px;
 }
 
