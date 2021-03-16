@@ -3,11 +3,12 @@
     margin: auto;
     margin-top: 4rem;
     display: block;
-    width: 48rem;
+    width: 24rem;
     position: relative;
-    height: 20rem;
+    height: 10rem;
   }
   .Recipe {
     border: solid 0.05rem #000;
   }
+  
   
