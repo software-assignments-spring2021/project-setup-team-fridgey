@@ -38,7 +38,7 @@ td:nth-child(odd):hover {
 
 /* Item Stuff */
 .title {
-  margin-right: 0.6rem;
+  margin-right: 0.9rem;
 }
 
 .chip {
@@ -47,7 +47,7 @@ td:nth-child(odd):hover {
   font-weight: bold;
   display: inline;
   border-radius: 10px;
-  padding-left: 0.3rem;
+  padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
 .chipFilled {
@@ -58,7 +58,7 @@ td:nth-child(odd):hover {
 
 .dot {
   height: 0.8rem;
-  width: 0.75rem;
+  width: 0.8rem;
   border-radius: 100%;
   display: inline-block;
   margin-right: 0.8rem;
@@ -88,11 +88,15 @@ td:nth-child(odd):hover {
 }
 
 .chipSome {
-  border: 1px solid rgb(200, 205, 129);
-  color: rgb(200, 205, 129);
+  border: 1px solid rgb(129, 187, 205);
+  color: rgb(129, 187, 205);
 }
 
 .chipFew {
-  border: 1px solid rgb(205, 129, 129);
-  color: rgb(205, 129, 129);
+  border: 1px solid rgb(205, 175, 129);
+  color: rgb(205, 175, 129);
+}
+
+.noChip {
+  display: none;
 }

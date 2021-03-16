@@ -28,7 +28,7 @@ const MyFridge = (props) => {
           >
             <span>{dot(data.daysleft)}</span>
             <span className="title">{data.title}</span>
-            <span>{chipAmount(data.amount)}</span>
+            <span>{chipAmount(data.amount, data.daysleft)}</span>
             <span>{chipDays(data.daysleft)}</span>
           </td>
         </tr>
