@@ -7,15 +7,38 @@ import Modal from "./deleteModal";
 const MyFridge = (props) => {
   const [show, setShow] = useState(false);
   const [itemName, setItemName] = useState("Hello");
+  const [itemId, setItemId] = useState(0);
 
   const renderItem = (data, j) => {
     const rowEvent = (event) => {
       const title = event.currentTarget.getAttribute("title");
+      const id = event.currentTarget.getAttribute("id");
       // https://stackoverflow.com/questions/43335452/pass-item-data-to-a-react-modal
       setItemName(title);
+      setItemId(id);
       setShow(true);
       // alert(title + "-" + amount + "-" + daysleft);
     };
+
+    const onDelete = (itemInput, groups) => {
+      // const currId = itemInput.currentTarget.getAttribute("itemId");
+      let matchIndex = parseInt(itemId);
+      // alert("this is matchIndex " + matchIndex);
+      for (let i = 0; i < groups.length; i++) {
+        var removeIndex = groups[i].object
+          .map(function (item) {
+            // alert(item.id);
+            return item.id;
+          })
+          .indexOf(matchIndex);
+        // alert("this is itemInput ID " + matchIndex);
+        // alert(removeIndex);
+        if (removeIndex !== -1) {
+          groups[i].object.splice(removeIndex, 1);
+        }
+      }
+    };
+
     // dot, chipAmount, and chipDays can be found in itemColoring.js
     return (
       <tbody key={j}>
@@ -29,6 +52,7 @@ const MyFridge = (props) => {
           <td>
             <button
               title={data.title}
+              id={data.id}
               amount={data.amount}
               daysleft={data.daysleft}
               onClick={rowEvent}
@@ -37,7 +61,12 @@ const MyFridge = (props) => {
             </button>
           </td>
         </tr>
-        <Modal onClose={() => setShow(false)} show={show} itemName={itemName} />
+        <Modal
+          onClose={() => setShow(false)}
+          show={show}
+          onDelete={() => onDelete(data, groups)}
+          itemName={itemName}
+        />
       </tbody>
     );
   };
@@ -57,77 +86,3 @@ const MyFridge = (props) => {
 
 // make this available to other modules as an import
 export default MyFridge;
-
-// const [popUpInfo, setPopUpInfo] = useState(0);
-// const [showPopUp, setShowPopUp] = useState(false);
-
-// const [show, setShow] = useState(false);
-// const handleClose = () => setShow(false);
-// const handleShow = () => setShow(true);
-
-// // const rowEvents = {
-// //   onClick: () => {
-// //     console.log("hi");
-// //   },
-// // };
-
-// const toggleTF = () => {
-//   setShowPopUp(handleShow)
-// }
-
-// State for the Delete Modal
-
-// ITEM COMPONENTS WITHOUT CSS CLASSES
-
-/* <dot days={data.daysleft} /> */
-/* <p class="chip"> {data.amount}</p> */
-/* <p class="chip chip2"> {data.daysleft + " Days"}</p> */
-
-// const getDot = (days) => {
-//   if (days < 2) {
-//     return <span class="dot dotRed"></span>;
-//   } else if (days >= 2 && days < 6) {
-//     return <span class="dot dotYellow"></span>;
-//   } else {
-//     return <span class="dot dotGreen"></span>;
-//   }
-// };
-
-/*
-        <List className="List" a={item.object.map(renderItem)}>
-            { <h2 class="header">{item.header}</h2>
-          <tbody>{item.object.map(renderItem)}</tbody>}
-          </List>
-*/
-/* <td className="amountChip">{data.amount}</td>
-        <td>{data.daysleft}</td> */
-
-/* <div>
-{groups.map((item) => (
-  <ReactBootStrap.Table hover size="sm">
-    <h2 class="header">{item.header}</h2>
-    <tbody>{item.object.map(renderItem)}</tbody>
-  </ReactBootStrap.Table>
-))}
-</div> */
-
-/* <tr>
-          <th>Item</th>
-          <th>Amount</th>
-          <th>Storage Time</th>
-        </tr> */
-
-/* {itemData.map((item) => (
-        <p>
-          {item.title} -- {item.amount} -- {item.daysleft} Days Left
-        </p> */
-
-// function test() {
-//   // const [itemName1, setItemName1] = useState("Hello");
-//   return (
-//     <div>
-//       <button onClick={() => setShow1(true)}> Show Modal</button>
-//       <Modal onClose={() => setShow1(false)} show={show1} />
-//     </div>
-//   );
-// }
