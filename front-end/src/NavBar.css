@@ -2,8 +2,8 @@
 
 nav {
   border-width: 1px 0 1px 19px; /* no border on left or right */
-  padding: 20px;
-  margin: 20px 0; /* no margin on left or right */
+  padding: 0.5rem;
+  margin: 1rem 0; /* no margin on left or right */
   text-align: center;
 }
 
