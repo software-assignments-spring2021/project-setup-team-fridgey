@@ -7,7 +7,7 @@ import {
   StorageTimeSearchListGrain,
   StorageTimeSearchListMeats,
 } from "./StorageTimeSearchListGroups";
-import {StorageTimeSearch} from "./StorageTimeSearch";
+import { StorageTimeSearch } from "./StorageTimeSearch";
 import NavBar from "./NavBar";
 import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MyFridge from "./MyFridge";
@@ -20,12 +20,10 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route
             path="/Storage-Time-Search"
-            exact component={StorageTimeSearch}
+            exact
+            component={StorageTimeSearch}
           />
-          <Route 
-            path="/Recommendations" 
-            component={Recommendations}
-          />
+          <Route path="/Recommendations" component={Recommendations} />
           <Route
             path="/Storage-Time-Search/List"
             component={StorageTimeSearchList}
@@ -56,7 +54,7 @@ const Home = () => (
   <div>
     <NavBar />
     <header className="App-header">
-      <h1> Fridgey </h1>
+      <h1 className="fridgey">MyFridge</h1>
       <MyFridge />
       <img src={logo} className="App-logo" alt="logo" />
       <p>Fridgey</p>
