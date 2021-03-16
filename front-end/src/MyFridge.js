@@ -20,13 +20,22 @@ const MyFridge = (props) => {
     return (
       <tbody key={j}>
         <tr>
-          <td title={data.title} amount={data.amount} daysleft={data.daysleft}>
+          <td>
             <span>{dot(data.daysleft)}</span>
             <span className="title">{data.title}</span>
             <span>{chipAmount(data.amount, data.daysleft)}</span>
             <span>{chipDays(data.daysleft)}</span>
           </td>
-          <button onClick={rowEvent}>X</button>
+          <td>
+            <button
+              title={data.title}
+              amount={data.amount}
+              daysleft={data.daysleft}
+              onClick={rowEvent}
+            >
+              x
+            </button>
+          </td>
         </tr>
         <Modal onClose={() => setShow(false)} show={show} itemName={itemName} />
       </tbody>
