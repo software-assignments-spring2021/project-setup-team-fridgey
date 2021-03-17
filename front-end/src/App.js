@@ -13,7 +13,7 @@ import {Recommendations} from "./Recommendations";
 import NavBar from "./NavBar";
 import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MyFridge from "./MyFridge";
-import EditStoragePopup from "./EditStorageTimePopup";
+import EditStorageModal from "./EditStorageTimePopup";
 import { useState } from 'react';
 
 // the app itself and the links for everything
@@ -95,10 +95,8 @@ export const StorageTimeSearchList = (props) => {
 };
 
 export const StorageItem = ({ item, key }) => {
-  const [buttonPopup, setButtonPopup] = useState(false);
   return (
-    // <div className="Temp">
-      <button className="Storage-Item" onClick={() => setButtonPopup(true)}>
+      <button className="Storage-Item">
         {/* <img className="Item-img" src={item.img}></img> */}
         <h4 className="Item-name">{item.name}</h4>
         <div className="Storage-Days">
@@ -107,15 +105,8 @@ export const StorageItem = ({ item, key }) => {
           <text className="Default-time">Default</text>
           <div className="Storage-Days">{item.defaultTime} days</div>
         </div>
-        <EditStoragePopup trigger={buttonPopup} setTrigger={setButtonPopup}>
-          <h3>{item.name}</h3>
-          <p>Shorter {item.shortTime} days</p>
-          <p>Average {item.averageTime} days</p>
-          <p>Longer {item.longTime} days</p>
-        </EditStoragePopup>
+        <EditStorageModal />
       </button>
-      // {/* <button className="Line"></button> */}
-    // </div>
   );
 };
 

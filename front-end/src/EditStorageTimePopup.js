@@ -2,18 +2,25 @@ import { Divider } from '@material-ui/core'
 import React from 'react'
 import './EditStoragePopup.css'
 
-const EditStoragePopup = (props) => {
-    return(props.trigger) ? (
-        <div className = "storagePopup">
-            <div className = "storagePopupInner">
-                <button className = "closeStoragePopup" onClick = {() => props.setTrigger(false)}>close</button>
-                { props.children}
+const EditStorageModal = (props) => {
+    return(
+        <div className="modal">
+            <div className="modal-content">
+                <div className="modal-header">
+                    <h4 className="modal-title">Modal title</h4>
+                </div>
+                <div className="modal-body">
+                    This is modal content
+                </div>
+                <div className="modal-footer">
+                    <button className="close-button">Close</button>
+                </div>
             </div>
         </div>
-    ) : "";
+    )
 }
 
-export default EditStoragePopup
+export default EditStorageModal
 
 //- proper line
 //- functional close button
