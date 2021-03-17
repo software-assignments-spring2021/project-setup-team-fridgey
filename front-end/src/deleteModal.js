@@ -1,7 +1,7 @@
 import React from "react";
 import "./deleteModal.css";
 
-const Modal = (props) => {
+const deleteModal = (props) => {
   return (
     <div
       className={`modal ${props.show ? "show" : ""}`}
@@ -27,4 +27,4 @@ const Modal = (props) => {
   );
 };
 
-export default Modal;
+export default deleteModal;
