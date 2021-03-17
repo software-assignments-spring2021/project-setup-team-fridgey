@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { dot, chipDays, chipAmount } from "./itemColoring";
 import { groups } from "./fridgeDataFake";
 import "./MyFridge.css";
-import Modal from "./deleteModal";
+import DeleteModal from "./deleteModal"
 
 const MyFridgeItem = (props) => {
   const [show, setShow] = useState(false);
@@ -29,10 +29,7 @@ const MyFridgeItem = (props) => {
         })
         .indexOf(matchIndex);
       if (removeIndex !== -1) {
-        // alert("Group is " + groups[i].object[0].id);
         groups[i].object.splice(removeIndex, 1);
-        // alert("Group is " + groups[i].object[0].id);
-        // setItemCount(itemCount - 1);
       }
     }
   };
@@ -61,7 +58,7 @@ const MyFridgeItem = (props) => {
           </button>
         </td>
       </tr>
-      <Modal
+      <DeleteModal
         onClose={() => setShow(false)}
         show={show}
         onDelete={() => onDelete(groups)}
