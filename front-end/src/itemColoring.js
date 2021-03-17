@@ -3,7 +3,7 @@ import React from "react";
 export const dot = (days) => {
   return (
     <span
-      class={`dot ${
+      className={`dot ${
         days < 2 ? "dotRed" : days >= 2 && days < 6 ? "dotYellow" : "dotGreen"
       }`}
     ></span>
@@ -13,7 +13,7 @@ export const dot = (days) => {
 export const chipDays = (days) => {
   return (
     <p
-      class={`chip chipFilled ${
+      className={`chip chipFilled ${
         days < 2
           ? "chipRed"
           : days >= 2 && days < 6
@@ -29,7 +29,7 @@ export const chipDays = (days) => {
 export const chipAmount = (amount, days) => {
   return (
     <p
-      class={`chip ${
+      className={`chip ${
         days === 0
           ? "noChip"
           : amount === "Lots"
