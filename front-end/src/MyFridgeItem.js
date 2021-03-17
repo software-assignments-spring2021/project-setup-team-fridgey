@@ -6,21 +6,29 @@ import DeleteModal from "./deleteModal"
 import FoodItemModal from "./FoodItemModal"
 
 const MyFridgeItem = (props) => {
-  // const [showItemModal, setShowItemModal] = useState(false)
-  // const [itemModalName, setItemModalName] = useState("Hello")
-  // const [itemModalId, setItemModalId] = useState(0)
+  // FoodItemModal useState's
+  const [showItemModal, setShowItemModal] = useState(false)
+  const [itemModalName, setItemModalName] = useState("Hello") // why hello
+  const [itemModalId, setItemModalId] = useState(0) // why 0
+
+  // DeleteModal useState's
   const [show, setShow] = useState(false);
   const [itemName, setItemName] = useState("Hello");
   const [itemId, setItemId] = useState(0);
   
-  // const itemEvent = (event) => {
-  //   const title = event.currentTarget.getAttribute("title")
-  //   const id = event.currentTarget.getAttribute("id");
-  //   setItemModalName(title)
-  //   setItemModalId(id)
-  //   setShowItemModal(true)
-  // }
+  // FoodItemModal event handler
+  const itemEvent = (event) => {
+    const title = event.currentTarget.getAttribute("title")
+    const id = event.currentTarget.getAttribute("id");
+    setItemModalName(title)
+    setItemModalId(id)
+    setShowItemModal(true)
+  }
 
+
+
+  
+  // DeleteModal event handler
   const rowEvent = (event) => {
     const title = event.currentTarget.getAttribute("title");
     const id = event.currentTarget.getAttribute("id");
@@ -49,9 +57,9 @@ const MyFridgeItem = (props) => {
     <tbody>
       <tr>
         <td 
-          // title={props.food.title}
-          // id={props.food.id}
-          // onClick={itemEvent}
+          title={props.food.title}
+          id={props.food.id}
+          onClick={itemEvent}
         >
           {/* we will use the functions from itemColoring */}
           {/* and the css from MyFridge.css */}
@@ -78,12 +86,11 @@ const MyFridgeItem = (props) => {
         onDelete={() => onDelete(groups)}
         itemName={itemName}
       />
-      {/* <FoodItemModal
+      <FoodItemModal
         onClose={() => setShowItemModal(false)}
         show={showItemModal}
-        // no delete function
         itemName={itemModalName}
-      /> */}
+      />
     </tbody>
   );
 };

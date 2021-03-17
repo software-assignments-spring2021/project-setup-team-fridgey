@@ -1,20 +1,20 @@
 import React from "react"
-import "./deleteModal.css";
+import "./FoodItemModal.css";
 
 const FoodItemModal = (props) => {
-    if (!props.show) {
-        return null
-    }
     return (
-        <div className="modal" onClick={props.onClose}> 
-            <div className="modal-content" onClick={e => e.stopPropagation()}>
-                <div className="modal-header">
-                    <h4 className="modal-title">{props.itemName}</h4>
+        <div 
+            className={`FoodItemModal ${props.show ? "show" : ""}`}
+            onClick={props.onClose}
+        > 
+            <div className="FoodItemModal-content" onClick={e => e.stopPropagation()}>
+                <div className="FoodItemModal-header">
+                    <h4 className="FoodItemModal-title">{props.itemName}</h4>
                 </div>
-                <div className="modal-body">
+                <div className="FoodItemModal-body">
                     This is the content
                 </div>
-                <div className="modal-footer">
+                <div className="FoodItemModal-footer">
                     <button onClick={props.onClose} className="button">Close</button>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-/* .modal {
+.FoodItemModal {
   position: fixed;
   left: 0;
   top: 0;
@@ -13,28 +13,31 @@
   pointer-events: none;
 }
 
-.modal.show {
+.FoodItemModal.show {
   opacity: 1;
   pointer-events: visible;
 }
 
-.modal-content {
+.FoodItemModal-content {
   width: 500px;
   background-color: #fff;
   transition: all 0.3s ease-in-out;
+  transition: all 0.6s;
 }
 
-.modal-header,
-.modal-footer {
+.FoodItemModal-header,
+.FoodItemModal-footer {
   padding: 10px;
 }
 
-.modal-title {
+.FoodItemModal-title {
   margin: 0;
 }
 
-.modal-body {
+.FoodItemModal-body {
   padding: 10px;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
-} */
+  transition: ease-in-out;
+  text-shadow: aqua;
+}
