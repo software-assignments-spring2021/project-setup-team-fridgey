@@ -6,7 +6,7 @@ import MyFridgeItem from "./MyFridgeItem";
 const MyFridge = (props) => {
 
   const renderItem = (data) => {
-    return <MyFridgeItem key={data.id} food={data} />;
+    return <MyFridgeItem key={data.id} food={data}/>;
   };
 
   return (

@@ -3,11 +3,23 @@ import { dot, chipDays, chipAmount } from "./itemColoring";
 import { groups } from "./fridgeDataFake";
 import "./MyFridge.css";
 import DeleteModal from "./deleteModal"
+import FoodItemModal from "./FoodItemModal"
 
 const MyFridgeItem = (props) => {
+  // const [showItemModal, setShowItemModal] = useState(false)
+  // const [itemModalName, setItemModalName] = useState("Hello")
+  // const [itemModalId, setItemModalId] = useState(0)
   const [show, setShow] = useState(false);
   const [itemName, setItemName] = useState("Hello");
   const [itemId, setItemId] = useState(0);
+  
+  // const itemEvent = (event) => {
+  //   const title = event.currentTarget.getAttribute("title")
+  //   const id = event.currentTarget.getAttribute("id");
+  //   setItemModalName(title)
+  //   setItemModalId(id)
+  //   setShowItemModal(true)
+  // }
 
   const rowEvent = (event) => {
     const title = event.currentTarget.getAttribute("title");
@@ -19,12 +31,10 @@ const MyFridgeItem = (props) => {
   };
 
   const onDelete = (groups) => {
-    // countItems(groups);
     let matchIndex = parseInt(itemId);
     for (let i = 0; i < groups.length; i++) {
       var removeIndex = groups[i].object
         .map(function (item) {
-          //   alert("Item ID is " + item.id + 1);
           return parseInt(item.id);
         })
         .indexOf(matchIndex);
@@ -38,7 +48,11 @@ const MyFridgeItem = (props) => {
     // elements for the table
     <tbody>
       <tr>
-        <td>
+        <td 
+          // title={props.food.title}
+          // id={props.food.id}
+          // onClick={itemEvent}
+        >
           {/* we will use the functions from itemColoring */}
           {/* and the css from MyFridge.css */}
           <span>{dot(props.food.daysleft)}</span>
@@ -64,6 +78,12 @@ const MyFridgeItem = (props) => {
         onDelete={() => onDelete(groups)}
         itemName={itemName}
       />
+      {/* <FoodItemModal
+        onClose={() => setShowItemModal(false)}
+        show={showItemModal}
+        // no delete function
+        itemName={itemModalName}
+      /> */}
     </tbody>
   );
 };
