@@ -10,9 +10,10 @@ import {
 import { StorageTimeSearch } from "./StorageTimeSearch";
 import NavBar from "./NavBar";
 import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import MyFridge, { test } from "./MyFridge";
-import Modal from "./deleteModal";
+import MyFridge from "./MyFridge";
 
+// the app itself and the links for everything
+// the components are at the bottom and they are simply the pages and its contents
 function App() {
   return (
     <div className="App">
@@ -55,8 +56,19 @@ const Home = () => (
   <div>
     <NavBar />
     <header className="App-header">
-      <h1> MyFridge </h1>
+      <h1 className="fridgey">MyFridge</h1>
       <MyFridge />
+
+      <img src={logo} className="App-logo" alt="logo" />
+      <p>Fridgey</p>
+      <a
+        className="App-link"
+        href="https://reactjs.org"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Learn React
+      </a>
     </header>
   </div>
 );
