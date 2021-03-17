@@ -1,4 +1,3 @@
-import React from "react"
 import NavBar from "./NavBar";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
@@ -21,73 +20,105 @@ const StorageTimeSearch = () => {
     {name: "Oatmeal"},
     {name: "Rice"}
   ];
+
   const [searchTerm, setSearchTerm] = useState("");
+  const [focusSearch, setFocusSearch] = useState("");
 
   const handleChange = (event) => {
-    setSearchTerm(event.target.value)
+    setSearchTerm(event.target.value);
   };
 
-  return (
-    <div>
-      <NavBar />
-      <header className="App-header">
-        <h1>Storage Time Search</h1>
+  const changeClass = () => {
+    setFocusSearch("StorageTime-Remove");
+  };
 
-        <input type="text" placeholder="Search for food" onChange={handleChange}/>
+  const revertClass = () => {
+    setFocusSearch(null);
+  };
 
-        { items.filter((item) => {
-          if (searchTerm == "") {
-            return item
-          } else if (item.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-            return item
-          }
-          }).map((item) => {
-            if (searchTerm != "") {
-              return (
-              <div>
-                <p>{item.name}</p>
-              </div>
-              );
+  if (focusSearch === "StorageTime-Remove") {
+    return (
+      <div>
+        <NavBar />
+        <header className="App-header">
+          <h1>Storage Time Search</h1>
+  
+          <input type="text" placeholder="Search for food" onChange={ handleChange } onClick={ changeClass } onBlur={ revertClass } id="StorageTime-Searchbar"/>
+            
+            { items.filter((item) => {
+              if (searchTerm === "") {
+                return item
+              } else if (item.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                return item
+              } else {
+                return null
+              }
+              }).map((item) => {
+                if (searchTerm !== "") {
+                  return (
+                    <div>
+                      <Button>{item.name}</Button>
+                    </div>
+                  );
+                } else {
+                  return (<p/>);
+                }
+              }) 
             }
-          }) 
-        }
-        
-
-        <Grid container direction="row" justify="center" className="TopRow">
-          <Link to="/Storage-Time-Search/ListFruits">
-            <Grid item>
-              <Button variant="contained" className="GridButton" id="Button1">
-                Fruits
-              </Button>
+          </header>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <NavBar />
+        <header className="App-header">
+          <h1>Storage Time Search</h1>
+  
+          <input type="text" placeholder="Search for food" onChange={ handleChange } onClick={ changeClass } onBlur={ revertClass } id="StorageTime-Searchbar"/>
+  
+          <div>
+            <p id="StorageTime-Description">
+              Browse through some common foods to see our recommended storage 
+              times and edit the default storage settings however you like!
+            </p>
+            <Grid container direction="row" justify="center">
+              <Link to="/Storage-Time-Search/ListFruits">
+                <Grid item>
+                  <Button variant="contained" className="StorageTime-TopRow" id="StorageTime-Button1">
+                    Fruits
+                  </Button>
+                </Grid>
+              </Link>
+              <Link to="/Storage-Time-Search/ListMeats">
+                <Grid item>
+                  <Button variant="contained" className="StorageTime-TopRow" id="StorageTime-Button2">
+                    Meats
+                  </Button>
+                </Grid>
+              </Link>
             </Grid>
-          </Link>
-          <Link to="/Storage-Time-Search/ListMeats">
-            <Grid item>
-              <Button variant="contained" className="GridButton">
-                Meats
-              </Button>
+            <Grid container direction="row" justify="center">
+              <Link to="/Storage-Time-Search/ListDairy">
+                <Grid item>
+                  <Button variant="contained" className="StorageTime-BottomRow" id="StorageTime-Button3">
+                    Dairy
+                  </Button>
+                </Grid>
+              </Link>
+              <Link to="/Storage-Time-Search/ListGrain">
+                <Grid item>
+                  <Button variant="contained" className="StorageTime-BottomRow" id="StorageTime-Button4">
+                    Grain
+                  </Button>
+                </Grid>
+              </Link>
             </Grid>
-          </Link>
-        </Grid>
-        <Grid container direction="row" justify="center">
-          <Link to="/Storage-Time-Search/ListDairy">
-            <Grid item>
-              <Button variant="contained" className="GridButton" id="Button2">
-                Dairy
-              </Button>
-            </Grid>
-          </Link>
-          <Link to="/Storage-Time-Search/ListGrain">
-            <Grid item>
-              <Button variant="contained" className="GridButton">
-                Grain
-              </Button>
-            </Grid>
-          </Link>
-        </Grid>
-      </header>
-    </div>
-  );
+          </div>
+        </header>
+      </div>
+    );
+  };
 };
 
 export { StorageTimeSearch };
