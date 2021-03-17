@@ -8,6 +8,7 @@ import {
   StorageTimeSearchListMeats,
 } from "./StorageTimeSearchListGroups";
 import {StorageTimeSearch} from "./StorageTimeSearch";
+import {Recommendations} from "./Recommendations";
 import NavBar from "./NavBar";
 import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MyFridge from "./MyFridge";
@@ -24,7 +25,7 @@ function App() {
           />
           <Route 
             path="/Recommendations" 
-            component={Recommendations}
+            exact component={Recommendations}
           />
           <Route
             path="/Storage-Time-Search/List"
@@ -93,13 +94,5 @@ export const Item = ({ item, key }) => {
   );
 };
 
-const Recommendations = () => (
-  <div>
-    <NavBar />
-    <header className="App-header">
-      <h1>Yuh</h1>
-    </header>
-  </div>
-);
 
 export default App;
