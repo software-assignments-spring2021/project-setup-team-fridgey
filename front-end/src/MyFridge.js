@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import "./MyFridge.css";
-import { groups } from "./fridgeDataFake";
+import { groups, fruits, grains, dairy, meats } from "./fridgeDataFake";
 // import { dot, chipDays, chipAmount } from "./itemColoring";
 // import Modal from "./deleteModal";
 import MyFridgeItem from "./MyFridgeItem";
 // import { countItems } from "./countItems";
 
 const MyFridge = (props) => {
+  const [fruitData, setFruitData] = useState(fruits);
+  const [grainData, setGrainData] = useState(grains);
+  const [dairyData, setDairyData] = useState(dairy);
+  const [meatData, setMeatData] = useState(meats);
+
   // const [show, setShow] = useState(false);
   // const [itemName, setItemName] = useState("Hello");
   // const [itemId, setItemId] = useState(0);
@@ -14,7 +19,13 @@ const MyFridge = (props) => {
 
   const renderItem = (data) => {
     // dot, chipAmount, and chipDays can be found in itemColoring.js
-    return <MyFridgeItem key={data.id} food={data} />;
+    return (
+      <MyFridgeItem
+        key={data.id}
+        food={data}
+        updateFruits={() => setFruitData(fruits)}
+      />
+    );
   };
 
   // groups is an object in fridgeDataFake.js
