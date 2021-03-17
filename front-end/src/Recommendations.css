@@ -1,0 +1,46 @@
+.usedButton {
+    width: 13rem;
+    height: 5rem;
+    color: primary;
+}
+
+.unusedButton {
+    width: 13rem;
+    height: 5rem;
+    background-color: white;
+}
+
+.imagePreview {
+    width: 6rem;
+    height: 6rem;
+    left: 2rem;
+}
+
+.recipeTitle {
+    text-align: left;
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+.info {
+    text-align: left;
+    font-size: 14px;
+    padding-top: 0.3rem;
+    padding-bottom: 0.5rem;
+  }
+
+.addButton{
+    margin-left: -2rem !important;
+    align-items:flex-end; 
+    padding-right: 10px;
+    width: 10rem;
+} 
+
+#Button1 {
+    margin-right: 1rem;
+    margin-bottom: 3rem;
+}
+
+#Button2 {
+    margin-right: 1rem;
+}
