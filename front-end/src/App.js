@@ -30,7 +30,8 @@ function App() {
             path="/Recommendations" 
             exact component={Recommendations}
           />
-          <Route path="/Recommendations" component={Recommendations} />
+          <Route path="/Recommendations" 
+          exact component={Recommendations} />
           <Route
             path="/Storage-Time-Search/List"
             component={StorageTimeSearchList}

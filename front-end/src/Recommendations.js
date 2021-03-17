@@ -31,24 +31,6 @@ const useStyles = makeStyles((theme) => ({
 const Recommendations = (props) => {
   const classes = useStyles();
 
-  const RecItem = (data) => {
-      return(
-        <div className={classes.root}>
-            <Grid container spacing={0} >
-                <Grid item xs = {5}>
-                    <ButtonBase>
-                        <img className= "imagePreview" alt="complex" src="https://thestayathomechef.com/wp-content/uploads/2017/08/Most-Amazing-Lasagna-2-e1574792735811.jpg" />
-                    </ButtonBase>
-                </Grid>
-                <Grid item xs = {6}>
-                    <div className = "title">Classic Lasagna</div>
-                    <div className = "info">7 Ingredients | 60 Minutes</div>
-                    <Button className = "addButton" variant = "outlined" color="primary"> Add Item </Button>
-                </Grid> 
-            </Grid>
-      </div>
-      );
-  };
 
   const RecItemTest = (data) => {
     return(
@@ -60,7 +42,7 @@ const Recommendations = (props) => {
                   </ButtonBase>
               </Grid>
               <Grid item xs = {6}>
-                  <div className = "title">{data.title}</div>
+                  <div className = "recipeTitle">{data.title}</div>
                   <div className = "info">{data.ingredients} Ingredients | {data.minutes} Minutes</div>
                   <Button className = "addButton" variant = "outlined" color="primary"> Save Recipe </Button>
               </Grid> 
