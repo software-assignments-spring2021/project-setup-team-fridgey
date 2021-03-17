@@ -1,3 +1,4 @@
+import React from "react"
 import logo from "./logo.svg";
 import "./App.css";
 import "./Item.css";
@@ -8,12 +9,15 @@ import {
   StorageTimeSearchListMeats,
 } from "./StorageTimeSearchListGroups";
 import {StorageTimeSearch} from "./StorageTimeSearch";
+import {Recommendations} from "./Recommendations";
 import NavBar from "./NavBar";
 import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MyFridge from "./MyFridge";
 import EditStoragePopup from "./EditStorageTimePopup";
 import { useState } from 'react';
 
+// the app itself and the links for everything
+// the components are at the bottom and they are simply the pages and its contents
 function App() {
   return (
     <div className="App">
@@ -26,8 +30,10 @@ function App() {
           />
           <Route 
             path="/Recommendations" 
-            component={Recommendations}
+            exact component={Recommendations}
           />
+          <Route path="/Recommendations" 
+          exact component={Recommendations} />
           <Route
             path="/Storage-Time-Search/List"
             component={StorageTimeSearchList}
@@ -54,12 +60,17 @@ function App() {
   );
 }
 
+
+
+
+// the home page with the items and the stuff at the bottom
 const Home = () => (
   <div>
     <NavBar />
     <header className="App-header">
-      <h1> Fridgey </h1>
+      <h1 className="fridgey">MyFridge</h1>
       <MyFridge />
+
       <img src={logo} className="App-logo" alt="logo" />
       <p>Fridgey</p>
       <a
@@ -108,13 +119,5 @@ export const StorageItem = ({ item, key }) => {
   );
 };
 
-const Recommendations = () => (
-  <div>
-    <NavBar />
-    <header className="App-header">
-      <h1>Yuh</h1>
-    </header>
-  </div>
-);
 
 export default App;

@@ -16,14 +16,12 @@
 .App-header {
   /* From Example App */
   border: 1px solid black;
-  max-width: 30rem;
+  max-width: 35rem;
   margin: 20px auto;
-
   background-color: #ffffff;
   min-height: 100vh;
   color: black;
 }
-/* TEST*/
 
 /* Header for Fridgey */
 h1 {
@@ -35,6 +33,7 @@ h1 {
 
 .fridgey {
   font-size: 2rem;
+  font-weight: 700;
 }
 
 .App-link {
