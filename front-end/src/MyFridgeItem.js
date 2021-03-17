@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { dot, chipDays, chipAmount } from "./itemColoring";
-import { groups, fruits, grains, dairy, meats } from "./fridgeDataFake";
+import { groups } from "./fridgeDataFake";
 import "./MyFridge.css";
 import Modal from "./deleteModal";
 
@@ -18,7 +18,7 @@ const MyFridgeItem = (props) => {
     setShow(true);
   };
 
-  const onDelete = (groups, updateFruits) => {
+  const onDelete = (groups) => {
     // countItems(groups);
     let matchIndex = parseInt(itemId);
     for (let i = 0; i < groups.length; i++) {
@@ -31,8 +31,6 @@ const MyFridgeItem = (props) => {
       if (removeIndex !== -1) {
         // alert("Group is " + groups[i].object[0].id);
         groups[i].object.splice(removeIndex, 1);
-        updateFruits();
-
         // alert("Group is " + groups[i].object[0].id);
         // setItemCount(itemCount - 1);
       }
@@ -66,7 +64,7 @@ const MyFridgeItem = (props) => {
       <Modal
         onClose={() => setShow(false)}
         show={show}
-        onDelete={() => onDelete(groups, props.updateFruits)}
+        onDelete={() => onDelete(groups)}
         itemName={itemName}
       />
     </tbody>

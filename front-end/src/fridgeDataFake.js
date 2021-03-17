@@ -1,4 +1,4 @@
-export const fruits = [
+const fruits = [
   {
     id: 1,
     title: "Oranges",
@@ -25,7 +25,7 @@ export const fruits = [
   },
 ];
 
-export const grains = [
+const grains = [
   {
     id: 5,
     title: "Apples",
@@ -45,7 +45,7 @@ export const grains = [
     daysleft: 0,
   },
 ];
-export const dairy = [
+const dairy = [
   {
     id: 8,
     title: "Apples",
@@ -65,7 +65,7 @@ export const dairy = [
     daysleft: 0,
   },
 ];
-export const meats = [
+const meats = [
   {
     id: 11,
     title: "Apples",
