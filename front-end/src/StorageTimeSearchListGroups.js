@@ -1,5 +1,5 @@
 import React from "react";
-import { StorageTimeSearchList, Item } from "./App";
+import { StorageTimeSearchList, StorageItem } from "./App";
 
 const StorageTimeSearchListFruits = () => {
   const items = [
@@ -34,7 +34,7 @@ const StorageTimeSearchListFruits = () => {
       //img: url(https://bit.ly/3qXaQr0)
     },
   ];
-  const itemList = items.map((item) => <Item key={item.id} item={item}></Item>);
+  const itemList = items.map((item) => <StorageItem key={item.id} item={item}></StorageItem>);
   return (
     <div>
       <header className="App-header">
@@ -78,7 +78,7 @@ const StorageTimeSearchListMeats = () => {
       //img: https://bit.ly/3qXaQr0
     },
   ];
-  const itemList = items.map((item) => <Item key={item.id} item={item}></Item>);
+  const itemList = items.map((item) => <StorageItem key={item.id} item={item}></StorageItem>);
   return (
     <div>
       <header className="App-header">
@@ -122,7 +122,7 @@ const StorageTimeSearchListDairy = () => {
       //img: https://bit.ly/3qXaQr0
     },
   ];
-  const itemList = items.map((item) => <Item key={item.id} item={item}></Item>);
+  const itemList = items.map((item) => <StorageItem key={item.id} item={item}></StorageItem>);
   return (
     <div>
       <header className="App-header">
@@ -166,7 +166,7 @@ const StorageTimeSearchListGrain = () => {
       //img: https://bit.ly/3qXaQr0
     },
   ];
-  const itemList = items.map((item) => <Item key={item.id} item={item}></Item>);
+  const itemList = items.map((item) => <StorageItem key={item.id} item={item}></StorageItem>);
   return (
     <div>
       <header className="App-header">

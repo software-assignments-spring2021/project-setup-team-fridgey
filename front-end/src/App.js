@@ -83,15 +83,19 @@ export const StorageTimeSearchList = (props) => {
   );
 };
 
-export const Item = ({ item, key }) => {
+export const StorageItem = ({ item, key }) => {
   const [buttonPopup, setButtonPopup] = useState(false);
   return (
-    <div className="Temp">
-      <button className="Item" onClick={() => setButtonPopup(true)}>
-        <img className="Item-img" src={item.img}></img>
-        <text className="Item-name">{item.name}</text>
-        <text className="Spoil-time">Recommended {item.spoilTime} days</text>
-        <text className="Default-time">Default {item.defaultTime} days</text>
+    // <div className="Temp">
+      <button className="Storage-Item" onClick={() => setButtonPopup(true)}>
+        {/* <img className="Item-img" src={item.img}></img> */}
+        <h4 className="Item-name">{item.name}</h4>
+        <div className="Storage-Days">
+          <text className="Spoil-time">Recommended</text>
+          <div className="Storage-Days">{item.spoilTime} days</div>
+          <text className="Default-time">Default</text>
+          <div className="Storage-Days">{item.defaultTime} days</div>
+        </div>
         <EditStoragePopup trigger={buttonPopup} setTrigger={setButtonPopup}>
           <h3>{item.name}</h3>
           <p>Shorter {item.shortTime} days</p>
@@ -99,8 +103,8 @@ export const Item = ({ item, key }) => {
           <p>Longer {item.longTime} days</p>
         </EditStoragePopup>
       </button>
-      {/* <button className="Line"></button> */}
-    </div>
+      // {/* <button className="Line"></button> */}
+    // </div>
   );
 };
 
