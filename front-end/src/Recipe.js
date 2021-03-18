@@ -1,8 +1,9 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import AddIngredientBox from "./AddIngredientBox";
 import BackButton from "./BackButton";
 import "./Recipe.css";
 import "./App.css";
+import WebpageModal from"./WebpageModal"
 
 const Recipe = () => {
   const ingredients = [
@@ -23,21 +24,26 @@ const Recipe = () => {
     },
   ];
 
+  const [show,setShow]=useState(false)
+
   const ingredientList = ingredients.map((ingredient) => (
     <AddIngredientBox
       key={ingredient.id}
       ingredient={ingredient}
-    ></AddIngredientBox>
+    />
   ));
   return (
     <header className="App-header">
       <BackButton />
       <br></br>
-      <a class="recipeSite" href="https://www.allrecipes.com">
-        Original Site Link
-      </a>
+      <button class="recipeSite" onClick={()=>setShow(true)}>
+        Original Article
+      </button>
+      <WebpageModal  onClose={()=>setShow(false)}show={show} />
       {ingredientList}
+      
     </header>
+    
   );
 };
 
