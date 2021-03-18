@@ -11,7 +11,7 @@ const StorageTimeSearchListFruits = () => {
       shortTime: 1,
       averageTime: 2,
       longTime: 3,
-      //img: url(https://bit.ly/3qXaQr0)
+      img: "https://www.thewholesomedish.com/wp-content/uploads/2018/07/Best-Lasagna-550.jpg"
     },
     {
       id: 2,
@@ -21,7 +21,7 @@ const StorageTimeSearchListFruits = () => {
       shortTime: 1,
       averageTime: 2,
       longTime: 3,
-      //img: url(https://bit.ly/3qXaQr0)
+      img: "https://www.thewholesomedish.com/wp-content/uploads/2018/07/Best-Lasagna-550.jpg"
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ const StorageTimeSearchListFruits = () => {
       shortTime: 1,
       averageTime: 2,
       longTime: 3,
-      //img: url(https://bit.ly/3qXaQr0)
+      img: "https://www.thewholesomedish.com/wp-content/uploads/2018/07/Best-Lasagna-550.jpg"
     },
   ];
   const itemList = items.map((item) => <StorageItem key={item.id} item={item}></StorageItem>);

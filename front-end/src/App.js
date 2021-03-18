@@ -13,7 +13,7 @@ import {Recommendations} from "./Recommendations";
 import NavBar from "./NavBar";
 import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MyFridge from "./MyFridge";
-import EditStorageModal from "./EditStorageTimePopup";
+import EditStorageModal from "./EditStorageTimeModal";
 import { useState } from 'react';
 
 // the app itself and the links for everything
@@ -85,30 +85,46 @@ const Home = () => (
   </div>
 );
 
+// the general structure for a storage time search list
+// includes a back link for every list
 export const StorageTimeSearchList = (props) => {
   return (
     <div>
-      <Link to="/Storage-Time-Search">Back</Link>
-      <h1>{props.title}</h1>
+      <button className="StorageBackButton">
+        <Link to="/Storage-Time-Search">Back</Link>
+      </button>
+      <h1 className="Food-Group">{props.title}</h1>
     </div>
   );
 };
 
+// the general structure for every item within the list (button)
+// includes an item name, spoil time, and default time
+// uses a popup function when clicked
 export const StorageItem = ({ item, key }) => {
+  const [show, setShow] = useState(false)
   return (
-      <button className="Storage-Item">
-        {/* <img className="Item-img" src={item.img}></img> */}
-        <h4 className="Item-name">{item.name}</h4>
-        <div className="Storage-Days">
+    <div>
+      <button onClick={() => setShow(true)} className="Storage-Item">
+        {/* <img className="ItemStorageImage" src={item.img} alt='pic'></img> */}
+        <text className="Item-name">{item.name}</text>
+        <div className="All-time">
           <text className="Spoil-time">Recommended</text>
-          <div className="Storage-Days">{item.spoilTime} days</div>
+          <div className="Storage-Days">{item.shortTime}-{item.longTime} days</div>
           <text className="Default-time">Default</text>
           <div className="Storage-Days">{item.defaultTime} days</div>
         </div>
-        <EditStorageModal />
       </button>
-  );
-};
+      <EditStorageModal title={item.name} onClose={() => setShow(false)} show={show}>
+        <ul>
+          <li>Shorter: {item.shortTime} days</li>
+          <li>Average: {item.averageTime} days</li>
+          <li>Longer: {item.longTime} days</li>
+        </ul>
+      </EditStorageModal>
+    </div>
+  )
+}
 
 
 export default App;
