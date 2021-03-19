@@ -47,9 +47,9 @@ To date, the Fridgey team has completed a wireframe and clickable prototype for 
 TBD
 
 ### Meeting Times
-- Sunday 11am
-- Tuesday 10pm
-- Thursday 10pm
+- Sunday 11am ET [(Meeting Link)](https://us02web.zoom.us/j/83769775387?pwd=OUM0MlBrbU4xRHpRMkF1ZHE3WHpCUT09) 
+- Tuesday 10pm ET [(Meeting Link)](https://us02web.zoom.us/j/83769775387?pwd=OUM0MlBrbU4xRHpRMkF1ZHE3WHpCUT09)
+- Thursday 10pm ET [(Meeting Link)](https://us02web.zoom.us/j/83769775387?pwd=OUM0MlBrbU4xRHpRMkF1ZHE3WHpCUT09)
 
 # Relevant Links
 [Link to prototype](https://projects.invisionapp.com/d/main/default/#/projects/prototypes/21165790) 
