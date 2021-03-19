@@ -1,7 +1,7 @@
 import React from "react"
 import logo from "./logo.svg";
 import "./App.css";
-import "./StorageTimeSearch/Item.css";
+import "./StorageTimeSearch/StorageItem.css";
 import {
   StorageTimeSearchListFruits,
   StorageTimeSearchListDairy,

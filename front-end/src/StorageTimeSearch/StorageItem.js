@@ -1,6 +1,7 @@
 import React from 'react'
 import EditStorageModal from "./EditStorageTimeModal";
 import { useState } from 'react';
+import "./StorageItem.css";
 
 // the general structure for every item within the list (button)
 // includes an item name, spoil time, and default time

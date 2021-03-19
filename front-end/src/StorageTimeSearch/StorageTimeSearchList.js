@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Item.css"
+import "./StorageItem.css"
 import { Link } from "react-router-dom";
 
 // the general structure for a storage time search list
