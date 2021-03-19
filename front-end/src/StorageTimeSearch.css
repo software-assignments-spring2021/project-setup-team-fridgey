@@ -1,13 +1,44 @@
-.GridButton {
+#StorageTime-Searchbar {
+    border-radius: 5rem;
+    width: 23rem;
+    padding: 0.4rem;
+}
+
+#StorageTime-Searchbar:focus {
+    outline: none;
+}
+
+.StorageTime-TopRow {
     width: 13rem;
     height: 17rem;
 }
 
-#Button1 {
-    margin-right: 1rem;
+#StorageTime-Button1 {
+    margin-right: 0.5rem;
+    margin-top: 1rem;
     margin-bottom: 3rem;
 }
 
-#Button2 {
-    margin-right: 1rem;
+#StorageTime-Button2 {
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+
+.StorageTime-BottomRow {
+    width: 13rem;
+    height: 17rem;
+}
+
+#StorageTime-Button3 {
+    margin-right: 0.5rem;
+}
+
+#StorageTime-Button4 {
+    margin-left: 0.5rem;
+}
+
+#StorageTime-Description {
+    margin-left: 4rem;
+    margin-right: 4rem;
 }

@@ -1,26 +1,67 @@
-.Item {
-  border: 2px solid #bbb;
-  font-size: 15px;
-  margin: 0px;
-  padding: 20px;
-  position: sticky;
+.Food-Group{
+  margin-left: 2.6rem;
+  font-size: 25px;
 }
 
+.ItemStorageImage{
+  width: 15%;
+}
+.StorageBackButton{
+  position: relative;
+  top: 0.5rem;
+  left: auto;
+  font-size: 10px;
+  margin: 20px;
+  margin-left: -26rem;
+  font-family: "Poppins", BlinkMacSystemFont, "Segoe UI", "Roboto";
+}
+
+
+.Storage-Item {
+  font-family: "Poppins", BlinkMacSystemFont, "Segoe UI", "Roboto";
+  display: flex;
+  justify-content: space-evenly;
+  border: 2px black;
+  font-size: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  position: sticky;
+  width: 85%;
+  background-color: white;
+  border-bottom: solid;
+  border-bottom-color:#bbb;
+  border-bottom-width: 1px;
+}
+
+.All-time{
+  margin-left: 60px;
+  text-align: right;
+}
+.Storage-Days{
+  margin-left: 0px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+}
 .Item-name {
+  font-size: 15px;
   margin: 0px;
-  position: absolute;
-  left: 60px;
+  margin-right: 15rem;
+  display: block;
+  text-align: left;
 }
 
 .Spoil-time {
-  margin: 0px;
-  font-size: 10px;
-  position: absolute;
+  margin: 2px;
+  font-size: 8px;
+  display: block;
+  text-align: right;
 }
 
 .Default-time {
-  margin: 0px;
-  font-size: 10px;
-  position: absolute;
-  right: 60px;
+  margin: 2px;
+  font-size: 8px;
+  display: block;
+  text-align: right;
 }
