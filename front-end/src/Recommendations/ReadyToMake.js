@@ -1,4 +1,4 @@
-import NavBar from "./NavBar";
+import NavBar from "../NavBar";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import "./Recommendations.css";
@@ -6,8 +6,8 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { Link } from "react-router-dom";
-import { recipes } from "./recommendationDataFake";
-import {ReadyToMake} from "./ReadyToMake";
+import { recipes } from "../data/recommendationDataFake";
+import {SavedRecipes} from "./SavedRecipes";
 import {Recommendations} from "./Recommendations";
 
 const useStyles = makeStyles((theme) => ({
@@ -28,10 +28,9 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const SavedRecipes = (props) => {
+const ReadyToMake = (props) => {
   const classes = useStyles();
 
-  
 
   const RecItem = (data) => {
     return(
@@ -45,7 +44,7 @@ const SavedRecipes = (props) => {
               <Grid item xs = {6}>
                   <div className = "recommendations-recipeTitle">{data.title}</div>
                   <div className = "recommendations-info">{data.ingredients} Ingredients | {data.minutes} Minutes</div>
-                  <Button className = "recommendations-addButton" variant = "outlined" color="primary"> Un-Save Recipe </Button>
+                  <Button className = "recommendations-addButton" variant = "outlined" color="primary"> Save Recipe </Button>
               </Grid> 
           </Grid>
     </div>
@@ -63,12 +62,12 @@ const SavedRecipes = (props) => {
       </Button>
     </Link>
       <Link to = "/ReadyToMake" className = "recommendations-link">
-        <Button className = "recommendations-unusedButton">
+        <Button className = "recommendations-usedButton">
           Ready to Make
         </Button>
       </Link>
       <Link to = "/SavedRecipes" className = "recommendations-link">
-        <Button className = "recommendations-usedButton">
+        <Button className = "recommendations-unusedButton">
             Saved Recipes
         </Button>
       </Link>  
@@ -85,4 +84,4 @@ const SavedRecipes = (props) => {
 );
   };
 
-export { SavedRecipes };
+export { ReadyToMake };

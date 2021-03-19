@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
-import AddIngredientBox from "./AddIngredientBox";
-import BackButton from "./BackButton";
+import AddIngredientBox from "../AddIngredientBox";
+import BackButton from "../BackButton";
 import "./Recipe.css";
 import "./App.css";
 import WebpageModal from"./WebpageModal"

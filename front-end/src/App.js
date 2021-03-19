@@ -1,21 +1,21 @@
 import React from "react"
 import logo from "./logo.svg";
 import "./App.css";
-import "./Item.css";
+import "./StorageTimeSearch/Item.css";
 import {
   StorageTimeSearchListFruits,
   StorageTimeSearchListDairy,
   StorageTimeSearchListGrain,
   StorageTimeSearchListMeats,
-} from "./StorageTimeSearchListGroups";
-import {StorageTimeSearch} from "./StorageTimeSearch";
-import {Recommendations} from "./Recommendations";
+} from "./StorageTimeSearch/StorageTimeSearchListGroups";
+import {StorageTimeSearch} from "./StorageTimeSearch/StorageTimeSearch";
+import {Recommendations} from "./Recommendations/Recommendations";
 import NavBar from "./NavBar";
 import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import MyFridge from "./MyFridge";
-import { ReadyToMake } from "./ReadyToMake";
-import { SavedRecipes } from "./SavedRecipes";
-import EditStorageModal from "./EditStorageTimeModal";
+import MyFridge from "./MyFridge/MyFridge";
+import { ReadyToMake } from "./Recommendations/ReadyToMake";
+import { SavedRecipes } from "./Recommendations/SavedRecipes";
+import EditStorageModal from "./StorageTimeSearch/EditStorageTimeModal";
 import { useState } from 'react';
 
 // the app itself and the links for everything
