@@ -13,6 +13,8 @@ import {Recommendations} from "./Recommendations";
 import NavBar from "./NavBar";
 import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MyFridge from "./MyFridge";
+import { ReadyToMake } from "./ReadyToMake";
+import { SavedRecipes } from "./SavedRecipes";
 
 // the app itself and the links for everything
 // the components are at the bottom and they are simply the pages and its contents
@@ -29,6 +31,14 @@ function App() {
           <Route 
             path="/Recommendations" 
             exact component={Recommendations}
+          />
+          <Route 
+            path="/ReadyToMake" 
+            exact component={ReadyToMake}
+          />
+          <Route 
+            path="/SavedRecipes" 
+            exact component={SavedRecipes}
           />
           <Route path="/Recommendations" 
           exact component={Recommendations} />
