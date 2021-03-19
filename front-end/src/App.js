@@ -1,5 +1,4 @@
-import React from "react"
-import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
 import "./StorageTimeSearch/StorageItem.css";
 import {
@@ -9,11 +8,10 @@ import {
   StorageTimeSearchListMeats,
 } from "./StorageTimeSearch/StorageTimeSearchListGroups";
 import StorageTimeSearchList from "./StorageTimeSearch/StorageTimeSearchList";
-import {StorageTimeSearch} from "./StorageTimeSearch/StorageTimeSearch";
-import {Recommendations} from "./Recommendations/Recommendations";
-import NavBar from "./NavBar";
-import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import MyFridge from "./MyFridge/MyFridge";
+import { StorageTimeSearch } from "./StorageTimeSearch/StorageTimeSearch";
+import { Recommendations } from "./Recommendations/Recommendations";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Home } from "./MyFridge/MyFridge";
 import { ReadyToMake } from "./Recommendations/ReadyToMake";
 import { SavedRecipes } from "./Recommendations/SavedRecipes";
 
@@ -27,22 +25,13 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route
             path="/Storage-Time-Search"
-            exact component={StorageTimeSearch}
+            exact
+            component={StorageTimeSearch}
           />
-          <Route 
-            path="/Recommendations" 
-            exact component={Recommendations}
-          />
-          <Route 
-            path="/ReadyToMake" 
-            exact component={ReadyToMake}
-          />
-          <Route 
-            path="/SavedRecipes" 
-            exact component={SavedRecipes}
-          />
-          <Route path="/Recommendations" 
-          exact component={Recommendations} />
+          <Route path="/Recommendations" exact component={Recommendations} />
+          <Route path="/ReadyToMake" exact component={ReadyToMake} />
+          <Route path="/SavedRecipes" exact component={SavedRecipes} />
+          <Route path="/Recommendations" exact component={Recommendations} />
           <Route
             path="/Storage-Time-Search/List"
             component={StorageTimeSearchList}
@@ -68,27 +57,5 @@ function App() {
     </div>
   );
 }
-
-// the home page with the items and the stuff at the bottom
-const Home = () => (
-  <div>
-    <NavBar />
-    <header className="App-header">
-      <h1 className="fridgey">MyFridge</h1>
-      <MyFridge />
-
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>Fridgey</p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-    </header>
-  </div>
-);
 
 export default App;
