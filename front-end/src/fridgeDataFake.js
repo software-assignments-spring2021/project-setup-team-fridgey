@@ -89,22 +89,22 @@ const meats = [
 export const groups = [
   {
     id: "1",
-    object: fruits,
+    category: fruits,
     header: "Fruits",
   },
   {
     id: "2",
-    object: meats,
+    category: meats,
     header: "Meats",
   },
   {
     id: "3",
-    object: grains,
+    category: grains,
     header: "Grains",
   },
   {
     id: "4",
-    object: dairy,
+    category: dairy,
     header: "Dairy",
   },
 ];

@@ -31,6 +31,10 @@ td:nth-child(odd):hover {
   /* color: white; */
 }
 
+.MyFridge-Hide {
+  display: none;
+}
+
 /* Item Stuff */
 .title {
   margin-right: 0.9rem;
