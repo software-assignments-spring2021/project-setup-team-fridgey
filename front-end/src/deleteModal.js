@@ -3,10 +3,7 @@ import "./Modal.css";
 
 const deleteModal = (props) => {
   return (
-    <div
-      className={`modal ${props.show ? "show" : ""}`}
-      onClick={props.onClose}
-    >
+    <div className={`modal ${props.show ? "show" : ""}`}>
       <div className="modal-content">
         <div className="modal-header">
           <h4 className="modal-title">Delete Item Confirmation</h4>

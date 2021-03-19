@@ -3,37 +3,37 @@ import "./MyFridge.css";
 import { groups } from "./fridgeDataFake";
 import { dot, chipDays, chipAmount } from "./itemColoring";
 import Modal from "./deleteModal";
+import { itemCount, num } from "./CountFridgeItems";
 
 const MyFridge = (props) => {
   const [show, setShow] = useState(false);
   const [itemName, setItemName] = useState("Hello");
   const [itemId, setItemId] = useState(0);
-
+  // Deleting an Item
   const onDelete = (itemInput, groups) => {
     let matchIndex = parseInt(itemId);
     for (let i = 0; i < groups.length; i++) {
-      var removeIndex = groups[i].object
+      var removeIndex = groups[i].category
         .map(function (item) {
           return item.id;
         })
         .indexOf(matchIndex);
       if (removeIndex !== -1) {
-        groups[i].object.splice(removeIndex, 1);
+        groups[i].category.splice(removeIndex, 1);
+        setShow(false);
       }
     }
   };
-
+  // Rendering an Item
   const renderItem = (data, j) => {
-    const rowEvent = (event) => {
+    // Handling Delete Click
+    const deleteClick = (event) => {
       const title = event.currentTarget.getAttribute("title");
       const id = event.currentTarget.getAttribute("id");
-      // https://stackoverflow.com/questions/43335452/pass-item-data-to-a-react-modal
       setItemName(title);
       setItemId(id);
       setShow(true);
     };
-
-    // dot, chipAmount, and chipDays can be found in itemColoring.js
     return (
       <tbody key={j}>
         <tr>
@@ -44,13 +44,7 @@ const MyFridge = (props) => {
             <span>{chipDays(data.daysleft)}</span>
           </td>
           <td>
-            <button
-              title={data.title}
-              id={data.id}
-              amount={data.amount}
-              daysleft={data.daysleft}
-              onClick={rowEvent}
-            >
+            <button title={data.title} id={data.id} onClick={deleteClick}>
               x
             </button>
           </td>
@@ -64,19 +58,38 @@ const MyFridge = (props) => {
       </tbody>
     );
   };
-
-  // groups is an object in fridgeDataFake.js
+  // Rendering All Fridge Items
   return (
     <div>
-      {groups.map((item, i) => (
-        <div key={i}>
-          <h2 className="header">{item.header}</h2>
-          <table>{item.object.map(renderItem)}</table>
-        </div>
-      ))}
+      <p className={num === 0 ? "MyFridge-Hide" : ""}>
+        You have {itemCount()} items in your Fridge
+      </p>
+      <div className={num === 0 ? "MyFridge-Hide" : ""}>
+        {groups.map((item, i) => (
+          <div key={i}>
+            <h2 className="header">{item.header}</h2>
+            <table>{item.category.map(renderItem)}</table>
+          </div>
+        ))}
+      </div>
+      <div className={num === 0 ? "" : "MyFridge-Hide"}>
+        <h2> Welcome to Fridgey!</h2>
+        <p className={num === 0 ? "" : "MyFridge-Hide"}>{itemCount()}</p>
+        <p>
+          To add items to your Fridge, head over to the Shopping List tab :)
+        </p>
+      </div>
     </div>
   );
 };
-
 // make this available to other modules as an import
 export default MyFridge;
+
+// const [count, setCount] = useState(0);
+
+// useEffect(() => {
+//   console.log("the component has rendered or re-rendered!");
+// }, [count]);
+
+// setCount(x);
+// console.log("Count is " + count);
