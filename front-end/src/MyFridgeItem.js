@@ -8,7 +8,7 @@ import FoodItemModal from "./FoodItemModal"
 const MyFridgeItem = (props) => {
   // FoodItemModal useState's
   const [showItemModal, setShowItemModal] = useState(false)
-  const [itemModalName, setItemModalName] = useState("Hello") // why hello
+  const [itemModalName, setItemModalName] = useState("Title") // why hello
   const [itemModalId, setItemModalId] = useState(0) // why 0
 
   // DeleteModal useState's
@@ -27,7 +27,7 @@ const MyFridgeItem = (props) => {
 
 
 
-  
+
   // DeleteModal event handler
   const rowEvent = (event) => {
     const title = event.currentTarget.getAttribute("title");
