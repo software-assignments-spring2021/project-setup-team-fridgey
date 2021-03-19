@@ -13,17 +13,39 @@ const FoodItemModal = (props) => {
                     <button onClick={props.onClose}>x</button>
                 </div>
 
-                <div className="FoodItemModal-body">   
-                    <div className="FoodItemModal-Freshness">
-                        
-                    </div>      
+                <div className="FoodItemModal-body">  
+                    <div className="FoodItemModal-info">
+                        <div className="Fresh-bar">
+                            <div className="ellipse">
+                                <div className="white-ellipse">
+                                    <p className="freshness-elipse">Still fresh</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="Fresh-dates">
+                            <select id="use-within">
+                                <option value="seven">7 Days</option>
+                                <option value="six">6 Days</option>
+                                <option value="five">5 Days</option>
+                                <option value="four">4 Days</option>
+                                <option value="three">3 Days</option>
+                                <option value="two">2 Days</option>
+                                <option value="one">1 Day</option>
+                            </select>
+
+                            {/* <label>Date Added</label>
+                            <h5>February 26, 2021</h5> */}
+                        </div>
+                    </div>   
+    
                     <div className="FoodItemModal-Chips">
                         <h5>How Much?</h5>
                         <button>Lots</button>
                         <button>Some</button>
                         <button>Few</button>
                     </div>
-                    <button>Add to Shopping List</button>  
+
                     <div className="FoodItemModal-Notes">
                         <label for="nt">Notes</label>
                         <textarea className="Notes" placeholder="This item is for..."></textarea>
@@ -31,6 +53,7 @@ const FoodItemModal = (props) => {
                 </div>
 
                 <div className="FoodItemModal-footer">
+                    <button>Add to Shopping List</button> 
                     <button onClick={props.onClose}>Save</button>
                 </div>
             </div>
