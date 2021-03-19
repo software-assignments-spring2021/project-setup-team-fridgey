@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./MyFridge.css";
-import { groups } from "./fridgeDataFake";
+import { groups } from "../data/fridgeDataFake";
 import { dot, chipDays, chipAmount } from "./itemColoring";
 import Modal from "./deleteModal";
 import { itemCount, num } from "./CountFridgeItems";

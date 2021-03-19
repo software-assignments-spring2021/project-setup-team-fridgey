@@ -1,4 +1,4 @@
-import NavBar from "./NavBar";
+import NavBar from "../NavBar";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";

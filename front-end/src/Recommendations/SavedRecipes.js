@@ -1,4 +1,4 @@
-import NavBar from "./NavBar";
+import NavBar from "../NavBar";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import "./Recommendations.css";
@@ -6,10 +6,9 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { recipes } from "./recommendationDataFake";
+import { recipes } from "../data/recommendationDataFake";
 import {ReadyToMake} from "./ReadyToMake";
-import {SavedRecipes} from "./SavedRecipes";
+import {Recommendations} from "./Recommendations";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,13 +28,12 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const Recommendations = (props) => {
+const SavedRecipes = (props) => {
   const classes = useStyles();
 
   
 
   const RecItem = (data) => {
-    const [buttonText,setButtonText] = useState('Save Recipe')
     return(
       <div className={classes.root}>
           <Grid container spacing={0} >
@@ -47,7 +45,7 @@ const Recommendations = (props) => {
               <Grid item xs = {6}>
                   <div className = "recommendations-recipeTitle">{data.title}</div>
                   <div className = "recommendations-info">{data.ingredients} Ingredients | {data.minutes} Minutes</div>
-                  <Button className = "recommendations-addButton" variant = "outlined" color="primary" onClick={() => setButtonText('Saved!')}> {buttonText} </Button>
+                  <Button className = "recommendations-addButton" variant = "outlined" color="primary"> Un-Save Recipe </Button>
               </Grid> 
           </Grid>
     </div>
@@ -60,7 +58,7 @@ const Recommendations = (props) => {
     <header className="App-header">
       
     <Link to = "/Recommendations" className = "recommendations-link">
-      <Button className = "recommendations-usedButton">
+      <Button className = "recommendations-unusedButton">
         Recipes of the Day
       </Button>
     </Link>
@@ -70,7 +68,7 @@ const Recommendations = (props) => {
         </Button>
       </Link>
       <Link to = "/SavedRecipes" className = "recommendations-link">
-        <Button className = "recommendations-unusedButton">
+        <Button className = "recommendations-usedButton">
             Saved Recipes
         </Button>
       </Link>  
@@ -87,4 +85,4 @@ const Recommendations = (props) => {
 );
   };
 
-export { Recommendations };
+export { SavedRecipes };

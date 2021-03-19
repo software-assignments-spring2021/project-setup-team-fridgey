@@ -1,4 +1,4 @@
-import { groups } from "./fridgeDataFake";
+import { groups } from "../data/fridgeDataFake";
 
 export let num;
 export const itemCount = () => {
