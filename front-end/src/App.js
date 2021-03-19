@@ -13,6 +13,8 @@ import {Recommendations} from "./Recommendations";
 import NavBar from "./NavBar";
 import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MyFridge from "./MyFridge";
+import { ReadyToMake } from "./ReadyToMake";
+import { SavedRecipes } from "./SavedRecipes";
 import EditStorageModal from "./EditStorageTimeModal";
 import { useState } from 'react';
 
@@ -31,6 +33,14 @@ function App() {
           <Route 
             path="/Recommendations" 
             exact component={Recommendations}
+          />
+          <Route 
+            path="/ReadyToMake" 
+            exact component={ReadyToMake}
+          />
+          <Route 
+            path="/SavedRecipes" 
+            exact component={SavedRecipes}
           />
           <Route path="/Recommendations" 
           exact component={Recommendations} />
