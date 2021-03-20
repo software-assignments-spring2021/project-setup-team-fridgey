@@ -18,12 +18,13 @@ const FoodItemModal = (props) => {
                         <div className="Fresh-bar">
                             <div className="ellipse">
                                 <div className="white-ellipse">
-                                    <p className="freshness-elipse">Still fresh</p>
+                                    <p className="freshness-ellipse">Still fresh</p>
                                 </div>
                             </div>
                         </div>
 
                         <div className="Fresh-dates">
+                            <h5>Use Within</h5>
                             <select id="use-within">
                                 <option value="seven">7 Days</option>
                                 <option value="six">6 Days</option>
@@ -33,21 +34,23 @@ const FoodItemModal = (props) => {
                                 <option value="two">2 Days</option>
                                 <option value="one">1 Day</option>
                             </select>
-
-                            {/* <label>Date Added</label>
-                            <h5>February 26, 2021</h5> */}
+                        </div>
+                        
+                        <div className="Date-Added">
+                            <h5>Date Added</h5>
+                            <p>February 26, 2020</p>
                         </div>
                     </div>   
     
                     <div className="FoodItemModal-Chips">
-                        <h5>How Much?</h5>
-                        <button>Lots</button>
-                        <button>Some</button>
-                        <button>Few</button>
+                        <h5 className="how-much">How Much?</h5>
+                        <button className="chip chipLots">Lots</button>
+                        <button className="chip chipSome">Some</button>
+                        <button className="chip chipFew">Few</button>
                     </div>
 
                     <div className="FoodItemModal-Notes">
-                        <label for="nt">Notes</label>
+                        <label for="nt" className="headline">Notes</label>
                         <textarea className="Notes" placeholder="This item is for..."></textarea>
                     </div>
                 </div>

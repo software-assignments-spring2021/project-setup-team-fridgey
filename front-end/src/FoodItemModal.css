@@ -45,20 +45,7 @@
   border-bottom: 1px solid #eee;
 }
 
-/* .FoodItemModal-Notes {
-} */
-
-/* Notes Text Area */
-.FoodItemModal-Notes .Notes {
-  width: 100%;
-  height: 80px;
-  padding: 12px 20px; /* padding inside the text */
-  margin: 8px 0; /* the px gives it room away from "Notes" and 0 centers it */
-  display: inline-block;
-  border-radius: 4px;
-  box-sizing: border-box;
-  /* resize: vertical; */
-}
+/* ELLIPSE CONTENT */
 .ellipse {
   background-color: #81cd96;
   height: 100px;
@@ -67,23 +54,66 @@
 }
 
 .white-ellipse {
+  position: relative;
+  top: 10px;
+  left: 10px;
+
   background-color: white;
-  height: 75px;
-  width: 75px;
+  height: 80px;
+  width: 80px;
   border-radius: 50%;
-  /* left: 10; */
   text-align: center;
 }
 
 .freshness-ellipse {
+  position: relative;
+  top: 27px;
+
+  font-size: 14px;
   text-align: center;
 }
 
-/* good */
+/* DATES */
+.FoodItemModal-info {
+  display: flex;
+}
+
+.Fresh-dates {
+  position: relative;
+}
+
+/* CHIPS */
+.FoodItemModal-Chips .FoodItemModal-Chips button {
+  background-color: white;
+}
+
+/* NOTES */
+.FoodItemModal-Notes {
+  position: relative;
+  top: 75px;
+}
+
+.FoodItemModal-Notes .headline {
+  position: relative;
+  right: 136px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.FoodItemModal-Notes .Notes {
+  width: 100%;
+  height: 100px;
+  padding: 12px 20px; /* padding inside the text */
+  margin: 2px 0; /* the px gives it room away from "Notes" and 0 centers it */
+  display: inline-block;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: none;
+}
+
 /* FOOTER */
 .FoodItemModal-footer {
   padding: 10px;
   display: flex;
-  /* float: right; */
   justify-content: space-between;
 }
