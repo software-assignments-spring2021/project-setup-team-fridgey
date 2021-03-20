@@ -3,7 +3,7 @@
     "Fruits": [
       {
         "id": 1,
-        "title": "Garden",
+        "title": "Apples",
         "amount": "Lots",
         "daysleft": 5,
         "type": 0,
@@ -11,15 +11,15 @@
       },
       {
         "id": 2,
-        "title": "Industrial",
+        "title": "Strawberries",
         "amount": "Some",
-        "daysleft": 14,
+        "daysleft": 2,
         "type": 0,
         "dateadded": { "$date": { "$numberLong": 159386316900 } }
       },
       {
         "id": 3,
-        "title": "Tools",
+        "title": "Oranges",
         "amount": "Few",
         "daysleft": 1,
         "type": 0,
@@ -29,7 +29,7 @@
     "Dairy": [
       {
         "id": 1,
-        "title": "Toys",
+        "title": "Greek Yogurt",
         "amount": "Low",
         "daysleft": 0,
         "type": 1,
@@ -37,7 +37,7 @@
       },
       {
         "id": 2,
-        "title": "Music",
+        "title": "Ice Cream",
         "amount": "Lots",
         "daysleft": 24,
         "type": 1,
@@ -45,7 +45,7 @@
       },
       {
         "id": 3,
-        "title": "Outdoors",
+        "title": "Milk",
         "amount": "Some",
         "daysleft": 15,
         "type": 1,
@@ -55,7 +55,7 @@
     "Grains": [
       {
         "id": 1,
-        "title": "Outdoors",
+        "title": "Everything Bagels",
         "amount": "Lots",
         "daysleft": 1,
         "type": 2,
@@ -63,25 +63,17 @@
       },
       {
         "id": 2,
-        "title": "Health",
+        "title": "Garlic Bread",
         "amount": "Lots",
         "daysleft": 19,
         "type": 2,
         "dateadded": { "$date": { "$numberLong": 159456090500 } }
-      },
-      {
-        "id": 3,
-        "title": "Home",
-        "amount": "Some",
-        "daysleft": 1,
-        "type": 2,
-        "dateadded": { "$date": { "$numberLong": 159342564600 } }
       }
     ],
     "Meats": [
       {
         "id": 1,
-        "title": "Shoes",
+        "title": "Chicken",
         "amount": "Few",
         "daysleft": 3,
         "type": 3,
@@ -89,7 +81,7 @@
       },
       {
         "id": 2,
-        "title": "Games",
+        "title": "Ground Beef",
         "amount": "Few",
         "daysleft": 2,
         "type": 3,
@@ -97,7 +89,7 @@
       },
       {
         "id": 3,
-        "title": "Industrial",
+        "title": "Sausage Kabobs",
         "amount": "Some",
         "daysleft": 35,
         "type": 3,
