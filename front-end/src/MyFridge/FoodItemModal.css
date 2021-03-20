@@ -45,8 +45,24 @@
   border-bottom: 1px solid #eee;
 }
 
+.h5-FoodItemModal {
+  /* padding: none; */
+}
+
+/* DATA (ELLIPSES AND DATES) */
+.FoodItemModal-info {
+  display: flex;
+}
+
 /* ELLIPSE CONTENT */
-.ellipse {
+.background-ellipse {
+  background-color: grey;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.fresh-ellipse {
   background-color: #81cd96;
   height: 100px;
   width: 100px;
@@ -65,7 +81,7 @@
   text-align: center;
 }
 
-.freshness-ellipse {
+.freshness-text {
   position: relative;
   top: 27px;
 
@@ -74,16 +90,12 @@
 }
 
 /* DATES */
-.FoodItemModal-info {
-  display: flex;
-}
-
 .Fresh-dates {
   position: relative;
 }
 
 /* CHIPS */
-.FoodItemModal-Chips .FoodItemModal-Chips button {
+.FoodItemModal-Chips button {
   background-color: white;
 }
 

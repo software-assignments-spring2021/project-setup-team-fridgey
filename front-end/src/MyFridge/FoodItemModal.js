@@ -16,15 +16,16 @@ const FoodItemModal = (props) => {
                 <div className="FoodItemModal-body">  
                     <div className="FoodItemModal-info">
                         <div className="Fresh-bar">
-                            <div className="ellipse">
-                                <div className="white-ellipse">
-                                    <p className="freshness-ellipse">Still fresh</p>
+                            <div className="background-ellipse">
+                                <div className="fresh-ellipse">
+                                    <div className="white-ellipse">
+                                        <p className="freshness-text">Still fresh</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                         <div className="Fresh-dates">
-                            <h5>Use Within</h5>
+                            <h5 className="h5-FoodItemModal">Use Within</h5>
                             <select id="use-within">
                                 <option value="seven">7 Days</option>
                                 <option value="six">6 Days</option>
@@ -36,7 +37,7 @@ const FoodItemModal = (props) => {
                             </select>
                         </div>
                         <div className="Date-Added">
-                            <h5>Date Added</h5>
+                            <h5 className="h5-FoodItemModal">Date Added</h5>
                             <p>February 26, 2020</p>
                         </div>
                     </div>   

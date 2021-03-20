@@ -130,11 +130,3 @@ const Home = () => (
 
 // make this available to other modules as an import
 export { MyFridge, Home };
-
-// const [count, setCount] = useState(0);
-
-// useEffect(() => {
-//   console.log("the component has rendered or re-rendered!");
-// }, [count]);
-
-// export default MyFridge;
