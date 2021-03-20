@@ -1,0 +1,46 @@
+.recommendations-usedButton {
+    width: 8.65rem;
+    height: 5rem;
+    background-color: whitesmoke !important;
+    line-height: 1.2rem !important;
+    font-weight: 530 !important; 
+    font-size: 1rem !important;
+}
+
+.recommendations-unusedButton {
+    width: 8.65rem;
+    height: 5rem;
+    background-color: white;
+    line-height: 1.2rem !important;
+    font-weight: 530 !important; 
+    font-size: 1rem !important;
+}
+
+.recommendations-imagePreview {
+    width: 6rem;
+    height: 6rem;
+    left: 2rem;
+}
+
+.recommendations-recipeTitle {
+    text-align: left;
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+.recommendations-info {
+    text-align: left;
+    font-size: 14px;
+    padding-bottom: 0.4rem;
+  }
+
+.recommendations-addButton{
+    margin-left: -2.5rem !important;
+    align-items:flex-end; 
+    padding-right: 10px;
+    width: 10rem;
+} 
+
+.recommendations-link{
+    text-decoration: none;
+}

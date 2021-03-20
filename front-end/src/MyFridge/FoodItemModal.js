@@ -35,7 +35,6 @@ const FoodItemModal = (props) => {
                                 <option value="one">1 Day</option>
                             </select>
                         </div>
-                        
                         <div className="Date-Added">
                             <h5>Date Added</h5>
                             <p>February 26, 2020</p>

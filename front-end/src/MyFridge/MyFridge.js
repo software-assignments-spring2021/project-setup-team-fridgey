@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./MyFridge.css";
-import { groups } from "./fridgeDataFake";
+import { groups } from "../data/fridgeDataFake";
 import { dot, chipDays, chipAmount } from "./itemColoring";
 import DeleteModal from "./deleteModal";
 import FoodItemModal from "./FoodItemModal"
 import { itemCount, num } from "./CountFridgeItems";
+import NavBar from "../NavBar";
 
 const MyFridge = (props) => {
   // FoodItemModal useState's
@@ -14,7 +15,7 @@ const MyFridge = (props) => {
 
   // DeleteModal useState's
   const [show, setShow] = useState(false);
-  const [itemName, setItemName] = useState("Hello");
+  const [itemName, setItemName] = useState("");
   const [itemId, setItemId] = useState(0);
 
   const onDelete = (itemInput, groups) => {
@@ -98,7 +99,7 @@ const MyFridge = (props) => {
       <p className={num === 0 ? "MyFridge-Hide" : ""}>
         You have {itemCount()} items in your Fridge
       </p>
-      <div className={num === 0 ? "MyFridge-Hide" : ""}>
+      <div className={`MyFridge ${num === 0 ? "MyFridge-Hide" : ""}`}>
         {groups.map((item, i) => (
           <div key={i}>
             <h2 className="header">{item.header}</h2>
@@ -116,5 +117,24 @@ const MyFridge = (props) => {
     </div>
   );
 };
+// the home page with the items and the stuff at the bottom
+const Home = () => (
+  <div>
+    <NavBar />
+    <header className="App-header">
+      <h1 className="fridgey">MyFridge</h1>
+      <MyFridge />
+    </header>
+  </div>
+);
 
-export default MyFridge;
+// make this available to other modules as an import
+export { MyFridge, Home };
+
+// const [count, setCount] = useState(0);
+
+// useEffect(() => {
+//   console.log("the component has rendered or re-rendered!");
+// }, [count]);
+
+// export default MyFridge;

@@ -1,5 +1,6 @@
 import React from "react";
-import { StorageTimeSearchList, StorageItem } from "./App";
+import StorageTimeSearchList from "./StorageTimeSearchList"
+import StorageItem from "./StorageItem"
 
 const StorageTimeSearchListFruits = () => {
   const items = [
