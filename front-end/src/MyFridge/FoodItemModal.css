@@ -126,7 +126,9 @@
 .FoodItemModal-Chips button {
   background-color: white;
   position: relative;
-  left: 1px;
+  right: 25px;
+  margin: 2px;
+  padding: 3px;
 }
 
 /* NOTES */
