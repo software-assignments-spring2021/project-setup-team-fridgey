@@ -13,7 +13,6 @@ const MyFridge = (props) => {
   const [itemName, setItemName] = useState("");
   const [itemId, setItemId] = useState(0);
   const [type, setType] = useState(0);
-  console.log(fridgeData);
   // Deleting an Item
   const onDelete = (data) => {
     let matchIndex = parseInt(itemId);
