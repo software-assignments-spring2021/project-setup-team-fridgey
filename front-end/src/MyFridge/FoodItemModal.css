@@ -45,13 +45,34 @@
   border-bottom: 1px solid #eee;
 }
 
-.h5-FoodItemModal {
-  /* padding: none; */
+.FoodItemModal-text {
+  padding: 0;
+  margin: 0;
 }
 
 /* DATA (ELLIPSES AND DATES) */
 .FoodItemModal-info {
   display: flex;
+  position: relative;
+  left: 15px;
+}
+
+/* DATES */
+.Freshness-data {
+  position: relative;
+  top: 18px;
+}
+
+.Use-date {
+  position: relative;
+  padding: 2px;
+  left: 40px;
+}
+
+.Date-Added {
+  position: relative;
+  padding: 2px;
+  left: 40px;
 }
 
 /* ELLIPSE CONTENT */
@@ -89,14 +110,23 @@
   text-align: center;
 }
 
-/* DATES */
-.Fresh-dates {
+/* CHIPS */
+.FoodItemModal-Chips {
   position: relative;
+  top: 20px;
+  right: 50px;
 }
 
-/* CHIPS */
+.FoodItemModal-Chips .FoodItemModal-text {
+  position: relative;
+  right: 64px;
+  padding: 5px;
+}
+
 .FoodItemModal-Chips button {
   background-color: white;
+  position: relative;
+  left: 1px;
 }
 
 /* NOTES */
@@ -107,13 +137,13 @@
 
 .FoodItemModal-Notes .headline {
   position: relative;
-  right: 136px;
+  right: 122px;
   font-size: 20px;
   font-weight: 500;
 }
 
 .FoodItemModal-Notes .Notes {
-  width: 100%;
+  width: 90%;
   height: 100px;
   padding: 12px 20px; /* padding inside the text */
   margin: 2px 0; /* the px gives it room away from "Notes" and 0 centers it */

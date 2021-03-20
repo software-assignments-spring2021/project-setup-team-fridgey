@@ -24,26 +24,28 @@ const FoodItemModal = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="Fresh-dates">
-                            <h5 className="h5-FoodItemModal">Use Within</h5>
-                            <select id="use-within">
-                                <option value="seven">7 Days</option>
-                                <option value="six">6 Days</option>
-                                <option value="five">5 Days</option>
-                                <option value="four">4 Days</option>
-                                <option value="three">3 Days</option>
-                                <option value="two">2 Days</option>
-                                <option value="one">1 Day</option>
-                            </select>
-                        </div>
-                        <div className="Date-Added">
-                            <h5 className="h5-FoodItemModal">Date Added</h5>
-                            <p>February 26, 2020</p>
+                        <div className="Freshness-data">
+                            <div className="Use-date">
+                                <h5 className="FoodItemModal-text">Use Within</h5>
+                                <select id="use-within">
+                                    <option value="seven">7 Days</option>
+                                    <option value="six">6 Days</option>
+                                    <option value="five">5 Days</option>
+                                    <option value="four">4 Days</option>
+                                    <option value="three">3 Days</option>
+                                    <option value="two">2 Days</option>
+                                    <option value="one">1 Day</option>
+                                </select>
+                            </div>
+                            <div className="Date-Added">
+                                <h5 className="FoodItemModal-text">Date Added</h5>
+                                <p className="FoodItemModal-text">February 26, 2020</p>
+                            </div>
                         </div>
                     </div>   
     
                     <div className="FoodItemModal-Chips">
-                        <h5 className="how-much">How Much?</h5>
+                        <h5 className="FoodItemModal-text">How Much?</h5>
                         <button className="chip chipLots">Lots</button>
                         <button className="chip chipSome">Some</button>
                         <button className="chip chipFew">Few</button>
