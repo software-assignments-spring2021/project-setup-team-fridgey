@@ -14,6 +14,12 @@
   display: none;
 }
 
+.MyFridge-Welcome-Msg {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 table {
   margin-left: auto;
   margin-right: auto;

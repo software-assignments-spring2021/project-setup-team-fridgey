@@ -4,6 +4,7 @@ import { dot, chipDays, chipAmount } from "./itemColoring";
 import Modal from "./deleteModal";
 import { itemCount, num } from "./CountFridgeItems";
 import NavBar from "../NavBar";
+import welcome_pic from "./MyFridge-Welcome-Pic.png";
 
 const fridgeData = require("../data/fridgeMockData.json");
 
@@ -83,8 +84,14 @@ const MyFridge = (props) => {
       </div>
       <div className={num === 0 ? "" : "MyFridge-Hide"}>
         <h2> Welcome to Fridgey!</h2>
-        <p className={num === 0 ? "" : "MyFridge-Hide"}>{itemCount()}</p>
-        <p>
+        <img
+          src={welcome_pic}
+          alt="MyFridge-Welcome"
+          width="300"
+          height="270"
+        />
+        <p>You have {itemCount()} items in your Fridge</p>
+        <p className="MyFridge-Welcome-Msg">
           To add items to your Fridge, head over to the Shopping List tab :)
         </p>
       </div>
