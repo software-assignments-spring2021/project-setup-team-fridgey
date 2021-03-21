@@ -8,7 +8,7 @@ export const dot = (days) => {
   return (
     <span
       className={`dot ${
-        days < 2 ? "dotRed" : days >= 2 && days < 6 ? "dotYellow" : "dotGreen"
+        days < 1 ? "dotRed" : days >= 1 && days < 3 ? "dotYellow" : "dotGreen"
       }`}
     ></span>
   );
@@ -18,14 +18,14 @@ export const chipDays = (days) => {
   return (
     <p
       className={`chip chipFilled ${
-        days < 2
+        days < 1
           ? "chipRed"
-          : days >= 2 && days < 6
+          : days >= 1 && days < 3
           ? "chipYellow"
           : "chipGreen"
       }`}
     >
-      {days === 0 ? "Throw Out" : days + " Days"}{" "}
+      {days === 0 ? "Throw Out" : days === 1 ? days + " Day" : days + " Days"}{" "}
     </p>
   );
 };

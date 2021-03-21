@@ -1,28 +1,29 @@
 import React, { useState } from "react";
 import "./MyFridge.css";
-import { groups } from "../data/fridgeDataFake";
 import { dot, chipDays, chipAmount } from "./itemColoring";
 import Modal from "./deleteModal";
 import { itemCount, num } from "./CountFridgeItems";
 import NavBar from "../NavBar";
+import welcome_pic from "./MyFridge-Welcome-Pic.png";
+
+const fridgeData = require("../data/fridgeMockData.json");
 
 const MyFridge = (props) => {
   const [show, setShow] = useState(false);
   const [itemName, setItemName] = useState("");
   const [itemId, setItemId] = useState(0);
+  const [type, setType] = useState(0);
   // Deleting an Item
-  const onDelete = (itemInput, groups) => {
+  const onDelete = (data) => {
     let matchIndex = parseInt(itemId);
-    for (let i = 0; i < groups.length; i++) {
-      var removeIndex = groups[i].category
-        .map(function (item) {
-          return item.id;
-        })
-        .indexOf(matchIndex);
-      if (removeIndex !== -1) {
-        groups[i].category.splice(removeIndex, 1);
-        setShow(false);
-      }
+    var removeIndex = data[type][1]
+      .map(function (item) {
+        return item.id;
+      })
+      .indexOf(matchIndex);
+    if (removeIndex !== -1) {
+      data[type][1].splice(removeIndex, 1);
+      setShow(false);
     }
   };
   // Rendering an Item
@@ -31,8 +32,10 @@ const MyFridge = (props) => {
     const deleteClick = (event) => {
       const title = event.currentTarget.getAttribute("title");
       const id = event.currentTarget.getAttribute("id");
+      const type = event.currentTarget.getAttribute("type");
       setItemName(title);
       setItemId(id);
+      setType(type);
       setShow(true);
     };
     return (
@@ -45,7 +48,12 @@ const MyFridge = (props) => {
             <span>{chipDays(data.daysleft)}</span>
           </td>
           <td>
-            <button title={data.title} id={data.id} onClick={deleteClick}>
+            <button
+              title={data.title}
+              id={data.id}
+              type={data.type}
+              onClick={deleteClick}
+            >
               x
             </button>
           </td>
@@ -53,7 +61,7 @@ const MyFridge = (props) => {
         <Modal
           onClose={() => setShow(false)}
           show={show}
-          onDelete={() => onDelete(data, groups)}
+          onDelete={() => onDelete(Object.entries(fridgeData[0]))}
           itemName={itemName}
         />
       </tbody>
@@ -66,17 +74,23 @@ const MyFridge = (props) => {
         You have {itemCount()} items in your Fridge
       </p>
       <div className={`MyFridge ${num === 0 ? "MyFridge-Hide" : ""}`}>
-        {groups.map((item, i) => (
+        {Object.entries(fridgeData[0]).map((item, i) => (
           <div key={i}>
-            <h2 className="header">{item.header}</h2>
-            <table>{item.category.map(renderItem)}</table>
+            <h2 className="header">{JSON.parse(JSON.stringify(item[0]))}</h2>
+            <table>{item[1].map(renderItem)}</table>
           </div>
         ))}
       </div>
       <div className={num === 0 ? "" : "MyFridge-Hide"}>
         <h2> Welcome to Fridgey!</h2>
-        <p className={num === 0 ? "" : "MyFridge-Hide"}>{itemCount()}</p>
-        <p>
+        <img
+          src={welcome_pic}
+          alt="MyFridge-Welcome"
+          width="300"
+          height="270"
+        />
+        <p>You have {itemCount()} items in your Fridge</p>
+        <p className="MyFridge-Welcome-Msg">
           To add items to your Fridge, head over to the Shopping List tab :)
         </p>
       </div>
