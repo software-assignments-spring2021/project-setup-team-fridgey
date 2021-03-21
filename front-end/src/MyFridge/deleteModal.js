@@ -8,9 +8,11 @@ const deleteModal = (props) => {
         <div className="modal-header">
           <h4 className="modal-title">Delete Item Confirmation</h4>
         </div>
+
         <div className="modal-body">
           Are You Sure You Want to Delete {props.itemName}?
         </div>
+
         <div className="modal-footer">
           <button onClick={props.onDelete} className="button">
             Delete
@@ -19,6 +21,7 @@ const deleteModal = (props) => {
             Cancel
           </button>
         </div>
+        
       </div>
     </div>
   );

@@ -1,0 +1,163 @@
+.FoodItemModal {
+  position: fixed;
+  margin: auto;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.082);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.FoodItemModal.show {
+  opacity: 1;
+  pointer-events: visible;
+}
+
+/* CONTENT */
+.FoodItemModal-content {
+  width: 350px;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+/* HEADER */
+.FoodItemModal-header {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.FoodItemModal-title {
+  margin: 0;
+}
+
+/* BODY */
+.FoodItemModal-body {
+  height: 480px;
+  padding: 10px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.FoodItemModal-text {
+  padding: 0;
+  margin: 0;
+}
+
+/* DATA (ELLIPSES AND DATES) */
+.FoodItemModal-info {
+  display: flex;
+  position: relative;
+  left: 15px;
+}
+
+/* DATES */
+.Freshness-data {
+  position: relative;
+  top: 18px;
+}
+
+.Use-date {
+  position: relative;
+  padding: 2px;
+  left: 40px;
+}
+
+.Date-Added {
+  position: relative;
+  padding: 2px;
+  left: 40px;
+}
+
+/* ELLIPSE CONTENT */
+.background-ellipse {
+  background-color: grey;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.fresh-ellipse {
+  background-color: #81cd96;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.white-ellipse {
+  position: relative;
+  top: 10px;
+  left: 10px;
+
+  background-color: white;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.freshness-text {
+  position: relative;
+  top: 27px;
+
+  font-size: 14px;
+  text-align: center;
+}
+
+/* CHIPS */
+.FoodItemModal-Chips {
+  position: relative;
+  top: 20px;
+  right: 50px;
+}
+
+.FoodItemModal-Chips .FoodItemModal-text {
+  position: relative;
+  right: 64px;
+  padding: 5px;
+}
+
+.FoodItemModal-Chips button {
+  background-color: white;
+  position: relative;
+  right: 25px;
+  margin: 2px;
+  padding: 3px;
+}
+
+/* NOTES */
+.FoodItemModal-Notes {
+  position: relative;
+  top: 75px;
+}
+
+.FoodItemModal-Notes .headline {
+  position: relative;
+  right: 122px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.FoodItemModal-Notes .Notes {
+  width: 90%;
+  height: 100px;
+  padding: 12px 20px; /* padding inside the text */
+  margin: 2px 0; /* the px gives it room away from "Notes" and 0 centers it */
+  display: inline-block;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: none;
+}
+
+/* FOOTER */
+.FoodItemModal-footer {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
