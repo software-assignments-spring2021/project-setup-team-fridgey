@@ -9,7 +9,7 @@ import {
   StorageTimeSearchListMeats,
 } from "./StorageTimeSearch/StorageTimeSearchListGroups";
 import StorageTimeSearchList from "./StorageTimeSearch/StorageTimeSearchList";
-import {StorageTimeSearch} from "./StorageTimeSearch/StorageTimeSearch";
+import StorageTimeSearch from "./StorageTimeSearch/StorageTimeSearch";
 import {Recommendations} from "./Recommendations/Recommendations";
 import NavBar from "./NavBar";
 import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
