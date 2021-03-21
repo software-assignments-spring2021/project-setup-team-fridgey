@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../NavBar";
-import StorageTimeSearchList from "./StorageTimeSearchList"
-import StorageItem from "./StorageItem"
+import StorageTimeSearchList from "./StorageTimeSearchList";
+import StorageItem from "./StorageItem";
 
 // includes all hard-coded information for each item and each food group
 // uses a loop to go through all the items, and returns the general structure for list
@@ -14,7 +14,7 @@ const StorageTimeSearchListFruits = () => {
       defaultTime: 1,
       shortTime: 1,
       averageTime: 2,
-      longTime: 3
+      longTime: 3,
     },
     {
       id: 2,
@@ -22,7 +22,7 @@ const StorageTimeSearchListFruits = () => {
       defaultTime: 1,
       shortTime: 1,
       averageTime: 2,
-      longTime: 3
+      longTime: 3,
     },
     {
       id: 3,
@@ -30,10 +30,12 @@ const StorageTimeSearchListFruits = () => {
       defaultTime: 2,
       shortTime: 1,
       averageTime: 2,
-      longTime: 3
-    }
-  ]
-  const itemList = items.map((item) => <StorageItem key={item.id} item={item}></StorageItem>);
+      longTime: 3,
+    },
+  ];
+  const itemList = items.map((item) => (
+    <StorageItem key={item.id} item={item}></StorageItem>
+  ));
   return (
     <div>
       <NavBar />
@@ -53,7 +55,7 @@ const StorageTimeSearchListMeats = () => {
       defaultTime: 1,
       shortTime: 1,
       averageTime: 2,
-      longTime: 3
+      longTime: 3,
     },
     {
       id: 2,
@@ -61,7 +63,7 @@ const StorageTimeSearchListMeats = () => {
       defaultTime: 1,
       shortTime: 1,
       averageTime: 2,
-      longTime: 3
+      longTime: 3,
     },
     {
       id: 3,
@@ -69,10 +71,12 @@ const StorageTimeSearchListMeats = () => {
       defaultTime: 2,
       shortTime: 1,
       averageTime: 2,
-      longTime: 3
-    }
-  ]
-  const itemList = items.map((item) => <StorageItem key={item.id} item={item}></StorageItem>);
+      longTime: 3,
+    },
+  ];
+  const itemList = items.map((item) => (
+    <StorageItem key={item.id} item={item}></StorageItem>
+  ));
   return (
     <div>
       <NavBar />
@@ -81,8 +85,8 @@ const StorageTimeSearchListMeats = () => {
         {itemList}
       </header>
     </div>
-  )
-}
+  );
+};
 
 const StorageTimeSearchListDairy = () => {
   const items = [
@@ -92,7 +96,7 @@ const StorageTimeSearchListDairy = () => {
       defaultTime: 1,
       shortTime: 1,
       averageTime: 2,
-      longTime: 3
+      longTime: 3,
     },
     {
       id: 2,
@@ -100,7 +104,7 @@ const StorageTimeSearchListDairy = () => {
       defaultTime: 1,
       shortTime: 1,
       averageTime: 2,
-      longTime: 3
+      longTime: 3,
     },
     {
       id: 3,
@@ -108,10 +112,12 @@ const StorageTimeSearchListDairy = () => {
       defaultTime: 2,
       shortTime: 1,
       averageTime: 2,
-      longTime: 3
-    }
-  ]
-  const itemList = items.map((item) => <StorageItem key={item.id} item={item}></StorageItem>);
+      longTime: 3,
+    },
+  ];
+  const itemList = items.map((item) => (
+    <StorageItem key={item.id} item={item}></StorageItem>
+  ));
   return (
     <div>
       <NavBar />
@@ -120,8 +126,8 @@ const StorageTimeSearchListDairy = () => {
         {itemList}
       </header>
     </div>
-  )
-}
+  );
+};
 
 const StorageTimeSearchListGrain = () => {
   const items = [
@@ -139,7 +145,7 @@ const StorageTimeSearchListGrain = () => {
       defaultTime: 1,
       shortTime: 1,
       averageTime: 2,
-      longTime: 3
+      longTime: 3,
     },
     {
       id: 3,
@@ -147,10 +153,12 @@ const StorageTimeSearchListGrain = () => {
       defaultTime: 2,
       shortTime: 1,
       averageTime: 2,
-      longTime: 3
-    }
-  ]
-  const itemList = items.map((item) => <StorageItem key={item.id} item={item}></StorageItem>);
+      longTime: 3,
+    },
+  ];
+  const itemList = items.map((item) => (
+    <StorageItem key={item.id} item={item}></StorageItem>
+  ));
   return (
     <div>
       <NavBar />
@@ -159,12 +167,12 @@ const StorageTimeSearchListGrain = () => {
         {itemList}
       </header>
     </div>
-  )
-}
+  );
+};
 
 export {
   StorageTimeSearchListFruits,
   StorageTimeSearchListDairy,
   StorageTimeSearchListMeats,
   StorageTimeSearchListGrain,
-}
+};

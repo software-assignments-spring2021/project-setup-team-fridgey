@@ -10,11 +10,11 @@
   width: 85%;
   background-color: white;
   border-bottom: solid;
-  border-bottom-color:#bbb;
+  border-bottom-color: #bbb;
   border-bottom-width: 1px;
 }
 
-.item-left{
+.item-left {
   display: block;
   text-align: left;
 }
@@ -25,7 +25,7 @@
   margin: 0px;
 }
 
-.all-time{
+.all-time {
   text-align: right;
   display: block;
 }
@@ -44,19 +44,19 @@
   text-align: right;
 }
 
-.storage-days{
+.storage-days {
   margin-left: 0px;
   font-size: 12px;
   display: flex;
   flex-direction: column;
 }
 
-.storage-settings-popup{
+.storage-settings-popup {
   display: flex;
   flex-direction: column;
 }
 
-.storage-row{
+.storage-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -66,6 +66,6 @@
   align-content: left;
 }
 
-.storage-setting-num{
+.storage-setting-num {
   color: #424242;
 }
