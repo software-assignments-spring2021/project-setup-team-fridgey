@@ -1,26 +1,7 @@
-.Food-Group{
-  margin-left: 2.6rem;
-  font-size: 25px;
-}
-
-.ItemStorageImage{
-  width: 15%;
-}
-.StorageBackButton{
-  position: relative;
-  top: 0.5rem;
-  left: auto;
-  font-size: 10px;
-  margin: 20px;
-  margin-left: -26rem;
-  font-family: "Poppins", BlinkMacSystemFont, "Segoe UI", "Roboto";
-}
-
-
-.Storage-Item {
+.storage-item {
   font-family: "Poppins", BlinkMacSystemFont, "Segoe UI", "Roboto";
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   border: 2px black;
   font-size: 15px;
   margin-left: auto;
@@ -29,38 +10,62 @@
   width: 85%;
   background-color: white;
   border-bottom: solid;
-  border-bottom-color:#bbb;
+  border-bottom-color: #bbb;
   border-bottom-width: 1px;
 }
 
-.All-time{
-  margin-left: 60px;
+.item-left {
+  display: block;
+  text-align: left;
+}
+
+.item-name {
+  vertical-align: text-top;
+  font-size: 15px;
+  margin: 0px;
+}
+
+.all-time {
+  text-align: right;
+  display: block;
+}
+
+.spoil-time {
+  margin: 2px;
+  font-size: 8px;
+  display: block;
   text-align: right;
 }
-.Storage-Days{
+
+.default-time {
+  margin: 2px;
+  font-size: 8px;
+  display: block;
+  text-align: right;
+}
+
+.storage-days {
   margin-left: 0px;
   font-size: 12px;
   display: flex;
   flex-direction: column;
 }
-.Item-name {
-  font-size: 15px;
-  margin: 0px;
-  margin-right: 15rem;
-  display: block;
-  text-align: left;
+
+.storage-settings-popup {
+  display: flex;
+  flex-direction: column;
 }
 
-.Spoil-time {
-  margin: 2px;
-  font-size: 8px;
-  display: block;
-  text-align: right;
+.storage-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-left: 3rem;
+  padding-right: 2rem;
+  align-content: left;
 }
 
-.Default-time {
-  margin: 2px;
-  font-size: 8px;
-  display: block;
-  text-align: right;
+.storage-setting-num {
+  color: #424242;
 }

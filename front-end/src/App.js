@@ -8,10 +8,11 @@ import {
   StorageTimeSearchListMeats,
 } from "./StorageTimeSearch/StorageTimeSearchListGroups";
 import StorageTimeSearchList from "./StorageTimeSearch/StorageTimeSearchList";
-import { StorageTimeSearch } from "./StorageTimeSearch/StorageTimeSearch";
-import { Recommendations } from "./Recommendations/Recommendations";
+import StorageTimeSearch from "./StorageTimeSearch/StorageTimeSearch";
+import {Recommendations} from "./Recommendations/Recommendations";
+import NavBar from "./NavBar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Home } from "./MyFridge/MyFridge";
+import MyFridge from "./MyFridge/MyFridge";
 import { ReadyToMake } from "./Recommendations/ReadyToMake";
 import { SavedRecipes } from "./Recommendations/SavedRecipes";
 

@@ -121,4 +121,4 @@ const StorageTimeSearch = () => {
   };
 };
 
-export { StorageTimeSearch };
+export default StorageTimeSearch

@@ -23,6 +23,11 @@
   background-color: #fff;
   transition: all 0.3s ease-in-out;
 }
+.modal-content-storagetimesearchlist{
+  width: 300px;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+}
 
 .modal-header,
 .modal-footer {
