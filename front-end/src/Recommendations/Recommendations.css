@@ -35,7 +35,7 @@
   }
 
 .recommendations-addButton{
-    margin-left: -2.5rem !important;
+    margin-left: -4.5rem !important;
     align-items:flex-end; 
     padding-right: 10px;
     width: 10rem;
@@ -43,4 +43,9 @@
 
 .recommendations-link{
     text-decoration: none;
+}
+
+.recommendations-root{
+    flex-grow: 1;
+    padding-bottom:1.25rem;
 }
