@@ -1,9 +1,23 @@
 /* List View Table Stuff */
 .header {
   text-align: left;
-  padding-left: 40px;
-  font-size: 18px;
+  padding-left: 3rem;
+  font-size: 1.1rem;
   font-weight: 400;
+}
+
+.MyFridge {
+  padding-bottom: 4rem;
+}
+
+.MyFridge-Hide {
+  display: none;
+}
+
+.MyFridge-Welcome-Msg {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 table {
@@ -14,25 +28,17 @@ table {
   /* border: 1px solid #ddd; */
 }
 
-tr {
-  border: 1px solid #ddd;
-}
-
 td {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 0.1rem solid #ddd;
   text-align: left;
   font-size: 1rem;
   width: 90%;
-  padding: 10px;
+  padding: 0.6rem;
 }
 
 td:nth-child(odd):hover {
   background-color: #ddd;
   /* color: white; */
-}
-
-.MyFridge-Hide {
-  display: none;
 }
 
 /* Item Stuff */
@@ -45,7 +51,7 @@ td:nth-child(odd):hover {
   font-size: 1rem;
   font-weight: bold;
   display: inline;
-  border-radius: 10px;
+  border-radius: 0.7rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
@@ -66,33 +72,33 @@ td:nth-child(odd):hover {
 .dotGreen,
 .chipGreen {
   background-color: rgb(129, 205, 150);
-  border: 1px solid rgb(129, 205, 150);
+  border: 0.1rem solid rgb(129, 205, 150);
 }
 
 .dotYellow,
 .chipYellow {
   background-color: rgb(200, 205, 129);
-  border: 1px solid rgb(200, 205, 129);
+  border: 0.1rem solid rgb(200, 205, 129);
 }
 
 .dotRed,
 .chipRed {
   background-color: rgb(205, 129, 129);
-  border: 1px solid rgb(205, 129, 129);
+  border: 0.1rem solid rgb(205, 129, 129);
 }
 
 .chipLots {
-  border: 1px solid rgb(129, 205, 150);
+  border: 0.1rem solid rgb(129, 205, 150);
   color: rgb(129, 205, 150);
 }
 
 .chipSome {
-  border: 1px solid rgb(129, 187, 205);
+  border: 0.1rem solid rgb(129, 187, 205);
   color: rgb(129, 187, 205);
 }
 
 .chipFew {
-  border: 1px solid rgb(205, 175, 129);
+  border: 0.1rem solid rgb(205, 175, 129);
   color: rgb(205, 175, 129);
 }
 
