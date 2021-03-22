@@ -1,50 +1,48 @@
 import React,{useState,useEffect} from "react";
-import AddIngredientBox from "../AddIngredientBox";
-import BackButton from "../BackButton";
+import AddIngredientBox from "./AddIngredientBox";
+import BackButton from "./BackButton";
 import "./Recipe.css";
-import "./App.css";
+import "../App.css";
 import WebpageModal from"./WebpageModal"
 
-const Recipe = () => {
-  const ingredients = [
-    {
-      id: 1,
-      amount: "2",
-      name: "egg",
-    },
-    {
-      id: 2,
-      amount: "3 cup",
-      name: "cheese",
-    },
-    {
-      id: 3,
-      amout: "45 onces",
-      name: "Italian Sauce",
-    },
-  ];
+function search(source, title) {
+  let index=0;
+  let entry=null;
 
-  const [show,setShow]=useState(false)
+  title = title.toUpperCase();
+  for (index = 0; index < source.length; ++index) {
+      entry = source[index];
+      if ( entry.name.toUpperCase()==title) {
+          return entry;
+      }
+  }
+}
+function Recipe(props) {
+   
+  const recipes = require("../data/mock_recipes.json");
+  const dish = search(recipes, "Roasted Asparagus"); //Big Night Pizza as demo, replaced by props.name later
 
-  const ingredientList = ingredients.map((ingredient) => (
-    <AddIngredientBox
-      key={ingredient.id}
-      ingredient={ingredient}
-    />
-  ));
+
+  const [show, setShow] = useState(false);
+  
+  const ingredientList = dish.ingredients.map((ingredient) => <AddIngredientBox
+    name={ingredient.name}
+  > </AddIngredientBox>);
+
   return (
     <header className="App-header">
       <BackButton />
       <br></br>
-      <button class="recipeSite" onClick={()=>setShow(true)}>
-        Original Article
+      <p id="dishname">{dish.name}</p>
+      <button class="recipeSite" >
+        <img src={dish.imageURL} onClick={() => setShow(true)}></img>
       </button>
-      <WebpageModal  onClose={()=>setShow(false)}show={show} />
+      <WebpageModal onClose={() => setShow(false)} show={show} />
       {ingredientList}
-      
+
     </header>
-    
+
   );
-};
+}
 
 export default Recipe;
