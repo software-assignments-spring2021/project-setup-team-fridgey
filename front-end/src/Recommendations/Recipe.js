@@ -35,7 +35,7 @@ function Recipe(props) {
       <br></br>
       <p id="dishname">{dish.name}</p>
       <button class="recipeSite" >
-        <img src={dish.imageURL} onClick={() => setShow(true)}></img>
+        <img className = "recipe-img" src={dish.imageURL} onClick={() => setShow(true)}></img>
       </button>
       <WebpageModal onClose={() => setShow(false)} show={show} />
       {ingredientList}
