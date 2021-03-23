@@ -18,19 +18,23 @@
 }
 
 #StorageTime-Button1 {
-    background: url(./images/fruits.jpg);
-    background-position: center bottom;
     margin-right: 0.5rem;
     margin-top: 1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1.3rem;
+    border-width: 0.2rem;
+    border-color: black;
 }
 
 #StorageTime-Button2 {
     margin-left: 0.5rem;
     margin-top: 1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+    border-width: 0.2rem;
+    border-color: black;
 }
 
 .StorageTime-BottomRow {
@@ -40,10 +44,18 @@
 
 #StorageTime-Button3 {
     margin-right: 0.5rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+    border-width: 0.2rem;
+    border-color: black;
 }
 
 #StorageTime-Button4 {
     margin-left: 0.5rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+    border-width: 0.2rem;
+    border-color: black;
 }
 
 #StorageTime-Description {
