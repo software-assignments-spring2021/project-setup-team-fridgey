@@ -83,14 +83,14 @@ const StorageTimeSearch = () => {
               times and edit the default storage settings however you like!
             </p>
             <Grid container direction="row" justify="center">
-              <Link to="/Storage-Time-Search/ListFruits">
+              <Link to="/Storage-Time-Search/ListFruits" className="StorageTime-Link">
                 <Grid item>
                   <Button variant="contained" className="StorageTime-TopRow" id="StorageTime-Button1">
                     Fruits
                   </Button>
                 </Grid>
               </Link>
-              <Link to="/Storage-Time-Search/ListMeats">
+              <Link to="/Storage-Time-Search/ListMeats" className="StorageTime-Link">
                 <Grid item>
                   <Button variant="contained" className="StorageTime-TopRow" id="StorageTime-Button2">
                     Meats
@@ -99,14 +99,14 @@ const StorageTimeSearch = () => {
               </Link>
             </Grid>
             <Grid container direction="row" justify="center">
-              <Link to="/Storage-Time-Search/ListDairy">
+              <Link to="/Storage-Time-Search/ListDairy" className="StorageTime-Link">
                 <Grid item>
                   <Button variant="contained" className="StorageTime-BottomRow" id="StorageTime-Button3">
                     Dairy
                   </Button>
                 </Grid>
               </Link>
-              <Link to="/Storage-Time-Search/ListGrain">
+              <Link to="/Storage-Time-Search/ListGrain" className="StorageTime-Link">
                 <Grid item>
                   <Button variant="contained" className="StorageTime-BottomRow" id="StorageTime-Button4">
                     Grain

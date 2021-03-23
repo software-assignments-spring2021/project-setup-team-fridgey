@@ -1,3 +1,7 @@
+.StorageTime-Link {
+    text-decoration: none;
+}
+
 #StorageTime-Searchbar {
     border-radius: 5rem;
     width: 23rem;
@@ -14,9 +18,13 @@
 }
 
 #StorageTime-Button1 {
+    background: url(./images/fruits.jpg);
+    background-position: center bottom;
     margin-right: 0.5rem;
     margin-top: 1rem;
     margin-bottom: 3rem;
+    font-weight: bold;
+    font-size: 2rem;
 }
 
 #StorageTime-Button2 {
