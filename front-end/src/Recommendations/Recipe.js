@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React,{useState,useEffect,useWindowDimensions} from "react";
 import AddIngredientBox from "./AddIngredientBox";
 import BackButton from "./BackButton";
 import "./Recipe.css";
@@ -20,7 +20,7 @@ function search(source, title) {
 function Recipe(props) {
    
   const recipes = require("../data/mock_recipes.json");
-  const dish = search(recipes, "Roasted Asparagus"); //Big Night Pizza as demo, replaced by props.name later
+  const dish = search(recipes, "Curried Lentils and Rice"); //Big Night Pizza as demo, replaced by props.name later
 
 
   const [show, setShow] = useState(false);

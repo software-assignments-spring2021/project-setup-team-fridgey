@@ -1,13 +1,14 @@
 .recipe-img {
     margin: auto;
     position: relative;
+    width:28rem;
   }
   .Recipe {
     border: solid 0.05rem #000;
   }
 
   #dishname{
-    font-size:3rem;
+    font-size:2rem;
   }
   
  
