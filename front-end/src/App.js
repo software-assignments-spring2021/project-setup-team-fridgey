@@ -15,6 +15,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { MyFridge, Home } from "./MyFridge/MyFridge";
 import { ReadyToMake } from "./Recommendations/ReadyToMake";
 import { SavedRecipes } from "./Recommendations/SavedRecipes";
+import Recipe from "./Recommendations/Recipe";
 
 // the app itself and the links for everything
 // the components are at the bottom and they are simply the pages and its contents
@@ -32,7 +33,7 @@ function App() {
           <Route path="/Recommendations" exact component={Recommendations} />
           <Route path="/ReadyToMake" exact component={ReadyToMake} />
           <Route path="/SavedRecipes" exact component={SavedRecipes} />
-          <Route path="/Recommendations" exact component={Recommendations} />
+          <Route path="/Recipe" component={Recipe} />
           <Route
             path="/Storage-Time-Search/List"
             component={StorageTimeSearchList}
