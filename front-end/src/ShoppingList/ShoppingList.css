@@ -1,0 +1,9 @@
+.ShoppingList-Hide {
+  display: none;
+}
+
+.ShoppingList-Welcome-Msg {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
