@@ -4,6 +4,10 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import "./StorageTimeSearch.css";
 import { useState } from "react";
+import fruits from "./images/fruits.png";
+import meats from "./images/meats.png";
+import dairy from "./images/dairy.png";
+import grain from "./images/grain.png";
 
 const StorageTimeSearch = () => {
   const items = [
@@ -83,33 +87,37 @@ const StorageTimeSearch = () => {
               times and edit the default storage settings however you like!
             </p>
             <Grid container direction="row" justify="center">
-              <Link to="/Storage-Time-Search/ListFruits">
+              <Link to="/Storage-Time-Search/ListFruits" className="StorageTime-Link">
                 <Grid item>
-                  <Button variant="contained" className="StorageTime-TopRow" id="StorageTime-Button1">
+                  <Button variant="outlined" className="StorageTime-TopRow" id="StorageTime-Button1">
                     Fruits
+                    <img src={ fruits } height="40" width="40" alt="fruit"/>
                   </Button>
                 </Grid>
               </Link>
-              <Link to="/Storage-Time-Search/ListMeats">
+              <Link to="/Storage-Time-Search/ListMeats" className="StorageTime-Link">
                 <Grid item>
-                  <Button variant="contained" className="StorageTime-TopRow" id="StorageTime-Button2">
+                  <Button variant="outlined" className="StorageTime-TopRow" id="StorageTime-Button2">
                     Meats
+                    <img src={ meats } height="40" width="40" alt="meat"/>
                   </Button>
                 </Grid>
               </Link>
             </Grid>
             <Grid container direction="row" justify="center">
-              <Link to="/Storage-Time-Search/ListDairy">
+              <Link to="/Storage-Time-Search/ListDairy" className="StorageTime-Link">
                 <Grid item>
-                  <Button variant="contained" className="StorageTime-BottomRow" id="StorageTime-Button3">
+                  <Button variant="outlined" className="StorageTime-BottomRow" id="StorageTime-Button3">
                     Dairy
+                    <img src={ dairy } height="40" width="40" alt="dairy"/>
                   </Button>
                 </Grid>
               </Link>
-              <Link to="/Storage-Time-Search/ListGrain">
+              <Link to="/Storage-Time-Search/ListGrain" className="StorageTime-Link">
                 <Grid item>
-                  <Button variant="contained" className="StorageTime-BottomRow" id="StorageTime-Button4">
+                  <Button variant="outlined" className="StorageTime-BottomRow" id="StorageTime-Button4">
                     Grain
+                    <img src={ grain } height="37" width="40" alt="grain"/>
                   </Button>
                 </Grid>
               </Link>
