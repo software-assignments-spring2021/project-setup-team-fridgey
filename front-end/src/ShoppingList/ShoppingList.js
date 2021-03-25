@@ -96,6 +96,11 @@ const ShoppingListView = (props) => {
           Start adding items using the add button! :)
         </p>
       </div>
+      <div className="center">
+        <button className={`${showAddtoFridge ? "float" : "hide-AddtoFridge"}`}>
+          Add to Fridge
+        </button>
+      </div>
     </div>
   );
 };
