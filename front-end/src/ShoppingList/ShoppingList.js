@@ -6,10 +6,8 @@ import { chipAmount } from "../MyFridge/itemColoring";
 // import Fab from "@material-ui/core/Fab";
 // import { makeStyles } from "@material-ui/core/styles";
 const shoppingListData = require("../data/shoppingListMockData.json");
-let values = [];
 
 const ShoppingListView = (props) => {
-  const [boxValues, setBoxValues] = useState(values);
   const [showAddtoFridge, setShowAddtoFridge] = useState(false);
 
   function onCheck() {
@@ -45,7 +43,7 @@ const ShoppingListView = (props) => {
       <tbody>
         <tr>
           <td>
-            <span className="checkbox">
+            <span className="ShoppingList-Checkbox">
               <input
                 type="checkbox"
                 name="itemCheckbox"
@@ -67,22 +65,29 @@ const ShoppingListView = (props) => {
   let a = false;
   return (
     <div>
-      <div className={`ShoppingList ${a ? "ShoppingList-Hide" : ""}`}>
-        <input
-          type="checkbox"
-          name="selectAll"
-          onClick={() => toggle("selectAll", "itemCheckbox")}
-        />
-        Select All
-        <br />
-        {/* <button onClick={() => toggle(this)}>Select All</button> */}
+      <div className={`ShoppingList-Container ${a ? "ShoppingList-Hide" : ""}`}>
+        <div>
+          <table className="SelectAll-table">
+            <tr>
+              <td className="SelectAll-td">
+                <span className="ShoppingList-Checkbox">
+                  <input
+                    type="checkbox"
+                    name="selectAll"
+                    onClick={() => toggle("selectAll", "itemCheckbox")}
+                  />
+                </span>
+                <span>Select All</span>
+              </td>
+            </tr>
+          </table>
+        </div>
         {Object.entries(shoppingListData[0]).map((item, i) => (
           <div key={i}>
             <h2 className="header">{JSON.parse(JSON.stringify(item[0]))}</h2>
             <table>{item[1].map(renderItem)}</table>
           </div>
         ))}
-        {/* <table>{renderItem()}</table> */}
       </div>
       <div className={a ? "" : "ShoppingList-Hide"}>
         <h2> Welcome to Your Shopping List!</h2>
@@ -97,19 +102,19 @@ const ShoppingListView = (props) => {
         </p>
       </div>
       <div className="center">
-        <button className={`${showAddtoFridge ? "float" : "hide-AddtoFridge"}`}>
+        <button className={`${showAddtoFridge ? "float" : "AddtoFridge-Hide"}`}>
           Add to Fridge
         </button>
       </div>
     </div>
   );
 };
-// the home page with the items and the stuff at the bottom
+
 const ShoppingList = () => (
   <div>
     <NavBar />
     <header className="App-header">
-      <h1>Shopping List</h1>
+      <h1 className="ShoppingList-Header">Shopping List</h1>
       <ShoppingListView />
     </header>
   </div>
@@ -148,8 +153,7 @@ export { ShoppingList };
 
 // const classes = useStyles();
 
-{
-  /* <div>
+/* <div>
         <Fab
           variant="extended"
           color="primary"
@@ -161,4 +165,3 @@ export { ShoppingList };
           Add to MyFridge
         </Fab>
       </div> */
-}

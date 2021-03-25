@@ -8,15 +8,27 @@
   margin-right: auto;
 }
 
-.ShoppingList {
+.ShoppingList-Header {
+  padding-bottom: 0rem;
+}
+
+.ShoppingList-Container {
   padding-bottom: 7rem;
 }
 
-.checkbox {
+.ShoppingList-Checkbox {
   padding-right: 0.8rem;
 }
 
-.hide-AddtoFridge {
+.SelectAll-td {
+  border-bottom: none;
+}
+
+.SelectAll-table {
+  margin-bottom: 0rem;
+}
+
+.AddtoFridge-Hide {
   display: none;
 }
 
