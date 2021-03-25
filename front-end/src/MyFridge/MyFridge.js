@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./MyFridge.css";
 import { dot, chipDays, chipAmount } from "./itemColoring";
 import DeleteModal from "./deleteModal";
-import FoodItemModal from "./FoodItemModal"
+import FoodItemModal from "./FoodItemModal";
 import { itemCount, num } from "./CountFridgeItems";
 import NavBar from "../NavBar";
 import welcome_pic from "./MyFridge-Welcome-Pic.png";
@@ -11,9 +11,9 @@ const fridgeData = require("../data/fridgeMockData.json");
 
 const MyFridge = (props) => {
   // FoodItemModal useState's
-  const [showItemModal, setShowItemModal] = useState(false)
-  const [itemModalName, setItemModalName] = useState("Title") // why hello
-  const [itemModalId, setItemModalId] = useState(0) // why 0
+  const [showItemModal, setShowItemModal] = useState(false);
+  const [itemModalName, setItemModalName] = useState("Title"); // why hello
+  const [itemModalId, setItemModalId] = useState(0); // why 0
 
   // DeleteModal useState's
   const [show, setShow] = useState(false);
@@ -33,11 +33,10 @@ const MyFridge = (props) => {
       data[type][1].splice(removeIndex, 1);
       setShow(false);
     }
-  }
+  };
 
   // Rendering an Item
   const renderItem = (data, j) => {
-
     // Handling Delete Click
     const deleteClick = (event) => {
       const title = event.currentTarget.getAttribute("title");
@@ -47,25 +46,21 @@ const MyFridge = (props) => {
       setItemId(id);
       setType(type);
       setShow(true);
-    }
+    };
 
     // FoodItemModal event handler
     const itemEvent = (event) => {
-      const title = event.currentTarget.getAttribute("title")
+      const title = event.currentTarget.getAttribute("title");
       const id = event.currentTarget.getAttribute("id");
-      setItemModalName(title)
-      setItemModalId(id)
-      setShowItemModal(true)
-    }  
+      setItemModalName(title);
+      setItemModalId(id);
+      setShowItemModal(true);
+    };
 
     return (
       <tbody key={j}>
         <tr>
-          <td
-            title={data.title}
-            id={data.id}
-            onClick={itemEvent}
-          >
+          <td title={data.title} id={data.id} onClick={itemEvent}>
             <span>{dot(data.daysleft)}</span>
             <span className="title">{data.title}</span>
             <span>{chipAmount(data.amount, data.daysleft)}</span>
@@ -94,9 +89,8 @@ const MyFridge = (props) => {
           itemName={itemModalName}
         />
       </tbody>
-    )
-
-  }
+    );
+  };
 
   // Rendering All Fridge Items
   return (

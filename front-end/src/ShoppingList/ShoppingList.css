@@ -7,3 +7,35 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.ShoppingList {
+  padding-bottom: 7rem;
+}
+
+.checkbox {
+  padding-right: 0.8rem;
+}
+
+.hide-AddtoFridge {
+  display: none;
+}
+
+.float {
+  width: 15rem;
+  height: 3rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  bottom: 50px;
+  position: fixed;
+  border-radius: 100px;
+  background-color: rgb(0, 0, 0);
+  color: aliceblue;
+  font-family: "Poppins", BlinkMacSystemFont, "Segoe UI", "Roboto";
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  font-size: 1.2rem;
+}
+
+.center {
+  position: relative;
+}
