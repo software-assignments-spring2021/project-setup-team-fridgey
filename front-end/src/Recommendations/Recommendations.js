@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import {Recipe} from "./Recipe";
 
 export const useStyles = makeStyles((theme) => ({
     paper: {
@@ -29,7 +30,12 @@ export const RecItem = (data) => {
     <div className="recommendations-root">
         <Grid container spacing={0} >
             <Grid item xs = {5}>
-                <Link to = "/Recipe">
+                <Link to = {{
+                  pathname:'./Recipe',
+                  state:{
+                    name: data.title
+                  }
+                }}>
                   <ButtonBase>
                       <img className= "recommendations-imagePreview" alt="complex" src={data.image} />
                   </ButtonBase>
@@ -76,53 +82,25 @@ export const GeneratePaper = ({children}) => {
   );
 };
 
-const recommendationData = 
-[
-  {
-    title: "Classic Lasagna",
-    ingredients: "7",
-    minutes: 60,
-    image: "https://www.thewholesomedish.com/wp-content/uploads/2018/07/Best-Lasagna-550.jpg",
-  },
-  {
-    title: "Koran Pork Chops",
-    ingredients: "7",
-    minutes: 60,
-    image: "https://www.jocooks.com/wp-content/uploads/2015/03/korean-style-pork-chops-2.jpg",
-  },
-  {
-    title: "Chicken Marsala",
-    ingredients: "13",
-    minutes: 55,
-    image: "https://www.onceuponachef.com/images/2018/01/Chicken-Marsala.jpg",
-  },
-  {
-    title: "Low Carb Skillet",
-    ingredients: "7",
-    minutes: 60,
-    image: "https://www.thewholesomedish.com/wp-content/uploads/2018/07/Best-Lasagna-550.jpg",
-  },
-  {
-      title: "Indian Cauliflower",
-      ingredients: "7",
-      minutes: 60,
-      image: "https://www.jocooks.com/wp-content/uploads/2015/03/korean-style-pork-chops-2.jpg",
-  },
-  {
-      title: "Oven-Baked Chicken",
-      ingredients: "7",
-      minutes: 60,
-      image: "https://www.onceuponachef.com/images/2018/01/Chicken-Marsala.jpg",
-    },
-];
-
 const GenerateData = (data) => {
+  const recipes = require("../data/mock_recipes.json");
   return(
-    recommendationData.map((recipe) => (
-      <RecItem title = {recipe.title} ingredients = {recipe.ingredients} minutes = {recipe.minutes} image = {recipe.image}/>
+    recipes.map((recipe) => (
+      <RecItem title = {recipe.name} ingredients = {recipe.ingredients.length} minutes = {sumTime(recipe.timers)} image = {recipe.imageURL}/>
     )
   ));
 };
+
+function sumTime(times)
+{
+  let i = 0;
+  let sum = 0;
+  for(i = 0;i<times.length;i++)
+  {
+      sum += times[i];
+  }
+  return sum;
+} 
 
 const Recommendations = (props) => {
   return(
@@ -132,7 +110,7 @@ const Recommendations = (props) => {
       <h1>Recommendations</h1>
       <HeaderButtons first = "recommendations-usedButton" second = "recommendations-unusedButton" third = "recommendations-unusedButton"/>
       <GeneratePaper>
-        <GenerateData data = {recommendationData}/>
+        <GenerateData/>
       </GeneratePaper>
     </header>
   </div> 
