@@ -21,7 +21,7 @@ function search(source, title) {
 function Recipe(props) {
   
   const recipes = require("../data/mock_recipes.json");
-  const dish = search(recipes, "Curried Lentils and Rice"); //Big Night Pizza as demo, replaced by props.name later
+  const dish = search(recipes, props.location.state.name); //Big Night Pizza as demo, replaced by props.name later
 
 
   const [show, setShow] = useState(false);

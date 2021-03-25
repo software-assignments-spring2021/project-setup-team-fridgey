@@ -21,6 +21,8 @@
   background-color: #ffffff;
   height: 120vh;
   color: black;
+  overflow-y: scroll;/*make the app scrollable*/
+  
 }
 
 /* Header for Fridgey */
