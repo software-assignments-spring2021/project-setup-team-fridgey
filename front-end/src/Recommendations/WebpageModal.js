@@ -2,6 +2,7 @@
 import React from "react";
 import "./WebpageModal.css";
 
+
 function search(source, title) {
   let index=0;
   let entry=null;
@@ -22,16 +23,16 @@ const WebpageModal = (props) => {
     
   return (
     <div
-    className={`modal ${props.show ? "show" : ""}`}
+    className={`webModal ${props.show ? "show" : ""}`}
     onClick={props.onClose}
   >
-    <div classNmae="modal"
+    <div classNmae="webModal"
     >
-      <div className="modal-content">
-        <div className="modal-header">
+      <div className="webModal-content">
+        <div className="webModal-header">
           <button className="back" onClick={props.onClose}>X</button>
         </div>
-        <div className="modal-body">
+        <div className="webModal-body">
           <embed  src={dish.originalURL} width="450" height="500"></embed>
         </div>
         
