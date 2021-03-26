@@ -16,6 +16,7 @@ import { MyFridge, Home } from "./MyFridge/MyFridge";
 import { ReadyToMake } from "./Recommendations/ReadyToMake";
 import { SavedRecipes } from "./Recommendations/SavedRecipes";
 import Recipe from "./Recommendations/Recipe";
+import LoginPage from "./Login/LoginPage";
 
 // the app itself and the links for everything
 // the components are at the bottom and they are simply the pages and its contents
@@ -53,6 +54,10 @@ function App() {
           <Route
             path="/Storage-Time-Search/ListGrain"
             component={StorageTimeSearchListGrain}
+          />
+          <Route
+            path="/Login"
+            component={LoginPage}
           />
         </Switch>
       </Router>
