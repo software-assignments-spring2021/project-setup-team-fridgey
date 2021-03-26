@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React,{useState,useEffect,useWindowDimensions} from "react";
 import AddIngredientBox from "./AddIngredientBox";
 import BackButton from "./BackButton";
 import "./Recipe.css";

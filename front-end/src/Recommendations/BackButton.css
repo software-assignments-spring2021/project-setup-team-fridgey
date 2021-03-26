@@ -4,6 +4,7 @@
   margin-left:1rem;
   margin-top: 1rem;
   font-size: 1rem;
-  border: solid 0.05rem #000;
-  background-color: rgb(180, 175, 175);
+  border: solid 0.05rem rgb(126, 126, 126);
+  background-color: rgb(230, 228, 228);
+  border-radius:5px;
 }
