@@ -13,32 +13,32 @@
     opacity: 0;
   }
   
-  .webModal.show {
+.webModal.show {
     opacity: 1;
     pointer-events: visible;
   }
   
-  .webModal-content {
+.webModal-content {
     margin-top:2rem;
     width: 500px;
     background-color:white;
     transition: all 0.3s ease-in-out;
   }
   
-  .back{
+.back{
     margin-left:-25rem;
     padding: 10px;
   }
 
-  .webModal-header{
+.webModal-header{
   padding: 10px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
 }
-  
-  
-  
-  .webModal-body {
+
+.webModal-body {
     padding: 10px;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
-  }
-  
+}
+
