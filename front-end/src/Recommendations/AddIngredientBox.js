@@ -23,7 +23,7 @@ for (let i=0;i<fridgeData.length;i++){
 if (itemList.includes(props.name)){
   return (
     <div class="box">
-      <p> <span class="haveIt">{props.name}</span> </p>
+      <p class="text"> <span class="haveIt">{props.name}</span> </p>
       <button class="ingredientButton">+</button>
     </div>
   );
@@ -32,7 +32,7 @@ if (itemList.includes(props.name)){
 else {
   return (
     <div class="box">
-      <p><span style={{color:"red"}}>{props.name}</span> </p>
+      <p class="text"><span style={{color:"red"}}>{props.name}</span> </p>
       <button class="ingredientButton">+</button>
     </div>
   )

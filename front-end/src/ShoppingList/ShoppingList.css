@@ -1,0 +1,53 @@
+.ShoppingList-Hide {
+  display: none;
+}
+
+.ShoppingList-Welcome-Msg {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ShoppingList-Header {
+  padding-bottom: 0rem;
+}
+
+.ShoppingList-Container {
+  padding-bottom: 7rem;
+}
+
+.ShoppingList-Checkbox {
+  padding-right: 0.8rem;
+}
+
+.SelectAll-td {
+  border-bottom: none;
+}
+
+.SelectAll-table {
+  margin-bottom: 0rem;
+}
+
+.AddtoFridge-Hide {
+  display: none;
+}
+
+.float {
+  width: 15rem;
+  height: 3rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  bottom: 50px;
+  position: fixed;
+  border-radius: 100px;
+  background-color: rgb(0, 0, 0);
+  color: aliceblue;
+  font-family: "Poppins", BlinkMacSystemFont, "Segoe UI", "Roboto";
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  font-size: 1.2rem;
+}
+
+.center {
+  position: relative;
+}

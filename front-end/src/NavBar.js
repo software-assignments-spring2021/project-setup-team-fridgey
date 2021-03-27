@@ -8,6 +8,7 @@ const NavBar = (props) => {
   return (
     <nav>
       <Link to="/">MyFridge</Link>
+      <Link to="/ShoppingList">Shopping List</Link>
       <Link to="/Storage-Time-Search">Storage Time Search</Link>
       <Link to="/Recommendations">Recommendations</Link>
     </nav>

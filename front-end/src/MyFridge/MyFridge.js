@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./MyFridge.css";
 import { dot, chipDays, chipAmount } from "./itemColoring";
 import DeleteModal from "./deleteModal";
-import FoodItemModal from "./FoodItemModal"
+import FoodItemModal from "./FoodItemModal";
 import { itemCount, num } from "./CountFridgeItems";
 import NavBar from "../NavBar";
 import welcome_pic from "./MyFridge-Welcome-Pic.png";
@@ -36,11 +36,10 @@ const MyFridge = (props) => {
       data[type][1].splice(removeIndex, 1);
       setShow(false);
     }
-  }
+  };
 
   // Rendering an Item
   const renderItem = (data, j) => {
-
     // Handling Delete Click
     const deleteClick = (event) => {
       const title = event.currentTarget.getAttribute("title");
@@ -50,11 +49,11 @@ const MyFridge = (props) => {
       setItemId(id);
       setType(type);
       setShow(true);
-    }
+    };
 
     // FoodItemModal event handler
     const itemEvent = (event) => {
-      const title = event.currentTarget.getAttribute("title")
+      const title = event.currentTarget.getAttribute("title");
       const id = event.currentTarget.getAttribute("id");
       const amount = event.currentTarget.getAttribute("amount")
       const days = event.currentTarget.getAttribute("daysleft");
@@ -109,9 +108,8 @@ const MyFridge = (props) => {
           dateAdded={itemModalDateAdded}
         />
       </tbody>
-    )
-
-  }
+    );
+  };
 
   // Rendering All Fridge Items
   return (
