@@ -21,14 +21,14 @@
 
 /* CONTENT */
 .FoodItemModal-content {
-  width: 350px;
+  width: 21.875rem;
   background-color: #fff;
   transition: all 0.3s ease-in-out;
 }
 
 /* HEADER */
 .FoodItemModal-header {
-  padding: 10px;
+  padding: 0.625rem;
   display: flex;
   justify-content: space-between;
 }
@@ -39,10 +39,10 @@
 
 /* BODY */
 .FoodItemModal-body {
-  height: 480px;
-  padding: 10px;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  height: 30rem;
+  padding: 0.625rem;
+  border-top: 0.063rem solid #eee;
+  border-bottom: 0.063rem solid #eee;
 }
 
 .FoodItemModal-text {
@@ -54,110 +54,153 @@
 .FoodItemModal-info {
   display: flex;
   position: relative;
-  left: 15px;
+  left: 0.938rem;
 }
 
 /* DATES */
 .Freshness-data {
   position: relative;
-  top: 18px;
+  top: 1.125rem;
 }
 
 .Use-date {
   position: relative;
-  padding: 2px;
-  left: 40px;
+  padding: 0.125rem;
+  left: 2.5rem;
 }
 
 .Date-Added {
   position: relative;
-  padding: 2px;
-  left: 40px;
+  padding: 0.125rem;
+  left: 2.5rem;
+}
+.use-within {
+  border: 0.1rem solid black;
+  background-color: white;
+  border-radius: 0.75rem;
 }
 
 /* ELLIPSE CONTENT */
 .background-ellipse {
   background-color: grey;
-  height: 100px;
-  width: 100px;
+  height: 6.25rem;
+  width: 6.25rem;
   border-radius: 50%;
 }
 
 .fresh-ellipse {
   background-color: #81cd96;
-  height: 100px;
-  width: 100px;
+  height: 6.25rem;
+  width: 6.25rem;
   border-radius: 50%;
 }
 
 .white-ellipse {
   position: relative;
-  top: 10px;
-  left: 10px;
+  top: 0.625rem;
+  left: 0.625rem;
 
   background-color: white;
-  height: 80px;
-  width: 80px;
+  height: 5rem;
+  width: 5rem;
   border-radius: 50%;
   text-align: center;
 }
 
 .freshness-text {
   position: relative;
-  top: 27px;
+  top: 1.688rem;
 
-  font-size: 14px;
+  font-size: 0.875rem;
   text-align: center;
 }
 
 /* CHIPS */
 .FoodItemModal-Chips {
   position: relative;
-  top: 20px;
-  right: 50px;
+  top: 1.25rem;
+  right: 3.125rem;
+}
+
+.chip-Lots {
+  border: 0.1rem solid rgb(129, 205, 150);
+  color: rgb(129, 205, 150);
+}
+.chip-Lots.pressed {
+  border: 0.1rem solid rgb(129, 205, 150);
+  color: white;
+  background-color: rgb(129, 205, 150);
+}
+
+.chip-Some {
+  border: 0.1rem solid rgb(129, 187, 205);
+  color: rgb(129, 187, 205);
+}
+.chip-Some.pressed {
+  border: 0.1rem solid rgb(129, 187, 205);
+  color: white;
+  background-color: rgb(129, 187, 205);
+}
+
+.chip-Few {
+  border: 0.1rem solid rgb(205, 175, 129);
+  color: rgb(205, 175, 129);
+}
+.chip-Few.pressed {
+  border: 0.1rem solid rgb(205, 175, 129);
+  color: white;
+  background-color: rgb(205, 175, 129);
 }
 
 .FoodItemModal-Chips .FoodItemModal-text {
   position: relative;
-  right: 64px;
-  padding: 5px;
+  right: 4rem;
+  padding: 0.313rem;
 }
 
 .FoodItemModal-Chips button {
   background-color: white;
   position: relative;
-  right: 25px;
-  margin: 2px;
-  padding: 3px;
+  right: 1.563rem;
+  margin: 0.125rem;
+  padding: 0.188rem;
+}
+
+.chip-bold button {
+  background-color: black;
+  position: relative;
+  right: 1.563rem;
+  margin: 0.125rem;
+  padding: 0.188rem;
 }
 
 /* NOTES */
 .FoodItemModal-Notes {
   position: relative;
-  top: 75px;
+  top: 4.688rem;
 }
 
 .FoodItemModal-Notes .headline {
   position: relative;
-  right: 122px;
-  font-size: 20px;
+  right: 7.625rem;
+  font-size: 1.25rem;
   font-weight: 500;
 }
 
 .FoodItemModal-Notes .Notes {
   width: 90%;
-  height: 100px;
-  padding: 12px 20px; /* padding inside the text */
-  margin: 2px 0; /* the px gives it room away from "Notes" and 0 centers it */
+  height: 6.25rem;
+  padding: 0.75rem 1.25rem; /* padding inside the text */
+  margin: 0.125rem 0; /* the px gives it room away from "Notes" and 0 centers it */
   display: inline-block;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   box-sizing: border-box;
   resize: none;
 }
 
 /* FOOTER */
 .FoodItemModal-footer {
-  padding: 10px;
+  padding: 0.625rem;
   display: flex;
   justify-content: space-between;
 }

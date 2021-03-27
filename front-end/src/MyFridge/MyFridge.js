@@ -11,9 +11,12 @@ const fridgeData = require("../data/fridgeMockData.json");
 
 const MyFridge = (props) => {
   // FoodItemModal useState's
-  const [showItemModal, setShowItemModal] = useState(false);
-  const [itemModalName, setItemModalName] = useState("Title"); // why hello
-  const [itemModalId, setItemModalId] = useState(0); // why 0
+  const [showItemModal, setShowItemModal] = useState(false)
+  const [itemModalName, setItemModalName] = useState("") 
+  const [itemModalId, setItemModalId] = useState(0) 
+  const [itemAmt, setItemAmount] = useState("") 
+  const [itemModalDaysLeft, setItemModalDaysleft] = useState(0) 
+  const [itemModalDateAdded, setItemModalDateAdded] = useState(0) 
 
   // DeleteModal useState's
   const [show, setShow] = useState(false);
@@ -52,15 +55,28 @@ const MyFridge = (props) => {
     const itemEvent = (event) => {
       const title = event.currentTarget.getAttribute("title");
       const id = event.currentTarget.getAttribute("id");
-      setItemModalName(title);
-      setItemModalId(id);
-      setShowItemModal(true);
-    };
+      const amount = event.currentTarget.getAttribute("amount")
+      const days = event.currentTarget.getAttribute("daysleft");
+      const date = event.currentTarget.getAttribute("dateadded")
+      setItemModalName(title)
+      setItemModalId(id)
+      setShowItemModal(true)
+      setItemAmount(amount)
+      setItemModalDaysleft(days)
+      setItemModalDateAdded(date)
+    }
 
     return (
       <tbody key={j}>
         <tr>
-          <td title={data.title} id={data.id} onClick={itemEvent}>
+          <td
+            title={data.title}
+            id={data.id}
+            amount={data.amount}
+            daysLeft={data.daysleft}
+            dataAdded={data.dateadded}
+            onClick={itemEvent}
+          >
             <span>{dot(data.daysleft)}</span>
             <span className="title">{data.title}</span>
             <span>{chipAmount(data.amount, data.daysleft)}</span>
@@ -87,6 +103,9 @@ const MyFridge = (props) => {
           onClose={() => setShowItemModal(false)}
           show={showItemModal}
           itemName={itemModalName}
+          amount={itemAmt}
+          daysLeft={itemModalDaysLeft}
+          dateAdded={itemModalDateAdded}
         />
       </tbody>
     );
