@@ -4,29 +4,50 @@ import ShoppingList_welcome from "./ShoppingList.png";
 import "./ShoppingList.css";
 import { chipAmount } from "../MyFridge/itemColoring";
 import DeleteModal from "../MyFridge/deleteModal";
+import AddToFridgeModal from "./AddToFridgeModal";
 import { itemCount } from "../MyFridge/CountFridgeItems";
+import { compileAddToFridgeItems } from "./AddToFridgeItems";
+import { AddToFridge } from "./AddToFridge";
 const shopData = require("../data/shoppingListMockData.json");
+const fridgeData = require("../data/fridgeMockData.json");
 
 const ShoppingListView = (props) => {
-  const [showAddtoFridge, setShowAddtoFridge] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [shoppingItemName, setShoppingItemName] = useState("");
   const [shoppingItemId, setShoppingItemId] = useState(0);
   const [shoppingType, setShoppingType] = useState(0);
-  // Deleting an Item
+  const [showAddtoFridge, setShowAddtoFridge] = useState(false);
+  const [showFridgeModal, setShowFridgeModal] = useState(false);
+
+  // Deleting from Shopping List
   const onDelete = (data, id, type) => {
-    let matchIndex = parseInt(shoppingItemId);
-    var removeIndex = data[shoppingType][1]
+    let matchIndex = parseInt(id);
+    var removeIndex = data[type][1]
       .map(function (item) {
         return item.id;
       })
       .indexOf(matchIndex);
     if (removeIndex !== -1) {
-      data[shoppingType][1].splice(removeIndex, 1);
+      data[type][1].splice(removeIndex, 1);
       setShowDelete(false);
     }
   };
-
+  // Adding Items to Fridge and Deleting from Shopping List
+  const onAddToFridge = () => {
+    let AddData = compileAddToFridgeItems();
+    let data = Object.entries(shopData[0]);
+    for (let i = 0; i < AddData.length; i++) {
+      Object.entries(fridgeData[0])[AddData[i].type][1].push(AddData[i]);
+      onDelete(data, AddData[i].id, AddData[i].type);
+    }
+    let checkboxes = document.querySelectorAll(`input[name="itemCheckbox"]`);
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+    setShowFridgeModal(false);
+    setShowAddtoFridge(false);
+  };
+  // Displaying Add to Fridge Button if a Checkbox is Marked
   function onCheck() {
     let allEmpty = true;
     let checkboxes = document.querySelectorAll(`input[name="itemCheckbox"]`);
@@ -37,13 +58,11 @@ const ShoppingListView = (props) => {
     });
     if (allEmpty === true) {
       setShowAddtoFridge(false);
-      console.log("setFalse!");
     } else {
       setShowAddtoFridge(true);
-      console.log("setTrue!");
     }
   }
-
+  // Select All Checkboxes
   function toggle(source, name) {
     let checkboxes = document.querySelectorAll(`input[name="${name}"]`);
     let input = document.querySelectorAll(`input[name="${source}"]`)[0];
@@ -52,7 +71,7 @@ const ShoppingListView = (props) => {
         checkbox.checked = input.checked;
       }
     });
-    onCheck();
+    onCheck(); // So Add to Fridge button also appears
   }
 
   const renderItem = (data) => {
@@ -75,7 +94,11 @@ const ShoppingListView = (props) => {
               <input
                 type="checkbox"
                 name="itemCheckbox"
+                food={data.type}
                 value={data.title}
+                id={data.id}
+                amount={data.amount}
+                date={data.dateadded}
                 onClick={() => onCheck()}
               />
             </span>
@@ -96,7 +119,9 @@ const ShoppingListView = (props) => {
         <DeleteModal
           onClose={() => setShowDelete(false)}
           show={showDelete}
-          onDelete={() => onDelete(Object.entries(shopData[0]))}
+          onDelete={() =>
+            onDelete(Object.entries(shopData[0]), shoppingItemId, shoppingType)
+          }
           itemName={shoppingItemName}
         />
       </tbody>
@@ -144,10 +169,16 @@ const ShoppingListView = (props) => {
         </p>
       </div>
       <div className="center">
-        <button className={`${showAddtoFridge ? "float" : "AddtoFridge-Hide"}`}>
-          Add to Fridge
-        </button>
+        <AddToFridge
+          showAddtoFridge={showAddtoFridge}
+          onClick={() => setShowFridgeModal(true)}
+        />
       </div>
+      <AddToFridgeModal
+        onClose={() => setShowFridgeModal(false)}
+        show={showFridgeModal}
+        onAddToFridge={() => onAddToFridge()}
+      />
     </div>
   );
 };
@@ -164,3 +195,19 @@ const ShoppingList = () => (
 
 // make this available to other modules as an import
 export { ShoppingList };
+
+// function getSelectedCheckboxValues(name) {
+//   const checkboxes = document.querySelectorAll(`input[name="${name}"]`);
+//   checkboxes.forEach((checkbox) => {
+//     values.push(checkbox.checked);
+//     // console.log(checkbox.checked);
+//   });
+//   // for (let i = 0; i < values.length; i++) {
+//   //   console.log(values[i]);
+//   // }
+//   return values;
+// }
+
+// function buttonAlert() {
+//   alert(getSelectedCheckboxValues("itemCheckbox"));
+// }
