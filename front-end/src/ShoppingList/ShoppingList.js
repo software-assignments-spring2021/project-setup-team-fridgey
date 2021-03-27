@@ -1,14 +1,31 @@
 import React, { useState } from "react";
 import NavBar from "../NavBar";
-import welcome_pic from "../MyFridge/MyFridge-Welcome-Pic.png";
+import ShoppingList_welcome from "./ShoppingList.png";
 import "./ShoppingList.css";
 import { chipAmount } from "../MyFridge/itemColoring";
-// import Fab from "@material-ui/core/Fab";
-// import { makeStyles } from "@material-ui/core/styles";
-const shoppingListData = require("../data/shoppingListMockData.json");
+import DeleteModal from "../MyFridge/deleteModal";
+import { itemCount } from "../MyFridge/CountFridgeItems";
+const shopData = require("../data/shoppingListMockData.json");
 
 const ShoppingListView = (props) => {
   const [showAddtoFridge, setShowAddtoFridge] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
+  const [shoppingItemName, setShoppingItemName] = useState("");
+  const [shoppingItemId, setShoppingItemId] = useState(0);
+  const [shoppingType, setShoppingType] = useState(0);
+  // Deleting an Item
+  const onDelete = (data, id, type) => {
+    let matchIndex = parseInt(shoppingItemId);
+    var removeIndex = data[shoppingType][1]
+      .map(function (item) {
+        return item.id;
+      })
+      .indexOf(matchIndex);
+    if (removeIndex !== -1) {
+      data[shoppingType][1].splice(removeIndex, 1);
+      setShowDelete(false);
+    }
+  };
 
   function onCheck() {
     let allEmpty = true;
@@ -39,11 +56,22 @@ const ShoppingListView = (props) => {
   }
 
   const renderItem = (data) => {
+    // Handling Delete Click
+    const deleteClick = (event) => {
+      const title = event.currentTarget.getAttribute("title");
+      const id = event.currentTarget.getAttribute("id");
+      const type = event.currentTarget.getAttribute("type");
+      setShoppingItemName(title);
+      setShoppingItemId(id);
+      setShoppingType(type);
+      setShowDelete(true);
+    };
+
     return (
       <tbody>
         <tr>
           <td>
-            <span className="ShoppingList-Checkbox">
+            <span className="Shop-Checkbox">
               <input
                 type="checkbox"
                 name="itemCheckbox"
@@ -55,22 +83,36 @@ const ShoppingListView = (props) => {
             <span>{chipAmount(data.amount, 1)}</span>
           </td>
           <td>
-            <button>x</button>
+            <button
+              title={data.title}
+              id={data.id}
+              type={data.type}
+              onClick={deleteClick}
+            >
+              x
+            </button>
           </td>
         </tr>
+        <DeleteModal
+          onClose={() => setShowDelete(false)}
+          show={showDelete}
+          onDelete={() => onDelete(Object.entries(shopData[0]))}
+          itemName={shoppingItemName}
+        />
       </tbody>
     );
   };
 
-  let a = false;
   return (
     <div>
-      <div className={`ShoppingList-Container ${a ? "ShoppingList-Hide" : ""}`}>
+      <div
+        className={`Shop-Box ${itemCount(shopData) === 0 ? "Shop-Hide" : ""}`}
+      >
         <div>
           <table className="SelectAll-table">
             <tr>
               <td className="SelectAll-td">
-                <span className="ShoppingList-Checkbox">
+                <span className="Shop-Checkbox">
                   <input
                     type="checkbox"
                     name="selectAll"
@@ -82,22 +124,22 @@ const ShoppingListView = (props) => {
             </tr>
           </table>
         </div>
-        {Object.entries(shoppingListData[0]).map((item, i) => (
+        {Object.entries(shopData[0]).map((item, i) => (
           <div key={i}>
             <h2 className="header">{JSON.parse(JSON.stringify(item[0]))}</h2>
             <table>{item[1].map(renderItem)}</table>
           </div>
         ))}
       </div>
-      <div className={a ? "" : "ShoppingList-Hide"}>
-        <h2> Welcome to Your Shopping List!</h2>
+      <div className={itemCount(shopData) === 0 ? "" : "Shop-Hide"}>
+        <h2 className="Shop-Welcome">Welcome to Your Shopping List!</h2>
         <img
-          src={welcome_pic}
-          alt="MyFridge-Welcome"
+          src={ShoppingList_welcome}
+          alt="ShoppingList-Welcome"
           width="300"
           height="270"
         />
-        <p className="ShoppingList-Welcome-Msg">
+        <p className="Shop-Welcome-Msg">
           Start adding items using the add button! :)
         </p>
       </div>
@@ -114,7 +156,7 @@ const ShoppingList = () => (
   <div>
     <NavBar />
     <header className="App-header">
-      <h1 className="ShoppingList-Header">Shopping List</h1>
+      <h1 className="Shop-Header">Shopping List</h1>
       <ShoppingListView />
     </header>
   </div>
@@ -122,46 +164,3 @@ const ShoppingList = () => (
 
 // make this available to other modules as an import
 export { ShoppingList };
-
-// function getSelectedCheckboxValues(name) {
-//   const checkboxes = document.querySelectorAll(`input[name="${name}"]`);
-//   checkboxes.forEach((checkbox) => {
-//     values.push(checkbox.checked);
-//     // console.log(checkbox.checked);
-//   });
-//   // for (let i = 0; i < values.length; i++) {
-//   //   console.log(values[i]);
-//   // }
-//   return values;
-// }
-
-// function buttonAlert() {
-//   alert(getSelectedCheckboxValues("itemCheckbox"));
-// }
-
-// const useStyles = makeStyles((theme) => ({
-//   margin: {
-//     margin: theme.spacing(1),
-//   },
-//   extendedIcon: {
-//     marginRight: theme.spacing(1),
-//   },
-//   root: {
-//     position: "fixed",
-//   },
-// }));
-
-// const classes = useStyles();
-
-/* <div>
-        <Fab
-          variant="extended"
-          color="primary"
-          aria-label="add"
-          className={`fab ${classes.margin} ${
-            showAddtoFridge ? "" : "hide-AddtoFridge"
-          }`}
-        >
-          Add to MyFridge
-        </Fab>
-      </div> */

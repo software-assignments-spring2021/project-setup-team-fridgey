@@ -1,22 +1,26 @@
-.ShoppingList-Hide {
+.Shop-Hide {
   display: none;
 }
 
-.ShoppingList-Welcome-Msg {
+.Shop-Welcome {
+  padding-top: 3rem;
+}
+
+.Shop-Welcome-Msg {
   width: 300px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.ShoppingList-Header {
+.Shop-Header {
   padding-bottom: 0rem;
 }
 
-.ShoppingList-Container {
+.Shop-Box {
   padding-bottom: 7rem;
 }
 
-.ShoppingList-Checkbox {
+.Shop-Checkbox {
   padding-right: 0.8rem;
 }
 
