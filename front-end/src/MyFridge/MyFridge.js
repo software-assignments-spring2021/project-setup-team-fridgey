@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./MyFridge.css";
 import { dot, chipDays, chipAmount } from "./itemColoring";
 import DeleteModal from "./deleteModal";
-import FoodItemModal from "./FoodItemModal"
+import FoodItemModal from "./FoodItemModal";
 import { itemCount, num } from "./CountFridgeItems";
 import NavBar from "../NavBar";
 import welcome_pic from "./MyFridge-Welcome-Pic.png";
@@ -12,8 +12,11 @@ const fridgeData = require("../data/fridgeMockData.json");
 const MyFridge = (props) => {
   // FoodItemModal useState's
   const [showItemModal, setShowItemModal] = useState(false)
-  const [itemModalName, setItemModalName] = useState("Title") // why hello
-  const [itemModalId, setItemModalId] = useState(0) // why 0
+  const [itemModalName, setItemModalName] = useState("") 
+  const [itemModalId, setItemModalId] = useState(0) 
+  const [itemAmt, setItemAmount] = useState("") 
+  const [itemModalDaysLeft, setItemModalDaysleft] = useState(0) 
+  const [itemModalDateAdded, setItemModalDateAdded] = useState(0) 
 
   // DeleteModal useState's
   const [show, setShow] = useState(false);
@@ -33,11 +36,10 @@ const MyFridge = (props) => {
       data[type][1].splice(removeIndex, 1);
       setShow(false);
     }
-  }
+  };
 
   // Rendering an Item
   const renderItem = (data, j) => {
-
     // Handling Delete Click
     const deleteClick = (event) => {
       const title = event.currentTarget.getAttribute("title");
@@ -47,16 +49,22 @@ const MyFridge = (props) => {
       setItemId(id);
       setType(type);
       setShow(true);
-    }
+    };
 
     // FoodItemModal event handler
     const itemEvent = (event) => {
-      const title = event.currentTarget.getAttribute("title")
+      const title = event.currentTarget.getAttribute("title");
       const id = event.currentTarget.getAttribute("id");
+      const amount = event.currentTarget.getAttribute("amount")
+      const days = event.currentTarget.getAttribute("daysleft");
+      const date = event.currentTarget.getAttribute("dateadded")
       setItemModalName(title)
       setItemModalId(id)
       setShowItemModal(true)
-    }  
+      setItemAmount(amount)
+      setItemModalDaysleft(days)
+      setItemModalDateAdded(date)
+    }
 
     return (
       <tbody key={j}>
@@ -64,6 +72,9 @@ const MyFridge = (props) => {
           <td
             title={data.title}
             id={data.id}
+            amount={data.amount}
+            daysLeft={data.daysleft}
+            dataAdded={data.dateadded}
             onClick={itemEvent}
           >
             <span>{dot(data.daysleft)}</span>
@@ -92,11 +103,13 @@ const MyFridge = (props) => {
           onClose={() => setShowItemModal(false)}
           show={showItemModal}
           itemName={itemModalName}
+          amount={itemAmt}
+          daysLeft={itemModalDaysLeft}
+          dateAdded={itemModalDateAdded}
         />
       </tbody>
-    )
-
-  }
+    );
+  };
 
   // Rendering All Fridge Items
   return (

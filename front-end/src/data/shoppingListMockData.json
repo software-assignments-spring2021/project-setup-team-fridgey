@@ -1,0 +1,89 @@
+[
+  {
+    "Fruits": [
+      {
+        "id": 1,
+        "title": "Apples",
+        "amount": "Lots",
+        "type": 0,
+        "dateadded": { "$date": { "$numberLong": 161448318100 } }
+      },
+      {
+        "id": 2,
+        "title": "Strawberries",
+        "amount": "Some",
+        "type": 0,
+        "dateadded": { "$date": { "$numberLong": 159386316900 } }
+      },
+      {
+        "id": 3,
+        "title": "Oranges",
+        "amount": "Few",
+        "type": 0,
+        "dateadded": { "$date": { "$numberLong": 160353888200 } }
+      }
+    ],
+    "Dairy": [
+      {
+        "id": 1,
+        "title": "Greek Yogurt",
+        "amount": "Low",
+        "type": 1,
+        "dateadded": { "$date": { "$numberLong": 158927031300 } }
+      },
+      {
+        "id": 2,
+        "title": "Ice Cream",
+        "amount": "Lots",
+        "type": 1,
+        "dateadded": { "$date": { "$numberLong": 158875730100 } }
+      },
+      {
+        "id": 3,
+        "title": "Milk",
+        "amount": "Some",
+        "type": 1,
+        "dateadded": { "$date": { "$numberLong": 160724565900 } }
+      }
+    ],
+    "Grains": [
+      {
+        "id": 1,
+        "title": "Everything Bagels",
+        "amount": "Lots",
+        "type": 2,
+        "dateadded": { "$date": { "$numberLong": 158768459100 } }
+      },
+      {
+        "id": 2,
+        "title": "Garlic Bread",
+        "amount": "Lots",
+        "type": 2,
+        "dateadded": { "$date": { "$numberLong": 159456090500 } }
+      }
+    ],
+    "Meats": [
+      {
+        "id": 1,
+        "title": "Chicken",
+        "amount": "Few",
+        "type": 3,
+        "date": { "$date": { "$numberLong": 159888329300 } }
+      },
+      {
+        "id": 2,
+        "title": "Ground Beef",
+        "amount": "Few",
+        "type": 3,
+        "date": { "$date": { "$numberLong": 160710172200 } }
+      },
+      {
+        "id": 3,
+        "title": "Sausage Kabobs",
+        "amount": "Some",
+        "type": 3,
+        "date": { "$date": { "$numberLong": 159789168000 } }
+      }
+    ]
+  }
+]

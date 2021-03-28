@@ -19,8 +19,10 @@
   max-width: 35rem;
   margin: 20px auto;
   background-color: #ffffff;
-  min-height: 100vh;
+  height: 120vh;
   color: black;
+  overflow-y: scroll;/*make the app scrollable*/
+  
 }
 
 /* Header for Fridgey */
