@@ -1,6 +1,11 @@
 // import and instantiate express
+const { response } = require("express")
 const express = require("express") // CommonJS import style!
 const app = express() // instantiate an Express object
+const bodyParser = require("body-parser")
+app.use(bodyParser.json()) // decode JSON-formatted incoming POST data
+app.use(bodyParser.urlencoded({ extended: true })) // decode url-encoded incoming POST
+var request=require ("request")
 
 // we will put some server logic here later...
 app.get("/", (req, res) => {
@@ -14,6 +19,20 @@ app.get("/json-example", (req, res) => {
     message: "Alex is sexy",
   }
   res.json(body)
+})
+
+
+app.get("/getRecipe",(req,res)=>{//add    :name parameters later
+  request("https://my.api.mockaroo.com/mock_recipes.json?key=f9883210",
+  function(error, respone, body){
+    if(!error &&response.statusCode==200){
+      let parsedBody=JSON.parse(body)
+      let recipe=parsedBody[0]
+      res.send({recipe})
+
+    }
+  }
+  )
 })
 
 // export the express app we created to make it available to other modules
