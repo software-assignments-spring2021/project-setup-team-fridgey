@@ -10,11 +10,12 @@ import welcome_pic from "./MyFridge-Welcome-Pic.png";
 const fridgeData = require("../data/fridgeMockData.json");
 
 const MyFridge = (props) => {
+  
   // FoodItemModal useState's
   const [showItemModal, setShowItemModal] = useState(false)
   const [itemModalName, setItemModalName] = useState("") 
-  const [itemModalId, setItemModalId] = useState(0) 
-  const [itemAmt, setItemAmount] = useState("") 
+  const [itemAmount, setItemAmount] = useState("") 
+  const [itemModalID, setItemModalId] = useState(0)
   const [itemModalDaysLeft, setItemModalDaysleft] = useState(0) 
   const [itemModalDateAdded, setItemModalDateAdded] = useState(0) 
 
@@ -24,6 +25,7 @@ const MyFridge = (props) => {
   const [itemId, setItemId] = useState(0);
 
   const [type, setType] = useState(0);
+
   // Deleting an Item
   const onDelete = (data) => {
     let matchIndex = parseInt(itemId);
@@ -54,27 +56,27 @@ const MyFridge = (props) => {
     // FoodItemModal event handler
     const itemEvent = (event) => {
       const title = event.currentTarget.getAttribute("title");
-      const id = event.currentTarget.getAttribute("id");
       const amount = event.currentTarget.getAttribute("amount")
+      const id = event.currentTarget.getAttribute("id");
       const days = event.currentTarget.getAttribute("daysleft");
       const date = event.currentTarget.getAttribute("dateadded")
       setItemModalName(title)
-      setItemModalId(id)
       setShowItemModal(true)
+      setItemModalId(id)
       setItemAmount(amount)
       setItemModalDaysleft(days)
       setItemModalDateAdded(date)
     }
 
-    return (
+    return ( 
       <tbody key={j}>
         <tr>
           <td
             title={data.title}
-            id={data.id}
+            id={data.itemId}
             amount={data.amount}
-            daysLeft={data.daysleft}
-            dataAdded={data.dateadded}
+            daysleft={data.daysleft}
+            dataadded={data.dateadded}
             onClick={itemEvent}
           >
             <span>{dot(data.daysleft)}</span>
@@ -103,8 +105,10 @@ const MyFridge = (props) => {
           onClose={() => setShowItemModal(false)}
           show={showItemModal}
           itemName={itemModalName}
-          amount={itemAmt}
-          daysLeft={itemModalDaysLeft}
+          amount={itemAmount}
+          id={itemModalID}
+          // changeAmount={setItemAmount}
+          daysleft={itemModalDaysLeft}
           dateAdded={itemModalDateAdded}
         />
       </tbody>
@@ -125,6 +129,8 @@ const MyFridge = (props) => {
           </div>
         ))}
       </div>
+      
+      {/* Pops up when there is no items */}
       <div className={num === 0 ? "" : "MyFridge-Hide"}>
         <h2> Welcome to Fridgey!</h2>
         <img
@@ -141,6 +147,7 @@ const MyFridge = (props) => {
     </div>
   );
 };
+
 // the home page with the items and the stuff at the bottom
 const Home = () => (
   <div>

@@ -3,6 +3,7 @@
     "Fruits": [
       {
         "id": 1,
+        "itemId": 1, 
         "title": "Apples",
         "amount": "Lots",
         "daysleft": 5,
@@ -11,6 +12,7 @@
       },
       {
         "id": 2,
+        "itemId": 2, 
         "title": "Strawberries",
         "amount": "Some",
         "daysleft": 2,
@@ -19,6 +21,7 @@
       },
       {
         "id": 3,
+        "itemId": 3, 
         "title": "Oranges",
         "amount": "Few",
         "daysleft": 1,
@@ -29,6 +32,7 @@
     "Dairy": [
       {
         "id": 1,
+        "itemId": 4, 
         "title": "Greek Yogurt",
         "amount": "Low",
         "daysleft": 0,
@@ -37,6 +41,7 @@
       },
       {
         "id": 2,
+        "itemId": 5, 
         "title": "Ice Cream",
         "amount": "Lots",
         "daysleft": 24,
@@ -45,6 +50,7 @@
       },
       {
         "id": 3,
+        "itemId": 6, 
         "title": "Milk",
         "amount": "Some",
         "daysleft": 15,
@@ -55,6 +61,7 @@
     "Grains": [
       {
         "id": 1,
+        "itemId": 7, 
         "title": "Everything Bagels",
         "amount": "Lots",
         "daysleft": 1,
@@ -63,6 +70,7 @@
       },
       {
         "id": 2,
+        "itemId": 8, 
         "title": "Garlic Bread",
         "amount": "Lots",
         "daysleft": 19,
@@ -73,6 +81,7 @@
     "Meats": [
       {
         "id": 1,
+        "itemId": 9, 
         "title": "Chicken",
         "amount": "Few",
         "daysleft": 3,
@@ -81,6 +90,7 @@
       },
       {
         "id": 2,
+        "itemId": 10, 
         "title": "Ground Beef",
         "amount": "Few",
         "daysleft": 2,
@@ -89,6 +99,7 @@
       },
       {
         "id": 3,
+        "itemId": 11, 
         "title": "Sausage Kabobs",
         "amount": "Some",
         "daysleft": 35,

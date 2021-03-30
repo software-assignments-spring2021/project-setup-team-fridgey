@@ -54,34 +54,39 @@
 .FoodItemModal-info {
   display: flex;
   position: relative;
-  left: 0.938rem;
 }
 
 /* DATES */
 .Freshness-data {
   position: relative;
   top: 1.125rem;
+  left: 5rem;
 }
 
-.Use-date {
+.Use-Within {
   position: relative;
   padding: 0.125rem;
-  left: 2.5rem;
 }
 
 .Date-Added {
   position: relative;
   padding: 0.125rem;
-  left: 2.5rem;
 }
-.use-within {
+
+.Days-Remaining {
   border: 0.1rem solid black;
   background-color: white;
   border-radius: 0.75rem;
 }
 
 /* ELLIPSE CONTENT */
+.Fresh-bar {
+  position: relative;
+  left: 1.063rem;
+}
+
 .background-ellipse {
+  position: relative;
   background-color: grey;
   height: 6.25rem;
   width: 6.25rem;
@@ -116,10 +121,39 @@
 }
 
 /* CHIPS */
-.FoodItemModal-Chips {
+.FoodItemModal-Amount {
   position: relative;
   top: 1.25rem;
-  right: 3.125rem;
+}
+
+.FoodItemModal-Amount .FoodItemModal-text {
+  position: relative;
+  text-align: left;
+  padding: 0.313rem;
+  padding-left: 1.031rem;
+}
+
+.FoodItemModal-Chips {
+  position: relative;
+  float: left;
+  left: 0.938rem;
+}
+
+.FoodItemModal-Chips button {
+  background-color: white;
+  position: relative;
+  margin: 0.125rem;
+  padding: 0.188rem;
+}
+
+.FoodItemChip {
+  margin-right: 0.7rem;
+  font-size: 1rem;
+  font-weight: bold;
+  display: inline;
+  border-radius: 0.7rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .chip-Lots {
@@ -152,28 +186,6 @@
   background-color: rgb(205, 175, 129);
 }
 
-.FoodItemModal-Chips .FoodItemModal-text {
-  position: relative;
-  right: 4rem;
-  padding: 0.313rem;
-}
-
-.FoodItemModal-Chips button {
-  background-color: white;
-  position: relative;
-  right: 1.563rem;
-  margin: 0.125rem;
-  padding: 0.188rem;
-}
-
-.chip-bold button {
-  background-color: black;
-  position: relative;
-  right: 1.563rem;
-  margin: 0.125rem;
-  padding: 0.188rem;
-}
-
 /* NOTES */
 .FoodItemModal-Notes {
   position: relative;
@@ -182,7 +194,7 @@
 
 .FoodItemModal-Notes .headline {
   position: relative;
-  right: 7.625rem;
+  right: 12.281rem;
   font-size: 1.25rem;
   font-weight: 500;
 }
