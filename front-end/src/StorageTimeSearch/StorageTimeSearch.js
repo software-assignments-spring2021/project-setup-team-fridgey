@@ -4,12 +4,15 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import "./StorageTimeSearch.css";
 import { useState } from "react";
+import axios from "axios";
 import fruits from "./images/fruits.png";
 import meats from "./images/meats.png";
 import dairy from "./images/dairy.png";
 import grain from "./images/grain.png";
 
 const StorageTimeSearch = () => {
+  axios.get("/storagetimeitems").then(response => console.log(response))
+
   const items = [
     {name: "Apple"},
     {name: "Pear"},
