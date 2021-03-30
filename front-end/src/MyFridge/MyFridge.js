@@ -118,8 +118,8 @@ const MyFridge = (props) => {
   // Rendering All Fridge Items
   return (
     <div>
-      <p className={num === 0 ? "MyFridge-Hide" : ""}>
-        You have {itemCount()} items in your Fridge
+      <p className={itemCount(fridgeData) === 0 ? "MyFridge-Hide" : ""}>
+        You have {itemCount(fridgeData)} items in your Fridge
       </p>
       <div className={`MyFridge ${num === 0 ? "MyFridge-Hide" : ""}`}>
         {Object.entries(fridgeData[0]).map((item, i) => (
@@ -132,14 +132,14 @@ const MyFridge = (props) => {
       
       {/* Pops up when there is no items */}
       <div className={num === 0 ? "" : "MyFridge-Hide"}>
-        <h2> Welcome to Fridgey!</h2>
+        <h2 className="MyFridge-Welcome"> Welcome to Fridgey!</h2>
         <img
           src={welcome_pic}
           alt="MyFridge-Welcome"
           width="300"
           height="270"
         />
-        <p>You have {itemCount()} items in your Fridge</p>
+        <p>You have {itemCount(fridgeData)} items in your Fridge</p>
         <p className="MyFridge-Welcome-Msg">
           To add items to your Fridge, head over to the Shopping List tab :)
         </p>
