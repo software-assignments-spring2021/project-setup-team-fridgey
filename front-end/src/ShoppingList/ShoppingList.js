@@ -172,7 +172,7 @@ const ShoppingListView = (props) => {
         <button className={`${showAddtoFridge ? "float" : "AddtoFridge-Hide"}`}>
           Add to Fridge
         </button>
-        <button className={`${showAddtoFridge  ? "addButton-Hide" : "add-button"}`}></button>
+        {/* <button className={`${showAddtoFridge  ? "addButton-Hide" : "add-button"}`}></button> */}
       </div>
       <AddToFridgeModal
         onClose={() => setShowFridgeModal(false)}
