@@ -11,8 +11,14 @@ import dairy from "./images/dairy.png";
 import grain from "./images/grain.png";
 
 const StorageTimeSearch = () => {
-  axios.get("/storagetimeitems").then(response => console.log(response))
+  const items = axios.get("/storagetimeitems")
 
+  items.then(response => {
+    const data = response.data
+    console.log(JSON.stringify(data))
+    console.log(data[0].food)
+  })
+  /*
   const items = [
     {name: "Apple"},
     {name: "Pear"},
@@ -26,7 +32,7 @@ const StorageTimeSearch = () => {
     {name: "Whole wheat bread"},
     {name: "Oatmeal"},
     {name: "Rice"}
-  ];
+  ];*/
 
   const [searchTerm, setSearchTerm] = useState("");
   const [focusSearch, setFocusSearch] = useState("");
