@@ -1,8 +1,7 @@
 import React from "react"
-import "../FoodItemModal.css";
+import "./FoodItemModal.css";
 
 const FoodItemModal = (props) => {
-    console.log(props.dateAdded)
     return (
         <div 
             className={`FoodItemModal ${props.show ? "show" : ""}`}
@@ -28,15 +27,6 @@ const FoodItemModal = (props) => {
                         <div className="Freshness-data">
                             <div className="Use-date">
                                 <h5 className="FoodItemModal-text">Use Within</h5>
-                                {/* <select id="use-within">
-                                    <option value="seven">7 Days</option>
-                                    <option value="six">6 Days</option>
-                                    <option value="five">5 Days</option>
-                                    <option value="four">4 Days</option>
-                                    <option value="three">3 Days</option>
-                                    <option value="two">2 Days</option>
-                                    <option value="one">1 Day</option>
-                                </select> */}
                                 <button className="use-within">{`${props.daysLeft} Days`}</button>
                             </div>
                             
