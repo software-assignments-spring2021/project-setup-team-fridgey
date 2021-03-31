@@ -1,5 +1,5 @@
 import React from "react"
-import "../FoodItemModal.css";
+import "./FoodItemModal.css";
 
 const FoodItemModal = (props) => {
     var amount = props.amount
@@ -79,7 +79,7 @@ const FoodItemModal = (props) => {
                         <div className="Freshness-data">
                             <div className="Use-Within">
                                 <h5 className="FoodItemModal-text">Use Within</h5>
-                                <button className="Days-Remaining">{`${props.daysleft} Days`}</button>
+                                <button className="use-within">{`${props.daysLeft} Days`}</button>
                             </div>
                             
                             <div className="Date-Added">
