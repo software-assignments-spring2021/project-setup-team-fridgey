@@ -38,6 +38,20 @@ const FoodItemModal = (props) => {
         }
     }
 
+    const grabInformation = (event) => {
+        // "Lots", "Some", "Few"
+        var pressedAmount = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip pressed")[0].innerHTML
+
+        props.parentCallback(pressedAmount, props.type, props.id)
+        reset()
+        event.preventDefault()
+    }
+
+    const closeModal = () => {
+        reset()
+        props.onClose()
+    }
+
     return (
         <div 
             className={`FoodItemModal ${props.show ? "show" : ""}`}
@@ -45,7 +59,7 @@ const FoodItemModal = (props) => {
             <div className="FoodItemModal-content">
                 <div className="FoodItemModal-header">
                     <h4 className="FoodItemModal-title">{props.itemName}</h4>
-                    <button onClick={props.onClose}>x</button>
+                    <button onClick={closeModal}>x</button>
                 </div>
 
                 <div className="FoodItemModal-body"> 
@@ -107,7 +121,7 @@ const FoodItemModal = (props) => {
 
                 <div className="FoodItemModal-footer">
                     <button >Add to Shopping List</button> 
-                    <button onClick={props.onClose}>Save</button>
+                    <button onClick={grabInformation}>Save</button>
                 </div>
             </div>
         </div>

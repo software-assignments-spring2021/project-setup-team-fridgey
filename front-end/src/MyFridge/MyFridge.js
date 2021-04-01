@@ -17,7 +17,8 @@ const MyFridge = (props) => {
   const [itemAmount, setItemAmount] = useState("") 
   const [itemModalID, setItemModalId] = useState(0)
   const [itemModalDaysLeft, setItemModalDaysleft] = useState(0) 
-  const [itemModalDateAdded, setItemModalDateAdded] = useState("") 
+  const [itemModalDateAdded, setItemModalDateAdded] = useState("")
+  const [itemModalType, setItemModalType] = useState(0)
 
   // DeleteModal useState's
   const [show, setShow] = useState(false);
@@ -60,6 +61,8 @@ const MyFridge = (props) => {
       const id = event.currentTarget.getAttribute("id");
       const days = event.currentTarget.getAttribute("daysleft");
       const date = event.currentTarget.getAttribute("dateadded")
+      const type = event.currentTarget.getAttribute("type")
+      setItemModalType(type)
       setItemModalName(title)
       setShowItemModal(true)
       setItemModalId(id)
@@ -73,10 +76,11 @@ const MyFridge = (props) => {
         <tr>
           <td
             title={data.title}
-            id={data.itemId}
+            id={data.id}
             amount={data.amount}
             daysleft={data.daysleft}
             dateadded={data.dateadded}
+            type={data.type}
             onClick={itemEvent}
           >
             <span>{dot(data.daysleft)}</span>
@@ -105,6 +109,11 @@ const MyFridge = (props) => {
     );
   };
 
+  const editItem = (amount, type, id) => {
+    Object.entries(fridgeData[0])[type][1][id - 1].amount = amount
+    setShowItemModal(false)
+  }
+
   // Rendering All Fridge Items
   return (
     <div>
@@ -119,13 +128,15 @@ const MyFridge = (props) => {
           </div>
         ))}
       </div>
-      
+
       <FoodItemModal
           onClose={() => setShowItemModal(false)}
+          parentCallback={editItem}
           show={showItemModal}
           itemName={itemModalName}
           amount={itemAmount}
           id={itemModalID}
+          type={itemModalType}
           daysleft={itemModalDaysLeft}
           dateadded={itemModalDateAdded}
         />

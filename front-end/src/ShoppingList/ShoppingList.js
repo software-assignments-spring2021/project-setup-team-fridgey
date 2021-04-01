@@ -166,10 +166,6 @@ const ShoppingListView = (props) => {
     );
   };
 
-  const handleCallback = (name, amount, type) => {
-    onAddToShoppingList(name, amount, type)
-  }
-
   return (
     <div>
       {/* All items and checkboxes */}
@@ -239,7 +235,7 @@ const ShoppingListView = (props) => {
       />
 
       <AddNewFridgeItemModal   
-        parentCallback={handleCallback}
+        parentCallback={onAddToShoppingList}
         onClose={() => setShowAddFridgeItemModal(false)}
         show={showAddFridgeItemModal}
         onAddToShoppingList={onAddToShoppingList}

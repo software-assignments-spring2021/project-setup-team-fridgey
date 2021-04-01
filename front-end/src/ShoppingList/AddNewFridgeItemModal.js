@@ -83,13 +83,10 @@ const AddNewFridgeItemModal = (props) => {
             type = 3;
         }
 
-        onTrigger(itemName, amount, type);
-        event.preventDefault();
-    }
-
-    const onTrigger = (name, amount, type) => {
         reset()
-        props.parentCallback(name, amount, type)
+        props.parentCallback(itemName, amount, type)
+        reset()
+        event.preventDefault();
     }
 
     const closeModal = () => {
