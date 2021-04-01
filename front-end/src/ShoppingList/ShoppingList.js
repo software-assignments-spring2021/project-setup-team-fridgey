@@ -225,7 +225,7 @@ const ShoppingListView = (props) => {
         />
         <AddButton
           showAddtoFridge={showAddtoFridge}
-          onClick={() => setShowFridgeModal(true)}
+          onClick={() => setShowAddFridgeItemModal(true)}
         />
       </div>
       
