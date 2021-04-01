@@ -20,7 +20,9 @@ const ShoppingListView = (props) => {
   const [shoppingType, setShoppingType] = useState(0);
   const [showAddtoFridge, setShowAddtoFridge] = useState(false);
   const [showFridgeModal, setShowFridgeModal] = useState(false);
+
   const [showAddFridgeItemModal, setShowAddFridgeItemModal] = useState(false);
+  const [AddFridgeItemName, setAddFridgeItemName] = useState("");
 
   // Deleting from Shopping List
   const onDelete = (data, id, type) => {
@@ -48,6 +50,7 @@ const ShoppingListView = (props) => {
       onDelete(data, AddData[i].id, AddData[i].type);
     }
 
+    // uncheck all checkboxes
     let checkboxes = document.querySelectorAll(`input[name="itemCheckbox"]`);
     checkboxes.forEach((checkbox) => {
       checkbox.checked = false;
@@ -56,6 +59,21 @@ const ShoppingListView = (props) => {
     setShowFridgeModal(false); 
     setShowAddtoFridge(false);
   };
+
+  const onAddToShoppingList = (event) => {
+    const tit = "das"
+    const foodItem = {
+      id: 1,
+      title: tit,
+      amount: "Lots",
+      type: 0,
+      dateadded: { $date: { $numberLong: 161448318100 } },
+    };
+
+    let add = Object.create(foodItem);
+    Object.entries(shopData[0])[0][1].push(add)
+    setShowAddFridgeItemModal(false)
+  }
 
   // Displaying Add to Fridge Button if a Checkbox is Marked
   function onCheck() {
@@ -89,16 +107,14 @@ const ShoppingListView = (props) => {
     onCheck(); // So Add to Fridge button also appears
   }
 
-  const itemEvent = (event) => {
-    setShowAddFridgeItemModal(true)
-  }
-
   const renderItem = (data) => {
     // Handling Delete Click
     const deleteClick = (event) => {
+      console.log(event)
       const title = event.currentTarget.getAttribute("title");
       const id = event.currentTarget.getAttribute("id");
       const type = event.currentTarget.getAttribute("type");
+      console.log(title)
       setShoppingItemName(title);
       setShoppingItemId(id);
       setShoppingType(type);
@@ -219,9 +235,10 @@ const ShoppingListView = (props) => {
         onAddToFridge={() => onAddToFridge()}
       />
 
-      <AddNewFridgeItemModal
-        // onClose={() => setShowAddFridgeItemModal(false)}
+      <AddNewFridgeItemModal     
+        onClose={() => setShowAddFridgeItemModal(false)}
         show={showAddFridgeItemModal}
+        onAddToShoppingList={onAddToShoppingList}
       />
     </div>
   );

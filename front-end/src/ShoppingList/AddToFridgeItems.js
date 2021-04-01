@@ -5,6 +5,7 @@ export function getSelectedCheckboxItems(name) {
   checkboxes.forEach((checkbox) => {
     values.push(checkbox);
   });
+  
   // returns arrays of all checkboxes that are checked
   return values;
 }

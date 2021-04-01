@@ -12,7 +12,7 @@ const AddNewFridgeItemModal = (props) => {
 
                 <div className="AddNewFridgeItemModal-body">
                     <div className="NewFridgeItemModal-itemName">
-                        <label for="nt" className="headline">Item</label>
+                        <label htmlFor="nt" className="headline">Item</label>
                         <textarea className="itemName" placeholder="Enter your grocery here"></textarea>
                     </div>
 
@@ -32,14 +32,14 @@ const AddNewFridgeItemModal = (props) => {
                     </div>
 
                     <div className="NewFridgeItemModal-notes">
-                        <label for="nt" className="headline">Notes</label>
+                        <label htmlFor="nt" className="headline">Notes</label>
                         <textarea className="Notes" placeholder="This item is for..."></textarea>
                         {/* <textarea></textarea> */}
                     </div>
                 </div>
 
                 <div className="AddNewFridgeItemModal-footer">
-                    <button onClick={props.onClose}>Add to Shopping List</button> 
+                    <button onClick={props.onAddToShoppingList}>Add to Shopping List</button> 
                 </div>
             </div>
         </div>
