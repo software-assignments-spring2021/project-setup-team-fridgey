@@ -2,6 +2,34 @@ import { React } from "react";
 import "./AddNewFridgeItemModal.css";
 
 const AddNewFridgeItemModal = (props) => {
+
+    const grabInformation = (event) => {
+        var itemName = document.getElementById("itemName").value;
+        var amountElements = document.getElementById("NewItemAmount-chips").getElementsByClassName("chip pressed")
+        var amount = amountElements[0].innerHTML
+        var typeElements = document.getElementById("NewItemType-chips").getElementsByClassName("chip pressed")
+        var type = typeElements[0].innerHTML
+
+        if(type === "Fruits") {
+            type = 0;
+        } else if(type === "Dairy") {
+            type = 1;
+        } else if(type === "Grains") {
+            type = 2;
+        } else if(type === "Meat") {
+            type = 3;
+        }
+
+        onTrigger(itemName, amount, type);
+        event.preventDefault();
+    }
+
+    const onTrigger = (name, amount, type) => {
+        props.parentCallback(name, amount, type)
+        
+        // event.preventDefault();
+    }
+
     return (
         <div className={`AddNewFridgeItemModal ${props.show ? "show" : ""}`}>
             <div className="AddNewFridgeItemModal-content">
@@ -13,33 +41,37 @@ const AddNewFridgeItemModal = (props) => {
                 <div className="AddNewFridgeItemModal-body">
                     <div className="NewFridgeItemModal-itemName">
                         <label htmlFor="nt" className="headline">Item</label>
-                        <textarea className="itemName" placeholder="Enter your grocery here"></textarea>
+                        <textarea className="itemName" id="itemName" placeholder="Enter your grocery here"></textarea>
                     </div>
 
                     <div className="NewFridgeItemModal-amount">
                         <h5 className="NewFridgeItemModal-text">How Much?</h5>
-                        <button className={`chip chip-Lots`}>Lots</button>
-                        <button className={`chip chip-Some`}>Some</button>
-                        <button className={`chip chip-Few`}>Few</button>
+
+                        <div id="NewItemAmount-chips">
+                            <button className={`chip chip-Lots pressed`}>Lots</button>
+                            <button className={`chip chip-Some`}>Some</button>
+                            <button className={`chip chip-Few`}>Few</button>
+                        </div>
                     </div>
 
                     <div className="NewFridgeItemModal-type">
                         <h5 className="NewFridgeItemModal-text">What Type?</h5>
-                        <button className={`chip chip-food`}>Fruit</button>
-                        <button className={`chip chip-food`}>Meat</button>
-                        <button className={`chip chip-food`}>Dairy</button>
-                        <button className={`chip chip-food`}>Grain</button>
+                        <div id="NewItemType-chips">
+                            <button className={`chip chip-food`}>Fruit</button>
+                            <button className={`chip chip-food pressed`}>Meat</button>
+                            <button className={`chip chip-food`}>Dairy</button>
+                            <button className={`chip chip-food`}>Grain</button>
+                        </div>
                     </div>
 
                     <div className="NewFridgeItemModal-notes">
                         <label htmlFor="nt" className="headline">Notes</label>
                         <textarea className="Notes" placeholder="This item is for..."></textarea>
-                        {/* <textarea></textarea> */}
                     </div>
                 </div>
 
                 <div className="AddNewFridgeItemModal-footer">
-                    <button onClick={props.onAddToShoppingList}>Add to Shopping List</button> 
+                    <button onClick={grabInformation}>Add to Shopping List</button> 
                 </div>
             </div>
         </div>

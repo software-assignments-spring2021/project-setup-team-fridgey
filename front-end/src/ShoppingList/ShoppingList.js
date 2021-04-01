@@ -60,18 +60,17 @@ const ShoppingListView = (props) => {
     setShowAddtoFridge(false);
   };
 
-  const onAddToShoppingList = (event) => {
-    const tit = "das"
+  const onAddToShoppingList = (name, amount, typeFood) => {
     const foodItem = {
       id: 1,
-      title: tit,
-      amount: "Lots",
-      type: 0,
+      title: name,
+      amount: amount,
+      type: typeFood,
       dateadded: { $date: { $numberLong: 161448318100 } },
     };
 
     let add = Object.create(foodItem);
-    Object.entries(shopData[0])[0][1].push(add)
+    Object.entries(shopData[0])[typeFood][1].push(add)
     setShowAddFridgeItemModal(false)
   }
 
@@ -114,10 +113,10 @@ const ShoppingListView = (props) => {
       const title = event.currentTarget.getAttribute("title");
       const id = event.currentTarget.getAttribute("id");
       const type = event.currentTarget.getAttribute("type");
-      console.log(title)
       setShoppingItemName(title);
       setShoppingItemId(id);
       setShoppingType(type);
+
       // the delete modal now appears
       setShowDelete(true);
     };
@@ -166,6 +165,10 @@ const ShoppingListView = (props) => {
       </tbody>
     );
   };
+
+  const handleCallback = (name, amount, type) => {
+    onAddToShoppingList(name, amount, type)
+  }
 
   return (
     <div>
@@ -235,7 +238,8 @@ const ShoppingListView = (props) => {
         onAddToFridge={() => onAddToFridge()}
       />
 
-      <AddNewFridgeItemModal     
+      <AddNewFridgeItemModal   
+        parentCallback={handleCallback}
         onClose={() => setShowAddFridgeItemModal(false)}
         show={showAddFridgeItemModal}
         onAddToShoppingList={onAddToShoppingList}
