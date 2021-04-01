@@ -17,7 +17,7 @@ const MyFridge = (props) => {
   const [itemAmount, setItemAmount] = useState("") 
   const [itemModalID, setItemModalId] = useState(0)
   const [itemModalDaysLeft, setItemModalDaysleft] = useState(0) 
-  const [itemModalDateAdded, setItemModalDateAdded] = useState(0) 
+  const [itemModalDateAdded, setItemModalDateAdded] = useState("") 
 
   // DeleteModal useState's
   const [show, setShow] = useState(false);
@@ -76,7 +76,7 @@ const MyFridge = (props) => {
             id={data.itemId}
             amount={data.amount}
             daysleft={data.daysleft}
-            dataadded={data.dateadded}
+            dateadded={data.dateadded}
             onClick={itemEvent}
           >
             <span>{dot(data.daysleft)}</span>
@@ -101,16 +101,6 @@ const MyFridge = (props) => {
           onDelete={() => onDelete(Object.entries(fridgeData[0]))}
           itemName={itemName}
         />
-        <FoodItemModal
-          onClose={() => setShowItemModal(false)}
-          show={showItemModal}
-          itemName={itemModalName}
-          amount={itemAmount}
-          id={itemModalID}
-          // changeAmount={setItemAmount}
-          daysleft={itemModalDaysLeft}
-          dateAdded={itemModalDateAdded}
-        />
       </tbody>
     );
   };
@@ -129,6 +119,16 @@ const MyFridge = (props) => {
           </div>
         ))}
       </div>
+      
+      <FoodItemModal
+          onClose={() => setShowItemModal(false)}
+          show={showItemModal}
+          itemName={itemModalName}
+          amount={itemAmount}
+          id={itemModalID}
+          daysleft={itemModalDaysLeft}
+          dateadded={itemModalDateAdded}
+        />
       
       {/* Pops up when there is no items */}
       <div className={num === 0 ? "" : "MyFridge-Hide"}>

@@ -2,56 +2,40 @@ import React from "react"
 import "./FoodItemModal.css";
 
 const FoodItemModal = (props) => {
-    var amount = props.amount
-    console.log(props.id)
+    const amount = props.amount
 
-    // id = the FoodItemModal id (total of 12: 0-11)
-    // data = "Lots", "Some", "Few"
-    const changeData = (id, data) => {
-        amount = data
-        var elements = document.getElementsByClassName("FoodItemChip")
+    const reset = () => {
+        document.getElementById("notes").value = ""
+        var amountChips = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip")
 
-        for(var i in elements) {
-            if(elements.hasOwnProperty(i)) {
+        for(var i in amountChips) {
+            if(amountChips.hasOwnProperty(i)) {
+                var name = amountChips[i].innerHTML
                 
-                // if(elements.id = id) {
-                //     console.log("AH")
-                // }
-
+                if(name === amount) {
+                    amountChips[i].className = "chip chip-" + name + " pressed"
+                } else {
+                    amountChips[i].className = "chip chip-" + name + " unpressed"
+                }
             }
         }
+    }
 
-        // console.log(data)
-        // if(data === "Some") {
-        //     element = document.getElementById("chip-" + data)
-        //     element.id = "chip-" + data + "-pressed"
-        // } else if(data === "Few") {
+    const changeData = (data) => {
+        var pressedAmount = data
+        var chips = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip")
 
-        // } else if(data === "Lots") {
-
-        // }
-        // console.log("chip-" + data)
-        // element = document.getElementById("chip-" + data)
-        // // console.log(element)
-        // element.id = "chip-" + data + "-pressed"
-        // console.log(element.id)
-
-
-        // amount = data
-
-        // for (var i in elements) {
-        //     if (elements.hasOwnProperty(i)) {
-        //         elements[i].className = data + ' pressed';
-        //     }
-        // }
-
-        // for (var i in elements) {
-        //     if(elements.hasOwnProperty(i)) {
-        //         if(elements[i].className !== data) {
-        //             // var ele
-        //         }
-        //     }
-        // }
+        for(var i in chips) {
+            if(chips.hasOwnProperty(i)) {
+                var name = chips[i].innerHTML
+                
+                if(pressedAmount === name) {
+                    chips[i].className = "chip chip-" + name + " pressed"
+                } else {
+                    chips[i].className = "chip chip-" + name + " unpressed"
+                }
+            }
+        }
     }
 
     return (
@@ -79,37 +63,45 @@ const FoodItemModal = (props) => {
                         <div className="Freshness-data">
                             <div className="Use-Within">
                                 <h5 className="FoodItemModal-text">Use Within</h5>
-                                <button className="use-within">{`${props.daysLeft} Days`}</button>
+                                <button className="use-within">{`${props.daysleft} Days`}</button>
                             </div>
                             
                             <div className="Date-Added">
                                 <h5 className="FoodItemModal-text">Date Added</h5>
-                                <p className="FoodItemModal-text">February 20, 2021</p>
+                                <p className="FoodItemModal-text">{props.dateadded}</p>
                             </div>
                         </div>
                     </div>   
     
                     <div className="FoodItemModal-Amount">
                         <h5 className="FoodItemModal-text">How Much?</h5>
-                        <div className="FoodItemModal-Chips">
-                            <button 
-                                id={props.id}
-                                className={`FoodItemChip chip-Lots ${(amount === "Lots") ? "pressed" : ""}`}
-                                onClick={() => changeData(props.id, "Lots")}>Lots</button>
-                            <button 
-                                id={props.id}
-                                className={`FoodItemChip chip-Some ${(amount === "Some") ? "pressed" : ""}`}
-                                onClick={() => changeData(props.id, "Some")}>Some</button>
-                            <button 
-                                id={props.id}
-                                className={`FoodItemChip chip-Few ${(amount === "Few") ? "pressed" : ""}`}
-                                onClick={() => changeData(props.id, "Few")}>Few</button>
+                        <div id="FoodItemModal-chips">
+                            <button
+                                className={`chip chip-Lots ${(amount == "Lots") ? "pressed" : "unpressed"}`}
+                                onClick={() => changeData("Lots")}
+                            >
+                            Lots
+                            </button>
+
+                            <button
+                                className={`chip chip-Some ${(amount == "Some") ? "pressed" : "unpressed"}`}
+                                onClick={() => changeData("Some")}
+                            >
+                            Some
+                            </button>
+
+                            <button
+                                className={`chip chip-Few ${(amount == "Few") ? "pressed" : "unpressed"}`}
+                                onClick={() => changeData("Few")}
+                            >
+                            Few
+                            </button>
                         </div>
                     </div>
 
                     <div className="FoodItemModal-Notes">
                         <label htmlFor="nt" className="headline">Notes</label>
-                        <textarea className="Notes" placeholder="This item is for..."></textarea>
+                        <textarea id="notes" className="Notes" placeholder="This item is for..."></textarea>
                     </div>
                 </div>
 

@@ -68,6 +68,12 @@
   padding: 0.125rem;
 }
 
+.use-within {
+  background-color: #fff;
+  border-radius: 45px;
+  border: 0.1rem solid black;
+}
+
 .Date-Added {
   position: relative;
   padding: 0.125rem;
@@ -133,20 +139,26 @@
   padding-left: 1.031rem;
 }
 
-.FoodItemModal-Chips {
+#FoodItemModal-chips {
+  position: relative;
+  float: left;
+  left: 15.5px;
+}
+
+/* .FoodItemModal-Chips {
   position: relative;
   float: left;
   left: 0.938rem;
-}
+} */
 
-.FoodItemModal-Chips button {
+/* .FoodItemModal-Chips button {
   background-color: white;
   position: relative;
   margin: 0.125rem;
   padding: 0.188rem;
-}
+} */
 
-.FoodItemChip {
+/* .FoodItemChip {
   margin-right: 0.7rem;
   font-size: 1rem;
   font-weight: bold;
@@ -154,36 +166,45 @@
   border-radius: 0.7rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-}
+} */
 
-.chip-Lots {
+.chip-Lots.unpressed {
   border: 0.1rem solid rgb(129, 205, 150);
+  background-color: white;
   color: rgb(129, 205, 150);
+  margin: 1px;
 }
 .chip-Lots.pressed {
   border: 0.1rem solid rgb(129, 205, 150);
   color: white;
   background-color: rgb(129, 205, 150);
+  margin: 1px;
 }
 
-.chip-Some {
+.chip-Some.unpressed {
   border: 0.1rem solid rgb(129, 187, 205);
+  background-color: white;
   color: rgb(129, 187, 205);
+  margin: 1px;
 }
 .chip-Some.pressed {
   border: 0.1rem solid rgb(129, 187, 205);
   color: white;
   background-color: rgb(129, 187, 205);
+  margin: 1px;
 }
 
-.chip-Few {
+.chip-Few.unpressed {
   border: 0.1rem solid rgb(205, 175, 129);
+  background-color: white;
   color: rgb(205, 175, 129);
+  margin: 1px;
 }
 .chip-Few.pressed {
   border: 0.1rem solid rgb(205, 175, 129);
   color: white;
   background-color: rgb(205, 175, 129);
+  margin: 1px;
 }
 
 /* NOTES */

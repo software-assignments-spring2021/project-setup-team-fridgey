@@ -59,8 +59,8 @@ const ShoppingListView = (props) => {
     setShowAddtoFridge(false);
   };
 
+  // Adding items to the shopping list
   const onAddToShoppingList = (name, amount, typeFood) => {
-    console.log(typeFood)
     const foodItem = {
       id: 1,
       title: name,
