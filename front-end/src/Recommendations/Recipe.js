@@ -21,33 +21,77 @@ function search(source, title) {
 
 function Recipe(props) {
   
-  const recipes = require("../data/mock_recipes.json");
-  const dish = search(recipes, props.location.state.name); //Big Night Pizza as demo, replaced by props.name later
+  // const recipes = require("../data/mock_recipes.json");
+  // const dish = search(recipes, props.location.state.name); //Big Night Pizza as demo, replaced by props.name later
 
-  const ingredientList = dish.ingredients.map((ingredient) => <AddIngredientBox
-    name={ingredient.name}
-  > </AddIngredientBox>);
+  // const ingredientList = dish.ingredients.map((ingredient) => <AddIngredientBox
+  //   name={ingredient.name}
+  // > </AddIngredientBox>);
 
-  const [data, setData] = useState([])
-  // const [name, setName] = useState(0);
-  // const [ingredients, setIngredients] = useState(0);
-  // const [imgURL, setImgURL] = useState(0);
-  // const [originalURL, setOriginalURL] = useState(0);
+   const [data, setData] = useState([])
+  const [load, setLoad] = useState(true);
+  const [name,setName]=useState('');
+  const [ingredients, setIngredients] = useState([]);
+  const [imgURL, setImgURL] = useState('');
+  const [originalURL, setOriginalURL] = useState('');
 
-  // axios.get("/getRecipe").then(response=>{
-  //   setData(response.data)
-  //   // console.log(response.data.recipe)
-  //   // setName(JSON.response.data.recipe.name); 
-  //   // recipe = JSON.stringify(response);
-  //   // setIngredients(response.data.recipe.ingredients);
+  // let name='';
+  // let ingredients=[];
+  // let imgURL='';
+  // let originalURL='';
+  
+
+  // const items=axios.get("/getRecipe")
+
+  // items.then(response => {
+    
+  //   console.log(response.data)
+  //   //  setName(response.data.name); 
+  //   //  console.log(name)
+  //   // JSON.stringify(response);
+  //   // setIngredients();
   //   // setImgURL(response.data.recipe.imgURL);
   //   // setOriginalURL(response.data.recipe.originalURL);
-    
+  //   console.log(response.data.recipe.name)
+  //   name=response.data.recipe.name
+  //   ingredients=(response.data.recipe.ingredients)
+  //   imgURL=(response.data.recipe.imageURL)
+  //   originalURL=(response.data.recipe.originalURL)
+  //   console.log(response.data.recipe.ingredients)
+  //   console.log(response.data.recipe.imageURL)
+  //   console.log(originalURL)
   // })
-  // console.log(data)
-  // const ingredientList=(data.ingredients).map((ingredient)=><AddIngredientBox 
-  //   name={ingredient.name}>
-  // </AddIngredientBox>)
+  const requestRecipe=async()=>{
+    const items=axios.get("/getRecipe")
+
+  items.then(response => {
+    
+    console.log(response.data.recipe.name)
+    // name=response.data.recipe.name
+    // ingredients=(response.data.recipe.ingredients)
+    // imgURL=(response.data.recipe.imageURL)
+    // originalURL=(response.data.recipe.originalURL)
+    console.log(response.data.recipe.ingredients)
+    console.log(response.data.recipe.imageURL)
+    console.log(ingredients)
+    setName(response.data.recipe.nameç)
+    setImgURL(response.data.recipe.imageURL)
+    setOriginalURL(response.data.recipe.originalURL)
+    setIngredients(response.data.recipe.ingredients)
+  })
+
+  };
+  useEffect(() => {
+    requestRecipe();
+  },[])
+    
+  
+
+
+  console.log(ingredients)
+  const ingredientList=(ingredients).map((ingredient)=><AddIngredientBox 
+    name={ingredient.name}>
+  </AddIngredientBox>)
 
   
 
@@ -58,11 +102,11 @@ function Recipe(props) {
     <header className="App-header">
       <BackButton />
       <br></br>
-      <p id="dishname">{dish.name}</p>
+      <p id="dishname">{name}</p>
       <button class="recipeSite" >
-        <img className = "recipe-img" src={dish.imageURL} onClick={() => setShow(true)}></img>
+        <img className = "recipe-img" src={imgURL} onClick={() => setShow(true)}></img>
       </button>
-      <WebpageModal onClose={() => setShow(false)} show={show} />
+      <WebpageModal orginalURL={originalURL} onClose={() => setShow(false)} show={show} />
       {ingredientList}
 
     </header>
