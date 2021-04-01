@@ -83,7 +83,7 @@
   top: 40px;
 }
 
-.chip-Lots {
+.chip-Lots.unpressed {
   border: 0.1rem solid rgb(129, 205, 150);
   color: rgb(129, 205, 150);
   background-color: white;
@@ -94,7 +94,7 @@
   background-color: rgb(129, 205, 150);
 }
 
-.chip-Some {
+.chip-Some.unpressed {
   border: 0.1rem solid rgb(129, 187, 205);
   color: rgb(129, 187, 205);
   background-color: white;
@@ -105,7 +105,7 @@
   background-color: rgb(129, 187, 205);
 }
 
-.chip-Few {
+.chip-Few.unpressed {
   border: 0.1rem solid rgb(205, 175, 129);
   color: rgb(205, 175, 129);
   background-color: white;
