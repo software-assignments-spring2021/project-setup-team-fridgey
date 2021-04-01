@@ -52,6 +52,34 @@ const FoodItemModal = (props) => {
         props.onClose()
     }
 
+    const freshnessText = (daysLeft) => {
+        var text = ""
+
+        if(daysLeft >= 5) {
+            text = "Still Fresh"
+        } else if(daysLeft >= 1) {
+            text = "Use Soon"
+        } else {
+            text = "Throw Out"
+        }
+
+        return text
+    }
+
+    const freshnessEllipse = (daysLeft) => {
+        var className = ""
+
+        if(daysLeft >= 5) {
+            className = "fresh-ellipse"
+        } else if(daysLeft >= 1) {
+            className = "halfFresh-ellipse"
+        } else {
+            className = "notFresh-ellipse"
+        }
+
+        return className
+    }
+
     return (
         <div 
             className={`FoodItemModal ${props.show ? "show" : ""}`}
@@ -66,9 +94,9 @@ const FoodItemModal = (props) => {
                     <div className="FoodItemModal-info">
                         <div className="Fresh-bar">
                             <div className="background-ellipse">
-                                <div className="fresh-ellipse">
+                                <div className={freshnessEllipse(props.daysleft)}>
                                     <div className="white-ellipse">
-                                        <p className="freshness-text">Still fresh</p>
+                                        <p className="freshness-text">{freshnessText(props.daysleft)}</p>
                                     </div>
                                 </div>
                             </div>
@@ -120,7 +148,7 @@ const FoodItemModal = (props) => {
                 </div>
 
                 <div className="FoodItemModal-footer">
-                    <button >Add to Shopping List</button> 
+                    <button>Add to Shopping List</button> 
                     <button onClick={grabInformation}>Save</button>
                 </div>
             </div>

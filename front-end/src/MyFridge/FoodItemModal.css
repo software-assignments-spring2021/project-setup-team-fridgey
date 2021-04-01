@@ -91,16 +91,23 @@
   left: 1.063rem;
 }
 
-.background-ellipse {
-  position: relative;
-  background-color: grey;
+.fresh-ellipse {
+  background-color: #81cd96;
   height: 6.25rem;
   width: 6.25rem;
   border-radius: 50%;
 }
 
-.fresh-ellipse {
+.halfFresh-ellipse {
   background-color: #81cd96;
+  height: 6.25rem;
+  width: 6.25rem;
+  border-radius: 50%;
+  background-image: linear-gradient(to left, transparent 50%, #eaeaea 0);
+}
+
+.notFresh-ellipse {
+  background-color: #eaeaea;
   height: 6.25rem;
   width: 6.25rem;
   border-radius: 50%;
@@ -144,29 +151,6 @@
   float: left;
   left: 15.5px;
 }
-
-/* .FoodItemModal-Chips {
-  position: relative;
-  float: left;
-  left: 0.938rem;
-} */
-
-/* .FoodItemModal-Chips button {
-  background-color: white;
-  position: relative;
-  margin: 0.125rem;
-  padding: 0.188rem;
-} */
-
-/* .FoodItemChip {
-  margin-right: 0.7rem;
-  font-size: 1rem;
-  font-weight: bold;
-  display: inline;
-  border-radius: 0.7rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-} */
 
 .chip-Lots.unpressed {
   border: 0.1rem solid rgb(129, 205, 150);

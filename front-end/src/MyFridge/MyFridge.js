@@ -24,7 +24,6 @@ const MyFridge = (props) => {
   const [show, setShow] = useState(false);
   const [itemName, setItemName] = useState("");
   const [itemId, setItemId] = useState(0);
-
   const [type, setType] = useState(0);
 
   // Deleting an Item
