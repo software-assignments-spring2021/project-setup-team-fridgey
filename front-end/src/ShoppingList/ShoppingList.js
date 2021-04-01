@@ -22,7 +22,6 @@ const ShoppingListView = (props) => {
   const [showFridgeModal, setShowFridgeModal] = useState(false);
 
   const [showAddFridgeItemModal, setShowAddFridgeItemModal] = useState(false);
-  // const [AddFridgeItemName, setAddFridgeItemName] = useState("");
 
   // Deleting from Shopping List
   const onDelete = (data, id, type) => {
@@ -240,7 +239,6 @@ const ShoppingListView = (props) => {
       />
 
       <AddNewFridgeItemModal   
-        amount="Lots"
         parentCallback={handleCallback}
         onClose={() => setShowAddFridgeItemModal(false)}
         show={showAddFridgeItemModal}
