@@ -125,7 +125,7 @@
   top: 70px;
 }
 
-.chip-food {
+.chip-food.unpressed {
   border: 0.1rem solid #5e5e5e;
   color: #5e5e5e;
   background-color: #fff;

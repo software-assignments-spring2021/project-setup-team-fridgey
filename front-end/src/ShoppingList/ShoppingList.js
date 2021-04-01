@@ -22,7 +22,7 @@ const ShoppingListView = (props) => {
   const [showFridgeModal, setShowFridgeModal] = useState(false);
 
   const [showAddFridgeItemModal, setShowAddFridgeItemModal] = useState(false);
-  const [AddFridgeItemName, setAddFridgeItemName] = useState("");
+  // const [AddFridgeItemName, setAddFridgeItemName] = useState("");
 
   // Deleting from Shopping List
   const onDelete = (data, id, type) => {
@@ -61,6 +61,7 @@ const ShoppingListView = (props) => {
   };
 
   const onAddToShoppingList = (name, amount, typeFood) => {
+    console.log(typeFood)
     const foodItem = {
       id: 1,
       title: name,
@@ -239,6 +240,7 @@ const ShoppingListView = (props) => {
       />
 
       <AddNewFridgeItemModal   
+        amount="Lots"
         parentCallback={handleCallback}
         onClose={() => setShowAddFridgeItemModal(false)}
         show={showAddFridgeItemModal}
@@ -260,19 +262,3 @@ const ShoppingList = () => (
 
 // make this available to other modules as an import
 export { ShoppingList };
-
-// function getSelectedCheckboxValues(name) {
-//   const checkboxes = document.querySelectorAll(`input[name="${name}"]`);
-//   checkboxes.forEach((checkbox) => {
-//     values.push(checkbox.checked);
-//     // console.log(checkbox.checked);
-//   });
-//   // for (let i = 0; i < values.length; i++) {
-//   //   console.log(values[i]);
-//   // }
-//   return values;
-// }
-
-// function buttonAlert() {
-//   alert(getSelectedCheckboxValues("itemCheckbox"));
-// }

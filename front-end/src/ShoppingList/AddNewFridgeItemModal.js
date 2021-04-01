@@ -2,29 +2,82 @@ import { React } from "react";
 import "./AddNewFridgeItemModal.css";
 
 const AddNewFridgeItemModal = (props) => {
+    const reset = () => {
+        document.getElementById("itemName").value = ""
+        var amountChips = document.getElementById("NewItemAmount-chips").getElementsByClassName("chip")
+        var typeChips = document.getElementById("NewItemType-chips").getElementsByClassName("chip")
+
+        for(var i in amountChips) {
+            if(amountChips.hasOwnProperty(i)) {
+                var name = amountChips[i].innerHTML
+                
+                if(name === "Lots") {
+                    amountChips[i].className = "chip chip-" + name + " pressed"
+                } else {
+                    amountChips[i].className = "chip chip-" + name + " unpressed"
+                }
+            }
+        }
+        
+        for(var i in typeChips) {
+            if(typeChips.hasOwnProperty(i)) {
+                var name = typeChips[i].innerHTML
+                
+                if(name === "Fruit") {
+                    typeChips[i].className = "chip chip-food pressed"
+                } else {
+                    typeChips[i].className = "chip chip-food unpressed"
+                }
+            }
+        }
+    }
+    
     var pressedAmount = "Lots"
 
-    const changeData = () => {
-        var pressed = document.getElementById("NewItemAmount-chips").getElementsByClassName("chip pressed")
-        var unpressed = document.getElementById("NewItemAmount-chips").getElementsByClassName("chip unpressed")
+    const changeData = (typeChips, data) => {
+        pressedAmount = data
 
-        console.log(pressed)
-        console.log("HAHS")
-        console.log(unpressed)
+        if(typeChips === "amount") {
+            var chips = document.getElementById("NewItemAmount-chips").getElementsByClassName("chip")
+
+            for(var i in chips) {
+                if(chips.hasOwnProperty(i)) {
+                    var name = chips[i].innerHTML
+                    
+                    if(pressedAmount === name) {
+                        chips[i].className = "chip chip-" + name + " pressed"
+                    } else {
+                        chips[i].className = "chip chip-" + name + " unpressed"
+                    }
+                }
+            }
+        } else {
+            var chips = document.getElementById("NewItemType-chips").getElementsByClassName("chip")
+
+            for(var i in chips) {
+                if(chips.hasOwnProperty(i)) {
+                    var name = chips[i].innerHTML
+                    
+                    if(pressedAmount === name) {
+                        chips[i].className = "chip chip-food pressed"
+                    } else {
+                        chips[i].className = "chip chip-food unpressed"
+                    }
+                }
+            }
+        }
     }
 
     const grabInformation = (event) => {
         var itemName = document.getElementById("itemName").value;
         var amount = document.getElementById("NewItemAmount-chips").getElementsByClassName("chip pressed")[0].innerHTML
-        // var amount = amountElements[0].innerHTML
         var type = document.getElementById("NewItemType-chips").getElementsByClassName("chip pressed")[0].innerHTML
-        // var type = typeElements[0].innerHTML
 
-        if(type === "Fruits") {
+        if(type === "Fruit") {
             type = 0;
         } else if(type === "Dairy") {
             type = 1;
-        } else if(type === "Grains") {
+        } else if(type === "Grain") {
             type = 2;
         } else if(type === "Meat") {
             type = 3;
@@ -35,6 +88,7 @@ const AddNewFridgeItemModal = (props) => {
     }
 
     const onTrigger = (name, amount, type) => {
+        reset()
         props.parentCallback(name, amount, type)
     }
 
@@ -57,19 +111,21 @@ const AddNewFridgeItemModal = (props) => {
 
                         <div id="NewItemAmount-chips">
                             <button 
-                                onClick={changeData} 
+                                onClick={() => changeData("amount", "Lots")} 
                                 className={`chip chip-Lots ${(pressedAmount === "Lots") ? "pressed" : "unpressed"}`}
                             >
                             Lots
                             </button>
+
                             <button 
-                                onClick={changeData}
+                                onClick={() => changeData("amount", "Some")}
                                 className={`chip chip-Some ${(pressedAmount === "Some") ? "pressed" : "unpressed"}`}
                             >
                             Some
                             </button>
+
                             <button
-                                onClick={changeData} 
+                                onClick={() => changeData("amount", "Few")} 
                                 className={`chip chip-Few ${(pressedAmount === "Few") ? "pressed" : "unpressed"}`}
                             >
                             Few
@@ -80,10 +136,33 @@ const AddNewFridgeItemModal = (props) => {
                     <div className="NewFridgeItemModal-type">
                         <h5 className="NewFridgeItemModal-text">What Type?</h5>
                         <div id="NewItemType-chips">
-                            <button className={`chip chip-food`}>Fruit</button>
-                            <button className={`chip chip-food pressed`}>Meat</button>
-                            <button className={`chip chip-food`}>Dairy</button>
-                            <button className={`chip chip-food`}>Grain</button>
+                            <button 
+                                onClick={() => changeData("type", "Fruit")}
+                                className={`chip chip-food pressed`}
+                            >
+                            Fruit
+                            </button>
+
+                            <button 
+                                onClick={() => changeData("type", "Meat")}
+                                className={`chip chip-food unpressed`}
+                            >
+                            Meat
+                            </button>
+
+                            <button 
+                                onClick={() => changeData("type", "Dairy")}
+                                className={`chip chip-food unpressed`}
+                            >
+                            Dairy
+                            </button>
+
+                            <button 
+                                onClick={() => changeData("type", "Grain")}
+                                className={`chip chip-food unpressed`}
+                            >
+                            Grain
+                            </button>
                         </div>
                     </div>
 
