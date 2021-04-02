@@ -11,13 +11,10 @@ import { AddToFridge } from "./AddToFridge";
 import { AddButton } from "./AddButton";
 import AddNewFridgeItemModal from "./AddNewFridgeItemModal";
 import axios from "axios";
-// const shopDataJSON = require("../data/shoppingListMockData.json");
-// const shopData = Object.entries(shopDataJSON[0]);
-// const fridgeData = require("../data/fridgeMockData.json");
 
 const ShoppingListView = (props) => {
   const apiCall = async () => {
-    let b = await axios.get("/getShopData");
+    let b = await axios.get("/shopData");
     console.log(b.data);
     setShopData(b.data);
   };
@@ -29,53 +26,29 @@ const ShoppingListView = (props) => {
   const [showDelete, setShowDelete] = useState(false);
   const [shoppingItemName, setShoppingItemName] = useState("");
   const [shoppingItemId, setShoppingItemId] = useState(0);
-  const [shoppingType, setShoppingType] = useState(0);
   const [showAddtoFridge, setShowAddtoFridge] = useState(false);
   const [showFridgeModal, setShowFridgeModal] = useState(false);
-
   const [showAddFridgeItemModal, setShowAddFridgeItemModal] = useState(false);
 
   // Deleting from Shopping List
   const onDelete = (event) => {
     event.preventDefault();
-    axios.delete(`/getShopData/${shoppingItemId}`).then((res) => {
+    axios.delete(`/shopData/${shoppingItemId}`).then((res) => {
       setShowDelete(false);
       setShopData(res.data);
     });
-    // let matchIndex = parseInt(id);
-
-    // var removeIndex = data[type][1]
-    //   .map(function (item) {
-    //     return item.id;
-    //   })
-    //   .indexOf(matchIndex);
-    // if (removeIndex !== -1) {
-    //   data[type][1].splice(removeIndex, 1);
-    //   setShowDelete(false);
-    // }
   };
 
   // Adding Items to Fridge and Deleting from Shopping List
   const onAddToFridge = async () => {
-    console.log("Getting Add Data!");
     let AddData = compileAddToFridgeItems();
-    // let data = shopData;
-    console.log(AddData);
     await axios.post("/addToFridge", AddData);
-    await axios.delete("/getShopData", { data: AddData }).then((res) => {
+    await axios.delete("/shopData", { data: AddData }).then((res) => {
       setShopData(res.data);
     });
-    // for (let i = 0; i < AddData.length; i++) {
-
-    //   // adds the objects to the MyFridge and deletes it from shopping list
-    //   Object.entries(fridgeData[0])[AddData[i].type][1].push(AddData[i]);
-    //   onDelete(data, AddData[i].id, AddData[i].type);
-    // }
-
-    // uncheck all checkboxes
     let checkboxes = document.querySelectorAll(`input[name="itemCheckbox"]`);
     checkboxes.forEach((checkbox) => {
-      checkbox.checked = false;
+      checkbox.checked = false; // uncheck all checkboxes
     });
     setShowFridgeModal(false);
     setShowAddtoFridge(false);
@@ -84,7 +57,6 @@ const ShoppingListView = (props) => {
   // Adding items to the shopping list
   const onAddToShoppingList = (name, amount, typeFood) => {
     var itemId = shopData[typeFood][1].length;
-
     const foodItem = {
       id: itemId + 1,
       title: name,
@@ -92,7 +64,6 @@ const ShoppingListView = (props) => {
       type: typeFood,
       dateadded: { $date: { $numberLong: 161448318100 } },
     };
-
     let add = Object.create(foodItem);
     shopData[typeFood][1].push(add);
     setShowAddFridgeItemModal(false);
@@ -102,13 +73,11 @@ const ShoppingListView = (props) => {
   function onCheck() {
     let allEmpty = true;
     let checkboxes = document.querySelectorAll(`input[name="itemCheckbox"]`);
-
     checkboxes.forEach((checkbox) => {
       if (checkbox.checked === true) {
         allEmpty = false;
       }
     });
-
     // if there are no checkboxes checked, the "Add to Fridge" modal will not appear
     if (allEmpty === true) {
       setShowAddtoFridge(false);
@@ -135,19 +104,14 @@ const ShoppingListView = (props) => {
       console.log(event);
       const title = event.currentTarget.getAttribute("title");
       const id = event.currentTarget.getAttribute("id");
-      const type = event.currentTarget.getAttribute("type");
       setShoppingItemName(title);
       setShoppingItemId(id);
-      setShoppingType(type);
-
-      // the delete modal now appears
-      setShowDelete(true);
+      setShowDelete(true); // the delete modal now appears
     };
-
+    // Return Each Food Item
     return (
       <tbody>
         <tr>
-          {/* Each Food */}
           <td>
             <span className="Shop-Checkbox">
               <input
@@ -165,7 +129,6 @@ const ShoppingListView = (props) => {
             <span className="title">{data.title}</span>
             <span>{chipAmount(data.amount, 1)}</span>
           </td>
-          {/* X Button at the end */}
           <td>
             <button
               title={data.title}
@@ -173,7 +136,7 @@ const ShoppingListView = (props) => {
               type={data.type}
               onClick={deleteClick}
             >
-              x
+              x {/* X Button at the end */}
             </button>
           </td>
         </tr>

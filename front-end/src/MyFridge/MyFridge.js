@@ -10,7 +10,7 @@ import axios from "axios";
 
 const MyFridge = (props) => {
   const apiCall = async () => {
-    let b = await axios.get("/getFridgeData");
+    let b = await axios.get("/fridgeData");
     console.log(b.data);
     setFridgeData(b.data);
   };
@@ -38,7 +38,7 @@ const MyFridge = (props) => {
   // Deleting an Item
   const onDelete = (event) => {
     event.preventDefault();
-    axios.delete(`/getFridgeData/${itemId}`).then((res) => {
+    axios.delete(`/fridgeData/${itemId}`).then((res) => {
       setShow(false);
       setFridgeData(res.data);
     });

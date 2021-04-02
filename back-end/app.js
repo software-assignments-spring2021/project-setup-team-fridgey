@@ -14,103 +14,91 @@ const fridgeDataJSON = require("../front-end/src/data/fridgeMockData.json");
 const fridgeData = Object.entries(fridgeDataJSON[0]);
 const shopDataJSON = require("../front-end/src/data/shoppingListMockData.json");
 const shopData = Object.entries(shopDataJSON[0]);
-console.log(fridgeData);
-// we will put some server logic here later...
 
-app.get("/getFridgeData", (req, res) => {
+// Get Fridge Data
+app.get("/fridgeData", (req, res) => {
   res.json(fridgeData);
 });
 
-app.delete("/getFridgeData/:id", (req, res) => {
+// Delete a Specific Fridge Item
+app.delete("/fridgeData/:id", (req, res) => {
   const { id } = req.params;
-  const deleted = false;
+  let deleted = false;
   for (let i = 0; i < fridgeData.length; i++) {
     var removeIndex = fridgeData[i][1]
       .map(function (item) {
-        let a = item.id.toString();
-        console.log(a + 1);
-        return a;
+        return item.id.toString(); // Since id param is a string
       })
       .indexOf(id);
     if (removeIndex !== -1) {
-      console.log("inside if part!");
-      let x = fridgeData;
-      x[i][1].splice(removeIndex, 1);
-      res.status(200).json(x);
+      fridgeData[i][1].splice(removeIndex, 1);
       deleted = true;
     }
   }
-  if (deleted !== true) {
-    res.status(404).json({ message: "Does not Exist" });
+  if (deleted) {
+    res.status(200).json(fridgeData);
+  } else {
+    res.status(200).json({ message: "Does not Exist" });
   }
 });
 
-app.get("/getShopData", (req, res) => {
-  res.json(shopData);
+// Get Shopping List Data
+app.get("/shopData", (req, res) => {
+  res.status(200).json(shopData);
 });
 
+// Add Items to Fridge from Shopping List
 app.post("/addToFridge", (req, res) => {
-  // console.log(req.body);
   let AddData = req.body;
   for (let i = 0; i < AddData.length; i++) {
-    // adds the objects to the MyFridge and deletes it from shopping list
     fridgeData[AddData[i].type][1].push(AddData[i]);
-    // onDelete(data, AddData[i].id, AddData[i].type);
   }
   res.status(200).json(shopData);
 });
 
-app.delete("/getShopData", (req, res) => {
-  // console.log("hi, ", req.body);
+// Delete Multiple Items from Shopping List After Adding to Fridge
+app.delete("/shopData", (req, res) => {
   let AddData = req.body;
-  console.log("hi, ", shopData);
   let deleted = false;
   for (let i = 0; i < AddData.length; i++) {
-    const id = AddData[i].id;
-    const type = AddData[i].type;
-    const y = shopData[type][1];
-    // console.log("Id is =", id);
-    // console.log("Type is =", type);
-    // console.log("Type data is =", y);
-    var removeIndex = y
+    const id = AddData[i].id; // Specific Item's Id
+    const type = AddData[i].type; // Specific Item's Food Type
+    var removeIndex = shopData[type][1]
       .map(function (item) {
-        let a = item.id.toString();
-        return a;
+        return item.id.toString(); // Since id param is a string
       })
       .indexOf(id);
     if (removeIndex !== -1) {
-      console.log("Removed ", i, "'th item");
       shopData[type][1].splice(removeIndex, 1);
       deleted = true;
     }
   }
-  if (deleted !== true) {
-    res.status(200).json({ message: "Does not Exist" });
-  } else {
+  if (deleted) {
     res.status(200).json(shopData);
+  } else {
+    res.status(200).json({ message: "Does not Exist" });
   }
 });
 
-app.delete("/getShopData/:id", (req, res) => {
+// Delete a Specific Shopping Item
+app.delete("/shopData/:id", (req, res) => {
   const { id } = req.params;
-  const deleted = false;
+  let deleted = false;
   for (let i = 0; i < shopData.length; i++) {
     var removeIndex = shopData[i][1]
       .map(function (item) {
-        let a = item.id.toString();
-        console.log(a + 1);
-        return a;
+        return item.id.toString(); // Since id param is a string
       })
       .indexOf(id);
     if (removeIndex !== -1) {
-      console.log("inside if part!");
       shopData[i][1].splice(removeIndex, 1);
-      res.status(200).json(shopData);
       deleted = true;
     }
   }
-  if (deleted !== true) {
-    res.status(404).json({ message: "Does not Exist" });
+  if (deleted) {
+    res.status(200).json(shopData);
+  } else {
+    res.status(200).json({ message: "Does not Exist" });
   }
 });
 

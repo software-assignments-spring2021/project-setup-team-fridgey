@@ -25,21 +25,21 @@
     ],
     "Dairy": [
       {
-        "id": 1,
+        "id": 4,
         "title": "Greek Yogurt",
         "amount": "Low",
         "type": 1,
         "dateadded": "April 1, 2021"
       },
       {
-        "id": 2,
+        "id": 5,
         "title": "Ice Cream",
         "amount": "Lots",
         "type": 1,
         "dateadded": "April 1, 2021"
       },
       {
-        "id": 3,
+        "id": 6,
         "title": "Milk",
         "amount": "Some",
         "type": 1,
@@ -48,14 +48,14 @@
     ],
     "Grains": [
       {
-        "id": 1,
+        "id": 7,
         "title": "Everything Bagels",
         "amount": "Lots",
         "type": 2,
         "dateadded": "April 1, 2021"
       },
       {
-        "id": 2,
+        "id": 8,
         "title": "Garlic Bread",
         "amount": "Lots",
         "type": 2,
@@ -64,21 +64,21 @@
     ],
     "Meats": [
       {
-        "id": 1,
+        "id": 9,
         "title": "Chicken",
         "amount": "Few",
         "type": 3,
         "dateadded": "April 1, 2021"
       },
       {
-        "id": 2,
+        "id": 10,
         "title": "Ground Beef",
         "amount": "Few",
         "type": 3,
         "dateadded": "April 1, 2021"
       },
       {
-        "id": 3,
+        "id": 11,
         "title": "Sausage Kabobs",
         "amount": "Some",
         "type": 3,
