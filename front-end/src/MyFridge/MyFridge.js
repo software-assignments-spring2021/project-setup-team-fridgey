@@ -8,17 +8,6 @@ import NavBar from "../NavBar";
 import welcome_pic from "./MyFridge-Welcome-Pic.png";
 import axios from "axios";
 
-// const a = async () => {
-//   let b = await axios.get("/getFridgeData");
-//   return Object.entries(b.data[0]);
-// };
-
-// let a = Object.entries(response.data[0]);
-
-// let fridgeData = require("../data/fridgeMockData.json");
-
-// let fridgeData = [];
-
 const MyFridge = (props) => {
   const apiCall = async () => {
     let b = await axios.get("/getFridgeData");
@@ -45,38 +34,14 @@ const MyFridge = (props) => {
   const [show, setShow] = useState(false);
   const [itemName, setItemName] = useState("");
   const [itemId, setItemId] = useState(0);
-  const [type, setType] = useState(0);
 
   // Deleting an Item
   const onDelete = (event) => {
-    console.log(event.target);
     event.preventDefault();
     axios.delete(`/getFridgeData/${itemId}`).then((res) => {
-      console.log(res);
-      console.log(res.data);
       setShow(false);
       setFridgeData(res.data);
     });
-
-    // const handleDelete = event => {
-
-    // }
-
-    // console.log("hi onDelete");
-    // let matchIndex = parseInt(itemId);
-    // var removeIndex = fridgeData[type][1]
-    //   .map(function (item) {
-    //     return item.id;
-    //   })
-    //   .indexOf(matchIndex);
-    // if (removeIndex !== -1) {
-    //   console.log("inside if part!");
-    //   let x = fridgeData;
-    //   x[type][1].splice(removeIndex, 1);
-    //   console.log(x);
-    //   setFridgeData(x);
-    //   setShow(false);
-    // }
   };
 
   // Rendering an Item
@@ -85,10 +50,8 @@ const MyFridge = (props) => {
     const deleteClick = (event) => {
       const title = event.currentTarget.getAttribute("title");
       const id = event.currentTarget.getAttribute("id");
-      const type = event.currentTarget.getAttribute("type");
       setItemName(title);
       setItemId(id);
-      setType(type);
       setShow(true);
     };
 
@@ -149,7 +112,6 @@ const MyFridge = (props) => {
       </tbody>
     );
   };
-  console.log(fridgeData);
 
   const editItem = (amount, type, id, useWithin, notesTaken) => {
     Object.entries(fridgeData[0])[type][1][id - 1].amount = amount;
