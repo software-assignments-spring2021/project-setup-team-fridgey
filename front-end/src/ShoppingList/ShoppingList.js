@@ -61,8 +61,10 @@ const ShoppingListView = (props) => {
 
   // Adding items to the shopping list
   const onAddToShoppingList = (name, amount, typeFood) => {
+    var itemId = Object.entries(shopData[0])[typeFood][1].length
+
     const foodItem = {
-      id: 1,
+      id: itemId + 1,
       title: name,
       amount: amount,
       type: typeFood,

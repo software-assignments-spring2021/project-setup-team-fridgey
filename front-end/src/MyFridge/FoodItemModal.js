@@ -3,9 +3,10 @@ import "./FoodItemModal.css";
 
 const FoodItemModal = (props) => {
     const amount = props.amount
+    const txtNotes = props.notes
 
     const reset = () => {
-        document.getElementById("notes").value = ""
+        document.getElementById("notes").value = props.notes
         var amountChips = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip")
 
         for(var i in amountChips) {
@@ -22,10 +23,8 @@ const FoodItemModal = (props) => {
 
         var options = document.getElementById("use-within").getElementsByClassName("option")
 
-        // console.log(props.daysleft)
         for(let i in options) {
             if(options.hasOwnProperty(i)) {
-                // console.log("As")
                 if(parseInt(i) == props.daysleft) {
                     options[i].selected = true
                 } else {
@@ -36,6 +35,7 @@ const FoodItemModal = (props) => {
     }
 
     const changeData = (data) => {
+        console.log(props.notes)
         var pressedAmount = data
         var chips = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip")
 
@@ -55,9 +55,10 @@ const FoodItemModal = (props) => {
     const grabInformation = (event) => {
         // "Lots", "Some", "Few"
         var pressedAmount = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip pressed")[0].innerHTML
-
+        var notesTaken = document.getElementById("notes").value
         var options = document.getElementById("use-within").getElementsByClassName("option")
         var useWithin = 0
+        // console.log(notesTaken)
         for(let i in options) {
             if(options.hasOwnProperty(i)) {
                 if(options[i].selected) {
@@ -66,7 +67,7 @@ const FoodItemModal = (props) => {
             }
         }
 
-        props.parentCallback(pressedAmount, props.type, props.id, useWithin)
+        props.parentCallback(pressedAmount, props.type, props.id, useWithin, notesTaken)
         reset()
         event.preventDefault()
     }
@@ -197,7 +198,7 @@ const FoodItemModal = (props) => {
 
                     <div className="FoodItemModal-Notes">
                         <label htmlFor="nt" className="headline">Notes</label>
-                        <textarea id="notes" className="Notes" placeholder="This item is for..."></textarea>
+                        <textarea id="notes" className="Notes" placeholder="This item is for...">{txtNotes}</textarea>
                     </div>
                 </div>
 
