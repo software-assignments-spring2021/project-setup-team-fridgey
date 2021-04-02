@@ -28,5 +28,32 @@ app.get("/storagetimeitems", (req, res) => {
   res.json(body)
 })
 
+var request = require("request");
+app.get("/Recommendations", (req,res) =>{
+  request(
+    "https://my.api.mockaroo.com/mock_recipes.json?key=f9883210",
+    function(error,response, body){
+      if(!error && response.statusCode == 200){
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        res.send(body);
+      }
+    }
+  )
+})
+
+app.get("/ReadyToMake", (req,res) =>{
+  request(
+    "https://my.api.mockaroo.com/mock_recipes.json?key=f9883210",
+    function(error,response, body){
+      if(!error && response.statusCode == 200){
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        res.send(body);
+      }
+    }
+  )
+})
+
 // export the express app we created to make it available to other modules
 module.exports = app

@@ -6,8 +6,8 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import {Recipe} from "./Recipe";
+import axios from 'axios';
+import { useState,useEffect } from "react";
 
 export const useStyles = makeStyles((theme) => ({
     paper: {
@@ -83,13 +83,17 @@ export const GeneratePaper = ({children}) => {
 };
 
 export const GenerateData = (data) => {
-  const recipes = require("../data/mock_recipes.json");
   return(
-    recipes.map((recipe) => (
-      <RecItem title = {recipe.name} ingredients = {recipe.ingredients.length} minutes = {sumTime(recipe.timers)} image = {recipe.imageURL}/>
+    data.recipes.map((recipe) => (
+      <RecItem key = {createKey(recipe.name,recipe.time)} title = {recipe.name} ingredients = {recipe.ingredients.length} minutes = {recipe.time} image = {recipe.imageURL}/>
     )
   ));
 };
+
+function createKey(name,time)
+{
+  return name+ "" + time;
+}
  
 function trimTitle(title)
 {
@@ -98,18 +102,14 @@ function trimTitle(title)
   return title;
 }
 
-function sumTime(times)
-{
-  let i = 0;
-  let sum = 0;
-  for(i = 0;i<times.length;i++)
-  {
-      sum += times[i];
-  }
-  return sum;
-} 
-
 const Recommendations = (props) => {
+  const [recipeData,setRecipeData] = useState([]);
+  useEffect(() => {
+    axios.get("/Recommendations").then(response => {
+      setRecipeData(response.data)
+    });
+  },[]);
+
   return(
   <div>
     <NavBar/>
@@ -117,7 +117,7 @@ const Recommendations = (props) => {
       <h1>Recommendations</h1>
       <HeaderButtons first = "recommendations-usedButton" second = "recommendations-unusedButton" third = "recommendations-unusedButton"/>
       <GeneratePaper>
-        <GenerateData/>
+        <GenerateData recipes = {recipeData}/>
       </GeneratePaper>
     </header>
   </div> 
