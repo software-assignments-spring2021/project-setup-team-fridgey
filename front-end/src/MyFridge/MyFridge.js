@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./MyFridge.css";
 import { dot, chipDays, chipAmount } from "./itemColoring";
 import DeleteModal from "./deleteModal";
@@ -6,34 +6,60 @@ import FoodItemModal from "./FoodItemModal";
 import { itemCount, num } from "./CountFridgeItems";
 import NavBar from "../NavBar";
 import welcome_pic from "./MyFridge-Welcome-Pic.png";
+import axios from "axios";
 
-const fridgeData = require("../data/fridgeMockData.json");
+// const a = async () => {
+//   let b = await axios.get("/getFridgeData");
+//   return Object.entries(b.data[0]);
+// };
+
+// let a = Object.entries(response.data[0]);
+
+// let fridgeData = require("../data/fridgeMockData.json");
+
+// let fridgeData = [];
 
 const MyFridge = (props) => {
+  const apiCall = async () => {
+    let b = await axios.get("/getFridgeData");
+    console.log(b.data[0]);
+    setFridgeData(Object.entries(b.data[0]));
+  };
+  useEffect(() => {
+    apiCall();
+  }, []);
+
+  const [fridgeData, setFridgeData] = useState([]);
+
   // FoodItemModal useState's
-  const [showItemModal, setShowItemModal] = useState(false)
-  const [itemModalName, setItemModalName] = useState("") 
-  const [itemModalId, setItemModalId] = useState(0) 
-  const [itemAmt, setItemAmount] = useState("") 
-  const [itemModalDaysLeft, setItemModalDaysleft] = useState(0) 
-  const [itemModalDateAdded, setItemModalDateAdded] = useState(0) 
+  const [showItemModal, setShowItemModal] = useState(false);
+  const [itemModalName, setItemModalName] = useState("");
+  const [itemModalId, setItemModalId] = useState(0);
+  const [itemAmt, setItemAmount] = useState("");
+  const [itemModalDaysLeft, setItemModalDaysleft] = useState(0);
+  const [itemModalDateAdded, setItemModalDateAdded] = useState(0);
 
   // DeleteModal useState's
   const [show, setShow] = useState(false);
   const [itemName, setItemName] = useState("");
   const [itemId, setItemId] = useState(0);
-
   const [type, setType] = useState(0);
+
   // Deleting an Item
-  const onDelete = (data) => {
+  const onDelete = () => {
+    console.log("hi onDelete");
     let matchIndex = parseInt(itemId);
-    var removeIndex = data[type][1]
+    var removeIndex = fridgeData[type][1]
       .map(function (item) {
         return item.id;
       })
       .indexOf(matchIndex);
     if (removeIndex !== -1) {
-      data[type][1].splice(removeIndex, 1);
+      console.log("inside if part!");
+      let x = fridgeData;
+      x[type][1].splice(removeIndex, 1);
+      console.log(x);
+      setFridgeData(x);
       setShow(false);
     }
   };
@@ -55,16 +81,16 @@ const MyFridge = (props) => {
     const itemEvent = (event) => {
       const title = event.currentTarget.getAttribute("title");
       const id = event.currentTarget.getAttribute("id");
-      const amount = event.currentTarget.getAttribute("amount")
+      const amount = event.currentTarget.getAttribute("amount");
       const days = event.currentTarget.getAttribute("daysleft");
-      const date = event.currentTarget.getAttribute("dateadded")
-      setItemModalName(title)
-      setItemModalId(id)
-      setShowItemModal(true)
-      setItemAmount(amount)
-      setItemModalDaysleft(days)
-      setItemModalDateAdded(date)
-    }
+      const date = event.currentTarget.getAttribute("dateadded");
+      setItemModalName(title);
+      setItemModalId(id);
+      setShowItemModal(true);
+      setItemAmount(amount);
+      setItemModalDaysleft(days);
+      setItemModalDateAdded(date);
+    };
 
     return (
       <tbody key={j}>
@@ -96,7 +122,7 @@ const MyFridge = (props) => {
         <DeleteModal
           onClose={() => setShow(false)}
           show={show}
-          onDelete={() => onDelete(Object.entries(fridgeData[0]))}
+          onDelete={() => onDelete()}
           itemName={itemName}
         />
         <FoodItemModal
@@ -110,7 +136,7 @@ const MyFridge = (props) => {
       </tbody>
     );
   };
-
+  console.log(fridgeData);
   // Rendering All Fridge Items
   return (
     <div>
@@ -118,7 +144,7 @@ const MyFridge = (props) => {
         You have {itemCount(fridgeData)} items in your Fridge
       </p>
       <div className={`MyFridge ${num === 0 ? "MyFridge-Hide" : ""}`}>
-        {Object.entries(fridgeData[0]).map((item, i) => (
+        {fridgeData.map((item, i) => (
           <div key={i}>
             <h2 className="header">{JSON.parse(JSON.stringify(item[0]))}</h2>
             <table>{item[1].map(renderItem)}</table>

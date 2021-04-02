@@ -131,7 +131,9 @@ const ShoppingListView = (props) => {
   return (
     <div>
       <div
-        className={`Shop-Box ${itemCount(shopData) === 0 ? "Shop-Hide" : ""}`}
+        className={`Shop-Box ${
+          itemCount(Object.entries(shopData[0])) === 0 ? "Shop-Hide" : ""
+        }`}
       >
         <div>
           <table className="SelectAll-table">
@@ -156,7 +158,11 @@ const ShoppingListView = (props) => {
           </div>
         ))}
       </div>
-      <div className={itemCount(shopData) === 0 ? "" : "Shop-Hide"}>
+      <div
+        className={
+          itemCount(Object.entries(shopData[0])) === 0 ? "" : "Shop-Hide"
+        }
+      >
         <h2 className="Shop-Welcome">Welcome to Your Shopping List!</h2>
         <img
           src={ShoppingList_welcome}
