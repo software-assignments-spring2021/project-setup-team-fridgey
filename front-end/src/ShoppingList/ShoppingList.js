@@ -90,7 +90,6 @@ const ShoppingListView = (props) => {
     // if there are no checkboxes checked, the "Add to Fridge" modal will not appear
     if (allEmpty === true) {
       setShowAddtoFridge(false);
-      
     } else {
       setShowAddtoFridge(true);
     }
@@ -111,14 +110,12 @@ const ShoppingListView = (props) => {
   const renderItem = (data) => {
     // Handling Delete Click
     const deleteClick = (event) => {
-      console.log(event)
       const title = event.currentTarget.getAttribute("title");
       const id = event.currentTarget.getAttribute("id");
       const type = event.currentTarget.getAttribute("type");
       setShoppingItemName(title);
       setShoppingItemId(id);
       setShoppingType(type);
-
       // the delete modal now appears
       setShowDelete(true);
     };
@@ -192,7 +189,6 @@ const ShoppingListView = (props) => {
             </tr>
           </table>
         </div>
-
         {/* Renders all items in the JSON file */}
         {Object.entries(shopData[0]).map((item, i) => (
           <div key={i}>
@@ -203,7 +199,6 @@ const ShoppingListView = (props) => {
           </div>
         ))}
       </div>
-
       {/* If there are no items in the shopping list */}
       <div className={itemCount(shopData) === 0 ? "" : "Shop-Hide"}>
         <h2 className="Shop-Welcome">Welcome to Your Shopping List!</h2>
@@ -229,13 +224,11 @@ const ShoppingListView = (props) => {
           onClick={() => setShowAddFridgeItemModal(true)}
         />
       </div>
-      
       <AddToFridgeModal
         onClose={() => setShowFridgeModal(false)}
         show={showFridgeModal}
         onAddToFridge={() => onAddToFridge()}
       />
-
       <AddNewFridgeItemModal   
         parentCallback={onAddToShoppingList}
         onClose={() => setShowAddFridgeItemModal(false)}
