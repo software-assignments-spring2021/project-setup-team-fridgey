@@ -11,28 +11,13 @@ import dairy from "./images/dairy.png";
 import grain from "./images/grain.png";
 
 const StorageTimeSearch = () => {
-  const items = axios.get("/storagetimeitems")
+  const [items, setItems] = useState(null)
 
-  items.then(response => {
-    const data = response.data
-    console.log(JSON.stringify(data))
-    console.log(data[0].food)
+  const axiosResult = axios.get("/storagetimeitems")
+
+  axiosResult.then(response => {
+    setItems(...[response.data])
   })
-  /*
-  const items = [
-    {name: "Apple"},
-    {name: "Pear"},
-    {name: "Grapes"},
-    {name: "Chicken"},
-    {name: "Pork"},
-    {name: "Beef"},
-    {name: "Milk"},
-    {name: "Ice cream"},
-    {name: "Cheese"},
-    {name: "Whole wheat bread"},
-    {name: "Oatmeal"},
-    {name: "Rice"}
-  ];*/
 
   const [searchTerm, setSearchTerm] = useState("");
   const [focusSearch, setFocusSearch] = useState("");
@@ -57,24 +42,23 @@ const StorageTimeSearch = () => {
           <h1>Storage Time Search</h1>
   
           <input type="text" placeholder="Search for food" onChange={ handleChange } onClick={ changeClass } onBlur={ revertClass } id="StorageTime-Searchbar"/>
-            
             { items.filter((item) => {
-              if (searchTerm === "") {
-                return item
-              } else if (item.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-                return item
-              } else {
-                return null
-              }
+                if (searchTerm === "") {
+                  return item
+                } else if (item.food.toLowerCase().includes(searchTerm.toLowerCase())) {
+                  return item
+                } else {
+                  return null
+                }
               }).map((item) => {
                 if (searchTerm !== "") {
                   return (
                     <div>
-                      <Button>{item.name}</Button>
+                      <Button>{item.food}</Button>
                     </div>
                   );
                 } else {
-                  return (<p/>);
+                  return (null);
                 }
               }) 
             }
@@ -89,7 +73,7 @@ const StorageTimeSearch = () => {
           <h1>Storage Time Search</h1>
   
           <input type="text" placeholder="Search for food" onChange={ handleChange } onClick={ changeClass } onBlur={ revertClass } id="StorageTime-Searchbar"/>
-  
+
           <div>
             <p id="StorageTime-Description">
               Browse through some common foods to see our recommended storage 
