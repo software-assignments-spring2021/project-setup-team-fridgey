@@ -10,20 +10,22 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json()); // decode JSON-formatted incoming POST data
 app.use(bodyParser.urlencoded({ extended: true })); // decode url-encoded incoming POST
 var request = require("request");
-const dataGet = require("../front-end/src/data/fridgeMockData.json");
-const data = Object.entries(dataGet[0]);
-console.log(data);
+const fridgeDataJSON = require("../front-end/src/data/fridgeMockData.json");
+const fridgeData = Object.entries(fridgeDataJSON[0]);
+const shopDataJSON = require("../front-end/src/data/shoppingListMockData.json");
+const shopData = Object.entries(shopDataJSON[0]);
+console.log(fridgeData);
 // we will put some server logic here later...
 
 app.get("/getFridgeData", (req, res) => {
-  res.json(data);
+  res.json(fridgeData);
 });
 
 app.delete("/getFridgeData/:id", (req, res) => {
   const { id } = req.params;
   const deleted = false;
-  for (let i = 0; i < data.length; i++) {
-    var removeIndex = data[i][1]
+  for (let i = 0; i < fridgeData.length; i++) {
+    var removeIndex = fridgeData[i][1]
       .map(function (item) {
         let a = item.id.toString();
         console.log(a + 1);
@@ -32,9 +34,79 @@ app.delete("/getFridgeData/:id", (req, res) => {
       .indexOf(id);
     if (removeIndex !== -1) {
       console.log("inside if part!");
-      let x = data;
+      let x = fridgeData;
       x[i][1].splice(removeIndex, 1);
       res.status(200).json(x);
+      deleted = true;
+    }
+  }
+  if (deleted !== true) {
+    res.status(404).json({ message: "Does not Exist" });
+  }
+});
+
+app.get("/getShopData", (req, res) => {
+  res.json(shopData);
+});
+
+app.post("/addToFridge", (req, res) => {
+  // console.log(req.body);
+  let AddData = req.body;
+  for (let i = 0; i < AddData.length; i++) {
+    // adds the objects to the MyFridge and deletes it from shopping list
+    fridgeData[AddData[i].type][1].push(AddData[i]);
+    // onDelete(data, AddData[i].id, AddData[i].type);
+  }
+  res.status(200).json(shopData);
+});
+
+app.delete("/getShopData", (req, res) => {
+  // console.log("hi, ", req.body);
+  let AddData = req.body;
+  console.log("hi, ", shopData);
+  let deleted = false;
+  for (let i = 0; i < AddData.length; i++) {
+    const id = AddData[i].id;
+    const type = AddData[i].type;
+    const y = shopData[type][1];
+    // console.log("Id is =", id);
+    // console.log("Type is =", type);
+    // console.log("Type data is =", y);
+    var removeIndex = y
+      .map(function (item) {
+        let a = item.id.toString();
+        return a;
+      })
+      .indexOf(id);
+    if (removeIndex !== -1) {
+      console.log("Removed ", i, "'th item");
+      shopData[type][1].splice(removeIndex, 1);
+      deleted = true;
+    }
+  }
+  if (deleted !== true) {
+    res.status(200).json({ message: "Does not Exist" });
+  } else {
+    res.status(200).json(shopData);
+  }
+});
+
+app.delete("/getShopData/:id", (req, res) => {
+  const { id } = req.params;
+  const deleted = false;
+  for (let i = 0; i < shopData.length; i++) {
+    var removeIndex = shopData[i][1]
+      .map(function (item) {
+        let a = item.id.toString();
+        console.log(a + 1);
+        return a;
+      })
+      .indexOf(id);
+    if (removeIndex !== -1) {
+      console.log("inside if part!");
+      shopData[i][1].splice(removeIndex, 1);
+      res.status(200).json(shopData);
+      deleted = true;
     }
   }
   if (deleted !== true) {
