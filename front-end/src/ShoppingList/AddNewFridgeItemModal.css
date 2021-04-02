@@ -1,0 +1,170 @@
+.AddNewFridgeItemModal {
+  position: fixed;
+  margin: auto;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.AddNewFridgeItemModal.show {
+  opacity: 1;
+  pointer-events: visible;
+}
+
+/* CONTENT */
+.AddNewFridgeItemModal-content {
+  width: 21.875rem;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+  border-radius: 0.5rem;
+}
+
+/* HEADER */
+.AddNewFridgeItemModal-header {
+  padding: 0.625rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.AddNewFridgeItemModal-title {
+  margin: 0;
+}
+
+/* BODY */
+.AddNewFridgeItemModal-body {
+  height: 25rem;
+  padding: 0.625rem;
+  border-top: 0.063rem solid #eee;
+  border-bottom: 0.063rem solid #eee;
+}
+
+.NewFridgeItemModal-text {
+  padding-bottom: 5px;
+  margin: 0;
+}
+
+/* ITEM NAME */
+.NewFridgeItemModal-itemName {
+  position: relative;
+  top: 15px;
+}
+
+.NewFridgeItemModal-itemName .headline {
+  position: relative;
+  right: 130px;
+  font-size: 1.03rem;
+  font-weight: 300;
+}
+
+.NewFridgeItemModal-itemName .itemName {
+  width: 90%;
+  height: 30px;
+  padding: 6px 10px;
+  display: inline-block;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  resize: none;
+}
+
+/* AMOUNT */
+.NewFridgeItemModal-amount {
+  position: relative;
+  float: left;
+  text-align: left;
+  left: 17px;
+  top: 40px;
+}
+
+.chip-Lots.unpressed {
+  border: 0.1rem solid rgb(129, 205, 150);
+  color: rgb(129, 205, 150);
+  background-color: white;
+}
+.chip-Lots.pressed {
+  border: 0.1rem solid rgb(129, 205, 150);
+  color: white;
+  background-color: rgb(129, 205, 150);
+}
+
+.chip-Some.unpressed {
+  border: 0.1rem solid rgb(129, 187, 205);
+  color: rgb(129, 187, 205);
+  background-color: white;
+}
+.chip-Some.pressed {
+  border: 0.1rem solid rgb(129, 187, 205);
+  color: white;
+  background-color: rgb(129, 187, 205);
+}
+
+.chip-Few.unpressed {
+  border: 0.1rem solid rgb(205, 175, 129);
+  color: rgb(205, 175, 129);
+  background-color: white;
+}
+.chip-Few.pressed {
+  border: 0.1rem solid rgb(205, 175, 129);
+  color: white;
+  background-color: rgb(205, 175, 129);
+}
+
+/* TYPE */
+.NewFridgeItemModal-type {
+  position: relative;
+  float: left;
+  text-align: left;
+  left: 17px;
+  top: 70px;
+}
+
+.chip-food.unpressed {
+  border: 0.1rem solid #5e5e5e;
+  color: #5e5e5e;
+  background-color: #fff;
+}
+.chip-food.pressed {
+  border: 0.1rem solid #5e5e5e;
+  color: #fff;
+  background-color: #5e5e5e;
+}
+
+/* NOTES */
+.NewFridgeItemModal-notes {
+  position: relative;
+  height: 110px;
+  top: 200px;
+}
+
+.NewFridgeItemModal-notes .headline {
+  position: relative;
+  right: 227px;
+  font-size: 1.03rem;
+}
+
+.NewFridgeItemModal-notes .Notes {
+  position: relative;
+  width: 90%;
+  bottom: 70px;
+  height: 60px;
+  padding: 2px 2px;
+  margin: 0.125rem 0; /* the px gives it room away from "Notes" and 0 centers it */
+  display: inline-block;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  resize: none;
+}
+
+/* FOOTER */
+.AddNewFridgeItemModal-footer {
+  padding: 0.625rem;
+  display: flex;
+  float: right;
+}
