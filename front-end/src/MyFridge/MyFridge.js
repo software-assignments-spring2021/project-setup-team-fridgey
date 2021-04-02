@@ -108,8 +108,9 @@ const MyFridge = (props) => {
     );
   };
 
-  const editItem = (amount, type, id) => {
+  const editItem = (amount, type, id, useWithin) => {
     Object.entries(fridgeData[0])[type][1][id - 1].amount = amount
+    Object.entries(fridgeData[0])[type][1][id - 1].daysleft = useWithin
     setShowItemModal(false)
   }
 

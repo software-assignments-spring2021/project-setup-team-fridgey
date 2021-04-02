@@ -39,7 +39,7 @@
         "id": 2,
         "title": "Ice Cream",
         "amount": "Lots",
-        "daysleft": 24,
+        "daysleft": 20,
         "type": 1,
         "dateadded": "March 6, 2021"
       },
@@ -65,7 +65,7 @@
         "id": 2,
         "title": "Garlic Bread",
         "amount": "Lots",
-        "daysleft": 19,
+        "daysleft": 16,
         "type": 2,
         "dateadded": "February 20, 2021"
       }
@@ -91,7 +91,7 @@
         "id": 3,
         "title": "Sausage Kabobs",
         "amount": "Some",
-        "daysleft": 35,
+        "daysleft": 19,
         "type": 3,
         "date": "March 1, 2021"
       }

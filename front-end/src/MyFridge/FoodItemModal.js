@@ -19,6 +19,20 @@ const FoodItemModal = (props) => {
                 }
             }
         }
+
+        var options = document.getElementById("use-within").getElementsByClassName("option")
+
+        // console.log(props.daysleft)
+        for(let i in options) {
+            if(options.hasOwnProperty(i)) {
+                // console.log("As")
+                if(parseInt(i) == props.daysleft) {
+                    options[i].selected = true
+                } else {
+                    options[i].selected = false
+                }
+            }
+        }
     }
 
     const changeData = (data) => {
@@ -42,7 +56,17 @@ const FoodItemModal = (props) => {
         // "Lots", "Some", "Few"
         var pressedAmount = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip pressed")[0].innerHTML
 
-        props.parentCallback(pressedAmount, props.type, props.id)
+        var options = document.getElementById("use-within").getElementsByClassName("option")
+        var useWithin = 0
+        for(let i in options) {
+            if(options.hasOwnProperty(i)) {
+                if(options[i].selected) {
+                    useWithin = parseInt(i)
+                }
+            }
+        }
+
+        props.parentCallback(pressedAmount, props.type, props.id, useWithin)
         reset()
         event.preventDefault()
     }
@@ -55,7 +79,7 @@ const FoodItemModal = (props) => {
     const freshnessText = (daysLeft) => {
         var text = ""
 
-        if(daysLeft >= 5) {
+        if(daysLeft >= 3) {
             text = "Still Fresh"
         } else if(daysLeft >= 1) {
             text = "Use Soon"
@@ -69,7 +93,7 @@ const FoodItemModal = (props) => {
     const freshnessEllipse = (daysLeft) => {
         var className = ""
 
-        if(daysLeft >= 5) {
+        if(daysLeft >= 3) {
             className = "fresh-ellipse"
         } else if(daysLeft >= 1) {
             className = "halfFresh-ellipse"
@@ -78,6 +102,14 @@ const FoodItemModal = (props) => {
         }
 
         return className
+    }
+
+    const printOptions = (data) => {
+        if(data == props.daysleft) {
+            return <option className="option" selected>{`${data} days`}</option>
+        } else {
+            return <option className="option">{`${data} days`}</option>
+        }
     }
 
     return (
@@ -105,7 +137,29 @@ const FoodItemModal = (props) => {
                         <div className="Freshness-data">
                             <div className="Use-Within">
                                 <h5 className="FoodItemModal-text">Use Within</h5>
-                                <button className="use-within">{`${props.daysleft} Days`}</button>
+                                <select id="use-within">
+                                    {printOptions(0)}
+                                    {printOptions(1)}
+                                    {printOptions(2)}
+                                    {printOptions(3)}
+                                    {printOptions(4)}
+                                    {printOptions(5)}
+                                    {printOptions(6)}
+                                    {printOptions(7)}
+                                    {printOptions(8)}
+                                    {printOptions(9)}
+                                    {printOptions(10)}
+                                    {printOptions(11)}
+                                    {printOptions(12)}
+                                    {printOptions(13)}
+                                    {printOptions(14)}
+                                    {printOptions(15)}
+                                    {printOptions(16)}
+                                    {printOptions(17)}
+                                    {printOptions(18)}
+                                    {printOptions(19)}
+                                    {printOptions(20)}
+                                </select>
                             </div>
                             
                             <div className="Date-Added">
