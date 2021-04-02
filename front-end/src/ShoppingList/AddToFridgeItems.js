@@ -5,7 +5,7 @@ export function getSelectedCheckboxItems(name) {
   checkboxes.forEach((checkbox) => {
     values.push(checkbox);
   });
-
+  
   // returns arrays of all checkboxes that are checked
   return values;
 }
@@ -22,6 +22,7 @@ export function compileAddToFridgeItems() {
   };
 
   let vals = getSelectedCheckboxItems("itemCheckbox");
+
   for (let i = 0; i < vals.length; i++) {
     let add = Object.create(foodItem);
     add.id = vals[i].getAttribute("id");
@@ -32,6 +33,7 @@ export function compileAddToFridgeItems() {
     add.daysleft = 5; // PLACEHOLDER FOR FUTURE WHEN WE AUTOMATICALLLY PUT IN STORAGE TIME
     objects.push(add);
   }
+
   // returns array of objeccts of all items that are to be added
   return objects;
 }
