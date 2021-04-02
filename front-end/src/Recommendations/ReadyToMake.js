@@ -2,31 +2,19 @@ import NavBar from "../NavBar";
 import "./Recommendations.css";
 import {GeneratePaper} from "./Recommendations"
 import {HeaderButtons} from "./Recommendations"
-<<<<<<< HEAD
-import {RecItem} from "./Recommendations"
-import { useState,useEffect } from "react";
+import { useState,useEffect } from "react"
+import {GenerateData} from "./Recommendations"
 import axios from 'axios';
 
-const GenerateData = (data) => {
+const ReadyToMake = (props) => {
   const [recipeData,setRecipeData] = useState([]);
   useEffect(() => {
-    axios.get("localhost:3000/testRecs").then(response => {
+    axios.get("/ReadyToMake").then(response => {
       setRecipeData(response.data)
     });
     
   },[]);
 
-  return(
-    recipeData.map((recipe) => (
-      <RecItem title = {recipe.name} ingredients = {recipe.ingredients.length} minutes = {recipe.time} image = {recipe.imageURL}/>
-    )
-  ));
-};
-=======
-import {GenerateData} from "./Recommendations"
->>>>>>> origin/storagetimeroute
-
-const ReadyToMake = (props) => {
   return(
   <div>
     <NavBar/>
@@ -34,7 +22,7 @@ const ReadyToMake = (props) => {
       <h1>Recommendations</h1>
       <HeaderButtons first = "recommendations-unusedButton" second = "recommendations-usedButton" third = "recommendations-unusedButton"/>
       <GeneratePaper>
-        <GenerateData/>
+        <GenerateData recipes = {recipeData}/>
       </GeneratePaper>
     </header>
   </div> 
