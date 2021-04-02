@@ -1,9 +1,6 @@
 import React from "react";
 
-// the css page for this is MyFridge.css
-
 // these are all functions!!
-
 export const dot = (days) => {
   return (
     <span

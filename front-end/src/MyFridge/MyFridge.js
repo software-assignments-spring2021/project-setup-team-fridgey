@@ -34,10 +34,12 @@ const MyFridge = (props) => {
   // FoodItemModal useState's
   const [showItemModal, setShowItemModal] = useState(false);
   const [itemModalName, setItemModalName] = useState("");
-  const [itemModalId, setItemModalId] = useState(0);
-  const [itemAmt, setItemAmount] = useState("");
+  const [itemAmount, setItemAmount] = useState("");
+  const [itemModalID, setItemModalId] = useState(0);
   const [itemModalDaysLeft, setItemModalDaysleft] = useState(0);
-  const [itemModalDateAdded, setItemModalDateAdded] = useState(0);
+  const [itemModalDateAdded, setItemModalDateAdded] = useState("");
+  const [itemModalType, setItemModalType] = useState(0);
+  const [itemModalNote, setItemModalNote] = useState("");
 
   // DeleteModal useState's
   const [show, setShow] = useState(false);
@@ -80,16 +82,20 @@ const MyFridge = (props) => {
     // FoodItemModal event handler
     const itemEvent = (event) => {
       const title = event.currentTarget.getAttribute("title");
-      const id = event.currentTarget.getAttribute("id");
       const amount = event.currentTarget.getAttribute("amount");
+      const id = event.currentTarget.getAttribute("id");
       const days = event.currentTarget.getAttribute("daysleft");
       const date = event.currentTarget.getAttribute("dateadded");
+      const type = event.currentTarget.getAttribute("type");
+      const note = event.currentTarget.getAttribute("notes");
+      setItemModalType(type);
       setItemModalName(title);
-      setItemModalId(id);
       setShowItemModal(true);
+      setItemModalId(id);
       setItemAmount(amount);
       setItemModalDaysleft(days);
       setItemModalDateAdded(date);
+      setItemModalNote(note);
     };
 
     return (
@@ -99,8 +105,10 @@ const MyFridge = (props) => {
             title={data.title}
             id={data.id}
             amount={data.amount}
-            daysLeft={data.daysleft}
-            dataAdded={data.dateadded}
+            daysleft={data.daysleft}
+            dateadded={data.dateadded}
+            type={data.type}
+            notes={data.notes}
             onClick={itemEvent}
           >
             <span>{dot(data.daysleft)}</span>
@@ -125,18 +133,18 @@ const MyFridge = (props) => {
           onDelete={() => onDelete()}
           itemName={itemName}
         />
-        <FoodItemModal
-          onClose={() => setShowItemModal(false)}
-          show={showItemModal}
-          itemName={itemModalName}
-          amount={itemAmt}
-          daysLeft={itemModalDaysLeft}
-          dateAdded={itemModalDateAdded}
-        />
       </tbody>
     );
   };
   console.log(fridgeData);
+
+  const editItem = (amount, type, id, useWithin, notesTaken) => {
+    Object.entries(fridgeData[0])[type][1][id - 1].amount = amount;
+    Object.entries(fridgeData[0])[type][1][id - 1].daysleft = useWithin;
+    Object.entries(fridgeData[0])[type][1][id - 1].notes = notesTaken;
+    setShowItemModal(false);
+  };
+
   // Rendering All Fridge Items
   return (
     <div>
@@ -151,6 +159,21 @@ const MyFridge = (props) => {
           </div>
         ))}
       </div>
+
+      <FoodItemModal
+        onClose={() => setShowItemModal(false)}
+        parentCallback={editItem}
+        show={showItemModal}
+        itemName={itemModalName}
+        amount={itemAmount}
+        id={itemModalID}
+        type={itemModalType}
+        daysleft={itemModalDaysLeft}
+        dateadded={itemModalDateAdded}
+        notes={itemModalNote}
+      />
+
+      {/* Pops up when there is no items */}
       <div className={num === 0 ? "" : "MyFridge-Hide"}>
         <h2 className="MyFridge-Welcome"> Welcome to Fridgey!</h2>
         <img
@@ -167,6 +190,7 @@ const MyFridge = (props) => {
     </div>
   );
 };
+
 // the home page with the items and the stuff at the bottom
 const Home = () => (
   <div>
