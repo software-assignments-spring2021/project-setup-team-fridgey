@@ -42,7 +42,7 @@ export const RecItem = (data) => {
                 </Link>
             </Grid>
             <Grid item xs = {7}>
-                <div className = "recommendations-recipeTitle">{data.title}</div>
+                <div className = "recommendations-recipeTitle">{trimTitle(data.title)}</div>
                 <div className = "recommendations-info">{data.ingredients} Ingredients | {data.minutes} Minutes</div>
                 <Button className = "recommendations-addButton" variant = "outlined" color="primary" onClick={() => setButtonText('Saved!')}> {buttonText} </Button>
             </Grid> 
@@ -82,7 +82,7 @@ export const GeneratePaper = ({children}) => {
   );
 };
 
-const GenerateData = (data) => {
+export const GenerateData = (data) => {
   const recipes = require("../data/mock_recipes.json");
   return(
     recipes.map((recipe) => (
@@ -90,6 +90,13 @@ const GenerateData = (data) => {
     )
   ));
 };
+ 
+function trimTitle(title)
+{
+  if(title.length > 20)
+    return title.substring(0,18) + '...';
+  return title;
+}
 
 function sumTime(times)
 {

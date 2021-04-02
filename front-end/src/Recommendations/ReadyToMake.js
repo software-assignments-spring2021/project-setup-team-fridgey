@@ -2,6 +2,7 @@ import NavBar from "../NavBar";
 import "./Recommendations.css";
 import {GeneratePaper} from "./Recommendations"
 import {HeaderButtons} from "./Recommendations"
+<<<<<<< HEAD
 import {RecItem} from "./Recommendations"
 import { useState,useEffect } from "react";
 import axios from 'axios';
@@ -21,6 +22,9 @@ const GenerateData = (data) => {
     )
   ));
 };
+=======
+import {GenerateData} from "./Recommendations"
+>>>>>>> origin/storagetimeroute
 
 const ReadyToMake = (props) => {
   return(
