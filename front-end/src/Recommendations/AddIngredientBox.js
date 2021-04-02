@@ -1,17 +1,8 @@
 import React from "react";
 import "./AddIngredientBox.css";
-
+import axios from "axios"
 const AddIngredientBox = (props) => {
-//   const myItems=[{
-//     id:1,
-//     title:"olive oil",
 
-//   },
-//   {
-//     id:2,
-//     title:"banana",
-//   },
-// ]
 const fridgeData = require("../data/mock_recipes.json");
 const itemList=[]
 for (let i=0;i<fridgeData.length;i++){
@@ -24,7 +15,12 @@ if (itemList.includes(props.name)){
   return (
     <div class="box">
       <p class="text"> <span class="haveIt">{props.name}</span> </p>
-      <button class="ingredientButton">+</button>
+      <button class="ingredientButton" onClick={() => 
+      axios.post("/addIngredientToSL", {name: props.name})
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })}>         +      </button>
     </div>
   );
   
@@ -33,7 +29,12 @@ else {
   return (
     <div class="box">
       <p class="text"><span style={{color:"red"}}>{props.name}</span> </p>
-      <button class="ingredientButton">+</button>
+      <button class="ingredientButton" onClick={() => 
+      axios.post("/addIngredientToSL", props.name)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })}>         +      </button>
     </div>
   )
 }}
