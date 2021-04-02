@@ -9,7 +9,7 @@ import {
 } from "./StorageTimeSearch/StorageTimeSearchListGroups";
 import StorageTimeSearchList from "./StorageTimeSearch/StorageTimeSearchList";
 import StorageTimeSearch from "./StorageTimeSearch/StorageTimeSearch";
-import { Recommendations } from "./Recommendations/Recommendations";
+import { RecipesOfTheDay } from "./Recommendations/RecipesOfTheDay";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Home } from "./MyFridge/MyFridge";
 import { ReadyToMake } from "./Recommendations/ReadyToMake";
@@ -32,7 +32,7 @@ function App() {
             exact
             component={StorageTimeSearch}
           />
-          <Route path="/Recommendations" exact component={Recommendations} />
+          <Route path="/RecipesOfTheDay" exact component={RecipesOfTheDay} />
           <Route path="/ReadyToMake" exact component={ReadyToMake} />
           <Route path="/SavedRecipes" exact component={SavedRecipes} />
           <Route path="/Recipe" component={Recipe} />

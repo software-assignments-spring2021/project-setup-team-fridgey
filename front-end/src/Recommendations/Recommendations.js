@@ -25,7 +25,6 @@ export const useStyles = makeStyles((theme) => ({
 
 export const RecItem = (data) => {
   const classes = useStyles();
-  const [buttonText,setButtonText] = useState('Save Recipe')
   return(
     <div className="recommendations-root">
         <Grid container spacing={0} >
@@ -44,7 +43,7 @@ export const RecItem = (data) => {
             <Grid item xs = {7}>
                 <div className = "recommendations-recipeTitle">{trimTitle(data.title)}</div>
                 <div className = "recommendations-info">{data.ingredients} Ingredients | {data.minutes} Minutes</div>
-                <Button className = "recommendations-addButton" variant = "outlined" color="primary" onClick={() => setButtonText('Saved!')}> {buttonText} </Button>
+                {data.buttonGenerator(data.title)}
             </Grid> 
         </Grid>
   </div>
@@ -54,18 +53,18 @@ export const RecItem = (data) => {
 export const HeaderButtons = (data) => {
   return(
     <div>
-      <Link to = "/Recommendations" className = "recommendations-link">
-        <Button className = {data.first}>
+      <Link to = "/RecipesOfTheDay" className = "recommendations-link">
+        <Button className = {headerSelection(1,data.page)}>
           Recipes of the Day
         </Button>
       </Link>
         <Link to = "/ReadyToMake" className = "recommendations-link">
-          <Button className = {data.second}>
+          <Button className = {headerSelection(2,data.page)}>
             Ready to Make
           </Button>
         </Link>
         <Link to = "/SavedRecipes" className = "recommendations-link">
-          <Button className = {data.third}>
+          <Button className = {headerSelection(3,data.page)}>
               Saved Recipes
           </Button>
         </Link>
@@ -84,15 +83,15 @@ export const GeneratePaper = ({children}) => {
 
 export const GenerateData = (data) => {
   return(
-    data.recipes.map((recipe) => (
-      <RecItem key = {createKey(recipe.name,recipe.time)} title = {recipe.name} ingredients = {recipe.ingredients.length} minutes = {recipe.time} image = {recipe.imageURL}/>
+    data.list.map((recipe) => (
+      <RecItem key = {createKey(recipe.name,recipe.time)} buttonGenerator = {data.buttonGenerator} title = {recipe.name} ingredients = {recipe.ingredients.length} minutes = {recipe.time} image = {recipe.imageURL}/>
     )
   ));
 };
 
 function createKey(name,time)
 {
-  return name+ "" + time;
+  return name + "" + time;
 }
  
 function trimTitle(title)
@@ -102,25 +101,51 @@ function trimTitle(title)
   return title;
 }
 
+function headerSelection(page,button)
+{
+  if(page == button)
+    return "recommendations-usedButton";
+  return "recommendations-unusedButton";
+}
+
+export const CreatePage = (data) => {
+  return(
+    <div>
+      <NavBar/>
+      <header className="App-header">
+        <h1>Recommendations</h1>
+        <HeaderButtons page = {data.page} />
+        <GeneratePaper>
+          <GenerateData list = {data.recipeData} buttonGenerator = {data.buttonGenerator}/>
+        </GeneratePaper>
+      </header>
+    </div> 
+  )
+}
+
 const Recommendations = (props) => {
   const [recipeData,setRecipeData] = useState([]);
-  useEffect(() => {
-    axios.get("/Recommendations").then(response => {
-      setRecipeData(response.data)
-    });
-  },[]);
+    useEffect(() => {
+      axios.get("/RecipesOfTheDay").then(response => {
+        setRecipeData(response.data)
+      });
+    },[]);
+
+  function handleRemove(key,setButtonText){
+    const newList = recipeData.filter((item) => item.name != key);
+    setRecipeData(newList);
+    setButtonText("Done");
+  }
+
+  const GenerateButton = (title) => {
+    const [buttonText,setButtonText] = useState("Remove Recipe");
+    return(
+      <Button className = "recommendations-addButton" variant = "outlined" color="primary" onClick={() => handleRemove(title,setButtonText)}> {buttonText} </Button>
+    )
+  }
 
   return(
-  <div>
-    <NavBar/>
-    <header className="App-header">
-      <h1>Recommendations</h1>
-      <HeaderButtons first = "recommendations-usedButton" second = "recommendations-unusedButton" third = "recommendations-unusedButton"/>
-      <GeneratePaper>
-        <GenerateData recipes = {recipeData}/>
-      </GeneratePaper>
-    </header>
-  </div> 
+    <CreatePage page = {3} recipeData = {recipeData} buttonGenerator = {GenerateButton}/>
 );
   };
 
