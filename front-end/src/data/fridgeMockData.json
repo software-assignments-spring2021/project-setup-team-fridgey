@@ -7,7 +7,9 @@
         "amount": "Lots",
         "daysleft": 5,
         "type": 0,
-        "dateadded": { "$date": { "$numberLong": 161448318100 } }
+        "dateadded": "February 26, 2021",
+        "notes": ""
+        
       },
       {
         "id": 2,
@@ -15,7 +17,8 @@
         "amount": "Some",
         "daysleft": 2,
         "type": 0,
-        "dateadded": { "$date": { "$numberLong": 159386316900 } }
+        "dateadded": "February 20, 2021",
+        "notes": ""
       },
       {
         "id": 3,
@@ -23,25 +26,28 @@
         "amount": "Few",
         "daysleft": 1,
         "type": 0,
-        "dateadded": { "$date": { "$numberLong": 160353888200 } }
+        "dateadded": "March 3, 2021",
+        "notes": ""
       }
     ],
     "Dairy": [
       {
         "id": 1,
         "title": "Greek Yogurt",
-        "amount": "Low",
+        "amount": "Few",
         "daysleft": 0,
         "type": 1,
-        "dateadded": { "$date": { "$numberLong": 158927031300 } }
+        "dateadded": "February 27, 2021",
+        "notes": ""
       },
       {
         "id": 2,
         "title": "Ice Cream",
         "amount": "Lots",
-        "daysleft": 24,
+        "daysleft": 20,
         "type": 1,
-        "dateadded": { "$date": { "$numberLong": 158875730100 } }
+        "dateadded": "March 6, 2021",
+        "notes": ""
       },
       {
         "id": 3,
@@ -49,7 +55,8 @@
         "amount": "Some",
         "daysleft": 15,
         "type": 1,
-        "dateadded": { "$date": { "$numberLong": 160724565900 } }
+        "dateadded": "March 9, 2021",
+        "notes": ""
       }
     ],
     "Grains": [
@@ -59,15 +66,17 @@
         "amount": "Lots",
         "daysleft": 1,
         "type": 2,
-        "dateadded": { "$date": { "$numberLong": 158768459100 } }
+        "dateadded": "March 1, 2021",
+        "notes": ""
       },
       {
         "id": 2,
         "title": "Garlic Bread",
         "amount": "Lots",
-        "daysleft": 19,
+        "daysleft": 16,
         "type": 2,
-        "dateadded": { "$date": { "$numberLong": 159456090500 } }
+        "dateadded": "February 20, 2021",
+        "notes": ""
       }
     ],
     "Meats": [
@@ -77,7 +86,8 @@
         "amount": "Few",
         "daysleft": 3,
         "type": 3,
-        "date": { "$date": { "$numberLong": 159888329300 } }
+        "date": "March 3, 2021",
+        "notes": ""
       },
       {
         "id": 2,
@@ -85,15 +95,17 @@
         "amount": "Few",
         "daysleft": 2,
         "type": 3,
-        "date": { "$date": { "$numberLong": 160710172200 } }
+        "date": "February 28, 2021",
+        "notes": ""
       },
       {
         "id": 3,
         "title": "Sausage Kabobs",
         "amount": "Some",
-        "daysleft": 35,
+        "daysleft": 19,
         "type": 3,
-        "date": { "$date": { "$numberLong": 159789168000 } }
+        "date": "March 1, 2021",
+        "notes": ""
       }
     ]
   }

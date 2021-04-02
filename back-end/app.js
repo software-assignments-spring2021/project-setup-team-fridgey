@@ -1,7 +1,11 @@
 // import and instantiate express
-const axios = require("axios")
-const { response } = require("express")
+
+
+const fs = require("fs")
+
 const express = require("express") // CommonJS import style!
+const axios = require("axios")
+require("dotenv").config({ silent:true })
 const app = express() // instantiate an Express object
 const bodyParser = require("body-parser")
 app.use(bodyParser.json()) // decode JSON-formatted incoming POST data
@@ -13,16 +17,6 @@ app.get("/", (req, res) => {
   res.send("Hello!")
 })
 
-
-
-app.get("/json-example", (req, res) => {
-  const body = {
-    title: 'Hello',
-    heading:"Hello",
-    message: "Alex is sexy",
-  }
-  res.json(body)
-})
 
 
 app.get("/getRecipe",(req,res)=>{//add    :name parameters later
@@ -46,6 +40,52 @@ app.post("/addIngredientToSL",(req,res)=>{
     data : {name:req.body.name}
   }
   res.json(data)
+})
+
+app.get("/storagetimeitems", (req, res) => {
+  /*
+  axios
+    .get(`${process.env.API_BASE_URL}?key=${process.env.API_SECRET_KEY}&num=10`)
+    .then(apiResponse => res.json(apiResponse.data))
+    .catch(error => console.log("error"))
+    */
+  const body = [
+    {"id":1,"food":"Carbonated Water - Wildberry","storage_time_short":1,"storage_time_medium":1.5,"storage_time_long":2,"category":2},
+    {"id":2,"food":"Rye Special Old","storage_time_short":20,"storage_time_medium":30,"storage_time_long":40,"category":3},
+    {"id":3,"food":"Bread - Bagels, Plain","storage_time_short":37,"storage_time_medium":55.5,"storage_time_long":74,"category":1},
+    {"id":4,"food":"Mix Pina Colada","storage_time_short":1,"storage_time_medium":1.5,"storage_time_long":2,"category":3},
+    {"id":5,"food":"Bread - White, Unsliced","storage_time_short":29,"storage_time_medium":43.5,"storage_time_long":58,"category":1},
+    {"id":6,"food":"Beef - Tenderloin Tails","storage_time_short":15,"storage_time_medium":22.5,"storage_time_long":30,"category":1}
+  ]
+  res.json(body)
+})
+
+var request = require("request");
+app.get("/Recommendations", (req,res) =>{
+  request(
+    "https://my.api.mockaroo.com/mock_recipes.json?key=f9883210",
+    function(error,response, body){
+      if(!error && response.statusCode == 200){
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        res.send(body);
+      }
+    }
+  )
+})
+
+app.get("/ReadyToMake", (req,res) =>{
+  request(
+    "https://my.api.mockaroo.com/mock_recipes.json?key=f9883210",
+    function(error,response, body){
+      if(!error && response.statusCode == 200){
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        res.send(body);
+      }
+    }
+  )
+
 })
 
 // export the express app we created to make it available to other modules

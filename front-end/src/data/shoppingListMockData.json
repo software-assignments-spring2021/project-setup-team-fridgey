@@ -6,21 +6,21 @@
         "title": "Apples",
         "amount": "Lots",
         "type": 0,
-        "dateadded": { "$date": { "$numberLong": 161448318100 } }
+        "dateadded": "April 1, 2021"
       },
       {
         "id": 2,
         "title": "Strawberries",
         "amount": "Some",
         "type": 0,
-        "dateadded": { "$date": { "$numberLong": 159386316900 } }
+        "dateadded": "April 1, 2021"
       },
       {
         "id": 3,
         "title": "Oranges",
         "amount": "Few",
         "type": 0,
-        "dateadded": { "$date": { "$numberLong": 160353888200 } }
+        "dateadded": "April 1, 2021"
       }
     ],
     "Dairy": [
@@ -29,21 +29,21 @@
         "title": "Greek Yogurt",
         "amount": "Low",
         "type": 1,
-        "dateadded": { "$date": { "$numberLong": 158927031300 } }
+        "dateadded": "April 1, 2021"
       },
       {
         "id": 2,
         "title": "Ice Cream",
         "amount": "Lots",
         "type": 1,
-        "dateadded": { "$date": { "$numberLong": 158875730100 } }
+        "dateadded": "April 1, 2021"
       },
       {
         "id": 3,
         "title": "Milk",
         "amount": "Some",
         "type": 1,
-        "dateadded": { "$date": { "$numberLong": 160724565900 } }
+        "dateadded": "April 1, 2021"
       }
     ],
     "Grains": [
@@ -52,14 +52,14 @@
         "title": "Everything Bagels",
         "amount": "Lots",
         "type": 2,
-        "dateadded": { "$date": { "$numberLong": 158768459100 } }
+        "dateadded": "April 1, 2021"
       },
       {
         "id": 2,
         "title": "Garlic Bread",
         "amount": "Lots",
         "type": 2,
-        "dateadded": { "$date": { "$numberLong": 159456090500 } }
+        "dateadded": "April 1, 2021"
       }
     ],
     "Meats": [
@@ -68,21 +68,21 @@
         "title": "Chicken",
         "amount": "Few",
         "type": 3,
-        "date": { "$date": { "$numberLong": 159888329300 } }
+        "dateadded": "April 1, 2021"
       },
       {
         "id": 2,
         "title": "Ground Beef",
         "amount": "Few",
         "type": 3,
-        "date": { "$date": { "$numberLong": 160710172200 } }
+        "dateadded": "April 1, 2021"
       },
       {
         "id": 3,
         "title": "Sausage Kabobs",
         "amount": "Some",
         "type": 3,
-        "date": { "$date": { "$numberLong": 159789168000 } }
+        "dateadded": "April 1, 2021"
       }
     ]
   }
