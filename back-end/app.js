@@ -37,6 +37,10 @@ app.get("/getFridgeData", (req, res) => {
   // return Object.entries(b.data[0]);
 });
 
+app.delete("/getFridgeData", (req, res));
+
+// or app.patch()
+
 // app.listen(port, () => console.log("Hello!"));
 
 // export the express app we created to make it available to other modules
