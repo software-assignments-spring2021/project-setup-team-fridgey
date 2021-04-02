@@ -1,14 +1,18 @@
 export function getSelectedCheckboxItems(name) {
   let values = [];
+  // grabs all checkboxes that are checked
   const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
   checkboxes.forEach((checkbox) => {
     values.push(checkbox);
   });
+
+  // returns arrays of all checkboxes that are checked
   return values;
 }
 
 export function compileAddToFridgeItems() {
   let objects = [];
+  // model object
   const foodItem = {
     id: 1,
     title: "Apples",
@@ -28,5 +32,6 @@ export function compileAddToFridgeItems() {
     add.daysleft = 5; // PLACEHOLDER FOR FUTURE WHEN WE AUTOMATICALLLY PUT IN STORAGE TIME
     objects.push(add);
   }
+  // returns array of objeccts of all items that are to be added
   return objects;
 }
