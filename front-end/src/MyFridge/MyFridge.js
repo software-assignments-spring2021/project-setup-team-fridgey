@@ -22,8 +22,8 @@ import axios from "axios";
 const MyFridge = (props) => {
   const apiCall = async () => {
     let b = await axios.get("/getFridgeData");
-    console.log(b.data[0]);
-    setFridgeData(Object.entries(b.data[0]));
+    console.log(b.data);
+    setFridgeData(b.data);
   };
   useEffect(() => {
     apiCall();
@@ -48,22 +48,35 @@ const MyFridge = (props) => {
   const [type, setType] = useState(0);
 
   // Deleting an Item
-  const onDelete = () => {
-    console.log("hi onDelete");
-    let matchIndex = parseInt(itemId);
-    var removeIndex = fridgeData[type][1]
-      .map(function (item) {
-        return item.id;
-      })
-      .indexOf(matchIndex);
-    if (removeIndex !== -1) {
-      console.log("inside if part!");
-      let x = fridgeData;
-      x[type][1].splice(removeIndex, 1);
-      console.log(x);
-      setFridgeData(x);
+  const onDelete = (event) => {
+    console.log(event.target);
+    event.preventDefault();
+    axios.delete(`/getFridgeData/${itemId}`).then((res) => {
+      console.log(res);
+      console.log(res.data);
       setShow(false);
-    }
+      setFridgeData(res.data);
+    });
+
+    // const handleDelete = event => {
+
+    // }
+
+    // console.log("hi onDelete");
+    // let matchIndex = parseInt(itemId);
+    // var removeIndex = fridgeData[type][1]
+    //   .map(function (item) {
+    //     return item.id;
+    //   })
+    //   .indexOf(matchIndex);
+    // if (removeIndex !== -1) {
+    //   console.log("inside if part!");
+    //   let x = fridgeData;
+    //   x[type][1].splice(removeIndex, 1);
+    //   console.log(x);
+    //   setFridgeData(x);
+    //   setShow(false);
+    // }
   };
 
   // Rendering an Item
@@ -130,7 +143,7 @@ const MyFridge = (props) => {
         <DeleteModal
           onClose={() => setShow(false)}
           show={show}
-          onDelete={() => onDelete()}
+          onDelete={onDelete}
           itemName={itemName}
         />
       </tbody>

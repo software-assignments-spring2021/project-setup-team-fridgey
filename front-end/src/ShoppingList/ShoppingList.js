@@ -10,7 +10,8 @@ import { compileAddToFridgeItems } from "./AddToFridgeItems";
 import { AddToFridge } from "./AddToFridge";
 import { AddButton } from "./AddButton";
 import AddNewFridgeItemModal from "./AddNewFridgeItemModal";
-const shopData = require("../data/shoppingListMockData.json");
+const shopDataJSON = require("../data/shoppingListMockData.json");
+const shopData = Object.entries(shopDataJSON[0]);
 const fridgeData = require("../data/fridgeMockData.json");
 
 const ShoppingListView = (props) => {
@@ -41,7 +42,7 @@ const ShoppingListView = (props) => {
   // Adding Items to Fridge and Deleting from Shopping List
   const onAddToFridge = () => {
     let AddData = compileAddToFridgeItems();
-    let data = Object.entries(shopData[0]);
+    let data = shopData;
 
     for (let i = 0; i < AddData.length; i++) {
       // adds the objects to the MyFridge and deletes it from shopping list
@@ -54,14 +55,13 @@ const ShoppingListView = (props) => {
     checkboxes.forEach((checkbox) => {
       checkbox.checked = false;
     });
-
     setShowFridgeModal(false);
     setShowAddtoFridge(false);
   };
 
   // Adding items to the shopping list
   const onAddToShoppingList = (name, amount, typeFood) => {
-    var itemId = Object.entries(shopData[0])[typeFood][1].length;
+    var itemId = shopData[typeFood][1].length;
 
     const foodItem = {
       id: itemId + 1,
@@ -72,7 +72,7 @@ const ShoppingListView = (props) => {
     };
 
     let add = Object.create(foodItem);
-    Object.entries(shopData[0])[typeFood][1].push(add);
+    shopData[typeFood][1].push(add);
     setShowAddFridgeItemModal(false);
   };
 
@@ -158,9 +158,7 @@ const ShoppingListView = (props) => {
         <DeleteModal
           onClose={() => setShowDelete(false)}
           show={showDelete}
-          onDelete={() =>
-            onDelete(Object.entries(shopData[0]), shoppingItemId, shoppingType)
-          }
+          onDelete={() => onDelete(shopData, shoppingItemId, shoppingType)}
           itemName={shoppingItemName}
         />
       </tbody>
@@ -171,9 +169,7 @@ const ShoppingListView = (props) => {
     <div>
       {/* All items and checkboxes */}
       <div
-        className={`Shop-Box ${
-          itemCount(Object.entries(shopData[0])) === 0 ? "Shop-Hide" : ""
-        }`}
+        className={`Shop-Box ${itemCount(shopData) === 0 ? "Shop-Hide" : ""}`}
       >
         <div>
           <table className="SelectAll-table">
@@ -195,7 +191,7 @@ const ShoppingListView = (props) => {
         </div>
 
         {/* Renders all items in the JSON file */}
-        {Object.entries(shopData[0]).map((item, i) => (
+        {shopData.map((item, i) => (
           <div key={i}>
             {/* Types */}
             <h2 className="header">{JSON.parse(JSON.stringify(item[0]))}</h2>

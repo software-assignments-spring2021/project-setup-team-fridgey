@@ -10,8 +10,8 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json()); // decode JSON-formatted incoming POST data
 app.use(bodyParser.urlencoded({ extended: true })); // decode url-encoded incoming POST
 var request = require("request");
-
-const data = require("../front-end/src/data/fridgeMockData.json");
+const dataGet = require("../front-end/src/data/fridgeMockData.json");
+const data = Object.entries(dataGet[0]);
 console.log(data);
 // we will put some server logic here later...
 app.get("/", (req, res) => {
@@ -44,11 +44,28 @@ app.get("/getFridgeData", (req, res) => {
   // return Object.entries(b.data[0]);
 });
 
-app.delete("/getFridgeData", (req, res));
-
-// or app.patch()
-
-// app.listen(port, () => console.log("Hello!"));
+app.delete("/getFridgeData/:id", (req, res) => {
+  const { id } = req.params;
+  const deleted = false;
+  for (let i = 0; i < data.length; i++) {
+    var removeIndex = data[i][1]
+      .map(function (item) {
+        let a = item.id.toString();
+        console.log(a + 1);
+        return a;
+      })
+      .indexOf(id);
+    if (removeIndex !== -1) {
+      console.log("inside if part!");
+      let x = data;
+      x[i][1].splice(removeIndex, 1);
+      res.status(200).json(x);
+    }
+  }
+  if (deleted !== true) {
+    res.status(404).json({ message: "Does not Exist" });
+  }
+});
 
 app.get("/getRecipe", (req, res) => {
   //add    :name parameters later
