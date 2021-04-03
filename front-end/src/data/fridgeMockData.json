@@ -9,7 +9,6 @@
         "type": 0,
         "dateadded": "February 26, 2021",
         "notes": ""
-        
       },
       {
         "id": 2,
@@ -32,7 +31,7 @@
     ],
     "Dairy": [
       {
-        "id": 1,
+        "id": 4,
         "title": "Greek Yogurt",
         "amount": "Few",
         "daysleft": 0,
@@ -41,7 +40,7 @@
         "notes": ""
       },
       {
-        "id": 2,
+        "id": 5,
         "title": "Ice Cream",
         "amount": "Lots",
         "daysleft": 20,
@@ -50,7 +49,7 @@
         "notes": ""
       },
       {
-        "id": 3,
+        "id": 6,
         "title": "Milk",
         "amount": "Some",
         "daysleft": 15,
@@ -61,7 +60,7 @@
     ],
     "Grains": [
       {
-        "id": 1,
+        "id": 7,
         "title": "Everything Bagels",
         "amount": "Lots",
         "daysleft": 1,
@@ -70,7 +69,7 @@
         "notes": ""
       },
       {
-        "id": 2,
+        "id": 8,
         "title": "Garlic Bread",
         "amount": "Lots",
         "daysleft": 16,
@@ -81,7 +80,7 @@
     ],
     "Meats": [
       {
-        "id": 1,
+        "id": 9,
         "title": "Chicken",
         "amount": "Few",
         "daysleft": 3,
@@ -90,7 +89,7 @@
         "notes": ""
       },
       {
-        "id": 2,
+        "id": 10,
         "title": "Ground Beef",
         "amount": "Few",
         "daysleft": 2,
@@ -99,7 +98,7 @@
         "notes": ""
       },
       {
-        "id": 3,
+        "id": 11,
         "title": "Sausage Kabobs",
         "amount": "Some",
         "daysleft": 19,

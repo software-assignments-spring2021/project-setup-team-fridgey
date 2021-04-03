@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./MyFridge.css";
 import { dot, chipDays, chipAmount } from "./itemColoring";
 import DeleteModal from "./deleteModal";
@@ -6,39 +6,42 @@ import FoodItemModal from "./FoodItemModal";
 import { itemCount, num } from "./CountFridgeItems";
 import NavBar from "../NavBar";
 import welcome_pic from "./MyFridge-Welcome-Pic.png";
-
-const fridgeData = require("../data/fridgeMockData.json");
+import axios from "axios";
 
 const MyFridge = (props) => {
-  
+  const apiCall = async () => {
+    let b = await axios.get("/fridgeData");
+    console.log(b.data);
+    setFridgeData(b.data);
+  };
+  useEffect(() => {
+    apiCall();
+  }, []);
+
+  const [fridgeData, setFridgeData] = useState([]);
+
   // FoodItemModal useState's
-  const [showItemModal, setShowItemModal] = useState(false)
-  const [itemModalName, setItemModalName] = useState("") 
-  const [itemAmount, setItemAmount] = useState("") 
-  const [itemModalID, setItemModalId] = useState(0)
-  const [itemModalDaysLeft, setItemModalDaysleft] = useState(0) 
-  const [itemModalDateAdded, setItemModalDateAdded] = useState("")
-  const [itemModalType, setItemModalType] = useState(0)
-  const [itemModalNote, setItemModalNote] = useState("")
+  const [showItemModal, setShowItemModal] = useState(false);
+  const [itemModalName, setItemModalName] = useState("");
+  const [itemAmount, setItemAmount] = useState("");
+  const [itemModalID, setItemModalId] = useState(0);
+  const [itemModalDaysLeft, setItemModalDaysleft] = useState(0);
+  const [itemModalDateAdded, setItemModalDateAdded] = useState("");
+  const [itemModalType, setItemModalType] = useState(0);
+  const [itemModalNote, setItemModalNote] = useState("");
 
   // DeleteModal useState's
   const [show, setShow] = useState(false);
   const [itemName, setItemName] = useState("");
   const [itemId, setItemId] = useState(0);
-  const [type, setType] = useState(0);
 
   // Deleting an Item
-  const onDelete = (data) => {
-    let matchIndex = parseInt(itemId);
-    var removeIndex = data[type][1]
-      .map(function (item) {
-        return item.id;
-      })
-      .indexOf(matchIndex);
-    if (removeIndex !== -1) {
-      data[type][1].splice(removeIndex, 1);
+  const onDelete = (event) => {
+    event.preventDefault();
+    axios.delete(`/fridgeData/${itemId}`).then((res) => {
       setShow(false);
-    }
+      setFridgeData(res.data);
+    });
   };
 
   // Rendering an Item
@@ -47,33 +50,31 @@ const MyFridge = (props) => {
     const deleteClick = (event) => {
       const title = event.currentTarget.getAttribute("title");
       const id = event.currentTarget.getAttribute("id");
-      const type = event.currentTarget.getAttribute("type");
       setItemName(title);
       setItemId(id);
-      setType(type);
       setShow(true);
     };
 
     // FoodItemModal event handler
     const itemEvent = (event) => {
       const title = event.currentTarget.getAttribute("title");
-      const amount = event.currentTarget.getAttribute("amount")
+      const amount = event.currentTarget.getAttribute("amount");
       const id = event.currentTarget.getAttribute("id");
       const days = event.currentTarget.getAttribute("daysleft");
-      const date = event.currentTarget.getAttribute("dateadded")
-      const type = event.currentTarget.getAttribute("type")
-      const note = event.currentTarget.getAttribute("notes")
-      setItemModalType(type)
-      setItemModalName(title)
-      setShowItemModal(true)
-      setItemModalId(id)
-      setItemAmount(amount)
-      setItemModalDaysleft(days)
-      setItemModalDateAdded(date)
-      setItemModalNote(note)
-    }
+      const date = event.currentTarget.getAttribute("dateadded");
+      const type = event.currentTarget.getAttribute("type");
+      const note = event.currentTarget.getAttribute("notes");
+      setItemModalType(type);
+      setItemModalName(title);
+      setShowItemModal(true);
+      setItemModalId(id);
+      setItemAmount(amount);
+      setItemModalDaysleft(days);
+      setItemModalDateAdded(date);
+      setItemModalNote(note);
+    };
 
-    return ( 
+    return (
       <tbody key={j}>
         <tr>
           <td
@@ -105,7 +106,7 @@ const MyFridge = (props) => {
         <DeleteModal
           onClose={() => setShow(false)}
           show={show}
-          onDelete={() => onDelete(Object.entries(fridgeData[0]))}
+          onDelete={onDelete}
           itemName={itemName}
         />
       </tbody>
@@ -113,11 +114,11 @@ const MyFridge = (props) => {
   };
 
   const editItem = (amount, type, id, useWithin, notesTaken) => {
-    Object.entries(fridgeData[0])[type][1][id - 1].amount = amount
-    Object.entries(fridgeData[0])[type][1][id - 1].daysleft = useWithin
-    Object.entries(fridgeData[0])[type][1][id - 1].notes = notesTaken
-    setShowItemModal(false)
-  }
+    Object.entries(fridgeData[0])[type][1][id - 1].amount = amount;
+    Object.entries(fridgeData[0])[type][1][id - 1].daysleft = useWithin;
+    Object.entries(fridgeData[0])[type][1][id - 1].notes = notesTaken;
+    setShowItemModal(false);
+  };
 
   // Rendering All Fridge Items
   return (
@@ -126,7 +127,7 @@ const MyFridge = (props) => {
         You have {itemCount(fridgeData)} items in your Fridge
       </p>
       <div className={`MyFridge ${num === 0 ? "MyFridge-Hide" : ""}`}>
-        {Object.entries(fridgeData[0]).map((item, i) => (
+        {fridgeData.map((item, i) => (
           <div key={i}>
             <h2 className="header">{JSON.parse(JSON.stringify(item[0]))}</h2>
             <table>{item[1].map(renderItem)}</table>
@@ -135,18 +136,18 @@ const MyFridge = (props) => {
       </div>
 
       <FoodItemModal
-          onClose={() => setShowItemModal(false)}
-          parentCallback={editItem}
-          show={showItemModal}
-          itemName={itemModalName}
-          amount={itemAmount}
-          id={itemModalID}
-          type={itemModalType}
-          daysleft={itemModalDaysLeft}
-          dateadded={itemModalDateAdded}
-          notes={itemModalNote}
-        />
-      
+        onClose={() => setShowItemModal(false)}
+        parentCallback={editItem}
+        show={showItemModal}
+        itemName={itemModalName}
+        amount={itemAmount}
+        id={itemModalID}
+        type={itemModalType}
+        daysleft={itemModalDaysLeft}
+        dateadded={itemModalDateAdded}
+        notes={itemModalNote}
+      />
+
       {/* Pops up when there is no items */}
       <div className={num === 0 ? "" : "MyFridge-Hide"}>
         <h2 className="MyFridge-Welcome"> Welcome to Fridgey!</h2>

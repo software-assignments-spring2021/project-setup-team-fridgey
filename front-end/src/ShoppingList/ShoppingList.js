@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "../NavBar";
 import ShoppingList_welcome from "./ShoppingList.png";
 import "./ShoppingList.css";
@@ -8,61 +8,55 @@ import AddToFridgeModal from "./AddToFridgeModal";
 import { itemCount } from "../MyFridge/CountFridgeItems";
 import { compileAddToFridgeItems } from "./AddToFridgeItems";
 import { AddToFridge } from "./AddToFridge";
-import { AddButton } from "./AddButton"
+import { AddButton } from "./AddButton";
 import AddNewFridgeItemModal from "./AddNewFridgeItemModal";
-const shopData = require("../data/shoppingListMockData.json");
-const fridgeData = require("../data/fridgeMockData.json");
+import axios from "axios";
 
 const ShoppingListView = (props) => {
+  const apiCall = async () => {
+    let b = await axios.get("/shopData");
+    console.log(b.data);
+    setShopData(b.data);
+  };
+  useEffect(() => {
+    apiCall();
+  }, []);
+
+  const [shopData, setShopData] = useState([]);
   const [showDelete, setShowDelete] = useState(false);
   const [shoppingItemName, setShoppingItemName] = useState("");
   const [shoppingItemId, setShoppingItemId] = useState(0);
-  const [shoppingType, setShoppingType] = useState(0);
   const [showAddtoFridge, setShowAddtoFridge] = useState(false);
   const [showFridgeModal, setShowFridgeModal] = useState(false);
-
   const [showAddFridgeItemModal, setShowAddFridgeItemModal] = useState(false);
 
   // Deleting from Shopping List
-  const onDelete = (data, id, type) => {
-    let matchIndex = parseInt(id);
-    
-    var removeIndex = data[type][1]
-      .map(function (item) {
-        return item.id;
-      })
-      .indexOf(matchIndex);
-    if (removeIndex !== -1) {
-      data[type][1].splice(removeIndex, 1);
+  const onDelete = (event) => {
+    event.preventDefault();
+    axios.delete(`/shopData/${shoppingItemId}`).then((res) => {
       setShowDelete(false);
-    }
+      setShopData(res.data);
+    });
   };
 
   // Adding Items to Fridge and Deleting from Shopping List
-  const onAddToFridge = () => {
+  const onAddToFridge = async () => {
     let AddData = compileAddToFridgeItems();
-    let data = Object.entries(shopData[0]);
-
-    for (let i = 0; i < AddData.length; i++) {
-      // adds the objects to the MyFridge and deletes it from shopping list
-      Object.entries(fridgeData[0])[AddData[i].type][1].push(AddData[i]);
-      onDelete(data, AddData[i].id, AddData[i].type);
-    }
-
-    // uncheck all checkboxes
+    await axios.post("/addToFridge", AddData);
+    await axios.delete("/shopData", { data: AddData }).then((res) => {
+      setShopData(res.data);
+    });
     let checkboxes = document.querySelectorAll(`input[name="itemCheckbox"]`);
     checkboxes.forEach((checkbox) => {
-      checkbox.checked = false;
+      checkbox.checked = false; // uncheck all checkboxes
     });
-
-    setShowFridgeModal(false); 
+    setShowFridgeModal(false);
     setShowAddtoFridge(false);
   };
 
   // Adding items to the shopping list
   const onAddToShoppingList = (name, amount, typeFood) => {
-    var itemId = Object.entries(shopData[0])[typeFood][1].length
-
+    var itemId = shopData[typeFood][1].length;
     const foodItem = {
       id: itemId + 1,
       title: name,
@@ -70,27 +64,23 @@ const ShoppingListView = (props) => {
       type: typeFood,
       dateadded: { $date: { $numberLong: 161448318100 } },
     };
-
     let add = Object.create(foodItem);
-    Object.entries(shopData[0])[typeFood][1].push(add)
-    setShowAddFridgeItemModal(false)
-  }
+    shopData[typeFood][1].push(add);
+    setShowAddFridgeItemModal(false);
+  };
 
   // Displaying Add to Fridge Button if a Checkbox is Marked
   function onCheck() {
     let allEmpty = true;
     let checkboxes = document.querySelectorAll(`input[name="itemCheckbox"]`);
-
     checkboxes.forEach((checkbox) => {
       if (checkbox.checked === true) {
         allEmpty = false;
       }
     });
-
     // if there are no checkboxes checked, the "Add to Fridge" modal will not appear
     if (allEmpty === true) {
       setShowAddtoFridge(false);
-      
     } else {
       setShowAddtoFridge(true);
     }
@@ -111,22 +101,17 @@ const ShoppingListView = (props) => {
   const renderItem = (data) => {
     // Handling Delete Click
     const deleteClick = (event) => {
-      console.log(event)
+      console.log(event);
       const title = event.currentTarget.getAttribute("title");
       const id = event.currentTarget.getAttribute("id");
-      const type = event.currentTarget.getAttribute("type");
       setShoppingItemName(title);
       setShoppingItemId(id);
-      setShoppingType(type);
-
-      // the delete modal now appears
-      setShowDelete(true);
+      setShowDelete(true); // the delete modal now appears
     };
-
+    // Return Each Food Item
     return (
       <tbody>
         <tr>
-          {/* Each Food */}
           <td>
             <span className="Shop-Checkbox">
               <input
@@ -144,7 +129,6 @@ const ShoppingListView = (props) => {
             <span className="title">{data.title}</span>
             <span>{chipAmount(data.amount, 1)}</span>
           </td>
-          {/* X Button at the end */}
           <td>
             <button
               title={data.title}
@@ -152,16 +136,14 @@ const ShoppingListView = (props) => {
               type={data.type}
               onClick={deleteClick}
             >
-              x
+              x {/* X Button at the end */}
             </button>
           </td>
         </tr>
         <DeleteModal
           onClose={() => setShowDelete(false)}
           show={showDelete}
-          onDelete={() =>
-            onDelete(Object.entries(shopData[0]), shoppingItemId, shoppingType)
-          }
+          onDelete={onDelete}
           itemName={shoppingItemName}
         />
       </tbody>
@@ -194,7 +176,7 @@ const ShoppingListView = (props) => {
         </div>
 
         {/* Renders all items in the JSON file */}
-        {Object.entries(shopData[0]).map((item, i) => (
+        {shopData.map((item, i) => (
           <div key={i}>
             {/* Types */}
             <h2 className="header">{JSON.parse(JSON.stringify(item[0]))}</h2>
@@ -217,7 +199,7 @@ const ShoppingListView = (props) => {
           Start adding items using the add button! :)
         </p>
       </div>
-      
+
       {/* Buttons on the bottom */}
       <div className="center">
         <AddToFridge
@@ -229,14 +211,14 @@ const ShoppingListView = (props) => {
           onClick={() => setShowAddFridgeItemModal(true)}
         />
       </div>
-      
+
       <AddToFridgeModal
         onClose={() => setShowFridgeModal(false)}
         show={showFridgeModal}
         onAddToFridge={() => onAddToFridge()}
       />
 
-      <AddNewFridgeItemModal   
+      <AddNewFridgeItemModal
         parentCallback={onAddToShoppingList}
         onClose={() => setShowAddFridgeItemModal(false)}
         show={showAddFridgeItemModal}
