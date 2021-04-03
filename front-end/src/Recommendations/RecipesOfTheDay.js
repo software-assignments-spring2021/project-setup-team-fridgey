@@ -5,10 +5,10 @@ import axios from 'axios';
 import {CreatePage} from "./Recommendations";
 
 
-const ReadyToMake = (props) => {
+const RecipesOfTheDay = (props) => {
   const [recipeData,setRecipeData] = useState([]);
     useEffect(() => {
-      axios.get("/ReadyToMake").then(response => {
+      axios.get("/RecipesOfTheDay").then(response => {
         setRecipeData(response.data)
       });
     },[]);
@@ -25,8 +25,8 @@ const ReadyToMake = (props) => {
   }
 
   return(
-    <CreatePage page = {2} recipeData = {recipeData} buttonGenerator = {GenerateButton}/>
+    <CreatePage page = {1} recipeData = {recipeData} buttonGenerator = {GenerateButton}/>
 );
   };
 
-export { ReadyToMake };
+export { RecipesOfTheDay };
