@@ -108,6 +108,7 @@ const ShoppingListView = (props) => {
       setShoppingItemId(id);
       setShowDelete(true); // the delete modal now appears
     };
+    
     // Return Each Food Item
     return (
       <tbody>
