@@ -41,11 +41,13 @@ app.post("/addIngredientToSL", (req, res) => {
 
 app.get("/storagetimeitems", (req, res) => {
   /*
+  Use hard-coded data for now because mock API has limited number of calls
+
   axios
     .get(`${process.env.API_BASE_URL}?key=${process.env.API_SECRET_KEY}&num=10`)
     .then(apiResponse => res.json(apiResponse.data))
     .catch(error => console.log("error"))
-    */
+  */
   const body = [
     {
       id: 1,
