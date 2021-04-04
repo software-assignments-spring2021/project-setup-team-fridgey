@@ -4,7 +4,7 @@
   "description": "Initialize back-end",
   "main": "server.js",
   "scripts": {
-    "test": "nyc mocha",
+    "test": "nyc npx mocha \"tests/*.test.js\" --recursive --require @babel/register",
     "start": "nodemon index.js",
     "devStart": "nodemon index.js"
   },
