@@ -186,14 +186,13 @@ app.get("/storagetimeitems", (req, res) => {
 });
 
 var request = require("request");
-app.get("/Recommendations", (req, res) => {
+app.get("/RecipesOfTheDay", (req, res) => {
   request(
     "https://my.api.mockaroo.com/mock_recipes.json?key=f9883210",
     function (error, response, body) {
       if (!error && response.statusCode == 200) {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "X-Requested-With");
-        res.send(body);
+        let parsedBody = JSON.parse(body);
+        res.json(parsedBody);
       }
     }
   );
@@ -204,9 +203,8 @@ app.get("/ReadyToMake", (req, res) => {
     "https://my.api.mockaroo.com/mock_recipes.json?key=f9883210",
     function (error, response, body) {
       if (!error && response.statusCode == 200) {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "X-Requested-With");
-        res.send(body);
+        let parsedBody = JSON.parse(body);
+        res.json(parsedBody);
       }
     }
   );
