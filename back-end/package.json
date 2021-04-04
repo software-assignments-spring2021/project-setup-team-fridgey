@@ -4,16 +4,21 @@
   "description": "Initialize back-end",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "nyc mocha",
     "start": "nodemon index.js",
     "devStart": "nodemon index.js"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jest": "^26.6.3",
+    "mocha": "^8.3.2",
+    "nyc": "^15.1.0",
     "request": "^2.88.2"
   },
   "devDependencies": {
