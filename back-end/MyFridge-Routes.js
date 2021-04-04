@@ -26,7 +26,7 @@ router.delete("/:id", (req, res) => {
   if (deleted) {
     res.status(200).json(fridgeData);
   } else {
-    res.status(404).json({ message: "Does not Exist" });
+    res.status(200).json({ message: "Does not Exist" });
   }
 });
 
