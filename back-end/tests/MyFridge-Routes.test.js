@@ -3,7 +3,6 @@ import chai from "chai";
 import { expect } from "chai";
 import chaiHttp from "chai-http";
 import app from "../app";
-// import { itemCount } from "../../front-end/src/MyFridge/CountFridgeItems";
 const fridgeDataJSON = require("../../front-end/src/data/fridgeMockData.json");
 const fridgeData = Object.entries(fridgeDataJSON[0]);
 
@@ -46,17 +45,6 @@ describe("fridgeData DELETE Route - basic functionality", () => {
         done();
       });
   });
-  //   it("fridgeData should have one less item", (done) => {
-  //     chai
-  //       .request(app)
-  //       .delete("/fridgeData/1")
-  //       .end((err, res) => {
-  //         const expected = itemCount(fridgeData) - 1;
-  //         const actual = itemCount(res.body);
-  //         expect(actual).to.deep.equal(expected);
-  //         done();
-  //       });
-  //   });
   it("Deleted item should not be in fridgeData anymore", (done) => {
     chai
       .request(app)
@@ -76,3 +64,17 @@ describe("fridgeData DELETE Route - basic functionality", () => {
       });
   });
 });
+
+// import { itemCount } from "../../front-end/src/MyFridge/CountFridgeItems";
+
+//   it("fridgeData should have one less item", (done) => {
+//     chai
+//       .request(app)
+//       .delete("/fridgeData/1")
+//       .end((err, res) => {
+//         const expected = itemCount(fridgeData) - 1;
+//         const actual = itemCount(res.body);
+//         expect(actual).to.deep.equal(expected);
+//         done();
+//       });
+//   });
