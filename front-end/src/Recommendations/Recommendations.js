@@ -32,18 +32,18 @@ export const RecItem = (data) => {
                 <Link to = {{
                   pathname:'./Recipe',
                   state:{
-                    name: data.title
+                    name: data.recipe.name
                   }
                 }}>
                   <ButtonBase>
-                      <img className= "recommendations-imagePreview" alt="complex" src={data.image} />
+                      <img className= "recommendations-imagePreview" alt="complex" src={data.recipe.imageURL} />
                   </ButtonBase>
                 </Link>
             </Grid>
             <Grid item xs = {7}>
-                <div className = "recommendations-recipeTitle">{trimTitle(data.title)}</div>
-                <div className = "recommendations-info">{data.ingredients} Ingredients | {data.minutes} Minutes</div>
-                {data.buttonGenerator(data.title)}
+                <div className = "recommendations-recipeTitle">{trimTitle(data.recipe.name)}</div>
+                <div className = "recommendations-info">{data.recipe.ingredients.length} Ingredients | {data.recipe.time} Minutes</div>
+                {data.buttonGenerator(data.recipe)}
             </Grid> 
         </Grid>
   </div>
@@ -84,7 +84,7 @@ export const GeneratePaper = ({children}) => {
 export const GenerateData = (data) => {
   return(
     data.list.map((recipe) => (
-      <RecItem key = {createKey(recipe.name,recipe.time)} buttonGenerator = {data.buttonGenerator} title = {recipe.name} ingredients = {recipe.ingredients.length} minutes = {recipe.time} image = {recipe.imageURL}/>
+      <RecItem buttonGenerator = {data.buttonGenerator} recipe = {recipe}/>
     )
   ));
 };

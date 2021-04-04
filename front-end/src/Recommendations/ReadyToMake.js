@@ -13,7 +13,12 @@ const ReadyToMake = (props) => {
       });
     },[]);
 
-  function handleSave(key,setButtonText){
+  function handleSave(item,setButtonText){
+    axios.post("/SaveRecipe", item).then((response) => {
+      console.log();
+    }, (error) => {
+      console.log();
+    });
     setButtonText("Saved!");
   }
 
