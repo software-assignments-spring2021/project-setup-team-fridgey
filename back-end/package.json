@@ -4,7 +4,8 @@
   "description": "Initialize back-end",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npx mocha \"tests/*.test.js\" --recursive --require @babel/register",
+    "coverage": "nyc --reporter=text npm run test",
     "start": "nodemon index.js",
     "devStart": "nodemon index.js"
   },
@@ -17,6 +18,16 @@
     "request": "^2.88.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.14",
+    "@babel/node": "^7.13.13",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/register": "^7.13.14",
+    "babel-install": "2.1.0",
+    "chai": "^4.3.4",
+    "chai-http": "^4.0.0",
+    "mocha": "^8.3.2",
+    "nodemon": "^2.0.7",
+    "nyc": "^15.1.0"
   }
 }
