@@ -9,15 +9,19 @@ import welcome_pic from "./MyFridge-Welcome-Pic.png";
 import axios from "axios";
 
 const MyFridge = (props) => {
+  // beginning of the server
   const apiCall = async () => {
     let b = await axios.get("/fridgeData");
-    console.log(b.data);
+
+    // sets the fridge data from mock data as the Fridge Data
     setFridgeData(b.data);
   };
   useEffect(() => {
+    // call it immediately
     apiCall();
   }, []);
 
+  // data for MyFridge
   const [fridgeData, setFridgeData] = useState([]);
 
   // FoodItemModal useState's
@@ -38,10 +42,31 @@ const MyFridge = (props) => {
   // Deleting an Item
   const onDelete = (event) => {
     event.preventDefault();
+    // sends this to MyFridge-Routes 
     axios.delete(`/fridgeData/${itemId}`).then((res) => {
       setShow(false);
       setFridgeData(res.data);
     });
+  };
+
+  // Edit Item from MyFridge
+  const editItem = async (amount, type, id, useWithin, notesTaken) => {
+
+    const obj = {
+      "amount": amount,
+      "type": parseInt(type),
+      "id": parseInt(id), 
+      "useWithin": useWithin
+    }
+
+    // axios.get(`/${amount}/${type}/${id}/${useWithin}`).then((res) => {
+    //   setShowItemModal(false)
+    // })
+
+    await axios.post("/fridgeData/postRoute", obj).then((res) => {
+      setShowItemModal(false)
+      setFridgeData(res.data)
+    })
   };
 
   // Rendering an Item
@@ -103,6 +128,7 @@ const MyFridge = (props) => {
             </button>
           </td>
         </tr>
+        
         <DeleteModal
           onClose={() => setShow(false)}
           show={show}
@@ -112,13 +138,7 @@ const MyFridge = (props) => {
       </tbody>
     );
   };
-
-  const editItem = (amount, type, id, useWithin, notesTaken) => {
-    Object.entries(fridgeData[0])[type][1][id - 1].amount = amount;
-    Object.entries(fridgeData[0])[type][1][id - 1].daysleft = useWithin;
-    Object.entries(fridgeData[0])[type][1][id - 1].notes = notesTaken;
-    setShowItemModal(false);
-  };
+  
 
   // Rendering All Fridge Items
   return (

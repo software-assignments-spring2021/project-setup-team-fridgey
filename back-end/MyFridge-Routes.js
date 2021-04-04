@@ -12,6 +12,7 @@ router.get("/", (req, res) => {
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
   let deleted = false;
+
   for (let i = 0; i < fridgeData.length; i++) {
     var removeIndex = fridgeData[i][1]
       .map(function (item) {
@@ -23,11 +24,37 @@ router.delete("/:id", (req, res) => {
       deleted = true;
     }
   }
+  
   if (deleted) {
     res.status(200).json(fridgeData);
   } else {
     res.status(200).json({ message: "Does not Exist" });
   }
 });
+
+router.post("/postRoute", (req, res) => {
+  let editItem = req.body
+  // console.log(editItem)
+
+  fridgeData[editItem.type][1][editItem.id - 1].amount = editItem.amount
+  fridgeData[editItem.type][1][editItem.id - 1].daysleft = editItem.useWithin;
+  res.status(200).json(fridgeData)
+})
+
+// router.get("/:amount/:type/:id/:useWithin", (req, res) => {
+//   var amount = req.params.amount
+//   var type = req.params.type
+//   var id = req.params.id
+//   var useWithin = req.params.useWithin
+
+//   // fridgeData[type][1][id - 1].amount = amount
+//   // console.log(fridgeData[type][1][id - 1])
+//   fridgeData[type][1][id - 1].amount = amount
+//   fridgeData[type][1][id - 1].daysleft = useWithin;
+//   // console.log(fridgeData[type][1][id - 1])
+
+  
+//   res.json(fridgeData)
+// })
 
 module.exports = router;

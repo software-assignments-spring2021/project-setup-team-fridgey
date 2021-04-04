@@ -65,4 +65,10 @@ router.delete("/:id", (req, res) => {
   }
 });
 
+router.post("/postRoute", (req, res) => {
+  let addItem = req.body
+  shopData[addItem.type][1].push(addItem)
+  res.status(200).json(shopData)
+})
+
 module.exports = router;

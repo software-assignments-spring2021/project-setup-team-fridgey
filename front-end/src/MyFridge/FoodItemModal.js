@@ -35,7 +35,7 @@ const FoodItemModal = (props) => {
     }
 
     const changeData = (data) => {
-        console.log(props.notes)
+        // console.log(props.notes)
         var pressedAmount = data
         var chips = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip")
 
@@ -122,7 +122,6 @@ const FoodItemModal = (props) => {
                     <h4 className="FoodItemModal-title">{props.itemName}</h4>
                     <button onClick={closeModal}>x</button>
                 </div>
-
                 <div className="FoodItemModal-body"> 
                     <div className="FoodItemModal-info">
                         <div className="Fresh-bar">
@@ -134,7 +133,6 @@ const FoodItemModal = (props) => {
                                 </div>
                             </div>
                         </div>
-
                         <div className="Freshness-data">
                             <div className="Use-Within">
                                 <h5 className="FoodItemModal-text">Use Within</h5>
@@ -169,7 +167,6 @@ const FoodItemModal = (props) => {
                             </div>
                         </div>
                     </div>   
-    
                     <div className="FoodItemModal-Amount">
                         <h5 className="FoodItemModal-text">How Much?</h5>
                         <div id="FoodItemModal-chips">
@@ -195,13 +192,11 @@ const FoodItemModal = (props) => {
                             </button>
                         </div>
                     </div>
-
                     <div className="FoodItemModal-Notes">
                         <label htmlFor="nt" className="headline">Notes</label>
                         <textarea id="notes" className="Notes" placeholder="This item is for...">{txtNotes}</textarea>
                     </div>
                 </div>
-
                 <div className="FoodItemModal-footer">
                     <button>Add to Shopping List</button> 
                     <button onClick={grabInformation}>Save</button>
