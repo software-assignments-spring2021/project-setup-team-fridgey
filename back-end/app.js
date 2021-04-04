@@ -128,5 +128,78 @@ app.get("/ReadyToMake", (req, res) => {
   );
 });
 
+app.get("/storagetimesearchlistfruits", (req, res) => {
+  request(
+    "https://api.mockaroo.com/api/b7a0c270?count=1000&key=a9407640",
+    function (error, response, body) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "X-Requested-With");
+      res.send(body);
+    }
+  )
+})
+
+// app.get("/storagetimesearchlistfruits", (req, res) => {
+//   const body = [
+//     {
+//       id: 1,
+//       name: "Apple",
+//       defaultTime: 2,
+//       shortTime: 1,
+//       averageTime: 2,
+//       longTime: 3,
+//     },
+//     {
+//       id: 2,
+//       name: "Pear",
+//       defaultTime: 2,
+//       shortTime: 1,
+//       averageTime: 2,
+//       longTime: 3,
+//     },
+//     {
+//       id: 3,
+//       name: "Grapes",
+//       defaultTime: 2,
+//       shortTime: 1,
+//       averageTime: 2,
+//       longTime: 3,
+//     },
+//   ];
+//     res.json(body)
+// });
+
+
+// app.get("/post-example", (req, res) => {
+//   const data = {
+//     status: "amazing!",
+//     your_data: {
+//       id: req.body.id,
+//       name: req.body.name,
+//       defaultTime: req.body.defaultTime
+//     },
+//   }
+//   res.json(data)
+// })
+
+// app.post("/post-example", (req, res) => {
+//   console.log(req.body)
+//   res.send("I am post method!");
+// })
+
+
+// app.post("/post-example", (req, res) => {
+
+// })
+
+// app.post("/storagetimesearchlist", (req, res) => {
+//   const data = {
+//     status: "success!",
+//     your_data: {
+//       defaultTime: req.body.defaultTime
+//     },
+//   }
+//   res.json(data)
+// })
 // export the express app we created to make it available to other modules
 module.exports = app;
