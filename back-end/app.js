@@ -99,8 +99,41 @@ app.get("/storagetimeitems", (req, res) => {
   res.json(body);
 });
 
+
+const recsRoute = require("../front-end/src/data/mock_recipes.json");
+var savedRecipes = [];
+
 var request = require("request");
+
 app.get("/RecipesOfTheDay", (req, res) => {
+  request(
+    res.json(recsRoute)
+  );
+});
+
+app.get("/SavedRecipes", (req, res) => {
+  request(
+    res.json(savedRecipes)
+  );
+});
+
+app.post("/SaveRecipe", (req,res) => {
+  savedRecipes.push(req.body);
+});
+
+app.get("/ReadyToMake", (req, res) => {
+  request(
+    res.send(recsRoute)
+  );
+});
+
+app.post("/RemoveRecipe", (req,res) => {
+  console.log(req.body.name);
+  savedRecipes = savedRecipes.filter((item) => item.name != req.body.name);
+  res.json(savedRecipes);
+});
+
+app.get("/RecipesOfTheDayTest", (req, res) => {
   request(
     "https://my.api.mockaroo.com/mock_recipes.json?key=f9883210",
     function (error, response, body) {
@@ -112,7 +145,7 @@ app.get("/RecipesOfTheDay", (req, res) => {
   );
 });
 
-app.get("/ReadyToMake", (req, res) => {
+app.get("/ReadyToMakeTest", (req, res) => {
   request(
     "https://my.api.mockaroo.com/mock_recipes.json?key=f9883210",
     function (error, response, body) {
