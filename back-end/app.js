@@ -132,14 +132,14 @@ app.get("/storagetimesearchlistfruits", (req, res) => {
   request(
     "https://api.mockaroo.com/api/b7a0c270?count=1000&key=a9407640",
     function (error, response, body) {
-      if (!error & response.statusCode == 200){
+      if (!error & (response.statusCode == 200)) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "X-Requested-With");
         res.send(body);
       }
     }
-  )
-})
+  );
+});
 
 // export the express app we created to make it available to other modules
 module.exports = app;

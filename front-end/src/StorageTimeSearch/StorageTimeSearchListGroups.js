@@ -9,17 +9,17 @@ import { useState } from "react";
 // (with navbar, header, StorageTimeSearchList, and the itemlist)
 
 const StorageTimeSearchListFruits = () => {
-  const [items, setItems] = useState([])
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    getData()
-  },[])
+    getData();
+  }, []);
 
   const getData = async () => {
-    const axiosResult = await axios.get("/storagetimesearchlistfruits")
-    let data = await axiosResult.data
-    setItems(data)
-  }
+    const axiosResult = await axios.get("/storagetimesearchlistfruits");
+    let data = await axiosResult.data;
+    setItems(data);
+  };
   // const items = [
   //   {
   //     id: 1,
@@ -61,17 +61,17 @@ const StorageTimeSearchListFruits = () => {
 };
 
 const StorageTimeSearchListMeats = () => {
-  const [items, setItems] = useState([])
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    getData()
-  },[])
+    getData();
+  }, []);
 
   const getData = async () => {
-    const axiosResult = await axios.get("/storagetimesearchlistfruits")
-    let data = await axiosResult.data
-    setItems(data)
-  }
+    const axiosResult = await axios.get("/storagetimesearchlistfruits");
+    let data = await axiosResult.data;
+    setItems(data);
+  };
   // const items = [
   //   {
   //     id: 1,
@@ -113,17 +113,17 @@ const StorageTimeSearchListMeats = () => {
 };
 
 const StorageTimeSearchListDairy = () => {
-  const [items, setItems] = useState([])
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    getData()
-  },[])
+    getData();
+  }, []);
 
   const getData = async () => {
-    const axiosResult = await axios.get("/storagetimesearchlistfruits")
-    let data = await axiosResult.data
-    setItems(data)
-  }
+    const axiosResult = await axios.get("/storagetimesearchlistfruits");
+    let data = await axiosResult.data;
+    setItems(data);
+  };
   // const items = [
   //   {
   //     id: 1,
@@ -165,17 +165,17 @@ const StorageTimeSearchListDairy = () => {
 };
 
 const StorageTimeSearchListGrain = () => {
-  const [items, setItems] = useState([])
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    getData()
-  },[])
+    getData();
+  }, []);
 
   const getData = async () => {
-    const axiosResult = await axios.get("/storagetimesearchlistfruits")
-    let data = await axiosResult.data
-    setItems(data)
-  }
+    const axiosResult = await axios.get("/storagetimesearchlistfruits");
+    let data = await axiosResult.data;
+    setItems(data);
+  };
   // const items = [
   //   {
   //     id: 1,
