@@ -85,7 +85,6 @@ const AddNewFridgeItemModal = (props) => {
 
         reset()
         props.parentCallback(itemName, amount, type)
-        reset()
         event.preventDefault();
     }
 
@@ -110,7 +109,6 @@ const AddNewFridgeItemModal = (props) => {
 
                     <div className="NewFridgeItemModal-amount">
                         <h5 className="NewFridgeItemModal-text">How Much?</h5>
-
                         <div id="NewItemAmount-chips">
                             <button 
                                 onClick={() => changeData("amount", "Lots")} 

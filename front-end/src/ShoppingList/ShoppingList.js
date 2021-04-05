@@ -15,7 +15,7 @@ import axios from "axios";
 const ShoppingListView = (props) => {
   const apiCall = async () => {
     let b = await axios.get("/shopData");
-    console.log(b.data);
+    // console.log(b.data);
     setShopData(b.data);
   };
   useEffect(() => {
@@ -55,18 +55,21 @@ const ShoppingListView = (props) => {
   };
 
   // Adding items to the shopping list
-  const onAddToShoppingList = (name, amount, typeFood) => {
+  const onAddToShoppingList = async (name, amount, typeFood) => {
     var itemId = shopData[typeFood][1].length;
-    const foodItem = {
-      id: itemId + 1,
-      title: name,
-      amount: amount,
-      type: typeFood,
-      dateadded: { $date: { $numberLong: 161448318100 } },
-    };
-    let add = Object.create(foodItem);
-    shopData[typeFood][1].push(add);
-    setShowAddFridgeItemModal(false);
+
+    const obj = {
+      "id": itemId + 1,
+      "title": name,
+      "amount": amount,
+      "type": typeFood,
+      "dateadded": { $date: { $numberLong: 161448318100 } },
+    }
+
+    await axios.post("/shopData/addToShoppingList", obj).then((res) => {
+      setShowAddFridgeItemModal(false)
+      setShopData(res.data)
+    })
   };
 
   // Displaying Add to Fridge Button if a Checkbox is Marked
@@ -108,6 +111,7 @@ const ShoppingListView = (props) => {
       setShoppingItemId(id);
       setShowDelete(true); // the delete modal now appears
     };
+    
     // Return Each Food Item
     return (
       <tbody>
