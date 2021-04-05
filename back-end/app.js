@@ -16,6 +16,13 @@ const ShoppingListRoutes = require("./ShoppingList-Routes");
 app.use("/fridgeData", MyFridgeRoutes);
 app.use("/shopData", ShoppingListRoutes);
 
+// app.get("/getRecipe", (req, res,next) => {
+//   console.log("'/test' call");
+//   axios.get("https://my.api.mockaroo.com/mock_recipes.json?key=f9883210")
+//     .then(data => res.json(data))
+//     .catch(err => next(err));
+// })
+
 app.get("/getRecipe", (req, res) => {
   //add    :name parameters later
   request(
@@ -34,9 +41,10 @@ app.post("/addIngredientToSL", (req, res) => {
   const data = {
     status: "amazing success!",
     message: "congratulations on send us this data!",
-    data: { name: req.body.name },
+    name:req.body.name
   };
   res.json(data);
+  console.log(res)
 });
 
 app.get("/storagetimeitems", (req, res) => {

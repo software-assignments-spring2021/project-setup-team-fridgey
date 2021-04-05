@@ -10,6 +10,8 @@ for (let i=0;i<fridgeData.length;i++){
     itemList.push(fridgeData[i][j].title)
   }
 }
+
+
 // const itemList=myItems.map((myItems)=>{return myItems.title})
 if (itemList.includes(props.name)){
   return (
@@ -29,12 +31,14 @@ else {
   return (
     <div class="box">
       <p class="text"><span style={{color:"red"}}>{props.name}</span> </p>
-      <button class="ingredientButton" onClick={() => 
-      axios.post("/addIngredientToSL", props.name)
+      
+      <button class="ingredientButton" onClick={() => {
+      axios.post("/addIngredientToSL", {"name":
+        props.name
+    })
       .then(res => {
         console.log(res);
-        console.log(res.data);
-      })}>         +      </button>
+      })}}>         +      </button>
     </div>
   )
 }}
