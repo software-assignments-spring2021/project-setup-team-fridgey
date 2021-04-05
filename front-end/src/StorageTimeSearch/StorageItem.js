@@ -9,6 +9,23 @@ import "./StorageItem.css";
 export const StorageItem = ({ item, key }) => {
   const [show, setShow] = useState(false);
   const [radio, setRadio] = useState("Average");
+
+  const handleSubmit = (e) => {
+    let option = e.target.value 
+    setRadio(e.target.value);
+    if (option == "Shorter"){
+      item.defaultTime = item.shortTime
+      console.log(item.defaultTime)
+    }
+    if (option == "Average"){
+      item.defaultTime = item.averageTime
+      console.log(item.defaultTime)
+    }
+    if (option == "Longer"){
+      item.defaultTime = item.longTime
+      console.log(item.defaultTime)
+    }
+  }
   return (
     <div>
       <button onClick={() => setShow(true)} className="storage-item">
@@ -35,9 +52,7 @@ export const StorageItem = ({ item, key }) => {
               type="radio"
               checked={radio === "Shorter"}
               value="Shorter"
-              onChange={(e) => {
-                setRadio(e.target.value);
-              }}
+              onChange = {handleSubmit}
             />
             <text>Shorter</text>
             <div className="storage-setting-num">{item.shortTime} days</div>
@@ -47,9 +62,7 @@ export const StorageItem = ({ item, key }) => {
               type="radio"
               checked={radio === "Average"}
               value="Average"
-              onChange={(e) => {
-                setRadio(e.target.value);
-              }}
+              onChange={handleSubmit}
             />
             <text>Average</text>
             <div className="storage-setting-num">{item.averageTime} days</div>
@@ -59,9 +72,7 @@ export const StorageItem = ({ item, key }) => {
               type="radio"
               checked={radio === "Longer"}
               value="Longer"
-              onChange={(e) => {
-                setRadio(e.target.value);
-              }}
+              onChange={handleSubmit}
             />
             <text>Longer</text>
             <div className="storage-setting-num">{item.longTime} days</div>
