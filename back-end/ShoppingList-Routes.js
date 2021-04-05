@@ -69,7 +69,6 @@ router.delete("/:id", (req, res) => {
 // Add Items to Shopping List within Shopping List
 router.post("/addToShoppingList", (req, res) => {
   let addItem = req.body
-  // console.log(addItem)
 
   shopData[addItem.type][1].push(addItem)
   res.status(200).json(shopData)

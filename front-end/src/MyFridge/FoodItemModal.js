@@ -6,7 +6,7 @@ const FoodItemModal = (props) => {
     const txtNotes = props.notes
 
     const reset = () => {
-        // document.getElementById("notes").value = props.notes
+        document.getElementById("notes").value = props.notes
         var amountChips = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip")
         var options = document.getElementById("use-within").getElementsByClassName("option")
 
@@ -80,9 +80,10 @@ const FoodItemModal = (props) => {
         event.preventDefault()
     }
 
-    const closeModal = () => {
+    const closeModal = (event) => {
         reset()
         props.onClose()
+        event.preventDefault()
     }
 
     const freshnessText = (daysLeft) => {

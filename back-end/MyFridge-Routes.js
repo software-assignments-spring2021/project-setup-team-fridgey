@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const fridgeDataJSON = require("../front-end/src/data/fridgeMockData.json");
 const fridgeData = Object.entries(fridgeDataJSON[0]);
+const shopDataJSON = require("../front-end/src/data/shoppingListMockData.json");
+const shopData = Object.entries(shopDataJSON[0]);
 const router = new Router();
 
 // Get Fridge Data
@@ -45,7 +47,9 @@ router.post("/postRoute", (req, res) => {
 
 router.post("/addItem", (req, res) => {
   let addItem = req.body
-
+  addItem.id = shopData[addItem.type][1].length + 1
+  
+  shopData[addItem.type][1].push(addItem)
   res.status(200).json(fridgeData)
 })
 
