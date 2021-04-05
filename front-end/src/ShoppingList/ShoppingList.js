@@ -66,7 +66,7 @@ const ShoppingListView = (props) => {
       "dateadded": { $date: { $numberLong: 161448318100 } },
     }
 
-    await axios.post("/shopData/postRoute", obj).then((res) => {
+    await axios.post("/shopData/addToShoppingList", obj).then((res) => {
       setShowAddFridgeItemModal(false)
       setShopData(res.data)
     })

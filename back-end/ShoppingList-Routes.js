@@ -13,6 +13,7 @@ router.get("/", (req, res) => {
 // Add Items to Fridge from Shopping List
 router.post("/addToFridge", (req, res) => {
   let AddData = req.body;
+
   for (let i = 0; i < AddData.length; i++) {
     fridgeData[AddData[i].type][1].push(AddData[i]);
   }
@@ -65,8 +66,11 @@ router.delete("/:id", (req, res) => {
   }
 });
 
-router.post("/postRoute", (req, res) => {
+// Add Items to Shopping List within Shopping List
+router.post("/addToShoppingList", (req, res) => {
   let addItem = req.body
+  // console.log(addItem)
+
   shopData[addItem.type][1].push(addItem)
   res.status(200).json(shopData)
 })

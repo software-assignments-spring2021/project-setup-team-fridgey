@@ -6,8 +6,9 @@ const FoodItemModal = (props) => {
     const txtNotes = props.notes
 
     const reset = () => {
-        document.getElementById("notes").value = props.notes
+        // document.getElementById("notes").value = props.notes
         var amountChips = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip")
+        var options = document.getElementById("use-within").getElementsByClassName("option")
 
         for(var i in amountChips) {
             if(amountChips.hasOwnProperty(i)) {
@@ -21,8 +22,6 @@ const FoodItemModal = (props) => {
             }
         }
 
-        var options = document.getElementById("use-within").getElementsByClassName("option")
-
         for(let i in options) {
             if(options.hasOwnProperty(i)) {
                 if(parseInt(i) == props.daysleft) {
@@ -34,8 +33,8 @@ const FoodItemModal = (props) => {
         }
     }
 
+    // change the chips
     const changeData = (data) => {
-        // console.log(props.notes)
         var pressedAmount = data
         var chips = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip")
 
@@ -52,13 +51,14 @@ const FoodItemModal = (props) => {
         }
     }
 
+    // gets called everytime we save
     const grabInformation = (event) => {
-        // "Lots", "Some", "Few"
         var pressedAmount = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip pressed")[0].innerHTML
         var notesTaken = document.getElementById("notes").value
+        
         var options = document.getElementById("use-within").getElementsByClassName("option")
         var useWithin = 0
-        // console.log(notesTaken)
+
         for(let i in options) {
             if(options.hasOwnProperty(i)) {
                 if(options[i].selected) {
@@ -68,6 +68,14 @@ const FoodItemModal = (props) => {
         }
 
         props.parentCallback(pressedAmount, props.type, props.id, useWithin, notesTaken)
+        reset()
+        event.preventDefault()
+    }
+
+    const grabInfo = (event) => {
+        var pressedAmount = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip pressed")[0].innerHTML
+
+        props.addItemToShoppingList(props.id, props.itemName, pressedAmount, props.type)
         reset()
         event.preventDefault()
     }
@@ -194,11 +202,13 @@ const FoodItemModal = (props) => {
                     </div>
                     <div className="FoodItemModal-Notes">
                         <label htmlFor="nt" className="headline">Notes</label>
-                        <textarea id="notes" className="Notes" placeholder="This item is for...">{txtNotes}</textarea>
+                        <form>
+                            <textarea id="notes" className="Notes" placeholder="This item is for...">{txtNotes}</textarea>
+                        </form>
                     </div>
                 </div>
                 <div className="FoodItemModal-footer">
-                    <button>Add to Shopping List</button> 
+                    <button onClick={grabInfo}>Add to Shopping List</button> 
                     <button onClick={grabInformation}>Save</button>
                 </div>
             </div>

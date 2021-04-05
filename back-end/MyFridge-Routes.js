@@ -23,7 +23,7 @@ router.delete("/:id", (req, res) => {
       fridgeData[i][1].splice(removeIndex, 1);
       deleted = true;
     }
-  }
+  } 
   
   if (deleted) {
     res.status(200).json(fridgeData);
@@ -34,27 +34,19 @@ router.delete("/:id", (req, res) => {
 
 router.post("/postRoute", (req, res) => {
   let editItem = req.body
-  // console.log(editItem)
 
   fridgeData[editItem.type][1][editItem.id - 1].amount = editItem.amount
   fridgeData[editItem.type][1][editItem.id - 1].daysleft = editItem.useWithin;
+  fridgeData[editItem.type][1][editItem.id - 1].notes = editItem.notes;
+
+  console.log(fridgeData[editItem.type][1][editItem.id - 1].notes)
   res.status(200).json(fridgeData)
 })
 
-// router.get("/:amount/:type/:id/:useWithin", (req, res) => {
-//   var amount = req.params.amount
-//   var type = req.params.type
-//   var id = req.params.id
-//   var useWithin = req.params.useWithin
+router.post("/addItem", (req, res) => {
+  let addItem = req.body
 
-//   // fridgeData[type][1][id - 1].amount = amount
-//   // console.log(fridgeData[type][1][id - 1])
-//   fridgeData[type][1][id - 1].amount = amount
-//   fridgeData[type][1][id - 1].daysleft = useWithin;
-//   // console.log(fridgeData[type][1][id - 1])
-
-  
-//   res.json(fridgeData)
-// })
+  res.status(200).json(fridgeData)
+})
 
 module.exports = router;

@@ -50,24 +50,35 @@ const MyFridge = (props) => {
   };
 
   // Edit Item from MyFridge
-  const editItem = async (amount, type, id, useWithin, notesTaken) => {
-
+  const editItem = (amount, type, id, useWithin, notesTaken) => {
     const obj = {
       "amount": amount,
       "type": parseInt(type),
       "id": parseInt(id), 
-      "useWithin": useWithin
+      "useWithin": useWithin,
+      "notes": notesTaken
     }
 
-    // axios.get(`/${amount}/${type}/${id}/${useWithin}`).then((res) => {
-    //   setShowItemModal(false)
-    // })
-
-    await axios.post("/fridgeData/postRoute", obj).then((res) => {
+    axios.post("/fridgeData/postRoute", obj).then((res) => {
       setShowItemModal(false)
       setFridgeData(res.data)
     })
   };
+
+  const addItem = (id, title, amount, type) => {
+    const obj = {
+      "id": parseInt(id), 
+      "title": title,
+      "amount": amount,
+      "type": parseInt(type),
+      "dateAdded": "February 20, 2021",
+    }
+
+    axios.post("/fridgeData/addItem", obj).then((res) => {
+      setShowItemModal(false)
+      setFridgeData(res.data)
+    })
+  }
 
   // Rendering an Item
   const renderItem = (data, j) => {
@@ -166,6 +177,7 @@ const MyFridge = (props) => {
         daysleft={itemModalDaysLeft}
         dateadded={itemModalDateAdded}
         notes={itemModalNote}
+        addItemToShoppingList={addItem}
       />
 
       {/* Pops up when there is no items */}

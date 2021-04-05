@@ -31,7 +31,7 @@
     ],
     "Dairy": [
       {
-        "id": 4,
+        "id": 1,
         "title": "Greek Yogurt",
         "amount": "Few",
         "daysleft": 0,
@@ -40,7 +40,7 @@
         "notes": ""
       },
       {
-        "id": 5,
+        "id": 2,
         "title": "Ice Cream",
         "amount": "Lots",
         "daysleft": 20,
@@ -49,7 +49,7 @@
         "notes": ""
       },
       {
-        "id": 6,
+        "id": 3,
         "title": "Milk",
         "amount": "Some",
         "daysleft": 15,
@@ -60,7 +60,7 @@
     ],
     "Grains": [
       {
-        "id": 7,
+        "id": 1,
         "title": "Everything Bagels",
         "amount": "Lots",
         "daysleft": 1,
@@ -69,7 +69,7 @@
         "notes": ""
       },
       {
-        "id": 8,
+        "id": 2,
         "title": "Garlic Bread",
         "amount": "Lots",
         "daysleft": 16,
@@ -80,7 +80,7 @@
     ],
     "Meats": [
       {
-        "id": 9,
+        "id": 1,
         "title": "Chicken",
         "amount": "Few",
         "daysleft": 3,
@@ -89,7 +89,7 @@
         "notes": ""
       },
       {
-        "id": 10,
+        "id": 2,
         "title": "Ground Beef",
         "amount": "Few",
         "daysleft": 2,
@@ -98,7 +98,7 @@
         "notes": ""
       },
       {
-        "id": 11,
+        "id": 3,
         "title": "Sausage Kabobs",
         "amount": "Some",
         "daysleft": 19,
