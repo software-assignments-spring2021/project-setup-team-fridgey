@@ -8,6 +8,7 @@ const FoodItemModal = (props) => {
     const reset = () => {
         document.getElementById("notes").value = props.notes
         var amountChips = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip")
+        var options = document.getElementById("use-within").getElementsByClassName("option")
 
         for(var i in amountChips) {
             if(amountChips.hasOwnProperty(i)) {
@@ -21,8 +22,6 @@ const FoodItemModal = (props) => {
             }
         }
 
-        var options = document.getElementById("use-within").getElementsByClassName("option")
-
         for(let i in options) {
             if(options.hasOwnProperty(i)) {
                 if(parseInt(i) == props.daysleft) {
@@ -34,8 +33,8 @@ const FoodItemModal = (props) => {
         }
     }
 
+    // change the chips
     const changeData = (data) => {
-        console.log(props.notes)
         var pressedAmount = data
         var chips = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip")
 
@@ -52,13 +51,14 @@ const FoodItemModal = (props) => {
         }
     }
 
+    // gets called everytime we save
     const grabInformation = (event) => {
-        // "Lots", "Some", "Few"
         var pressedAmount = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip pressed")[0].innerHTML
         var notesTaken = document.getElementById("notes").value
+        
         var options = document.getElementById("use-within").getElementsByClassName("option")
         var useWithin = 0
-        // console.log(notesTaken)
+
         for(let i in options) {
             if(options.hasOwnProperty(i)) {
                 if(options[i].selected) {
@@ -72,9 +72,18 @@ const FoodItemModal = (props) => {
         event.preventDefault()
     }
 
-    const closeModal = () => {
+    const grabInfo = (event) => {
+        var pressedAmount = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip pressed")[0].innerHTML
+
+        props.addItemToShoppingList(props.id, props.itemName, pressedAmount, props.type)
+        reset()
+        event.preventDefault()
+    }
+
+    const closeModal = (event) => {
         reset()
         props.onClose()
+        event.preventDefault()
     }
 
     const freshnessText = (daysLeft) => {
@@ -122,7 +131,6 @@ const FoodItemModal = (props) => {
                     <h4 className="FoodItemModal-title">{props.itemName}</h4>
                     <button onClick={closeModal}>x</button>
                 </div>
-
                 <div className="FoodItemModal-body"> 
                     <div className="FoodItemModal-info">
                         <div className="Fresh-bar">
@@ -134,7 +142,6 @@ const FoodItemModal = (props) => {
                                 </div>
                             </div>
                         </div>
-
                         <div className="Freshness-data">
                             <div className="Use-Within">
                                 <h5 className="FoodItemModal-text">Use Within</h5>
@@ -169,7 +176,6 @@ const FoodItemModal = (props) => {
                             </div>
                         </div>
                     </div>   
-    
                     <div className="FoodItemModal-Amount">
                         <h5 className="FoodItemModal-text">How Much?</h5>
                         <div id="FoodItemModal-chips">
@@ -195,15 +201,15 @@ const FoodItemModal = (props) => {
                             </button>
                         </div>
                     </div>
-
                     <div className="FoodItemModal-Notes">
                         <label htmlFor="nt" className="headline">Notes</label>
-                        <textarea id="notes" className="Notes" placeholder="This item is for...">{txtNotes}</textarea>
+                        <form>
+                            <textarea id="notes" className="Notes" placeholder="This item is for...">{txtNotes}</textarea>
+                        </form>
                     </div>
                 </div>
-
                 <div className="FoodItemModal-footer">
-                    <button>Add to Shopping List</button> 
+                    <button onClick={grabInfo}>Add to Shopping List</button> 
                     <button onClick={grabInformation}>Save</button>
                 </div>
             </div>
