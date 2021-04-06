@@ -12,9 +12,11 @@ app.use(bodyParser.urlencoded({ extended: true })); // decode url-encoded incomi
 var request = require("request");
 const MyFridgeRoutes = require("./MyFridge-Routes");
 const ShoppingListRoutes = require("./ShoppingList-Routes");
+const RecommendationsRoutes = require("./Recommendations-Routes");
 
 app.use("/fridgeData", MyFridgeRoutes);
 app.use("/shopData", ShoppingListRoutes);
+app.use("/Recommendations",RecommendationsRoutes);
 
 // app.get("/getRecipe", (req, res,next) => {
 //   console.log("'/test' call");
@@ -108,85 +110,6 @@ app.get("/storagetimeitems", (req, res) => {
   res.json(body);
 });
 
-
-const recsRoute = require("../front-end/src/data/mock_recipes.json");
-var savedRecipes = [];
-
-var request = require("request");
-
-app.get("/RecipesOfTheDay", (req, res) => {
-  try {
-    res.json(recsRoute)
-    res.status(200).json("works");
-  } catch (error) {
-      res.status(404).json({ message: error.message });
-  }
-});
-
-app.get("/SavedRecipes", (req, res) => {
-  try {
-    res.json(savedRecipes)
-    res.status(200).json("works");
-  } catch (error) {
-      res.status(404).json({ message: error.message });
-  }
-});
-
-// app.post("/SaveRecipe", (req,res) => {
-//     savedRecipes.push(req.body)
-// });
-
-app.get("/ReadyToMake", async (req, res) => {
-  try {
-    res.send(recsRoute)
-    res.status(200).json("works");
-  } catch (error) {
-      res.status(404).json({ message: error.message });
-  }
-});
-
-app.post('/SaveRecipe', async (req, res) => { 
-  try {
-    savedRecipes.push(req.body)
-    res.status(200).json("works");
-  } catch (error) {
-      res.status(404).json({ message: error.message });
-  }
-});
-
-app.post("/RemoveRecipe", (req,res) => {
-  try {
-    savedRecipes = savedRecipes.filter((item) => item.name != req.body.name);
-    res.json(savedRecipes);
-    res.status(200).json("works");
-  } catch (error) {
-      res.status(404).json({ message: error.message });
-  }
-});
-
-app.get("/RecipesOfTheDayTest", (req, res) => {
-  request(
-    "https://my.api.mockaroo.com/mock_recipes.json?key=f9883210",
-    function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        let parsedBody = JSON.parse(body);
-        res.json(parsedBody);
-      }
-    }
-  );
-});
-
-app.get("/ReadyToMakeTest", (req, res) => {
-  request(
-    "https://my.api.mockaroo.com/mock_recipes.json?key=f9883210",
-    function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        let parsedBody = JSON.parse(body);
-        res.json(parsedBody);
-      }
-    }
-  );
-});
 
 app.get("/storagetimesearchlistfruits", (req, res) => {
   request(
