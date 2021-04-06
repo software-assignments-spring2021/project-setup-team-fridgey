@@ -41,10 +41,9 @@ app.post("/addIngredientToSL", (req, res) => {
   const data = {
     status: "amazing success!",
     message: "congratulations on send us this data!",
-    name:req.body.name
+    name: req.body.name,
   };
   res.json(data);
-  console.log(res)
 });
 
 app.get("/storagetimeitems", (req, res) => {
