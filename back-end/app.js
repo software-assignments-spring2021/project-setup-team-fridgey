@@ -108,31 +108,53 @@ var savedRecipes = [];
 var request = require("request");
 
 app.get("/RecipesOfTheDay", (req, res) => {
-  request(
+  try {
     res.json(recsRoute)
-  );
+    res.status(200).json("works");
+  } catch (error) {
+      res.status(404).json({ message: error.message });
+  }
 });
 
 app.get("/SavedRecipes", (req, res) => {
-  request(
+  try {
     res.json(savedRecipes)
-  );
+    res.status(200).json("works");
+  } catch (error) {
+      res.status(404).json({ message: error.message });
+  }
 });
 
-app.post("/SaveRecipe", (req,res) => {
-  savedRecipes.push(req.body);
-});
+// app.post("/SaveRecipe", (req,res) => {
+//     savedRecipes.push(req.body)
+// });
 
-app.get("/ReadyToMake", (req, res) => {
-  request(
+app.get("/ReadyToMake", async (req, res) => {
+  try {
     res.send(recsRoute)
-  );
+    res.status(200).json("works");
+  } catch (error) {
+      res.status(404).json({ message: error.message });
+  }
+});
+
+app.post('/SaveRecipe', async (req, res) => { 
+  try {
+    savedRecipes.push(req.body)
+    res.status(200).json("works");
+  } catch (error) {
+      res.status(404).json({ message: error.message });
+  }
 });
 
 app.post("/RemoveRecipe", (req,res) => {
-  console.log(req.body.name);
-  savedRecipes = savedRecipes.filter((item) => item.name != req.body.name);
-  res.json(savedRecipes);
+  try {
+    savedRecipes = savedRecipes.filter((item) => item.name != req.body.name);
+    res.json(savedRecipes);
+    res.status(200).json("works");
+  } catch (error) {
+      res.status(404).json({ message: error.message });
+  }
 });
 
 app.get("/RecipesOfTheDayTest", (req, res) => {
