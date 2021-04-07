@@ -8,12 +8,17 @@ import {CreatePage} from "./Recommendations";
 const RecipesOfTheDay = (props) => {
   const [recipeData,setRecipeData] = useState([]);
     useEffect(() => {
-      axios.get("/RecipesOfTheDay").then(response => {
+      axios.get("Recommendations/RecipesOfTheDay").then(response => {
         setRecipeData(response.data)
       });
     },[]);
 
-  function handleSave(key,setButtonText){
+  function handleSave(item,setButtonText){
+    axios.post("Recommendations/SaveRecipe", item).then((response) => {
+      console.log();
+    }, (error) => {
+      console.log();
+    });
     setButtonText("Saved!");
   }
 

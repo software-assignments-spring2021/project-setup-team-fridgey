@@ -2,16 +2,23 @@ import Button from "@material-ui/core/Button";
 import "./Recommendations.css";
 import { useState,useEffect } from "react";
 import {CreatePage} from "./Recommendations";
+import axios from 'axios';
 
 
 const SavedRecipes = (props) => {
-  const dataSource = require("../data/mock_recipes.json")
-  const [recipeData,setRecipeData] = useState(dataSource);
+  const defaultRecipeData = require("../data/mock_recipes.json")
+  const [recipeData,setRecipeData] = useState([]);
+  useEffect(() => {
+    axios.get("Recommendations/SavedRecipes").then(response => {
+      setRecipeData(response.data);
+    });
+  },[]);
 
-  function handleRemove(key,setButtonText){
-    const newList = recipeData.filter((item) => item.name != key);
-    setRecipeData(newList);
-    setButtonText("Done");
+  function handleRemove(item,setButtonText){
+    axios.post("Recommendations/RemoveRecipe", item).then(response => {
+      setRecipeData(response.data);
+    });
+    console.log(recipeData);
   }
 
   const GenerateButton = (title) => {
