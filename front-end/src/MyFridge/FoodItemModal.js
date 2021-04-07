@@ -5,6 +5,7 @@ const FoodItemModal = (props) => {
     const amount = props.amount
     const txtNotes = props.notes
 
+    // resets progress
     const reset = () => {
         document.getElementById("notes").value = props.notes
         var amountChips = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip")
@@ -72,6 +73,7 @@ const FoodItemModal = (props) => {
         event.preventDefault()
     }
 
+    // grabs the information to add to shopping list
     const grabInfo = (event) => {
         var pressedAmount = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip pressed")[0].innerHTML
 
@@ -80,12 +82,14 @@ const FoodItemModal = (props) => {
         event.preventDefault()
     }
 
+    // closes modal and resets progress
     const closeModal = (event) => {
         reset()
         props.onClose()
         event.preventDefault()
     }
 
+    // displays text in freshness circle
     const freshnessText = (daysLeft) => {
         var text = ""
 
@@ -100,6 +104,7 @@ const FoodItemModal = (props) => {
         return text
     }
 
+    // displays progress of ellipse
     const freshnessEllipse = (daysLeft) => {
         var className = ""
 
@@ -114,6 +119,7 @@ const FoodItemModal = (props) => {
         return className
     }
 
+    // prints out options for "daysLeft"
     const printOptions = (data) => {
         if(data == props.daysleft) {
             return <option className="option" selected>{`${data} days`}</option>
