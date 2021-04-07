@@ -12,9 +12,11 @@ app.use(bodyParser.urlencoded({ extended: true })); // decode url-encoded incomi
 var request = require("request");
 const MyFridgeRoutes = require("./MyFridge-Routes");
 const ShoppingListRoutes = require("./ShoppingList-Routes");
+const RecommendationsRoutes = require("./Recommendations-Routes");
 
 app.use("/fridgeData", MyFridgeRoutes);
 app.use("/shopData", ShoppingListRoutes);
+app.use("/Recommendations",RecommendationsRoutes);
 
 // app.get("/getRecipe", (req, res,next) => {
 //   console.log("'/test' call");
@@ -41,10 +43,9 @@ app.post("/addIngredientToSL", (req, res) => {
   const data = {
     status: "amazing success!",
     message: "congratulations on send us this data!",
-    name:req.body.name
+    name: req.body.name,
   };
   res.json(data);
-  console.log(res)
 });
 
 app.get("/storagetimeitems", (req, res) => {
@@ -109,32 +110,6 @@ app.get("/storagetimeitems", (req, res) => {
   res.json(body);
 });
 
-var request = require("request");
-app.get("/Recommendations", (req, res) => {
-  request(
-    "https://my.api.mockaroo.com/mock_recipes.json?key=f9883210",
-    function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "X-Requested-With");
-        res.send(body);
-      }
-    }
-  );
-});
-
-app.get("/ReadyToMake", (req, res) => {
-  request(
-    "https://my.api.mockaroo.com/mock_recipes.json?key=f9883210",
-    function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "X-Requested-With");
-        res.send(body);
-      }
-    }
-  );
-});
 
 app.get("/storagetimesearchlistfruits", (req, res) => {
   request(

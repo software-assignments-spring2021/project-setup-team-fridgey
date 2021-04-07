@@ -74,7 +74,7 @@ function Recipe(props) {
     console.log(response.data.recipe.ingredients)
     console.log(response.data.recipe.imageURL)
     console.log(ingredients)
-    setName(response.data.recipe.nameç)
+    setName(response.data.recipe.name)
     setImgURL(response.data.recipe.imageURL)
     setOriginalURL(response.data.recipe.originalURL)
     setIngredients(response.data.recipe.ingredients)

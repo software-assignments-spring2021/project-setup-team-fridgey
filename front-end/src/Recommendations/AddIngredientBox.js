@@ -1,6 +1,7 @@
 import React from "react";
 import "./AddIngredientBox.css";
 import axios from "axios"
+import { useState } from "react";
 const AddIngredientBox = (props) => {
 
 const fridgeData = require("../data/mock_recipes.json");
@@ -11,7 +12,7 @@ for (let i=0;i<fridgeData.length;i++){
   }
 }
 
-
+const [addButton, setAddButton] = useState("+");
 // const itemList=myItems.map((myItems)=>{return myItems.title})
 if (itemList.includes(props.name)){
   return (
@@ -22,7 +23,7 @@ if (itemList.includes(props.name)){
       .then(res => {
         console.log(res);
         console.log(res.data);
-      })}>         +      </button>
+      })}>         {addButton}      </button>
     </div>
   );
   
@@ -38,7 +39,7 @@ else {
     })
       .then(res => {
         console.log(res);
-      })}}>         +      </button>
+      });setAddButton("\u2713")}}>         {addButton}     </button>
     </div>
   )
 }}
