@@ -65,6 +65,7 @@ const MyFridge = (props) => {
     })
   };
 
+  // Adds Item from MyFridge to Shopping List
   const addItem = (id, title, amount, type) => {
     const obj = {
       "id": parseInt(id), 
