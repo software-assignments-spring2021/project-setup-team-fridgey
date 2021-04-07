@@ -7,7 +7,7 @@ const BackButton = () => {
   const [redirctTo, setRedirctTo] = useState(false); // your state value to manipulate
 
   if (redirctTo) {
-    return <Redirect to="/Recommendations" />;
+    return <Redirect to="/RecipesOfTheDay" />;
   } else {
     return (
       <button class="backButton" onClick={() => setRedirctTo(true)}>

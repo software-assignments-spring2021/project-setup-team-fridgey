@@ -3,6 +3,7 @@
     position: relative;
     width:28rem;
     height:20rem;
+    border-radius:30px;
   }
   .Recipe {
     border: solid 0.05rem #000;
@@ -12,5 +13,10 @@
     font-size:2rem;
   }
   
+  .recipeSite{
+    border:none;
+    background-color:white;
+    outline:0
+  }
  
   
