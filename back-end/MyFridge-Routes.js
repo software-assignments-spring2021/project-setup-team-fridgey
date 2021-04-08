@@ -34,6 +34,7 @@ router.delete("/:id", (req, res) => {
   }
 });
 
+// Edits a Specific Fridge Item
 router.post("/postRoute", (req, res) => {
   let editItem = req.body
 
@@ -41,10 +42,11 @@ router.post("/postRoute", (req, res) => {
   fridgeData[editItem.type][1][editItem.id - 1].daysleft = editItem.useWithin;
   fridgeData[editItem.type][1][editItem.id - 1].notes = editItem.notes;
 
-  console.log(fridgeData[editItem.type][1][editItem.id - 1].notes)
+  // console.log(fridgeData[editItem.type][1][editItem.id - 1].notes)
   res.status(200).json(fridgeData)
 })
 
+// Adds a Specific Fridge Item to Shopping List
 router.post("/addItem", (req, res) => {
   let addItem = req.body
   addItem.id = shopData[addItem.type][1].length + 1

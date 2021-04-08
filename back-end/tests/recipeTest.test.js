@@ -18,7 +18,7 @@ describe("Recipe", () => {
          });
     })
 
-    describe("POST /addIngredientToSL", () => {
+    describe("POST /addIngredientToSL", () => { 
         it("should post the name of the ingredient", () => {
             chai.request(app)
                 .post('/addIngredientToSL')
@@ -28,8 +28,8 @@ describe("Recipe", () => {
                   res.should.be.json;
                   res.body.should.be.a('object');
                   res.body.should.have.property('name');
+                })
         })
     })
-})
 
 })

@@ -45,6 +45,22 @@ describe("Shopping List DELETE Route for specific item - basic functionality", (
         done();
       });
   });
+
+  describe("Shopping List POST Route - basic functionality", () => {
+    it("add items to shopping list", (done) => {
+      chai 
+        .request(app)
+        .post("/shopData/addToShoppingList")
+        .send({"id": 12, "title": "Pineapple", "amount": "Some", "type": 0, "dateadded": "April 3, 2021"})
+        .end((err, res) => {
+          res.body[0][1].push({"id": 12, "title": "Pineapple", "amount": "Some", "type": 0, "dateadded": "April 3, 2021"})
+          res.should.have.status(200);
+          res.body.should.be.a('array');
+          expect(res.body[0][1][4].title).to.equal("Pineapple")
+          done()
+        })
+    })
+  })
   // it("Deleted item should not be in fridgeData anymore", (done) => {
   //   chai
   //     .request(app)
