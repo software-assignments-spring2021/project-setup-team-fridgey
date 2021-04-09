@@ -13,10 +13,12 @@ var request = require("request");
 const MyFridgeRoutes = require("./MyFridge-Routes");
 const ShoppingListRoutes = require("./ShoppingList-Routes");
 const RecommendationsRoutes = require("./Recommendations-Routes");
+const connectDB = require("./database/Connection");
 
+connectDB();
 app.use("/fridgeData", MyFridgeRoutes);
 app.use("/shopData", ShoppingListRoutes);
-app.use("/Recommendations",RecommendationsRoutes);
+app.use("/Recommendations", RecommendationsRoutes);
 
 // app.get("/getRecipe", (req, res,next) => {
 //   console.log("'/test' call");
@@ -109,7 +111,6 @@ app.get("/storagetimeitems", (req, res) => {
   ];
   res.json(body);
 });
-
 
 app.get("/storagetimesearchlistfruits", (req, res) => {
   request(
