@@ -20,15 +20,8 @@ app.use("/fridgeData", MyFridgeRoutes);
 app.use("/shopData", ShoppingListRoutes);
 app.use("/Recommendations", RecommendationsRoutes);
 
-// app.get("/getRecipe", (req, res,next) => {
-//   console.log("'/test' call");
-//   axios.get("https://my.api.mockaroo.com/mock_recipes.json?key=f9883210")
-//     .then(data => res.json(data))
-//     .catch(err => next(err));
-// })
-
 app.get("/getRecipe", (req, res) => {
-  //add    :name parameters later
+  //add :name parameters later
   request(
     "https://my.api.mockaroo.com/mock_recipes.json?key=f9883210",
     function (error, response, body) {
