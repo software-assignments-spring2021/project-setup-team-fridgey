@@ -41,15 +41,14 @@ const ShoppingListView = (props) => {
 
   // Adding Items to Fridge and Deleting from Shopping List
   const onAddToFridge = async () => {
-    const [items, setItems] = useState(null)
-
-    const axiosResult = axios.get("/storagetimeitems")
-
-    axiosResult.then(response => {
-      setItems(...[response.data])
-    })
-
-    let AddData = compileAddToFridgeItems(items);
+    // THIS CODE IS TEMP -- currently not working because this isnt React, but fix later!
+    // const [items, setItems] = useState(null)
+    // const axiosResult = axios.get("/storagetimeitems")
+    // axiosResult.then(response => {
+    //   setItems(...[response.data])
+    // })
+    // let AddData = compileAddToFridgeItems(items);
+    let AddData = compileAddToFridgeItems();
     await axios.post("/shopData/addToFridge", AddData);
     await axios.delete("/shopData", { data: AddData }).then((res) => {
       setShopData(res.data);
