@@ -23,75 +23,52 @@ function Recipe(props) {
   
   // const recipes = require("../data/mock_recipes.json");
   // const dish = search(recipes, props.location.state.name); //Big Night Pizza as demo, replaced by props.name later
+   
+  const recipe=props.location.state.name;
+  const ingredientList = recipe.ingredients.map((ingredient) => <AddIngredientBox
+    name={ingredient.name}
+  > </AddIngredientBox>);
 
-  // const ingredientList = dish.ingredients.map((ingredient) => <AddIngredientBox
-  //   name={ingredient.name}
-  // > </AddIngredientBox>);
 
-   const [data, setData] = useState([])
-  const [load, setLoad] = useState(true);
-  const [name,setName]=useState('');
-  const [ingredients, setIngredients] = useState([]);
-  const [imgURL, setImgURL] = useState('');
-  const [originalURL, setOriginalURL] = useState('');
 
-  // let name='';
-  // let ingredients=[];
-  // let imgURL='';
-  // let originalURL='';
+
+  //  const [data, setData] = useState([])
+  // const [load, setLoad] = useState(true);
+  // const [name,setName]=useState('');
+  // const [ingredients, setIngredients] = useState([]);
+  // const [imgURL, setImgURL] = useState('');
+  // const [originalURL, setOriginalURL] = useState('');
+
   
 
-  // const items=axios.get("/getRecipe")
+
+  // const requestRecipe=async()=>{
+  //   const items=axios.get("/getRecipe")
 
   // items.then(response => {
     
-  //   console.log(response.data)
-  //   //  setName(response.data.name); 
-  //   //  console.log(name)
-  //   // JSON.stringify(response);
-  //   // setIngredients();
-  //   // setImgURL(response.data.recipe.imgURL);
-  //   // setOriginalURL(response.data.recipe.originalURL);
   //   console.log(response.data.recipe.name)
-  //   name=response.data.recipe.name
-  //   ingredients=(response.data.recipe.ingredients)
-  //   imgURL=(response.data.recipe.imageURL)
-  //   originalURL=(response.data.recipe.originalURL)
   //   console.log(response.data.recipe.ingredients)
   //   console.log(response.data.recipe.imageURL)
-  //   console.log(originalURL)
+  //   console.log(ingredients)
+  //   setName(response.data.recipe.name)
+  //   setImgURL(response.data.recipe.imageURL)
+  //   setOriginalURL(response.data.recipe.originalURL)
+  //   setIngredients(response.data.recipe.ingredients)
   // })
-  const requestRecipe=async()=>{
-    const items=axios.get("/getRecipe")
 
-  items.then(response => {
-    
-    console.log(response.data.recipe.name)
-    // name=response.data.recipe.name
-    // ingredients=(response.data.recipe.ingredients)
-    // imgURL=(response.data.recipe.imageURL)
-    // originalURL=(response.data.recipe.originalURL)
-    console.log(response.data.recipe.ingredients)
-    console.log(response.data.recipe.imageURL)
-    console.log(ingredients)
-    setName(response.data.recipe.name)
-    setImgURL(response.data.recipe.imageURL)
-    setOriginalURL(response.data.recipe.originalURL)
-    setIngredients(response.data.recipe.ingredients)
-  })
-
-  };
-  useEffect(() => {
-    requestRecipe();
-  },[])
+  // };
+  // useEffect(() => {
+  //   requestRecipe();
+  // },[])
     
   
 
 
-  console.log(ingredients)
-  const ingredientList=(ingredients).map((ingredient)=><AddIngredientBox 
-    name={ingredient.name}>
-  </AddIngredientBox>)
+  // console.log(ingredients)
+  // const ingredientList=(ingredients).map((ingredient)=><AddIngredientBox 
+  //   name={ingredient.name}>
+  // </AddIngredientBox>)
 
   
 
@@ -102,11 +79,11 @@ function Recipe(props) {
     <header className="App-header">
       <BackButton />
       <br></br>
-      <p id="dishname">{name}</p>
+      <p id="dishname">{recipe.name}</p>
       <button class="recipeSite" >
-        <img className = "recipe-img" src={imgURL} onClick={() => setShow(true)}></img>
+        <img className = "recipe-img" src={recipe.imageURL} onClick={() => setShow(true)}></img>
       </button>
-      <WebpageModal orginalURL={originalURL} onClose={() => setShow(false)} show={show} />
+      <WebpageModal orginalURL={recipe.originalURL} onClose={() => setShow(false)} show={show} />
       {ingredientList}
 
     </header>

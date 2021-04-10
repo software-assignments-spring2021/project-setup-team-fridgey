@@ -22,19 +22,19 @@ app.use("/shopData", ShoppingListRoutes);
 app.use("/Recommendations", RecommendationsRoutes);
 app.use("/storagetimeitems", StorageTimeRoutes);
 
-app.get("/getRecipe", (req, res) => {
-  //add :name parameters later
-  request(
-    "https://my.api.mockaroo.com/mock_recipes.json?key=f9883210",
-    function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        let parsedBody = JSON.parse(body);
-        let recipe = parsedBody[0];
-        res.json({ recipe });
-      }
-    }
-  );
-});
+// app.get("/getRecipe", (req, res) => {
+//   //add :name parameters later
+//   request(
+//     "https://my.api.mockaroo.com/mock_recipes.json?key=f9883210",
+//     function (error, response, body) {
+//       if (!error && response.statusCode == 200) {
+//         let parsedBody = JSON.parse(body);
+//         let recipe = parsedBody[0];
+//         res.json({ recipe });
+//       }
+//     }
+//   );
+// });
 
 app.post("/addIngredientToSL", (req, res) => {
   const data = {

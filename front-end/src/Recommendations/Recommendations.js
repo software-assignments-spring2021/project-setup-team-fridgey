@@ -32,7 +32,7 @@ export const RecItem = (data) => {
                 <Link to = {{
                   pathname:'./Recipe',
                   state:{
-                    name: data.recipe.name
+                    name: data.recipe
                   }
                 }}>
                   <ButtonBase>
