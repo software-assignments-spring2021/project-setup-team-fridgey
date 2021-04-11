@@ -15,56 +15,62 @@ router.get("/", (req, res) => {
   const body = [
     {
       id: 1,
-      food: "Carbonated Water - Wildberry",
-      storage_time_short: 1,
-      storage_time_medium: 1.5,
-      storage_time_long: 2,
+      name: "Carbonated Water - Wildberry",
       category: 2,
+      defaultTime: 1.5,
+      shortTime: 1,
+      averageTime: 1.5,
+      longTime: 2,
     },
     {
       id: 2,
-      food: "Rye Special Old",
-      storage_time_short: 20,
-      storage_time_medium: 30,
-      storage_time_long: 40,
+      name: "Rye Special Old",
       category: 3,
+      defaultTime: 30,
+      shortTime: 20,
+      averageTime: 30,
+      longTime: 40,
     },
     {
       id: 3,
-      food: "Bread - Bagels, Plain",
-      storage_time_short: 37,
-      storage_time_medium: 55.5,
-      storage_time_long: 74,
+      name: "Bread - Bagels, Plain",
       category: 1,
+      defaultTime: 55.5,
+      shortTime: 37,
+      averageTime: 55.5,
+      longTime: 74,
     },
     {
       id: 4,
-      food: "Mix Pina Colada",
-      storage_time_short: 1,
-      storage_time_medium: 1.5,
-      storage_time_long: 2,
+      name: "Mix Pina Colada",
       category: 3,
+      defaultTime: 1.5,
+      shortTime: 1,
+      averageTime: 1.5,
+      longTime: 2,
     },
     {
       id: 5,
-      food: "Bread - White, Unsliced",
-      storage_time_short: 29,
-      storage_time_medium: 43.5,
-      storage_time_long: 58,
+      name: "Bread - White, Unsliced",
       category: 1,
+      defaultTime: 43.5,
+      shortTime: 29,
+      averageTime: 43.5,
+      longTime: 58,
     },
     {
       id: 6,
-      food: "Beef - Tenderloin Tails",
-      storage_time_short: 15,
-      storage_time_medium: 22.5,
-      storage_time_long: 30,
+      name: "Beef - Tenderloin Tails",
       category: 1,
+      defaultTime: 22.5,
+      shortTime: 15,
+      averageTime: 22.5,
+      longTime: 30,
     },
   ];
   res.json(body);
 });
-
+/*
 router.get("/storagetimesearchlistfruits", (req, res) => {
   request(
     "https://api.mockaroo.com/api/b7a0c270?count=1000&key=a9407640",
@@ -77,5 +83,6 @@ router.get("/storagetimesearchlistfruits", (req, res) => {
     }
   );
 });
+*/
 
 module.exports = router;

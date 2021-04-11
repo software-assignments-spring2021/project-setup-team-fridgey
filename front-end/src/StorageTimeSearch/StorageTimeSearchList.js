@@ -51,7 +51,7 @@ const StorageTimeSearchList = (props) => {
         { items.filter((item) => {
                 if (searchTerm === "") {
                   return item
-                } else if (item.food.toLowerCase().includes(searchTerm.toLowerCase())) {
+                } else if (item.name.toLowerCase().includes(searchTerm.toLowerCase())) {
                   return item
                 } else {
                   return null
@@ -60,7 +60,7 @@ const StorageTimeSearchList = (props) => {
                 if (searchTerm !== "") {
                   return (
                     <div>
-                      <Button>{item.food}</Button>
+                      <Button>{item.name}</Button>
                     </div>
                   );
                 } else {
