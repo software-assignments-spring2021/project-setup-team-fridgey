@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+
+
 const shoppingList = new mongoose.Schema({
   id: {
     type: Number,
@@ -21,4 +23,4 @@ const shoppingList = new mongoose.Schema({
   },
 });
 
-module.exports = fridgeItem = mongoose.model("ShoppingList", shoppingList);
+module.exports = mongoose.model("ShoppingList", shoppingList);
