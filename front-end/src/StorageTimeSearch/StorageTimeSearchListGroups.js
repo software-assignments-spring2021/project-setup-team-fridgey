@@ -16,7 +16,7 @@ const StorageTimeSearchListFruits = () => {
   }, []);
 
   const getData = async () => {
-    const axiosResult = await axios.get("/storagetimesearchlistfruits");
+    const axiosResult = await axios.get("/storagetimeitems/storagetimesearchlistfruits");
     let data = await axiosResult.data;
     setItems(data);
   };
