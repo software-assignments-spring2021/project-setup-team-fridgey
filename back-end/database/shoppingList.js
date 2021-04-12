@@ -1,25 +1,24 @@
 const mongoose = require("mongoose");
 
 
-
 const shoppingList = new mongoose.Schema({
   id: {
-    type: Number,
+    type: Number,required:true
   },
   title: {
-    type: String,
+    type: String,required:true
   },
   amount: {
-    type: String,
+    type: String,required:true
   },
   type: {
-    type: Number,
+    type: Number,required:true
   },
   dateadded: {
-    type: String,
+    type: String,required:true
   },
   notes: {
-    type: String,
+    type: String,required:true
   },
 });
 
