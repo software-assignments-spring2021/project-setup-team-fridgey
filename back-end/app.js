@@ -20,24 +20,7 @@ connectDB();
 app.use("/fridgeData", MyFridgeRoutes);
 app.use("/shopData", ShoppingListRoutes);
 app.use("/Recommendations", RecommendationsRoutes);
-<<<<<<< HEAD
-const ShoppingList = require('./database/shoppingList');
-// app.get("/getRecipe", (req, res) => {
-//   //add :name parameters later
-//   request(
-//     "https://my.api.mockaroo.com/mock_recipes.json?key=f9883210",
-//     function (error, response, body) {
-//       if (!error && response.statusCode == 200) {
-//         let parsedBody = JSON.parse(body);
-//         let recipe = parsedBody[0];
-//         res.json({ recipe });
-//       }
-//     }
-//   );
-// });
-=======
 app.use("/storagetimeitems", StorageTimeRoutes);
->>>>>>> master
 
 app.post('/addIngredientToSL', (req, res, next) => {
   var currentTimeInSeconds=Math.floor(Date.now()/1000);
