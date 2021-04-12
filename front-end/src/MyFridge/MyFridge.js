@@ -10,15 +10,30 @@ import axios from "axios";
 
 const MyFridge = (props) => {
   // beginning of the server
-  const apiCall = async () => {
-    let b = await axios.get("/fridgeData");
+  // const apiCall = async () => {
+  //   let b = await axios.get("/fridgeData");
 
-    // sets the fridge data from mock data as the Fridge Data
-    setFridgeData(b.data);
+  //   // sets the fridge data from mock data as the Fridge Data
+  //   setFridgeData(b.data);
+  // };
+
+  const itemsCall = async () => {
+    let fruit = await axios.get("/fridgeData/fruit");
+    let dairy = await axios.get("/fridgeData/dairy");
+    let grain = await axios.get("/fridgeData/grain");
+    let meat = await axios.get("/fridgeData/meat");
+    let data = [
+      ["Fruits", fruit.data],
+      ["Dairy", dairy.data],
+      ["Grain", grain.data],
+      ["Meat", meat.data],
+    ];
+    setFridgeData(data);
   };
+
   useEffect(() => {
     // call it immediately
-    apiCall();
+    itemsCall();
   }, []);
 
   // data for MyFridge
@@ -42,7 +57,7 @@ const MyFridge = (props) => {
   // Deleting an Item
   const onDelete = (event) => {
     event.preventDefault();
-    // sends this to MyFridge-Routes 
+    // sends this to MyFridge-Routes
     axios.delete(`/fridgeData/${itemId}`).then((res) => {
       setShow(false);
       setFridgeData(res.data);
@@ -52,34 +67,34 @@ const MyFridge = (props) => {
   // Edit Item from MyFridge
   const editItem = (amount, type, id, useWithin, notesTaken) => {
     const obj = {
-      "amount": amount,
-      "type": parseInt(type),
-      "id": parseInt(id), 
-      "useWithin": useWithin,
-      "notes": notesTaken
-    }
+      amount: amount,
+      type: parseInt(type),
+      id: parseInt(id),
+      useWithin: useWithin,
+      notes: notesTaken,
+    };
 
     axios.post("/fridgeData/postRoute", obj).then((res) => {
-      setShowItemModal(false)
-      setFridgeData(res.data)
-    })
+      setShowItemModal(false);
+      setFridgeData(res.data);
+    });
   };
 
   // Adds Item from MyFridge to Shopping List
   const addItem = (id, title, amount, type) => {
     const obj = {
-      "id": parseInt(id), 
-      "title": title,
-      "amount": amount,
-      "type": parseInt(type),
-      "dateAdded": "February 20, 2021",
-    }
+      id: parseInt(id),
+      title: title,
+      amount: amount,
+      type: parseInt(type),
+      dateAdded: "February 20, 2021",
+    };
 
     axios.post("/fridgeData/addItem", obj).then((res) => {
-      setShowItemModal(false)
-      setFridgeData(res.data)
-    })
-  }
+      setShowItemModal(false);
+      setFridgeData(res.data);
+    });
+  };
 
   // Rendering an Item
   const renderItem = (data, j) => {
@@ -140,7 +155,7 @@ const MyFridge = (props) => {
             </button>
           </td>
         </tr>
-        
+
         <DeleteModal
           onClose={() => setShow(false)}
           show={show}
@@ -150,7 +165,6 @@ const MyFridge = (props) => {
       </tbody>
     );
   };
-  
 
   // Rendering All Fridge Items
   return (

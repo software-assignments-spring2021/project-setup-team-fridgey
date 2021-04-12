@@ -5,6 +5,10 @@ const fridgeData = Object.entries(fridgeDataJSON[0]);
 const shopData = Object.entries(shopDataJSON[0]);
 const router = new Router();
 const FridgeItem = require("./database/fridgeItem");
+const FridgeFruit = require("./database/fridgeItemSchemas/fruits");
+const FridgeDairy = require("./database/fridgeItemSchemas/dairy");
+const FridgeGrain = require("./database/fridgeItemSchemas/grains");
+const FridgeMeat = require("./database/fridgeItemSchemas/meats");
 
 // Get Shopping List Data
 router.get("/", (req, res) => {
@@ -15,24 +19,98 @@ router.get("/", (req, res) => {
 router.post("/addToFridge", (req, res) => {
   let AddData = req.body;
   for (let i = 0; i < AddData.length; i++) {
-    const fridgeItem = new FridgeItem({
-      id: AddData[i].id,
-      title: AddData[i].title,
-      amount: AddData[i].amount,
-      daysleft: AddData[i].daysleft,
-      type: AddData[i].type,
-      dateadded: AddData[i].dateadded,
-      notes: "Add notes here!",
-    });
-    // fridgeData[AddData[i].type][1].push(AddData[i]);
-    fridgeItem
-      .save()
-      .then((result) => {
-        res.send(result);
-      })
-      .catch((err) => {
-        console.log(err);
+    if (AddData[i].type == 0) {
+      const fruit = new FridgeFruit({
+        id: AddData[i].id,
+        title: AddData[i].title,
+        amount: AddData[i].amount,
+        daysleft: AddData[i].daysleft,
+        type: AddData[i].type,
+        dateadded: AddData[i].dateadded,
+        notes: "Add notes here!",
       });
+      fruit
+        .save()
+        .then((result) => {
+          res.send(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (AddData[i].type == 1) {
+      const dairy = new FridgeDairy({
+        id: AddData[i].id,
+        title: AddData[i].title,
+        amount: AddData[i].amount,
+        daysleft: AddData[i].daysleft,
+        type: AddData[i].type,
+        dateadded: AddData[i].dateadded,
+        notes: "Add notes here!",
+      });
+      dairy
+        .save()
+        .then((result) => {
+          res.send(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (AddData[i].type == 2) {
+      const grain = new FridgeGrain({
+        id: AddData[i].id,
+        title: AddData[i].title,
+        amount: AddData[i].amount,
+        daysleft: AddData[i].daysleft,
+        type: AddData[i].type,
+        dateadded: AddData[i].dateadded,
+        notes: "Add notes here!",
+      });
+      grain
+        .save()
+        .then((result) => {
+          res.send(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      const meat = new FridgeMeat({
+        id: AddData[i].id,
+        title: AddData[i].title,
+        amount: AddData[i].amount,
+        daysleft: AddData[i].daysleft,
+        type: AddData[i].type,
+        dateadded: AddData[i].dateadded,
+        notes: "Add notes here!",
+      });
+      meat
+        .save()
+        .then((result) => {
+          res.send(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    // const fridgeItem = new FridgeItem({
+    //   id: AddData[i].id,
+    //   title: AddData[i].title,
+    //   amount: AddData[i].amount,
+    //   daysleft: AddData[i].daysleft,
+    //   type: AddData[i].type,
+    //   dateadded: AddData[i].dateadded,
+    //   notes: "Add notes here!",
+    // });
+    // fridgeData[AddData[i].type][1].push(AddData[i]);
+    // fridgeItem
+    //   .save()
+    //   .then((result) => {
+    //     res.send(result);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }
   // res.status(200).json(shopData);
 
