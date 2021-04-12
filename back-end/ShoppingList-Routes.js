@@ -4,6 +4,7 @@ const shopDataJSON = require("../front-end/src/data/shoppingListMockData.json");
 const fridgeData = Object.entries(fridgeDataJSON[0]);
 const shopData = Object.entries(shopDataJSON[0]);
 const router = new Router();
+const FridgeItem = require("./database/fridgeItem");
 
 // Get Shopping List Data
 router.get("/", (req, res) => {
@@ -13,11 +14,45 @@ router.get("/", (req, res) => {
 // Add Items to Fridge from Shopping List
 router.post("/addToFridge", (req, res) => {
   let AddData = req.body;
-
   for (let i = 0; i < AddData.length; i++) {
-    fridgeData[AddData[i].type][1].push(AddData[i]);
+    const fridgeItem = new FridgeItem({
+      id: AddData[i].id,
+      title: AddData[i].title,
+      amount: AddData[i].amount,
+      daysleft: AddData[i].daysleft,
+      type: AddData[i].type,
+      dateadded: AddData[i].dateadded,
+      notes: "Add notes here!",
+    });
+    // fridgeData[AddData[i].type][1].push(AddData[i]);
+    fridgeItem
+      .save()
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
-  res.status(200).json(shopData);
+  // res.status(200).json(shopData);
+
+  // const fridgeItem = new FridgeItem({
+  //   id: 1,
+  //   title: "Apple",
+  //   amount: "Lots",
+  //   daysleft: "5",
+  //   type: 0,
+  //   dateadded: "April 1st, 2020",
+  //   notes: "Add notes here!",
+  // });
+  // fridgeItem
+  //   .save()
+  //   .then((result) => {
+  //     res.send(result);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
 });
 
 // Delete Multiple Items from Shopping List After Adding to Fridge
@@ -68,10 +103,10 @@ router.delete("/:id", (req, res) => {
 
 // Add Items to Shopping List within Shopping List
 router.post("/addToShoppingList", (req, res) => {
-  let addItem = req.body
+  let addItem = req.body;
 
-  shopData[addItem.type][1].push(addItem)
-  res.status(200).json(shopData)
-})
+  shopData[addItem.type][1].push(addItem);
+  res.status(200).json(shopData);
+});
 
 module.exports = router;

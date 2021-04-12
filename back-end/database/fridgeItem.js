@@ -1,30 +1,23 @@
 const mongoose = require("mongoose");
 
-const fridgeItem = new mongoose.Schema({
-  id: {
-    type: Number,
+const fridgeItemSchema = new mongoose.Schema(
+  {
+    id: { type: Number, required: true },
+    title: { type: String, required: true },
+    amount: { type: String, required: true },
+    daysleft: { type: Number, required: true },
+    type: { type: Number, required: true },
+    dateadded: { type: String, required: true },
+    notes: { type: String, required: true },
   },
-  title: {
-    type: String,
-  },
-  amount: {
-    type: String,
-  },
-  daysleft: {
-    type: Number,
-  },
-  type: {
-    type: Number,
-  },
-  dateadded: {
-    type: String,
-  },
-  notes: {
-    type: String,
-  },
-});
+  { timestamps: true }
+);
 
-module.exports = fridgeItem = mongoose.model("fridgeItem", fridgeItem);
+const FridgeItem = mongoose.model("FridgeItem", fridgeItemSchema);
+
+module.exports = FridgeItem;
+
+// module.exports = fridgeItem = mongoose.model("fridgeItem", fridgeItem);
 
 // "Fruits": [
 //     {

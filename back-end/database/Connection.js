@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const URI =
-  "mongodb+srv://master-user:wTMW1F3Vh2GE9i2q@cluster0.fsr0o.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  "mongodb+srv://master-user:wTMW1F3Vh2GE9i2q@cluster0.fsr0o.mongodb.net/fridgey?retryWrites=true&w=majority";
 
 const connectDB = async () => {
   await mongoose.connect(URI, {
