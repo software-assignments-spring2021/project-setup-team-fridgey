@@ -15,6 +15,7 @@ const ShoppingListRoutes = require("./ShoppingList-Routes");
 const RecommendationsRoutes = require("./Recommendations-Routes");
 const StorageTimeRoutes = require("./StorageTime-Routes");
 const connectDB = require("./database/Connection");
+const ShoppingList = require('./database/shoppingList');
 
 connectDB();
 app.use("/fridgeData", MyFridgeRoutes);
