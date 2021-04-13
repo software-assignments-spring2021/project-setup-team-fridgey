@@ -43,27 +43,88 @@ router.get("/meat", (req, res) => {
 });
 
 // Delete a Specific Fridge Item
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
   const { id } = req.params;
-  let deleted = false;
+  console.log(id);
 
-  for (let i = 0; i < fridgeData.length; i++) {
-    var removeIndex = fridgeData[i][1]
-      .map(function (item) {
-        return item.id.toString(); // Since id param is a string
-      })
-      .indexOf(id);
-    if (removeIndex !== -1) {
-      fridgeData[i][1].splice(removeIndex, 1);
-      deleted = true;
-    }
+  async function deleteItem(type) {
+    type.findByIdAndDelete(id, function (err, docs) {
+      if (err) {
+        //docs == null)
+        console.log(err);
+      } else {
+        console.log("Deleted : ", docs);
+        if (docs != null) {
+          res.send(docs);
+          console.log("deleted");
+        }
+      }
+    });
+    // .catch(function (err) {
+    //   console.log("error");
+    // });
   }
+  await deleteItem(FridgeFruit);
+  await deleteItem(FridgeDairy);
+  await deleteItem(FridgeGrain);
+  await deleteItem(FridgeMeat);
 
-  if (deleted) {
-    res.status(200).json(fridgeData);
-  } else {
-    res.status(200).json({ message: "Does not Exist" });
-  }
+  res.status(200);
+
+  // function deleteItem(type) {
+  //   type
+  //     .deleteOne({ _id: id }, function () {
+  //       console.log("Successful deletion");
+  //       // res.send(result);
+  //     })
+  //     .catch(function (err) {
+  //       console.log("error");
+  //     });
+  // }
+
+  // FridgeFruit.deleteOne({ _id: id }, function (err, result) {
+  //   if (err) {
+  //     console.log(err);
+  //   }
+  //   console.log("Successful deletion");
+  //   res.status(200).send(result);
+  // });
+
+  // fruit
+  //   .save()
+  //   .then((result) => {
+  //     res.send(result);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+
+  // findById(id).then(itemFound => {
+  //   if (!itemFound) { return res.status(404)}
+  //   return res.status(200).json(itemFound)
+  // })
+
+  // let deleted = false;
+
+  // function check(data) {
+  //   for (let i = 0; i < data.length; i++) {
+  //     var removeIndex = data[i][1]
+  //       .map(function (item) {
+  //         return item.id.toString(); // Since id param is a string
+  //       })
+  //       .indexOf(id);
+  //     if (removeIndex !== -1) {
+  //       data[i][1].splice(removeIndex, 1);
+  //       deleted = true;
+  //     }
+  //   }
+  // }
+
+  // if (deleted) {
+  //   res.status(200).json(fridgeData);
+  // } else {
+  //   res.status(200).json({ message: "Does not Exist" });
+  // }
 });
 
 // Edits a Specific Fridge Item
