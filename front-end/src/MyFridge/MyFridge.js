@@ -9,24 +9,18 @@ import welcome_pic from "./MyFridge-Welcome-Pic.png";
 import axios from "axios";
 
 const MyFridge = (props) => {
-  // beginning of the server
-  // const apiCall = async () => {
-  //   let b = await axios.get("/fridgeData");
-
-  //   // sets the fridge data from mock data as the Fridge Data
-  //   setFridgeData(b.data);
-  // };
-
   const itemsCall = async () => {
-    let fruit = await axios.get("/fridgeData/fruit");
-    let dairy = await axios.get("/fridgeData/dairy");
-    let grain = await axios.get("/fridgeData/grain");
-    let meat = await axios.get("/fridgeData/meat");
+    let a = await axios.get("/fridgeData");
+    let items = a.data;
+    let fruits = items.filter((item) => item.type === 0);
+    let dairy = items.filter((item) => item.type === 1);
+    let grains = items.filter((item) => item.type === 2);
+    let meats = items.filter((item) => item.type === 3);
     let data = [
-      ["Fruits", fruit.data],
-      ["Dairy", dairy.data],
-      ["Grain", grain.data],
-      ["Meat", meat.data],
+      ["Fruits", fruits],
+      ["Dairy", dairy],
+      ["Grain", grains],
+      ["Meat", meats],
     ];
     setFridgeData(data);
   };
@@ -55,13 +49,13 @@ const MyFridge = (props) => {
   const [itemId, setItemId] = useState(0);
 
   // Deleting an Item
-  const onDelete = (event) => {
+  const onDelete = async (event) => {
     event.preventDefault();
     // sends this to MyFridge-Routes
-    axios.delete(`/fridgeData/${itemId}`).then((res) => {
-      setShow(false);
-      setFridgeData(res.data);
-    });
+    await axios.delete(`/fridgeData/${itemId}`);
+    setShow(false);
+    await itemsCall();
+    // setFridgeData(res.data);
   };
 
   // Edit Item from MyFridge
@@ -76,7 +70,8 @@ const MyFridge = (props) => {
 
     axios.post("/fridgeData/postRoute", obj).then((res) => {
       setShowItemModal(false);
-      setFridgeData(res.data);
+      itemsCall();
+      // setFridgeData(res.data);
     });
   };
 
@@ -147,7 +142,7 @@ const MyFridge = (props) => {
           <td>
             <button
               title={data.title}
-              id={data.id}
+              id={data._id}
               type={data.type}
               onClick={deleteClick}
             >
