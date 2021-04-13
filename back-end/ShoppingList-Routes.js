@@ -5,6 +5,7 @@ const fridgeData = Object.entries(fridgeDataJSON[0]);
 const shopData = Object.entries(shopDataJSON[0]);
 const router = new Router();
 const FridgeItem = require("./database/fridgeItem");
+const ShopItem = require("./database/shopItem");
 
 // Get Shopping List Data
 router.get("/", (req, res) => {
@@ -82,7 +83,6 @@ router.delete("/:id", (req, res) => {
 // Add Items to Shopping List within Shopping List
 router.post("/addToShoppingList", (req, res) => {
   let addItem = req.body;
-
   shopData[addItem.type][1].push(addItem);
   res.status(200).json(shopData);
 });
