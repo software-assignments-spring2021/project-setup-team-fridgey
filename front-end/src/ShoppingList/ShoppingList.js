@@ -49,18 +49,14 @@ const ShoppingListView = (props) => {
     // })
     // let AddData = compileAddToFridgeItems(items);
     let AddData = compileAddToFridgeItems();
-    console.log("hello !! 1");
     await axios.post("/shopData/addToFridge", AddData);
-    console.log("hello !!  2");
     await axios.delete("/shopData", { data: AddData }).then((res) => {
       setShopData(res.data);
     });
-    console.log("hello !!  3");
     let checkboxes = document.querySelectorAll(`input[name="itemCheckbox"]`);
     checkboxes.forEach((checkbox) => {
       checkbox.checked = false; // uncheck all checkboxes
     });
-    console.log("hello !!  4");
     setShowFridgeModal(false);
     setShowAddtoFridge(false);
   };
