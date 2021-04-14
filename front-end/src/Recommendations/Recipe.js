@@ -22,13 +22,47 @@ function search(source, title) {
 
 
 function Recipe(props) {
+
+  const itemsCall = async () => {
+    let a = await axios.get("/fridgeData");
+    let items = a.data;
+    let fruits = items.filter((item) => item.type === 0);
+    let dairy = items.filter((item) => item.type === 1);
+    let grains = items.filter((item) => item.type === 2);
+    let meats = items.filter((item) => item.type === 3);
+    let data = [
+      ["Fruits", fruits],
+      ["Dairy", dairy],
+      ["Grain", grains],
+      ["Meat", meats],
+    ];
+    setFridgeData(data);
+  };
+
+  useEffect(() => {
+    itemsCall();
+  }, []);
+  
+
+  const itemList=[]
+  const [fridgeData, setFridgeData] = useState([]);
+  console.log(fridgeData)
+  for (let i=0;i<fridgeData.length;i++){
+    for (let j=0;j<fridgeData[i][1].length;j++){
+      itemList.push(fridgeData[i][1][j].title)
+    }
+  }
+  //console.log(itemList);
+
+  // data for MyFridge
+  
   
   // const recipes = require("../data/mock_recipes.json");
   // const dish = search(recipes, props.location.state.name); //Big Night Pizza as demo, replaced by props.name later
    
   const recipe=props.location.state.name;
   const ingredientList = recipe.ingredients.map((ingredient) => <AddIngredientBox
-    name={ingredient.name}
+    name={ingredient.name} list={itemList}
   > </AddIngredientBox>);
 
 

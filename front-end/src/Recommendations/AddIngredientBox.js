@@ -6,13 +6,13 @@ import ShoppingList from"../ShoppingList/ShoppingList"
 import AddNewFridgeItemModal from "../ShoppingList/AddNewFridgeItemModal"
 const AddIngredientBox = (props) => {
 
-const fridgeData = require("../data/mock_recipes.json");
-const itemList=[]
-for (let i=0;i<fridgeData.length;i++){
-  for (let j=0;j<fridgeData[i].length;j++){
-    itemList.push(fridgeData[i][j].title)
-  }
-}
+// const fridgeData = require("../data/mock_recipes.json");
+// const itemList=[]
+// for (let i=0;i<fridgeData.length;i++){
+//   for (let j=0;j<fridgeData[i].length;j++){
+//     itemList.push(fridgeData[i][j].title)
+//   }
+// }
 
 const apiCall = async () => {
   let b = await axios.get("/shopData");
@@ -43,8 +43,12 @@ const onAddToShoppingList = async (name, amount, typeFood) => {
 const [shopData, setShopData] = useState([]);
 const [showAddFridgeItemModal, setShowAddFridgeItemModal] = useState(false);
 const [addButton, setAddButton] = useState("+");
+//console.log(props.list)
 // const itemList=myItems.map((myItems)=>{return myItems.title})
-if (itemList.includes(props.name)){
+//filteredStrings = filterstrings.filter((str) => str.toLowerCase().includes(passedinstring.toLowerCase())
+const itemList=props.list.map((str)=>str.toLowerCase());
+console.log(itemList)
+if (props.list.includes(props.name.toLowerCase())){
   return (
     <div>
     <div class="box">
