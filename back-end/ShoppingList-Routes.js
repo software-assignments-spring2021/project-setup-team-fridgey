@@ -4,6 +4,8 @@ const shopDataJSON = require("../front-end/src/data/shoppingListMockData.json");
 const fridgeData = Object.entries(fridgeDataJSON[0]);
 const shopData = Object.entries(shopDataJSON[0]);
 const router = new Router();
+const FridgeItem = require("./database/fridgeItem");
+const ShopItem = require("./database/shopItem");
 
 // Get Shopping List Data
 router.get("/", (req, res) => {
@@ -13,11 +15,23 @@ router.get("/", (req, res) => {
 // Add Items to Fridge from Shopping List
 router.post("/addToFridge", (req, res) => {
   let AddData = req.body;
-
+  let array = [];
   for (let i = 0; i < AddData.length; i++) {
-    fridgeData[AddData[i].type][1].push(AddData[i]);
+    const fridgeItem = {
+      id: AddData[i].id,
+      title: AddData[i].title,
+      amount: AddData[i].amount,
+      daysleft: AddData[i].daysleft,
+      type: AddData[i].type,
+      dateadded: AddData[i].dateadded,
+      notes: "Add notes here!",
+    };
+    array.push(fridgeItem);
   }
-  res.status(200).json(shopData);
+  FridgeItem.create(array).catch((err) => {
+    return console.log(err);
+  });
+  res.status(200).json({ ok: true });
 });
 
 // Delete Multiple Items from Shopping List After Adding to Fridge
@@ -38,9 +52,9 @@ router.delete("/", (req, res) => {
     }
   }
   if (deleted) {
-    res.status(200).json(shopData);
+    return res.status(200).json(shopData);
   } else {
-    res.status(200).json({ message: "Does not Exist" });
+    return res.status(200).json({ message: "Does not Exist" });
   }
 });
 
@@ -68,10 +82,9 @@ router.delete("/:id", (req, res) => {
 
 // Add Items to Shopping List within Shopping List
 router.post("/addToShoppingList", (req, res) => {
-  let addItem = req.body
-
-  shopData[addItem.type][1].push(addItem)
-  res.status(200).json(shopData)
-})
+  let addItem = req.body;
+  shopData[addItem.type][1].push(addItem);
+  res.status(200).json(shopData);
+});
 
 module.exports = router;

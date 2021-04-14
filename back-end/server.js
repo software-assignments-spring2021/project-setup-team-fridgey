@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const server = require("./app"); // load up the web server
+const connectDB = require("./database/Connection");
 
 const port = 3001; // the port to listen to for incoming requests
 
@@ -13,6 +14,10 @@ const listener = server.listen(port, function () {
 const close = () => {
   listener.close();
 };
+
+connectDB()
+  .then((result) => listener)
+  .catch((err) => console.log(err));
 
 module.exports = {
   close: close,
