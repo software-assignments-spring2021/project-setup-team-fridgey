@@ -16,7 +16,7 @@ const StorageTimeSearchListFruits = () => {
   }, []);
 
   const getData = async () => {
-    const axiosResult = await axios.get("/storagetimeitems/storagetimesearchlistfruits");
+    const axiosResult = await axios.get("/storagetimeitems");
     let data = await axiosResult.data;
     setItems(data);
   };
@@ -68,7 +68,7 @@ const StorageTimeSearchListMeats = () => {
   }, []);
 
   const getData = async () => {
-    const axiosResult = await axios.get("/storagetimesearchlistfruits");
+    const axiosResult = await axios.get("/storagetimeitems");
     let data = await axiosResult.data;
     setItems(data);
   };
@@ -120,7 +120,7 @@ const StorageTimeSearchListDairy = () => {
   }, []);
 
   const getData = async () => {
-    const axiosResult = await axios.get("/storagetimesearchlistfruits");
+    const axiosResult = await axios.get("/storagetimeitems");
     let data = await axiosResult.data;
     setItems(data);
   };
@@ -172,7 +172,7 @@ const StorageTimeSearchListGrain = () => {
   }, []);
 
   const getData = async () => {
-    const axiosResult = await axios.get("/storagetimesearchlistfruits");
+    const axiosResult = await axios.get("/storagetimeitems");
     let data = await axiosResult.data;
     setItems(data);
   };
