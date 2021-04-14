@@ -4,7 +4,12 @@ import "./AddNewFridgeItemModal.css";
 const AddNewFridgeItemModal = (props) => {
 
     const reset = () => {
-        document.getElementById("itemName").value = ""
+        if (props.fromRecipe){
+            document.getElementById("itemName").value = props.recipeName;
+        }
+        else{
+            document.getElementById("itemName").value = ""
+        }
         document.getElementById("notes").value = ""
         var amountChips = document.getElementById("NewItemAmount-chips").getElementsByClassName("chip")
         var typeChips = document.getElementById("NewItemType-chips").getElementsByClassName("chip")
