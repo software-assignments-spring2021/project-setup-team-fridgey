@@ -55,30 +55,27 @@ const MyFridge = (props) => {
     await axios.delete(`/fridgeData/${itemId}`);
     setShow(false);
     await itemsCall();
-    // setFridgeData(res.data);
   };
 
   // Edit Item from MyFridge
-  const editItem = (amount, type, id, useWithin, notesTaken) => {
+  const editItem = (amount, useWithin, notesTaken) => {
     const obj = {
       amount: amount,
-      type: parseInt(type),
-      id: parseInt(id),
+      id: itemModalID,
       useWithin: useWithin,
       notes: notesTaken,
     };
 
-    axios.post("/fridgeData/postRoute", obj).then((res) => {
+    axios.post("/fridgeData/editItem", obj).then((res) => {
       setShowItemModal(false);
       itemsCall();
-      // setFridgeData(res.data);
     });
   };
 
   // Adds Item from MyFridge to Shopping List
-  const addItem = (id, title, amount, type) => {
+  const addItem = (itemID, title, amount, type) => {
     const obj = {
-      id: parseInt(id),
+      id: itemID,
       title: title,
       amount: amount,
       type: parseInt(type),
@@ -126,7 +123,7 @@ const MyFridge = (props) => {
         <tr>
           <td
             title={data.title}
-            id={data.id}
+            id={data._id}
             amount={data.amount}
             daysleft={data.daysleft}
             dateadded={data.dateadded}

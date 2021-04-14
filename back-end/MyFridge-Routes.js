@@ -31,14 +31,21 @@ router.delete("/:id", async (req, res) => {
 });
 
 // Edits a Specific Fridge Item
-router.post("/postRoute", (req, res) => {
+router.post("/editItem", (req, res) => {
   let editItem = req.body;
 
-  fridgeData[editItem.type][1][editItem.id - 1].amount = editItem.amount;
-  fridgeData[editItem.type][1][editItem.id - 1].daysleft = editItem.useWithin;
-  fridgeData[editItem.type][1][editItem.id - 1].notes = editItem.notes;
-
-  // console.log(fridgeData[editItem.type][1][editItem.id - 1].notes)
+  FridgeItem.findByIdAndUpdate(editItem.id,
+    {amount: editItem.amount, daysleft: editItem.useWithin, notes: editItem.notes},
+    {new: true},
+    function(err, docs) {
+      if (err){
+        console.log(err)
+      } else{
+        console.log("Updated User : ", docs);
+      }
+    }
+  )
+  
   res.status(200).json(fridgeData);
 });
 
