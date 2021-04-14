@@ -6,21 +6,25 @@
         "title": "Apples",
         "amount": "Lots",
         "type": 0,
-        "dateadded": "April 1, 2021"
+        "dateadded": "April 1, 2021",
+        "notes": ""
       },
       {
         "id": 2,
         "title": "Strawberries",
         "amount": "Some",
+        "daysleft": 0,
         "type": 0,
-        "dateadded": "April 1, 2021"
+        "dateadded": "April 1, 2021",
+        "notes": ""
       },
       {
         "id": 3,
         "title": "Oranges",
         "amount": "Few",
         "type": 0,
-        "dateadded": "April 1, 2021"
+        "dateadded": "April 1, 2021",
+        "notes": ""
       }
     ],
     "Dairy": [
@@ -29,21 +33,24 @@
         "title": "Greek Yogurt",
         "amount": "Low",
         "type": 1,
-        "dateadded": "April 1, 2021"
+        "dateadded": "April 1, 2021",
+        "notes": ""
       },
       {
         "id": 5,
         "title": "Ice Cream",
         "amount": "Lots",
         "type": 1,
-        "dateadded": "April 1, 2021"
+        "dateadded": "April 1, 2021",
+        "notes": ""
       },
       {
         "id": 6,
         "title": "Milk",
         "amount": "Some",
         "type": 1,
-        "dateadded": "April 1, 2021"
+        "dateadded": "April 1, 2021",
+        "notes": ""
       }
     ],
     "Grains": [
@@ -52,14 +59,16 @@
         "title": "Everything Bagels",
         "amount": "Lots",
         "type": 2,
-        "dateadded": "April 1, 2021"
+        "dateadded": "April 1, 2021",
+        "notes": ""
       },
       {
         "id": 8,
         "title": "Garlic Bread",
         "amount": "Lots",
         "type": 2,
-        "dateadded": "April 1, 2021"
+        "dateadded": "April 1, 2021",
+        "notes": ""
       }
     ],
     "Meats": [
@@ -68,21 +77,24 @@
         "title": "Chicken",
         "amount": "Few",
         "type": 3,
-        "dateadded": "April 1, 2021"
+        "dateadded": "April 1, 2021",
+        "notes": ""
       },
       {
         "id": 10,
         "title": "Ground Beef",
         "amount": "Few",
         "type": 3,
-        "dateadded": "April 1, 2021"
+        "dateadded": "April 1, 2021",
+        "notes": ""
       },
       {
         "id": 11,
         "title": "Sausage Kabobs",
         "amount": "Some",
         "type": 3,
-        "dateadded": "April 1, 2021"
+        "dateadded": "April 1, 2021",
+        "notes": ""
       }
     ]
   }

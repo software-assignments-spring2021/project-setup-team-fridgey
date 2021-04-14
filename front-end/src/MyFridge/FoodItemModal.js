@@ -68,7 +68,7 @@ const FoodItemModal = (props) => {
             }
         }
 
-        props.parentCallback(pressedAmount, props.type, props.id, useWithin, notesTaken)
+        props.parentCallback(pressedAmount, useWithin, notesTaken)
         reset()
         event.preventDefault()
     }

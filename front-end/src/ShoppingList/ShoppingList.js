@@ -13,13 +13,23 @@ import AddNewFridgeItemModal from "./AddNewFridgeItemModal";
 import axios from "axios";
 
 const ShoppingListView = (props) => {
-  const apiCall = async () => {
+  const itemsCall = async () => {
     let b = await axios.get("/shopData");
-    // console.log(b.data);
-    setShopData(b.data);
+    let items = b.data
+    let fruits = items.filter((item) => item.type === 0);
+    let dairy = items.filter((item) => item.type === 1);
+    let grains = items.filter((item) => item.type === 2);
+    let meats = items.filter((item) => item.type === 3);
+    let data = [
+      ["Fruits", fruits],
+      ["Dairy", dairy],
+      ["Grain", grains],
+      ["Meat", meats],
+    ];
+    setShopData(data);
   };
   useEffect(() => {
-    apiCall();
+    itemsCall();
   }, []);
 
   const [shopData, setShopData] = useState([]);
