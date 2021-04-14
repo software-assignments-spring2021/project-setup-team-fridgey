@@ -9,16 +9,25 @@ import welcome_pic from "./MyFridge-Welcome-Pic.png";
 import axios from "axios";
 
 const MyFridge = (props) => {
-  // beginning of the server
-  const apiCall = async () => {
-    let b = await axios.get("/fridgeData");
-
-    // sets the fridge data from mock data as the Fridge Data
-    setFridgeData(b.data);
+  const itemsCall = async () => {
+    let a = await axios.get("/fridgeData");
+    let items = a.data;
+    let fruits = items.filter((item) => item.type === 0);
+    let dairy = items.filter((item) => item.type === 1);
+    let grains = items.filter((item) => item.type === 2);
+    let meats = items.filter((item) => item.type === 3);
+    let data = [
+      ["Fruits", fruits],
+      ["Dairy", dairy],
+      ["Grain", grains],
+      ["Meat", meats],
+    ];
+    setFridgeData(data);
   };
+
   useEffect(() => {
     // call it immediately
-    apiCall();
+    itemsCall();
   }, []);
 
   // data for MyFridge
@@ -40,46 +49,47 @@ const MyFridge = (props) => {
   const [itemId, setItemId] = useState(0);
 
   // Deleting an Item
-  const onDelete = (event) => {
+  const onDelete = async (event) => {
     event.preventDefault();
-    // sends this to MyFridge-Routes 
-    axios.delete(`/fridgeData/${itemId}`).then((res) => {
-      setShow(false);
-      setFridgeData(res.data);
-    });
+    // sends this to MyFridge-Routes
+    await axios.delete(`/fridgeData/${itemId}`);
+    setShow(false);
+    await itemsCall();
+    // setFridgeData(res.data);
   };
 
   // Edit Item from MyFridge
   const editItem = (amount, type, id, useWithin, notesTaken) => {
     const obj = {
-      "amount": amount,
-      "type": parseInt(type),
-      "id": parseInt(id), 
-      "useWithin": useWithin,
-      "notes": notesTaken
-    }
+      amount: amount,
+      type: parseInt(type),
+      id: parseInt(id),
+      useWithin: useWithin,
+      notes: notesTaken,
+    };
 
     axios.post("/fridgeData/postRoute", obj).then((res) => {
-      setShowItemModal(false)
-      setFridgeData(res.data)
-    })
+      setShowItemModal(false);
+      itemsCall();
+      // setFridgeData(res.data);
+    });
   };
 
   // Adds Item from MyFridge to Shopping List
   const addItem = (id, title, amount, type) => {
     const obj = {
-      "id": parseInt(id), 
-      "title": title,
-      "amount": amount,
-      "type": parseInt(type),
-      "dateAdded": "February 20, 2021",
-    }
+      id: parseInt(id),
+      title: title,
+      amount: amount,
+      type: parseInt(type),
+      dateAdded: "February 20, 2021",
+    };
 
     axios.post("/fridgeData/addItem", obj).then((res) => {
-      setShowItemModal(false)
-      setFridgeData(res.data)
-    })
-  }
+      setShowItemModal(false);
+      setFridgeData(res.data);
+    });
+  };
 
   // Rendering an Item
   const renderItem = (data, j) => {
@@ -132,7 +142,7 @@ const MyFridge = (props) => {
           <td>
             <button
               title={data.title}
-              id={data.id}
+              id={data._id}
               type={data.type}
               onClick={deleteClick}
             >
@@ -140,7 +150,7 @@ const MyFridge = (props) => {
             </button>
           </td>
         </tr>
-        
+
         <DeleteModal
           onClose={() => setShow(false)}
           show={show}
@@ -150,7 +160,6 @@ const MyFridge = (props) => {
       </tbody>
     );
   };
-  
 
   // Rendering All Fridge Items
   return (

@@ -5,7 +5,7 @@ export function getSelectedCheckboxItems(name) {
   checkboxes.forEach((checkbox) => {
     values.push(checkbox);
   });
-  
+
   // returns arrays of all checkboxes that are checked
   return values;
 }
@@ -82,25 +82,22 @@ export function compileAddToFridgeItems() {
     add.amount = vals[i].getAttribute("amount");
     add.dateadded = vals[i].getAttribute("date"); //April 1, 2021
 
-    try{
-      const findItem = storageitems.find(elem => elem.food === add.title)
+    try {
+      const findItem = storageitems.find((elem) => elem.food === add.title);
       add.daysleft = findItem.storage_time_medium;
-      } catch (e){
-        console.log("doesnt work!")
-        console.log(e);
-        console.log(add.type);
-        if (add.type == 1){
-          add.daysleft = 5;
-        }
-        else if (add.type == 2){
-          add.daysleft = 6;
-        }
-        else if (add.type == 3){
-          add.daysleft = 7;
-        }
-        else {
-          add.daysleft = 8;
-        }
+    } catch (e) {
+      console.log("doesnt work!");
+      console.log(e);
+      console.log(add.type);
+      if (add.type == 1) {
+        add.daysleft = 5;
+      } else if (add.type == 2) {
+        add.daysleft = 6;
+      } else if (add.type == 3) {
+        add.daysleft = 7;
+      } else {
+        add.daysleft = 8;
+      }
     }
     objects.push(add);
   }
