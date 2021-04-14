@@ -66,6 +66,7 @@ const MyFridge = (props) => {
       notes: notesTaken,
     };
 
+    // sends to editItem post route
     axios.post("/fridgeData/editItem", obj).then((res) => {
       setShowItemModal(false);
       itemsCall();
@@ -75,16 +76,18 @@ const MyFridge = (props) => {
   // Adds Item from MyFridge to Shopping List
   const addItem = (itemID, title, amount, type) => {
     const obj = {
-      id: itemID,
+      id: 0, 
       title: title,
       amount: amount,
+      daysleft: 0,
       type: parseInt(type),
-      dateAdded: "February 20, 2021",
+      dateAdded: "",
+      notes: ""
     };
 
     axios.post("/fridgeData/addItem", obj).then((res) => {
       setShowItemModal(false);
-      setFridgeData(res.data);
+      itemsCall();
     });
   };
 
