@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const foodStorageSchema = mongoose.Schema({
+const storageItemSchema = new mongoose.Schema({
     id: { type: Number, required: true },
     name: { type: String, required: true },
     category: { type: Number, required: true },
@@ -10,4 +10,6 @@ const foodStorageSchema = mongoose.Schema({
     longTime: { type: Number, required: true },
 });
 
-module.exports = mongoose.model('foodStorage', foodStorageSchema);
+const StorageItem = mongoose.model('StorageItem', storageItemSchema);
+
+module.exports = StorageItem;
