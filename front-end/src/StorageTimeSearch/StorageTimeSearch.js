@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import "./StorageTimeSearch.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import fruits from "./images/fruits.png";
 import meats from "./images/meats.png";
@@ -11,13 +11,17 @@ import dairy from "./images/dairy.png";
 import grain from "./images/grain.png";
 
 const StorageTimeSearch = () => {
-  const [items, setItems] = useState(null)
+  const [items, setItems] = useState([])
 
-  const axiosResult = axios.get("/storagetimeitems")
+  useEffect(() => {
+    axiosGet();
+  }, []);
 
-  axiosResult.then(response => {
-    setItems(...[response.data])
-  })
+  const axiosGet = async () => {
+    const axiosResult = await axios.get("/storagetimeitems");
+    let data = await axiosResult.data;
+    setItems(...[data]);
+  };
 
   const [searchTerm, setSearchTerm] = useState("");
   const [focusSearch, setFocusSearch] = useState("");
