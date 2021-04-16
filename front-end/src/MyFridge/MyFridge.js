@@ -11,7 +11,6 @@ import axios from "axios";
 const MyFridge = (props) => {
   const itemsCall = async () => {
     let a = await axios.get("/fridgeData");
-    console.log(a.data)
     let items = a.data;
     let fruits = items.filter((item) => item.type === 0);
     let dairy = items.filter((item) => item.type === 1);
@@ -75,14 +74,11 @@ const MyFridge = (props) => {
   };
 
   // Adds Item from MyFridge to Shopping List
-  const addItem = (itemID, title, amount, type) => {
+  const addItem = (title, amount, type) => {
     const obj = {
-      id: 0, 
       title: title,
       amount: amount,
-      daysleft: 0,
       type: parseInt(type),
-      dateAdded: "",
       notes: ""
     };
 

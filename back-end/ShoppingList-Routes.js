@@ -86,8 +86,19 @@ router.delete("/:id", (req, res) => {
 // Add Items to Shopping List within Shopping List
 router.post("/addToShoppingList", (req, res) => {
   let addItem = req.body;
-  shopData[addItem.type][1].push(addItem);
-  res.status(200).json(shopData);
+
+  // ShopItem.create(addItem, function(err, result) {
+  //   if (err) {
+  //     res.send(err);
+  //   } else {
+  //     console.log(result);
+  //     res.send(result);
+  //   }
+  // });
+
+
+  // shopData[addItem.type][1].push(addItem);
+  res.status(200)
 });
 
 module.exports = router;

@@ -55,16 +55,21 @@ router.post("/editItem", (req, res) => {
 router.post("/addItem", (req, res) => {
   let addItem = req.body;
 
-  ShopItem.create(addItem, function(err, result) {
-    if (err) {
-      res.send(err);
-    } else {
-      console.log(result);
-      res.send(result);
-    }
-  });
+  const shopItem = new ShopItem({
+    title: addItem.title,
+    amount: addItem.amount,
+    type: addItem.type,
+    notes: addItem.notes,
+  })
 
-  res.status(200);
+  shopItem.save()
+    .then((result) => {
+      res.send(result)
+      res.status(200);
+    })
+    .catch((err) => {
+      console.log(err)
+    })
 });
 
 module.exports = router;

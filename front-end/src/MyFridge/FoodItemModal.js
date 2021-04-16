@@ -77,7 +77,7 @@ const FoodItemModal = (props) => {
     const grabInfo = (event) => {
         var pressedAmount = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip pressed")[0].innerHTML
 
-        props.addItemToShoppingList(props.id, props.itemName, pressedAmount, props.type)
+        props.addItemToShoppingList(props.itemName, pressedAmount, props.type)
         reset()
         event.preventDefault()
     }

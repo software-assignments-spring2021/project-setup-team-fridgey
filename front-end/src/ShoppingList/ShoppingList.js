@@ -15,7 +15,6 @@ import axios from "axios";
 const ShoppingListView = (props) => {
   const itemsCall = async () => {
     let b = await axios.get("/shopData");
-    console.log(b.data)
     let items = b.data
     let fruits = items.filter((item) => item.type === 0);
     let dairy = items.filter((item) => item.type === 1);
@@ -80,13 +79,16 @@ const ShoppingListView = (props) => {
       id: itemId + 1,
       title: name,
       amount: amount,
+      daysleft: 0,
       type: typeFood,
-      dateadded: { $date: { $numberLong: 161448318100 } },
+      dateadded: "",
+      notes: ""
     };
 
     await axios.post("/shopData/addToShoppingList", obj).then((res) => {
       setShowAddFridgeItemModal(false);
-      setShopData(res.data);
+      itemsCall()
+      // setShopData(res.data);
     });
   };
 
