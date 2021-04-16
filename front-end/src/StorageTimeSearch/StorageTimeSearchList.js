@@ -87,7 +87,6 @@ const StorageTimeSearchList = (props) => {
             id="StorageTime-Searchbar"
           />
         </div>
-        <text>edit storage times</text>
         <h1 className="food-group">{props.title}</h1>
       </div>
     );

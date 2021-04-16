@@ -86,16 +86,13 @@ export function compileAddToFridgeItems() {
       const findItem = storageitems.find((elem) => elem.food === add.title);
       add.daysleft = findItem.storage_time_medium;
     } catch (e) {
-      console.log("doesnt work!");
-      console.log(e);
-      console.log(add.type);
-      if (add.type == 1) {
-        add.daysleft = 5;
-      } else if (add.type == 2) {
-        add.daysleft = 6;
-      } else if (add.type == 3) {
-        add.daysleft = 7;
-      } else {
+      if (add.type == 0) { //fruits
+        add.daysleft = 10;
+      } else if (add.type == 1) { //dairy
+        add.daysleft = 21;
+      } else if (add.type == 2) { //grain
+        add.daysleft = 30;
+      } else { //meats
         add.daysleft = 8;
       }
     }
