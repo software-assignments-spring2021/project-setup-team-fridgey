@@ -14,7 +14,7 @@ import axios from "axios";
 
 const ShoppingListView = (props) => {
   const itemsCall = async () => {
-    let b = await axios.get("/fridgeData");
+    let b = await axios.get("/shopData");
     console.log(b.data)
     let items = b.data
     let fruits = items.filter((item) => item.type === 0);
@@ -119,7 +119,7 @@ const ShoppingListView = (props) => {
     onCheck(); // So Add to Fridge button also appears
   }
 
-  const renderItem = (data) => {
+  const renderItem = (data, j) => {
     // Handling Delete Click
     const deleteClick = (event) => {
       console.log(event);
@@ -132,7 +132,7 @@ const ShoppingListView = (props) => {
 
     // Return Each Food Item
     return (
-      <tbody>
+      <tbody key={j}>
         <tr>
           <td>
             <span className="Shop-Checkbox">

@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 const SavedRecipes = (props) => {
-  const defaultRecipeData = require("../data/mock_recipes.json")
+  // const defaultRecipeData = require("../data/mock_recipes.json")
   const [recipeData,setRecipeData] = useState([]);
   useEffect(() => {
     axios.get("Recommendations/SavedRecipes").then(response => {
