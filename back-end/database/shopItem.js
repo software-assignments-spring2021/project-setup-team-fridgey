@@ -10,7 +10,6 @@ const shopItemSchema = new mongoose.Schema(
     dateadded: { type: String, required: true },
     notes: { type: String, required: true },
   },
-  { timestamps: true }
 );
 
 const ShopItem = mongoose.model("ShopItem", shopItemSchema);

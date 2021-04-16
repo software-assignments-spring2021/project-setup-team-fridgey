@@ -8,10 +8,12 @@ const AddNewFridgeItemModal = (props) => {
         document.getElementById("notes").value = ""
         var amountChips = document.getElementById("NewItemAmount-chips").getElementsByClassName("chip")
         var typeChips = document.getElementById("NewItemType-chips").getElementsByClassName("chip")
+        var i
+        var name
 
-        for(var i in amountChips) {
+        for(i in amountChips) {
             if(amountChips.hasOwnProperty(i)) {
-                var name = amountChips[i].innerHTML
+                name = amountChips[i].innerHTML
                 
                 if(name === "Lots") {
                     amountChips[i].className = "chip chip-" + name + " pressed"
@@ -21,9 +23,9 @@ const AddNewFridgeItemModal = (props) => {
             }
         }
         
-        for(var i in typeChips) {
+        for(i in typeChips) {
             if(typeChips.hasOwnProperty(i)) {
-                var name = typeChips[i].innerHTML
+                name = typeChips[i].innerHTML
                 
                 if(name === "Fruit") {
                     typeChips[i].className = "chip chip-food pressed"
@@ -36,13 +38,14 @@ const AddNewFridgeItemModal = (props) => {
     
     const changeData = (typeChips, data) => {
         var pressedAmount = data
+        var chips, i, name
 
         if(typeChips === "amount") {
-            var chips = document.getElementById("NewItemAmount-chips").getElementsByClassName("chip")
+            chips = document.getElementById("NewItemAmount-chips").getElementsByClassName("chip")
 
-            for(var i in chips) {
+            for(i in chips) {
                 if(chips.hasOwnProperty(i)) {
-                    var name = chips[i].innerHTML
+                    name = chips[i].innerHTML
                     
                     if(pressedAmount === name) {
                         chips[i].className = "chip chip-" + name + " pressed"
@@ -52,11 +55,11 @@ const AddNewFridgeItemModal = (props) => {
                 }
             }
         } else {
-            var chips = document.getElementById("NewItemType-chips").getElementsByClassName("chip")
+            chips = document.getElementById("NewItemType-chips").getElementsByClassName("chip")
 
-            for(var i in chips) {
+            for(i in chips) {
                 if(chips.hasOwnProperty(i)) {
-                    var name = chips[i].innerHTML
+                    name = chips[i].innerHTML
                     
                     if(pressedAmount === name) {
                         chips[i].className = "chip chip-food pressed"

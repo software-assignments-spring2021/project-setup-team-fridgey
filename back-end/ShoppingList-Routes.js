@@ -1,8 +1,8 @@
 const { Router } = require("express");
-const fridgeDataJSON = require("../front-end/src/data/fridgeMockData.json");
-const shopDataJSON = require("../front-end/src/data/shoppingListMockData.json");
-const fridgeData = Object.entries(fridgeDataJSON[0]);
-const shopData = Object.entries(shopDataJSON[0]);
+// const fridgeDataJSON = require("../front-end/src/data/fridgeMockData.json");
+// const shopDataJSON = require("../front-end/src/data/shoppingListMockData.json");
+// const fridgeData = Object.entries(fridgeDataJSON[0]);
+// const shopData = Object.entries(shopDataJSON[0]);
 const FridgeItem = require("./database/fridgeItem");
 const ShopItem = require("./database/shopItem");
 const router = new Router();
@@ -10,10 +10,8 @@ const router = new Router();
 // Get Shopping List Data
 router.get("/", (req, res) => {
   ShopItem.find().then((result) => {
-    console.log(result)
-    res.json(result)
-  })
-  // res.status(200).json(shopData);
+    res.json(result);
+  });
 });
 
 // Add Items to Fridge from Shopping List

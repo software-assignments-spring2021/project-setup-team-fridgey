@@ -14,7 +14,8 @@ import axios from "axios";
 
 const ShoppingListView = (props) => {
   const itemsCall = async () => {
-    let b = await axios.get("/shopData");
+    let b = await axios.get("/fridgeData");
+    console.log(b.data)
     let items = b.data
     let fruits = items.filter((item) => item.type === 0);
     let dairy = items.filter((item) => item.type === 1);

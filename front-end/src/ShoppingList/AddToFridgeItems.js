@@ -89,11 +89,11 @@ export function compileAddToFridgeItems() {
       console.log("doesnt work!");
       console.log(e);
       console.log(add.type);
-      if (add.type == 1) {
+      if (add.type === 1) {
         add.daysleft = 5;
-      } else if (add.type == 2) {
+      } else if (add.type === 2) {
         add.daysleft = 6;
-      } else if (add.type == 3) {
+      } else if (add.type === 3) {
         add.daysleft = 7;
       } else {
         add.daysleft = 8;
