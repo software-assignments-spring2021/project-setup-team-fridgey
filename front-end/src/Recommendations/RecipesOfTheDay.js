@@ -10,14 +10,15 @@ const RecipesOfTheDay = (props) => {
     useEffect(() => {
       axios.get("Recommendations/RecipesOfTheDay").then(response => {
         setRecipeData(response.data)
+        
       });
     },[]);
 
   function handleSave(item,setButtonText){
     axios.post("Recommendations/SaveRecipe", item).then((response) => {
-      console.log();
+      console.log("success " + item);
     }, (error) => {
-      console.log();
+      console.log("error");
     });
     setButtonText("Saved!");
   }

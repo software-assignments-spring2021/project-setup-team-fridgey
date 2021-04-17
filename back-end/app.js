@@ -20,6 +20,32 @@ app.use("/shopData", ShoppingListRoutes);
 app.use("/Recommendations", RecommendationsRoutes);
 app.use("/storagetimeitems", StorageTimeRoutes);
 
+app.post('/addIngredientToSL', (req, res, next) => {
+  var currentTimeInSeconds=Math.floor(Date.now()/1000);
+  const shoppingList = new ShoppingList({
+    id:"11111",
+    title: req.body.name,
+    amount: "some",
+    type: "????",
+    dataadded:currentTimeInSeconds,
+    notes: "Added from Recipe Page"
+  });
+  shoppingList.save().then(
+    () => {
+      res.status(201).json({
+        message: 'Post saved successfully!'
+      });
+
+      console.log(shoppingList)
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
+});
 // app.get("/getRecipe", (req, res) => {
 //   //add :name parameters later
 //   request(
@@ -34,14 +60,14 @@ app.use("/storagetimeitems", StorageTimeRoutes);
 //   );
 // });
 
-app.post("/addIngredientToSL", (req, res) => {
-  const data = {
-    status: "amazing success!",
-    message: "congratulations on send us this data!",
-    name: req.body.name,
-  };
-  res.json(data);
-});
+// app.post("/addIngredientToSL", (req, res) => {
+//   const data = {
+//     status: "amazing success!",
+//     message: "congratulations on send us this data!",
+//     name: req.body.name,
+//   };
+//   res.json(data);
+// });
 
 // export the express app we created to make it available to other modules
 module.exports = app;
