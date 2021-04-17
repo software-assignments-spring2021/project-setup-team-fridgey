@@ -63,36 +63,41 @@ export function compileAddToFridgeItems() {
   ];
 
   let objects = [];
-  // model object
+
+  // empty model object
   const foodItem = {
-    id: 1,
-    title: "Apples",
-    amount: "Lots",
+    title: "",
+    amount: "",
+    daysleft: 0,
     type: 0,
-    dateadded: { $date: { $numberLong: 161448318100 } },
+    dateadded: "",
+    notes: ""
   };
 
   let vals = getSelectedCheckboxItems("itemCheckbox");
 
   for (let i = 0; i < vals.length; i++) {
     let add = Object.create(foodItem);
-    add.id = vals[i].getAttribute("id");
+    add.id = vals[i].getAttribute("id")
     add.title = vals[i].getAttribute("value");
-    add.type = vals[i].getAttribute("food");
     add.amount = vals[i].getAttribute("amount");
-    add.dateadded = vals[i].getAttribute("date"); //April 1, 2021
+    add.type = vals[i].getAttribute("food");
+    add.dateadded = "April 12, 2021"
 
     try {
       const findItem = storageitems.find((elem) => elem.food === add.title);
       add.daysleft = findItem.storage_time_medium;
     } catch (e) {
-      if (add.type == 0) { //fruits
-        add.daysleft = 10;
-      } else if (add.type == 1) { //dairy
-        add.daysleft = 21;
-      } else if (add.type == 2) { //grain
-        add.daysleft = 30;
-      } else { //meats
+      console.log("doesnt work!");
+      console.log(e);
+      console.log(add.type);
+      if (add.type === 1) {
+        add.daysleft = 5;
+      } else if (add.type === 2) {
+        add.daysleft = 6;
+      } else if (add.type === 3) {
+        add.daysleft = 7;
+      } else {
         add.daysleft = 8;
       }
     }

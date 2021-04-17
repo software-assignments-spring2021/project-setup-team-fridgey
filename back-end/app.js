@@ -1,10 +1,10 @@
 // import and instantiate express
-
 const fs = require("fs");
-
 const express = require("express"); // CommonJS import style!
 const axios = require("axios");
+
 require("dotenv").config({ silent: true });
+
 const app = express(); // instantiate an Express object
 const bodyParser = require("body-parser");
 app.use(bodyParser.json()); // decode JSON-formatted incoming POST data

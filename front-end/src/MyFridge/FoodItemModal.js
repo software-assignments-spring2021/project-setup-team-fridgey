@@ -3,7 +3,6 @@ import "./FoodItemModal.css";
 
 const FoodItemModal = (props) => {
     const amount = props.amount
-    const txtNotes = props.notes
 
     // resets progress
     const reset = () => {
@@ -25,7 +24,7 @@ const FoodItemModal = (props) => {
 
         for(let i in options) {
             if(options.hasOwnProperty(i)) {
-                if(parseInt(i) == props.daysleft) {
+                if(parseInt(i) === props.daysleft) {
                     options[i].selected = true
                 } else {
                     options[i].selected = false
@@ -67,7 +66,7 @@ const FoodItemModal = (props) => {
                 }
             }
         }
-
+        
         props.parentCallback(pressedAmount, useWithin, notesTaken)
         reset()
         event.preventDefault()
@@ -77,7 +76,7 @@ const FoodItemModal = (props) => {
     const grabInfo = (event) => {
         var pressedAmount = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip pressed")[0].innerHTML
 
-        props.addItemToShoppingList(props.id, props.itemName, pressedAmount, props.type)
+        props.addItemToShoppingList(props.itemName, pressedAmount, props.type)
         reset()
         event.preventDefault()
     }
@@ -121,7 +120,7 @@ const FoodItemModal = (props) => {
 
     // prints out options for "daysLeft"
     const printOptions = (data) => {
-        if(data == props.daysleft) {
+        if(parseInt(data) === parseInt(props.daysleft)) {
             return <option className="option" selected>{`${data} days`}</option>
         } else {
             return <option className="option">{`${data} days`}</option>
@@ -186,21 +185,21 @@ const FoodItemModal = (props) => {
                         <h5 className="FoodItemModal-text">How Much?</h5>
                         <div id="FoodItemModal-chips">
                             <button
-                                className={`chip chip-Lots ${(amount == "Lots") ? "pressed" : "unpressed"}`}
+                                className={`chip chip-Lots ${(amount === "Lots") ? "pressed" : "unpressed"}`}
                                 onClick={() => changeData("Lots")}
                             >
                             Lots
                             </button>
 
                             <button
-                                className={`chip chip-Some ${(amount == "Some") ? "pressed" : "unpressed"}`}
+                                className={`chip chip-Some ${(amount === "Some") ? "pressed" : "unpressed"}`}
                                 onClick={() => changeData("Some")}
                             >
                             Some
                             </button>
 
                             <button
-                                className={`chip chip-Few ${(amount == "Few") ? "pressed" : "unpressed"}`}
+                                className={`chip chip-Few ${(amount === "Few") ? "pressed" : "unpressed"}`}
                                 onClick={() => changeData("Few")}
                             >
                             Few
@@ -210,7 +209,7 @@ const FoodItemModal = (props) => {
                     <div className="FoodItemModal-Notes">
                         <label htmlFor="nt" className="headline">Notes</label>
                         <form>
-                            <textarea id="notes" className="Notes" placeholder="This item is for...">{txtNotes}</textarea>
+                            <textarea id="notes" className="Notes" placeholder="This item is for..."></textarea>
                         </form>
                     </div>
                 </div>

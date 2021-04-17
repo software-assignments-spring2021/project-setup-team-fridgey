@@ -1,4 +1,4 @@
-import React,{useState,useEffect,useWindowDimensions} from "react";
+import React,{useState, useEffect} from "react";
 import AddIngredientBox from "./AddIngredientBox";
 import BackButton from "./BackButton";
 import "./Recipe.css";
@@ -6,18 +6,18 @@ import "../App.css";
 import WebpageModal from"./WebpageModal"
 import axios from 'axios';
 
-function search(source, title) {
-  let index=0;
-  let entry=null;
+// function search(source, title) {
+//   let index=0;
+//   let entry=null;
 
-  title = title.toUpperCase();
-  for (index = 0; index < source.length; ++index) {
-      entry = source[index];
-      if ( entry.name.toUpperCase()==title) {
-          return entry;
-      }
-  }
-}
+//   title = title.toUpperCase();
+//   for (index = 0; index < source.length; ++index) {
+//       entry = source[index];
+//       if ( entry.name.toUpperCase()==title) {
+//           return entry;
+//       }
+//   }
+// }
 
 
 
@@ -117,7 +117,7 @@ function Recipe(props) {
       <br></br>
       <p id="dishname">{recipe.name}</p>
       <button class="recipeSite" >
-        <img className = "recipe-img" src={recipe.imageURL} onClick={() => setShow(true)}></img>
+        <img alt="" className = "recipe-img" src={recipe.imageURL} onClick={() => setShow(true)}></img>
       </button>
       <WebpageModal orginalURL={recipe.originalURL} onClose={() => setShow(false)} show={show} />
       {ingredientList}

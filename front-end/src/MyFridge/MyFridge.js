@@ -51,6 +51,7 @@ const MyFridge = (props) => {
   // Deleting an Item
   const onDelete = async (event) => {
     event.preventDefault();
+
     // sends this to MyFridge-Routes
     await axios.delete(`/fridgeData/${itemId}`);
     setShow(false);
@@ -60,11 +61,12 @@ const MyFridge = (props) => {
   // Edit Item from MyFridge
   const editItem = (amount, useWithin, notesTaken) => {
     const obj = {
-      amount: amount,
       id: itemModalID,
+      amount: amount,
       useWithin: useWithin,
       notes: notesTaken,
     };
+    console.log(obj)
 
     // sends to editItem post route
     axios.post("/fridgeData/editItem", obj).then((res) => {
@@ -74,14 +76,11 @@ const MyFridge = (props) => {
   };
 
   // Adds Item from MyFridge to Shopping List
-  const addItem = (itemID, title, amount, type) => {
+  const addItem = (title, amount, type) => {
     const obj = {
-      id: 0, 
       title: title,
       amount: amount,
-      daysleft: 0,
       type: parseInt(type),
-      dateAdded: "",
       notes: ""
     };
 
@@ -182,7 +181,6 @@ const MyFridge = (props) => {
         show={showItemModal}
         itemName={itemModalName}
         amount={itemAmount}
-        id={itemModalID}
         type={itemModalType}
         daysleft={itemModalDaysLeft}
         dateadded={itemModalDateAdded}

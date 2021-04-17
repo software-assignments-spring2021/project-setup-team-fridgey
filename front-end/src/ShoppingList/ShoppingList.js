@@ -41,12 +41,13 @@ const ShoppingListView = (props) => {
   const [showAddFridgeItemModal, setShowAddFridgeItemModal] = useState(false);
 
   // Deleting from Shopping List
-  const onDelete = (event) => {
+  const onDelete = async (event) => {
     event.preventDefault();
-    axios.delete(`/shopData/${shoppingItemId}`).then((res) => {
-      setShowDelete(false);
-      setShopData(res.data);
-    });
+
+    // sends this to ShoppingList-Routes
+    await axios.delete(`/shopData/${shoppingItemId}`);
+    setShowDelete(false);
+    await itemsCall()
   };
 
   // Adding Items to Fridge and Deleting from Shopping List
@@ -58,34 +59,33 @@ const ShoppingListView = (props) => {
     //   setItems(...[response.data])
     // })
     // let AddData = compileAddToFridgeItems(items);
-    let AddData = compileAddToFridgeItems();
+    
+    let AddData = compileAddToFridgeItems(); // array of objects
     await axios.post("/shopData/addToFridge", AddData);
-    await axios.delete("/shopData", { data: AddData }).then((res) => {
-      setShopData(res.data);
-    });
+    await axios.delete("/shopData", { data: AddData })
+    itemsCall()
+    
     let checkboxes = document.querySelectorAll(`input[name="itemCheckbox"]`);
     checkboxes.forEach((checkbox) => {
       checkbox.checked = false; // uncheck all checkboxes
     });
+
     setShowFridgeModal(false);
     setShowAddtoFridge(false);
   };
 
   // Adding items to the shopping list
   const onAddToShoppingList = async (name, amount, typeFood) => {
-    var itemId = shopData[typeFood][1].length;
-
     const obj = {
-      id: itemId + 1,
       title: name,
       amount: amount,
       type: typeFood,
-      dateadded: { $date: { $numberLong: 161448318100 } },
+      notes: ""
     };
 
     await axios.post("/shopData/addToShoppingList", obj).then((res) => {
       setShowAddFridgeItemModal(false);
-      setShopData(res.data);
+      itemsCall()
     });
   };
 
@@ -118,10 +118,9 @@ const ShoppingListView = (props) => {
     onCheck(); // So Add to Fridge button also appears
   }
 
-  const renderItem = (data) => {
+  const renderItem = (data, j) => {
     // Handling Delete Click
     const deleteClick = (event) => {
-      console.log(event);
       const title = event.currentTarget.getAttribute("title");
       const id = event.currentTarget.getAttribute("id");
       setShoppingItemName(title);
@@ -131,7 +130,7 @@ const ShoppingListView = (props) => {
 
     // Return Each Food Item
     return (
-      <tbody>
+      <tbody key={j}>
         <tr>
           <td>
             <span className="Shop-Checkbox">
@@ -139,11 +138,10 @@ const ShoppingListView = (props) => {
                 type="checkbox"
                 name="itemCheckbox"
                 // all values of each food
-                food={data.type}
+                id={data._id}
                 value={data.title}
-                id={data.id}
+                food={data.type}
                 amount={data.amount}
-                date={data.dateadded}
                 onClick={() => onCheck()}
               />
             </span>
@@ -153,7 +151,7 @@ const ShoppingListView = (props) => {
           <td>
             <button
               title={data.title}
-              id={data.id}
+              id={data._id}
               type={data.type}
               onClick={deleteClick}
             >
