@@ -8,6 +8,7 @@ import { useState } from "react";
 // uses a loop to go through all the items, and returns the general structure for list
 // (with navbar, header, StorageTimeSearchList, and the itemlist)
 
+//FRUITS (CATEGORY NUMBER 0)
 const StorageTimeSearchListFruits = () => {
   const [items, setItems] = useState([]);
 
@@ -20,35 +21,12 @@ const StorageTimeSearchListFruits = () => {
     let data = await axiosResult.data;
     setItems(data);
   };
-  // const items = [
-  //   {
-  //     id: 1,
-  //     name: "Apple",
-  //     defaultTime: 2,
-  //     shortTime: 1,
-  //     averageTime: 2,
-  //     longTime: 3,
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Pear",
-  //     defaultTime: 2,
-  //     shortTime: 1,
-  //     averageTime: 2,
-  //     longTime: 3,
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Grapes",
-  //     defaultTime: 2,
-  //     shortTime: 1,
-  //     averageTime: 2,
-  //     longTime: 3,
-  //   },
-  // ];
-  const itemList = items.map((item) => (
-    <StorageItem key={item.id} item={item}></StorageItem>
-  ));
+
+  const itemList = items.map((item) => {
+    if(item.category === 0){
+      return<StorageItem key={item.id} item={item}></StorageItem>
+    }
+  });
   return (
     <div>
       <NavBar />
@@ -60,58 +38,7 @@ const StorageTimeSearchListFruits = () => {
   );
 };
 
-const StorageTimeSearchListMeats = () => {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = async () => {
-    const axiosResult = await axios.get("/storagetimeitems");
-    let data = await axiosResult.data;
-    setItems(data);
-  };
-  // const items = [
-  //   {
-  //     id: 1,
-  //     name: "Chicken",
-  //     defaultTime: 2,
-  //     shortTime: 1,
-  //     averageTime: 2,
-  //     longTime: 3,
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Pork",
-  //     defaultTime: 2,
-  //     shortTime: 1,
-  //     averageTime: 2,
-  //     longTime: 3,
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Beef",
-  //     defaultTime: 2,
-  //     shortTime: 1,
-  //     averageTime: 2,
-  //     longTime: 3,
-  //   },
-  // ];
-  const itemList = items.map((item) => (
-    <StorageItem key={item.id} item={item}></StorageItem>
-  ));
-  return (
-    <div>
-      <NavBar />
-      <header className="App-header">
-        <StorageTimeSearchList title="Meats" />
-        {itemList}
-      </header>
-    </div>
-  );
-};
-
+//DAIRY (CATEGORY NUMBER 1)
 const StorageTimeSearchListDairy = () => {
   const [items, setItems] = useState([]);
 
@@ -124,46 +51,23 @@ const StorageTimeSearchListDairy = () => {
     let data = await axiosResult.data;
     setItems(data);
   };
-  // const items = [
-  //   {
-  //     id: 1,
-  //     name: "Milk",
-  //     defaultTime: 2,
-  //     shortTime: 1,
-  //     averageTime: 2,
-  //     longTime: 3,
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Ice cream",
-  //     defaultTime: 2,
-  //     shortTime: 1,
-  //     averageTime: 2,
-  //     longTime: 3,
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Cheese",
-  //     defaultTime: 2,
-  //     shortTime: 1,
-  //     averageTime: 2,
-  //     longTime: 3,
-  //   },
-  // ];
-  const itemList = items.map((item) => (
-    <StorageItem key={item.id} item={item}></StorageItem>
-  ));
+  const itemList = items.map((item) => {
+    if(item.category === 1){
+      return<StorageItem key={item.id} item={item}></StorageItem>
+    }
+  });
   return (
     <div>
       <NavBar />
       <header className="App-header">
-        <StorageTimeSearchList title="Meats" />
+        <StorageTimeSearchList title="Dairy" />
         {itemList}
       </header>
     </div>
   );
 };
 
+//GRAIN (CATEGORY NUMBER 2)
 const StorageTimeSearchListGrain = () => {
   const [items, setItems] = useState([]);
 
@@ -176,35 +80,11 @@ const StorageTimeSearchListGrain = () => {
     let data = await axiosResult.data;
     setItems(data);
   };
-  // const items = [
-  //   {
-  //     id: 1,
-  //     name: "Whole wheat bread",
-  //     defaultTime: 2,
-  //     shortTime: 1,
-  //     averageTime: 2,
-  //     longTime: 3,
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Oatmeal",
-  //     defaultTime: 2,
-  //     shortTime: 1,
-  //     averageTime: 2,
-  //     longTime: 3,
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Rice",
-  //     defaultTime: 2,
-  //     shortTime: 1,
-  //     averageTime: 2,
-  //     longTime: 3,
-  //   },
-  // ];
-  const itemList = items.map((item) => (
-    <StorageItem key={item.id} item={item}></StorageItem>
-  ));
+  const itemList = items.map((item) => {
+    if(item.category === 2){
+      return<StorageItem key={item.id} item={item}></StorageItem>
+    }
+  });
   return (
     <div>
       <NavBar />
@@ -216,9 +96,38 @@ const StorageTimeSearchListGrain = () => {
   );
 };
 
+//MEATS (CATEGORY NUMBER 3)
+const StorageTimeSearchListMeats = () => {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    const axiosResult = await axios.get("/storagetimeitems");
+    let data = await axiosResult.data;
+    setItems(data);
+  };
+  const itemList = items.map((item) => {
+    if(item.category === 3){
+      return<StorageItem key={item.id} item={item}></StorageItem>
+    }
+  });
+  return (
+    <div>
+      <NavBar />
+      <header className="App-header">
+        <StorageTimeSearchList title="Meats" />
+        {itemList}
+      </header>
+    </div>
+  );
+};
+
 export {
   StorageTimeSearchListFruits,
   StorageTimeSearchListDairy,
-  StorageTimeSearchListMeats,
   StorageTimeSearchListGrain,
+  StorageTimeSearchListMeats,
 };

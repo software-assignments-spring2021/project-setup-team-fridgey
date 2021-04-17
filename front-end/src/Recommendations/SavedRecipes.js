@@ -16,9 +16,9 @@ const SavedRecipes = (props) => {
 
   function handleRemove(item,setButtonText){
     axios.post("Recommendations/RemoveRecipe", item).then(response => {
+      console.log(response.data);
       setRecipeData(response.data);
     });
-    console.log(recipeData);
   }
 
   const GenerateButton = (title) => {

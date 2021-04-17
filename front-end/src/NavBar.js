@@ -11,6 +11,7 @@ const NavBar = (props) => {
       <Link to="/ShoppingList">Shopping List</Link>
       <Link to="/Storage-Time-Search">Storage Time Search</Link>
       <Link to="/RecipesOfTheDay">Recommendations</Link>
+      <Link to="/Login">Login</Link>
     </nav>
   );
 };
