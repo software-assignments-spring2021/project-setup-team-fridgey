@@ -60,23 +60,18 @@ router.delete("/", (req, res) => {
 // Delete a Specific Shopping Item
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
-  let deleted = false;
-  for (let i = 0; i < shopData.length; i++) {
-    var removeIndex = shopData[i][1]
-      .map(function (item) {
-        return item.id.toString(); // Since id param is a string
-      })
-      .indexOf(id);
-    if (removeIndex !== -1) {
-      shopData[i][1].splice(removeIndex, 1);
-      deleted = true;
+
+  ShopItem.findByIdAndDelete(id, function (err, docs) {
+    if (err)  console.log(err);
+    else {
+      console.log("Deleted : ", docs);
+      if (docs != null) {
+        res.send(docs)
+      }
     }
-  }
-  if (deleted) {
-    res.status(200).json(shopData);
-  } else {
-    res.status(200).json({ message: "Does not Exist" });
-  }
+  })
+  res.status(200)
+
 });
 
 // Add Items to Shopping List within Shopping List

@@ -41,12 +41,13 @@ const ShoppingListView = (props) => {
   const [showAddFridgeItemModal, setShowAddFridgeItemModal] = useState(false);
 
   // Deleting from Shopping List
-  const onDelete = (event) => {
+  const onDelete = async (event) => {
     event.preventDefault();
-    axios.delete(`/shopData/${shoppingItemId}`).then((res) => {
-      setShowDelete(false);
-      setShopData(res.data);
-    });
+
+    // sends this to ShoppingList-Routes
+    await axios.delete(`/shopData/${shoppingItemId}`);
+    setShowDelete(false);
+    await itemsCall()
   };
 
   // Adding Items to Fridge and Deleting from Shopping List
