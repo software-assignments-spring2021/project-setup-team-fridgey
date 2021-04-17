@@ -1,10 +1,10 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import AddIngredientBox from "./AddIngredientBox";
 import BackButton from "./BackButton";
 import "./Recipe.css";
 import "../App.css";
 import WebpageModal from"./WebpageModal"
-// import axios from 'axios';
+import axios from 'axios';
 
 // function search(source, title) {
 //   let index=0;

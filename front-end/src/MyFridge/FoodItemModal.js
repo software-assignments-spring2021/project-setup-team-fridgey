@@ -66,7 +66,7 @@ const FoodItemModal = (props) => {
                 }
             }
         }
-
+        
         props.parentCallback(pressedAmount, useWithin, notesTaken)
         reset()
         event.preventDefault()
@@ -120,7 +120,7 @@ const FoodItemModal = (props) => {
 
     // prints out options for "daysLeft"
     const printOptions = (data) => {
-        if(data === props.daysleft) {
+        if(parseInt(data) === parseInt(props.daysleft)) {
             return <option className="option" selected>{`${data} days`}</option>
         } else {
             return <option className="option">{`${data} days`}</option>

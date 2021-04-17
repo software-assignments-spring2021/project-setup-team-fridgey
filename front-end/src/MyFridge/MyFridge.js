@@ -51,7 +51,7 @@ const MyFridge = (props) => {
   // Deleting an Item
   const onDelete = async (event) => {
     event.preventDefault();
-    
+
     // sends this to MyFridge-Routes
     await axios.delete(`/fridgeData/${itemId}`);
     setShow(false);
@@ -66,6 +66,7 @@ const MyFridge = (props) => {
       useWithin: useWithin,
       notes: notesTaken,
     };
+    console.log(obj)
 
     // sends to editItem post route
     axios.post("/fridgeData/editItem", obj).then((res) => {

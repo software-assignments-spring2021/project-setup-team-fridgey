@@ -39,6 +39,7 @@ router.post("/editItem", (req, res) => {
         console.log(err)
       } else{
         console.log("Updated User : ", docs);
+        res.send(docs)
       }
     }
   )
