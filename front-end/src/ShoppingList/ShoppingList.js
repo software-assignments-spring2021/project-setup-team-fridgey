@@ -59,15 +59,17 @@ const ShoppingListView = (props) => {
     //   setItems(...[response.data])
     // })
     // let AddData = compileAddToFridgeItems(items);
-    let AddData = compileAddToFridgeItems();
+    
+    let AddData = compileAddToFridgeItems(); // array of objects
     await axios.post("/shopData/addToFridge", AddData);
-    await axios.delete("/shopData", { data: AddData }).then((res) => {
-      setShopData(res.data);
-    });
+    await axios.delete("/shopData", { data: AddData })
+    itemsCall()
+    
     let checkboxes = document.querySelectorAll(`input[name="itemCheckbox"]`);
     checkboxes.forEach((checkbox) => {
       checkbox.checked = false; // uncheck all checkboxes
     });
+
     setShowFridgeModal(false);
     setShowAddtoFridge(false);
   };
@@ -136,11 +138,10 @@ const ShoppingListView = (props) => {
                 type="checkbox"
                 name="itemCheckbox"
                 // all values of each food
-                food={data.type}
-                value={data.title}
                 id={data._id}
+                value={data.title}
+                food={data.type}
                 amount={data.amount}
-                date={data.dateadded}
                 onClick={() => onCheck()}
               />
             </span>

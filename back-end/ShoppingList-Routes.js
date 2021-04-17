@@ -14,18 +14,19 @@ router.get("/", (req, res) => {
 router.post("/addToFridge", (req, res) => {
   let AddData = req.body;
   let array = [];
+
   for (let i = 0; i < AddData.length; i++) {
     const fridgeItem = {
-      id: AddData[i].id,
       title: AddData[i].title,
       amount: AddData[i].amount,
       daysleft: AddData[i].daysleft,
       type: AddData[i].type,
       dateadded: AddData[i].dateadded,
-      notes: "",
+      notes: AddData[i].notes,
     };
     array.push(fridgeItem);
   }
+
   FridgeItem.create(array).catch((err) => {
     return console.log(err);
   });
@@ -35,26 +36,39 @@ router.post("/addToFridge", (req, res) => {
 
 // Delete Multiple Items from Shopping List After Adding to Fridge
 router.delete("/", (req, res) => {
-  let AddData = req.body;
+  let AddData = req.body; // array of objects
   let deleted = false;
+
   for (let i = 0; i < AddData.length; i++) {
-    const id = AddData[i].id; // Specific Item's Id
-    const type = AddData[i].type; // Specific Item's Food Type
-    var removeIndex = shopData[type][1]
-      .map(function (item) {
-        return item.id.toString(); // Since id param is a string
-      })
-      .indexOf(id);
-    if (removeIndex !== -1) {
-      shopData[type][1].splice(removeIndex, 1);
-      deleted = true;
-    }
+    var id = AddData[i].id; // Specific Item's Id
+
+    ShopItem.findByIdAndDelete(id, function (err, docs) {
+      if (err)  console.log(err);
+      else {
+        console.log("Deleted : ", docs);
+        if (docs != null) {
+          res.send(docs)
+        }
+      }
+    })
+
+    // const type = AddData[i].type; // Specific Item's Food Type
+    // var removeIndex = shopData[type][1]
+    //   .map(function (item) {
+    //     return item.id.toString(); // Since id param is a string
+    //   })
+    //   .indexOf(id);
+    // if (removeIndex !== -1) {
+    //   shopData[type][1].splice(removeIndex, 1);
+    //   deleted = true;
+    // }
   }
-  if (deleted) {
-    return res.status(200).json(shopData);
-  } else {
-    return res.status(200).json({ message: "Does not Exist" });
-  }
+  // if (deleted) {
+  //   return res.status(200).json(shopData);
+  // } else {
+  //   return res.status(200).json({ message: "Does not Exist" });
+  // }
+  res.status(200)
 });
 
 // Delete a Specific Shopping Item
@@ -71,7 +85,6 @@ router.delete("/:id", (req, res) => {
     }
   })
   res.status(200)
-
 });
 
 // Add Items to Shopping List within Shopping List
