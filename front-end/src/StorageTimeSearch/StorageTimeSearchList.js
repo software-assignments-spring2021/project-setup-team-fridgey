@@ -2,7 +2,7 @@ import React from "react";
 import "./StorageTimeSearchList.css";
 import "./StorageTimeSearch.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 
@@ -11,11 +11,15 @@ import axios from "axios";
 const StorageTimeSearchList = (props) => {
   const [items, setItems] = useState(null)
 
-  const axiosResult = axios.get("/storagetimeitems")
+  useEffect(() => {
+    axiosGet();
+  }, []);
 
-  axiosResult.then(response => {
-    setItems(...[response.data])
-  })
+  const axiosGet = async () => {
+    const axiosResult = await axios.get("/storagetimeitems");
+    let data = await axiosResult.data;
+    setItems(...[data]);
+  };
 
   const [searchTerm, setSearchTerm] = useState("");
   const [focusSearch, setFocusSearch] = useState("");
