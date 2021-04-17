@@ -73,22 +73,16 @@ const ShoppingListView = (props) => {
 
   // Adding items to the shopping list
   const onAddToShoppingList = async (name, amount, typeFood) => {
-    var itemId = shopData[typeFood][1].length;
-
     const obj = {
-      id: itemId + 1,
       title: name,
       amount: amount,
-      daysleft: 0,
       type: typeFood,
-      dateadded: "",
       notes: ""
     };
 
     await axios.post("/shopData/addToShoppingList", obj).then((res) => {
       setShowAddFridgeItemModal(false);
       itemsCall()
-      // setShopData(res.data);
     });
   };
 
@@ -124,7 +118,6 @@ const ShoppingListView = (props) => {
   const renderItem = (data, j) => {
     // Handling Delete Click
     const deleteClick = (event) => {
-      console.log(event);
       const title = event.currentTarget.getAttribute("title");
       const id = event.currentTarget.getAttribute("id");
       setShoppingItemName(title);
@@ -144,7 +137,7 @@ const ShoppingListView = (props) => {
                 // all values of each food
                 food={data.type}
                 value={data.title}
-                id={data.id}
+                id={data._id}
                 amount={data.amount}
                 date={data.dateadded}
                 onClick={() => onCheck()}
@@ -156,7 +149,7 @@ const ShoppingListView = (props) => {
           <td>
             <button
               title={data.title}
-              id={data.id}
+              id={data._id}
               type={data.type}
               onClick={deleteClick}
             >

@@ -51,6 +51,7 @@ const MyFridge = (props) => {
   // Deleting an Item
   const onDelete = async (event) => {
     event.preventDefault();
+    
     // sends this to MyFridge-Routes
     await axios.delete(`/fridgeData/${itemId}`);
     setShow(false);
@@ -60,8 +61,8 @@ const MyFridge = (props) => {
   // Edit Item from MyFridge
   const editItem = (amount, useWithin, notesTaken) => {
     const obj = {
-      amount: amount,
       id: itemModalID,
+      amount: amount,
       useWithin: useWithin,
       notes: notesTaken,
     };
@@ -179,7 +180,6 @@ const MyFridge = (props) => {
         show={showItemModal}
         itemName={itemModalName}
         amount={itemAmount}
-        id={itemModalID}
         type={itemModalType}
         daysleft={itemModalDaysLeft}
         dateadded={itemModalDateAdded}

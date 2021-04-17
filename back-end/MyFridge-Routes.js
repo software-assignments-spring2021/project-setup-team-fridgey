@@ -1,8 +1,4 @@
 const { Router } = require("express");
-// const fridgeDataJSON = require("../front-end/src/data/fridgeMockData.json");
-// const fridgeData = Object.entries(fridgeDataJSON[0]);
-// const shopDataJSON = require("../front-end/src/data/shoppingListMockData.json");
-// const shopData = Object.entries(shopDataJSON[0]);
 const FridgeItem = require("./database/fridgeItem");
 const ShopItem = require("./database/shopItem")
 const router = new Router();
@@ -17,7 +13,6 @@ router.get("/", (req, res) => {
 // Delete a Specific Fridge Item
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
-  console.log(id);
 
   FridgeItem.findByIdAndDelete(id, function (err, docs) {
     if (err) console.log(err);
@@ -55,12 +50,7 @@ router.post("/editItem", (req, res) => {
 router.post("/addItem", (req, res) => {
   let addItem = req.body;
 
-  const shopItem = new ShopItem({
-    title: addItem.title,
-    amount: addItem.amount,
-    type: addItem.type,
-    notes: addItem.notes,
-  })
+  const shopItem = new ShopItem(addItem)
 
   shopItem.save()
     .then((result) => {

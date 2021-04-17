@@ -1,8 +1,4 @@
 const { Router } = require("express");
-// const fridgeDataJSON = require("../front-end/src/data/fridgeMockData.json");
-// const shopDataJSON = require("../front-end/src/data/shoppingListMockData.json");
-// const fridgeData = Object.entries(fridgeDataJSON[0]);
-// const shopData = Object.entries(shopDataJSON[0]);
 const FridgeItem = require("./database/fridgeItem");
 const ShopItem = require("./database/shopItem");
 const router = new Router();
@@ -87,18 +83,16 @@ router.delete("/:id", (req, res) => {
 router.post("/addToShoppingList", (req, res) => {
   let addItem = req.body;
 
-  // ShopItem.create(addItem, function(err, result) {
-  //   if (err) {
-  //     res.send(err);
-  //   } else {
-  //     console.log(result);
-  //     res.send(result);
-  //   }
-  // });
+  const shopItem = new ShopItem(addItem)
 
-
-  // shopData[addItem.type][1].push(addItem);
-  res.status(200)
+  shopItem.save()
+    .then((result) => {
+      res.send(result)
+      res.status(200);
+    })
+    .catch((err) => {
+      console.log(err)
+    })
 });
 
 module.exports = router;
