@@ -24,15 +24,13 @@ useEffect(() => {
 }, []);
 
 const onAddToShoppingList = async (name, amount, typeFood) => {
-  var itemId = shopData[typeFood][1].length;
   
 
   const obj = {
-    "id": itemId + 1,
-    "title": props.name,
-    "amount": amount,
-    "type": typeFood,
-    "dateadded": { $date: { $numberLong: 161448318100 } },
+    title: props.name,
+    amount: amount,
+    type: typeFood,
+    notes: ""
   }
 
   await axios.post("/shopData/addToShoppingList", obj).then((res) => {
