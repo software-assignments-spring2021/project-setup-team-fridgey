@@ -229,6 +229,7 @@ const AddNewFridgeItemModal = (props) => {
                 placeholder="Enter your grocery here"
               ></textarea>
               <div>
+                {/* ERROR MSGS WORK BUT FOR SOME REASON, IT DISABLES THE ADD TO SHOPPING LIST BUTTON*/}
                 <label
                   className={`Error ${props.error === 1 ? "showError" : ""}`}
                 >

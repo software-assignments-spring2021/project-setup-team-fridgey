@@ -94,19 +94,13 @@ const ShoppingListView = (props) => {
       });
     } catch (error) {
       let title = error.response.data.errors[0].value;
-      // console.log(error.response);
-      // console.log(title);
-      // console.log(error.response.data);
-      // console.log(error.response.status);
-      // console.log(error.response.headers);
       if (title.length > 28) {
         alert("Title Must Be Less than 28 Characters. Please Try Again");
+        // EERROR MSGS WTIH STATES KINDA WORKS BUT FOR SOME REASON, IT DISABLES THE ADD TO SHOPPING LIST BUTTON*
         // await setInputError(1);
-        // console.log(inputError);
       } else if (title.length < 2) {
         alert("Title Must Be Longer than 2 Characters. Please Try Again");
         // await setInputError(2);
-        // console.log(inputError);
       }
     }
   };
