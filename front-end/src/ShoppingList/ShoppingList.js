@@ -75,13 +75,15 @@ const ShoppingListView = (props) => {
   };
 
   // Adding items to the shopping list
-  const onAddToShoppingList = async (name, amount, typeFood) => {
+  const onAddToShoppingList = async (name, amount, typeFood, notesTaken) => {
     const obj = {
       title: name,
       amount: amount,
       type: typeFood,
-      notes: ""
+      notes: notesTaken
     };
+
+    console.log(obj)
 
     await axios.post("/shopData/addToShoppingList", obj).then((res) => {
       setShowAddFridgeItemModal(false);
@@ -142,6 +144,7 @@ const ShoppingListView = (props) => {
                 value={data.title}
                 food={data.type}
                 amount={data.amount}
+                notes={data.notes}
                 onClick={() => onCheck()}
               />
             </span>
@@ -240,6 +243,7 @@ const ShoppingListView = (props) => {
         onClose={() => setShowAddFridgeItemModal(false)}
         show={showAddFridgeItemModal}
         onAddToShoppingList={onAddToShoppingList}
+        
       />
     </div>
   );

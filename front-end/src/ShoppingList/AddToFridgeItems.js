@@ -82,6 +82,7 @@ export function compileAddToFridgeItems() {
     add.title = vals[i].getAttribute("value");
     add.amount = vals[i].getAttribute("amount");
     add.type = vals[i].getAttribute("food");
+    add.notes = vals[i].getAttribute("notes")
     add.dateadded = "April 12, 2021"
 
     try {

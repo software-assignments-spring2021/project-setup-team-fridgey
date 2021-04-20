@@ -24,6 +24,7 @@ router.post("/addToFridge", (req, res) => {
       dateadded: AddData[i].dateadded,
       notes: AddData[i].notes,
     };
+    console.log(fridgeItem)
     array.push(fridgeItem);
   }
 
@@ -37,7 +38,6 @@ router.post("/addToFridge", (req, res) => {
 // Delete Multiple Items from Shopping List After Adding to Fridge
 router.delete("/", (req, res) => {
   let AddData = req.body; // array of objects
-  let deleted = false;
 
   for (let i = 0; i < AddData.length; i++) {
     var id = AddData[i].id; // Specific Item's Id
@@ -51,23 +51,7 @@ router.delete("/", (req, res) => {
         }
       }
     })
-
-    // const type = AddData[i].type; // Specific Item's Food Type
-    // var removeIndex = shopData[type][1]
-    //   .map(function (item) {
-    //     return item.id.toString(); // Since id param is a string
-    //   })
-    //   .indexOf(id);
-    // if (removeIndex !== -1) {
-    //   shopData[type][1].splice(removeIndex, 1);
-    //   deleted = true;
-    // }
   }
-  // if (deleted) {
-  //   return res.status(200).json(shopData);
-  // } else {
-  //   return res.status(200).json({ message: "Does not Exist" });
-  // }
   res.status(200)
 });
 

@@ -13,8 +13,7 @@ const AddNewFridgeItemModal = (props) => {
         document.getElementById("notes").value = ""
         var amountChips = document.getElementById("NewItemAmount-chips").getElementsByClassName("chip")
         var typeChips = document.getElementById("NewItemType-chips").getElementsByClassName("chip")
-        var i
-        var name
+        var i, name
 
         for(i in amountChips) {
             if(amountChips.hasOwnProperty(i)) {
@@ -80,6 +79,7 @@ const AddNewFridgeItemModal = (props) => {
         var itemName = document.getElementById("itemName").value;
         var amount = document.getElementById("NewItemAmount-chips").getElementsByClassName("chip pressed")[0].innerHTML
         var type = document.getElementById("NewItemType-chips").getElementsByClassName("chip pressed")[0].innerHTML
+        var notes = document.getElementById("notes").value
 
         if(type === "Fruit") {
             type = 0;
@@ -91,15 +91,17 @@ const AddNewFridgeItemModal = (props) => {
             type = 3;
         }
 
+        props.parentCallback(itemName, amount, type, notes)
+        props.onClose()
         reset()
-        props.parentCallback(itemName, amount, type)
         event.preventDefault();
     }
 
     const closeModal = () => {
-        reset()
         props.onClose()
+        reset()
     }
+
 if (props.fromRecipe){
     return (
         <div className={`AddNewFridgeItemModal ${props.show ? "show" : ""}`}>
@@ -210,7 +212,6 @@ else{
                         <div id="NewItemAmount-chips">
                             <button 
                                 onClick={() => changeData("amount", "Lots")} 
-                                // className={`chip chip-Lots ${(pressedAmount === "Lots") ? "pressed" : "unpressed"}`}
                                 className={`chip chip-Lots pressed`}
                             >
                             Lots
@@ -218,7 +219,6 @@ else{
 
                             <button 
                                 onClick={() => changeData("amount", "Some")}
-                                // className={`chip chip-Some ${(pressedAmount === "Some") ? "pressed" : "unpressed"}`}
                                 className={`chip chip-Some unpressed`}
                             >
                             Some
@@ -226,7 +226,6 @@ else{
 
                             <button
                                 onClick={() => changeData("amount", "Few")} 
-                                // className={`chip chip-Few ${(pressedAmount === "Few") ? "pressed" : "unpressed"}`}
                                 className={`chip chip-Few unpressed`}
                             >
                             Few

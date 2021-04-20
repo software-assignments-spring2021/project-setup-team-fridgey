@@ -3,7 +3,6 @@ import "./FoodItemModal.css";
 
 const FoodItemModal = (props) => {
     const amount = props.amount
-    const notes = props.notes
 
     // resets progress
     const reset = () => {
