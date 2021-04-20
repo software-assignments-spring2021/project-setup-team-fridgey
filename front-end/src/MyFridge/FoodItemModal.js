@@ -131,7 +131,10 @@ const FoodItemModal = (props) => {
                         <div className="Freshness-data">
                             <div className="Use-Within">
                                 <h5 className="FoodItemModal-text">Use Within</h5>
-                                <input id="use-within" type="number" min={0} max={65} defaultValue={props.daysleft}/>
+                                <div className="days-left">
+                                    <input id="use-within" type="number" min={0} max={65} defaultValue={props.daysleft}/>
+                                    <p className="FoodItemModal-text" id="days">Days</p>
+                                </div>
                             </div>
                             
                             <div className="Date-Added">
