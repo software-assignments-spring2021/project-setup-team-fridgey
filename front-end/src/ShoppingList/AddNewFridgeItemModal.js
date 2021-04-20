@@ -191,3 +191,4 @@ const AddNewFridgeItemModal = (props) => {
 
 
 export default AddNewFridgeItemModal;
+

@@ -9,6 +9,7 @@ import fruits from "./images/fruits.png";
 import meats from "./images/meats.png";
 import dairy from "./images/dairy.png";
 import grain from "./images/grain.png";
+import StorageItem from "./StorageItem";
 
 const StorageTimeSearch = () => {
   const [items, setItems] = useState([])
@@ -44,8 +45,8 @@ const StorageTimeSearch = () => {
         <NavBar />
         <header className="App-header">
           <h1>Storage Time Search</h1>
-  
-          <input type="text" placeholder="Search for food" onChange={ handleChange } onClick={ changeClass } onBlur={ revertClass } id="StorageTime-Searchbar"/>
+          <input type="text" placeholder="Search for food" onChange={ handleChange } onClick={ changeClass } autoComplete="new-password" id="StorageTime-Searchbar"/>
+          <Button onClick={ revertClass } >Back</Button>
             { items.filter((item) => {
                 if (searchTerm === "") {
                   return item
@@ -58,7 +59,7 @@ const StorageTimeSearch = () => {
                 if (searchTerm !== "") {
                   return (
                     <div>
-                      <Button>{item.name}</Button>
+                      <StorageItem key={item.id} item={item}></StorageItem>
                     </div>
                   );
                 } else {

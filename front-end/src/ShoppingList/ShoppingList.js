@@ -15,7 +15,7 @@ import axios from "axios";
 const ShoppingListView = (props) => {
   const itemsCall = async () => {
     let b = await axios.get("/shopData");
-    let items = b.data
+    let items = b.data;
     let fruits = items.filter((item) => item.type === 0);
     let dairy = items.filter((item) => item.type === 1);
     let grains = items.filter((item) => item.type === 2);
@@ -39,6 +39,7 @@ const ShoppingListView = (props) => {
   const [showAddtoFridge, setShowAddtoFridge] = useState(false);
   const [showFridgeModal, setShowFridgeModal] = useState(false);
   const [showAddFridgeItemModal, setShowAddFridgeItemModal] = useState(false);
+  const [inputError, setInputError] = useState(0);
 
   // Deleting from Shopping List
   const onDelete = async (event) => {
@@ -47,7 +48,7 @@ const ShoppingListView = (props) => {
     // sends this to ShoppingList-Routes
     await axios.delete(`/shopData/${shoppingItemId}`);
     setShowDelete(false);
-    await itemsCall()
+    await itemsCall();
   };
 
   // Adding Items to Fridge and Deleting from Shopping List
@@ -59,12 +60,12 @@ const ShoppingListView = (props) => {
     //   setItems(...[response.data])
     // })
     // let AddData = compileAddToFridgeItems(items);
-    
+
     let AddData = compileAddToFridgeItems(); // array of objects
     await axios.post("/shopData/addToFridge", AddData);
-    await axios.delete("/shopData", { data: AddData })
-    itemsCall()
-    
+    await axios.delete("/shopData", { data: AddData });
+    itemsCall();
+
     let checkboxes = document.querySelectorAll(`input[name="itemCheckbox"]`);
     checkboxes.forEach((checkbox) => {
       checkbox.checked = false; // uncheck all checkboxes
@@ -76,17 +77,32 @@ const ShoppingListView = (props) => {
 
   // Adding items to the shopping list
   const onAddToShoppingList = async (name, amount, typeFood) => {
-    const obj = {
-      title: name,
-      amount: amount,
-      type: typeFood,
-      notes: ""
-    };
-
-    await axios.post("/shopData/addToShoppingList", obj).then((res) => {
-      setShowAddFridgeItemModal(false);
-      itemsCall()
-    });
+    setInputError(0);
+    try {
+      const obj = {
+        title: name,
+        amount: amount,
+        type: typeFood,
+        notes: "",
+      };
+      await axios.post("/shopData/addToShoppingList", obj).then((res) => {
+        setShowAddFridgeItemModal(false);
+        setInputError(0);
+        console.log("HERE: " + inputError);
+        console.log("HERE2: " + inputError);
+        itemsCall();
+      });
+    } catch (error) {
+      let title = error.response.data.errors[0].value;
+      if (title.length > 28) {
+        alert("Title Must Be Less than 28 Characters. Please Try Again");
+        // EERROR MSGS WTIH STATES KINDA WORKS BUT FOR SOME REASON, IT DISABLES THE ADD TO SHOPPING LIST BUTTON*
+        // await setInputError(1);
+      } else if (title.length < 2) {
+        alert("Title Must Be Longer than 2 Characters. Please Try Again");
+        // await setInputError(2);
+      }
+    }
   };
 
   // Displaying Add to Fridge Button if a Checkbox is Marked
@@ -237,9 +253,15 @@ const ShoppingListView = (props) => {
       />
       <AddNewFridgeItemModal
         parentCallback={onAddToShoppingList}
-        onClose={() => setShowAddFridgeItemModal(false)}
+        onClose={() => {
+          setInputError(0);
+          console.log("HERE: " + inputError);
+          // console.log("HERE2: " + inputError1);
+          setShowAddFridgeItemModal(false);
+        }}
         show={showAddFridgeItemModal}
-        onAddToShoppingList={onAddToShoppingList}
+        // onAddToShoppingList={onAddToShoppingList}
+        error={inputError}
       />
     </div>
   );
