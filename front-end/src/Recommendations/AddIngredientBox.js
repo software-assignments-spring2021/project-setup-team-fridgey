@@ -3,7 +3,7 @@ import "./AddIngredientBox.css";
 import axios from "axios"
 import { useState,useEffect } from "react";
 import ShoppingList from"../ShoppingList/ShoppingList"
-import RAddNewFridgeItemModal from "./RAddNewFridgeItemModal"
+import AddNewFridgeItemModal from "../ShoppingList/AddNewFridgeItemModal"
 const AddIngredientBox = (props) => {
 
 // const fridgeData = require("../data/mock_recipes.json");
@@ -62,7 +62,7 @@ if (props.list.includes(props.name.toLowerCase())){
     //    setAddButton("\u2713"); 
        setShowAddFridgeItemModal(true)}}>         {addButton}     </button>
      </div>
-     <RAddNewFridgeItemModal
+     <AddNewFridgeItemModal
      onClose={() => setShowAddFridgeItemModal(false)}
      show={showAddFridgeItemModal}
      fromRecipe={true}
@@ -91,7 +91,7 @@ else {
       //setAddButton("\u2713"); 
       setShowAddFridgeItemModal(true)}}>         {addButton}     </button>
     </div>
-    <RAddNewFridgeItemModal
+    <AddNewFridgeItemModal
     onClose={() => setShowAddFridgeItemModal(false)}
     show={showAddFridgeItemModal}
     fromRecipe={true}
