@@ -105,7 +105,7 @@ const AddNewFridgeItemModal = (props) => {
     props.onClose();
     reset();
   };
-
+    
   if (props.fromRecipe) {
     return (
       <div className={`AddNewFridgeItemModal ${props.show ? "show" : ""}`}>
@@ -150,7 +150,6 @@ const AddNewFridgeItemModal = (props) => {
                 </button>
               </div>
             </div>
-
             <div className="NewFridgeItemModal-type">
               <h5 className="NewFridgeItemModal-text">What Type?</h5>
               <div id="NewItemType-chips">
@@ -294,7 +293,6 @@ const AddNewFridgeItemModal = (props) => {
                 </button>
               </div>
             </div>
-
             <div className="NewFridgeItemModal-notes">
               <label htmlFor="nt" className="headline">
                 Notes

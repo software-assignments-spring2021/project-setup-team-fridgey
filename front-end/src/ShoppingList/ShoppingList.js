@@ -78,7 +78,6 @@ const ShoppingListView = (props) => {
   // Adding items to the shopping list
   const onAddToShoppingList = async (name, amount, typeFood, notesTaken) => {
     setInputError(0);
-    
     try {
       const obj = {
         title: name,
