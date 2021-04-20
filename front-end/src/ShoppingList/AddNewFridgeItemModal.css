@@ -168,3 +168,15 @@
   display: flex;
   float: right;
 }
+
+/* Error */
+.Error {
+  font-size: 0.7rem;
+  color: red;
+  display: none;
+}
+
+/* Error */
+.Error.showError {
+  display: block;
+}

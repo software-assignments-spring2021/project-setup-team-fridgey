@@ -71,26 +71,26 @@ export function compileAddToFridgeItems() {
     daysleft: 0,
     type: 0,
     dateadded: "",
-    notes: ""
+    notes: "",
   };
 
   let vals = getSelectedCheckboxItems("itemCheckbox");
 
   for (let i = 0; i < vals.length; i++) {
     let add = Object.create(foodItem);
-    add.id = vals[i].getAttribute("id")
+    add.id = vals[i].getAttribute("id");
     add.title = vals[i].getAttribute("value");
     add.amount = vals[i].getAttribute("amount");
     add.type = vals[i].getAttribute("food");
-    add.dateadded = "April 12, 2021"
+    add.dateadded = "April 12, 2021";
 
     try {
       const findItem = storageitems.find((elem) => elem.food === add.title);
       add.daysleft = findItem.storage_time_medium;
     } catch (e) {
-      console.log("doesnt work!");
-      console.log(e);
-      console.log(add.type);
+      // console.log("doesnt work!");
+      // console.log(e);
+      // console.log(add.type);
       if (add.type === 1) {
         add.daysleft = 5;
       } else if (add.type === 2) {
