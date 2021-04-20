@@ -24,6 +24,7 @@
   width: 21.875rem;
   background-color: #fff;
   transition: all 0.3s ease-in-out;
+  border-radius: 10px;
 }
 
 /* HEADER */
@@ -72,6 +73,7 @@
   background-color: #fff;
   border-radius: 45px;
   border: 0.1rem solid black;
+  padding-left: 9px;
 }
 
 .Date-Added {
@@ -220,4 +222,10 @@
   padding: 0.625rem;
   display: flex;
   justify-content: space-between;
+}
+
+.FoodItemModal-footer button {
+  border: 0.1rem solid black;
+  font-size: 14px;
+  border-radius: 10px;
 }
