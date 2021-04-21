@@ -24,6 +24,7 @@ router.post("/addToFridge", (req, res) => {
       dateadded: AddData[i].dateadded,
       notes: AddData[i].notes,
     };
+    console.log(fridgeItem)
     array.push(fridgeItem);
   }
   FridgeItem.create(array).catch((err) => {

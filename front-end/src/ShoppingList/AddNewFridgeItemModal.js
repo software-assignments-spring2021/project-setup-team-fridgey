@@ -9,14 +9,9 @@ const AddNewFridgeItemModal = (props) => {
       document.getElementById("itemName").value = "";
     }
     document.getElementById("notes").value = "";
-    var amountChips = document
-      .getElementById("NewItemAmount-chips")
-      .getElementsByClassName("chip");
-    var typeChips = document
-      .getElementById("NewItemType-chips")
-      .getElementsByClassName("chip");
-    var i;
-    var name;
+    var amountChips = document.getElementById("NewItemAmount-chips").getElementsByClassName("chip");
+    var typeChips = document.getElementById("NewItemType-chips").getElementsByClassName("chip");
+    var i, name;
 
     for (i in amountChips) {
       if (amountChips.hasOwnProperty(i)) {
@@ -64,9 +59,7 @@ const AddNewFridgeItemModal = (props) => {
         }
       }
     } else {
-      chips = document
-        .getElementById("NewItemType-chips")
-        .getElementsByClassName("chip");
+      chips = document.getElementById("NewItemType-chips").getElementsByClassName("chip");
 
       for (i in chips) {
         if (chips.hasOwnProperty(i)) {
@@ -83,13 +76,14 @@ const AddNewFridgeItemModal = (props) => {
   };
 
   const grabInformation = (event) => {
+    // item name
     var itemName = document.getElementById("itemName").value;
-    var amount = document
-      .getElementById("NewItemAmount-chips")
-      .getElementsByClassName("chip pressed")[0].innerHTML;
-    var type = document
-      .getElementById("NewItemType-chips")
-      .getElementsByClassName("chip pressed")[0].innerHTML;
+    // item amount
+    var amount = document.getElementById("NewItemAmount-chips").getElementsByClassName("chip pressed")[0].innerHTML;
+    // item type
+    var type = document.getElementById("NewItemType-chips").getElementsByClassName("chip pressed")[0].innerHTML;
+    // item notes
+    var notes = document.getElementById("notes").value
 
     if (type === "Fruit") {
       type = 0;
@@ -100,16 +94,18 @@ const AddNewFridgeItemModal = (props) => {
     } else if (type === "Meat") {
       type = 3;
     }
+    
+    props.onAddToShoppingList(itemName, amount, type, notes);
     reset();
-    props.parentCallback(itemName, amount, type);
     event.preventDefault();
     return;
   };
 
   const closeModal = () => {
-    reset();
     props.onClose();
+    reset();
   };
+    
   if (props.fromRecipe) {
     return (
       <div className={`AddNewFridgeItemModal ${props.show ? "show" : ""}`}>
@@ -134,7 +130,6 @@ const AddNewFridgeItemModal = (props) => {
               <div id="NewItemAmount-chips">
                 <button
                   onClick={() => changeData("amount", "Lots")}
-                  // className={`chip chip-Lots ${(pressedAmount === "Lots") ? "pressed" : "unpressed"}`}
                   className={`chip chip-Lots pressed`}
                 >
                   Lots
@@ -142,7 +137,6 @@ const AddNewFridgeItemModal = (props) => {
 
                 <button
                   onClick={() => changeData("amount", "Some")}
-                  // className={`chip chip-Some ${(pressedAmount === "Some") ? "pressed" : "unpressed"}`}
                   className={`chip chip-Some unpressed`}
                 >
                   Some
@@ -150,14 +144,12 @@ const AddNewFridgeItemModal = (props) => {
 
                 <button
                   onClick={() => changeData("amount", "Few")}
-                  // className={`chip chip-Few ${(pressedAmount === "Few") ? "pressed" : "unpressed"}`}
                   className={`chip chip-Few unpressed`}
                 >
                   Few
                 </button>
               </div>
             </div>
-
             <div className="NewFridgeItemModal-type">
               <h5 className="NewFridgeItemModal-text">What Type?</h5>
               <div id="NewItemType-chips">
@@ -248,7 +240,6 @@ const AddNewFridgeItemModal = (props) => {
               <div id="NewItemAmount-chips">
                 <button
                   onClick={() => changeData("amount", "Lots")}
-                  // className={`chip chip-Lots ${(pressedAmount === "Lots") ? "pressed" : "unpressed"}`}
                   className={`chip chip-Lots pressed`}
                 >
                   Lots
@@ -256,7 +247,6 @@ const AddNewFridgeItemModal = (props) => {
 
                 <button
                   onClick={() => changeData("amount", "Some")}
-                  // className={`chip chip-Some ${(pressedAmount === "Some") ? "pressed" : "unpressed"}`}
                   className={`chip chip-Some unpressed`}
                 >
                   Some
@@ -264,7 +254,6 @@ const AddNewFridgeItemModal = (props) => {
 
                 <button
                   onClick={() => changeData("amount", "Few")}
-                  // className={`chip chip-Few ${(pressedAmount === "Few") ? "pressed" : "unpressed"}`}
                   className={`chip chip-Few unpressed`}
                 >
                   Few
@@ -304,7 +293,6 @@ const AddNewFridgeItemModal = (props) => {
                 </button>
               </div>
             </div>
-
             <div className="NewFridgeItemModal-notes">
               <label htmlFor="nt" className="headline">
                 Notes

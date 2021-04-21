@@ -66,7 +66,6 @@ const MyFridge = (props) => {
       useWithin: useWithin,
       notes: notesTaken,
     };
-    console.log(obj)
 
     // sends to editItem post route
     axios.post("/fridgeData/editItem", obj).then((res) => {
@@ -76,12 +75,12 @@ const MyFridge = (props) => {
   };
 
   // Adds Item from MyFridge to Shopping List
-  const addItem = (title, amount, type) => {
+  const addItem = (title, amount, type, notesTaken) => {
     const obj = {
       title: title,
       amount: amount,
       type: parseInt(type),
-      notes: ""
+      notes: notesTaken
     };
 
     axios.post("/fridgeData/addItem", obj).then((res) => {

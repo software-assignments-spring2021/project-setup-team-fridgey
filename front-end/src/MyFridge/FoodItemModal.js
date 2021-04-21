@@ -6,9 +6,7 @@ const FoodItemModal = (props) => {
 
     // resets progress
     const reset = () => {
-        document.getElementById("notes").value = props.notes
         var amountChips = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip")
-        var options = document.getElementById("use-within").getElementsByClassName("option")
 
         for(var i in amountChips) {
             if(amountChips.hasOwnProperty(i)) {
@@ -21,18 +19,8 @@ const FoodItemModal = (props) => {
                 }
             }
         }
-
-        for(let i in options) {
-            if(options.hasOwnProperty(i)) {
-                if(parseInt(i) === props.daysleft) {
-                    options[i].selected = true
-                } else {
-                    options[i].selected = false
-                }
-            }
-        }
     }
-
+    
     // change the chips
     const changeData = (data) => {
         var pressedAmount = data
@@ -52,39 +40,31 @@ const FoodItemModal = (props) => {
     }
 
     // gets called everytime we save
-    const grabInformation = (event) => {
+    const savedInformation = (event) => {
+        // gets the amount
         var pressedAmount = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip pressed")[0].innerHTML
+        // gets the notes
         var notesTaken = document.getElementById("notes").value
-        
-        var options = document.getElementById("use-within").getElementsByClassName("option")
-        var useWithin = 0
-
-        for(let i in options) {
-            if(options.hasOwnProperty(i)) {
-                if(options[i].selected) {
-                    useWithin = parseInt(i)
-                }
-            }
-        }
+        // gets the days left
+        var useWithin = document.getElementById("use-within").value
         
         props.parentCallback(pressedAmount, useWithin, notesTaken)
-        reset()
         event.preventDefault()
     }
 
     // grabs the information to add to shopping list
     const grabInfo = (event) => {
         var pressedAmount = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip pressed")[0].innerHTML
+        var notesTaken = document.getElementById("notes").value
 
-        props.addItemToShoppingList(props.itemName, pressedAmount, props.type)
-        reset()
+        props.addItemToShoppingList(props.itemName, pressedAmount, props.type, notesTaken)
         event.preventDefault()
     }
 
     // closes modal and resets progress
     const closeModal = (event) => {
-        reset()
         props.onClose()
+        reset()
         event.preventDefault()
     }
 
@@ -118,12 +98,13 @@ const FoodItemModal = (props) => {
         return className
     }
 
-    // prints out options for "daysLeft"
-    const printOptions = (data) => {
-        if(parseInt(data) === parseInt(props.daysleft)) {
-            return <option className="option" selected>{`${data} days`}</option>
-        } else {
-            return <option className="option">{`${data} days`}</option>
+    // renders the daysleft and notes
+    const renderInput = () => {
+        if(document.getElementById("use-within") != null) {
+            document.getElementById("use-within").value = props.daysleft
+        }
+        if(document.getElementById("notes") != null) {
+            document.getElementById("notes").value = props.notes
         }
     }
 
@@ -150,29 +131,10 @@ const FoodItemModal = (props) => {
                         <div className="Freshness-data">
                             <div className="Use-Within">
                                 <h5 className="FoodItemModal-text">Use Within</h5>
-                                <select id="use-within">
-                                    {printOptions(0)}
-                                    {printOptions(1)}
-                                    {printOptions(2)}
-                                    {printOptions(3)}
-                                    {printOptions(4)}
-                                    {printOptions(5)}
-                                    {printOptions(6)}
-                                    {printOptions(7)}
-                                    {printOptions(8)}
-                                    {printOptions(9)}
-                                    {printOptions(10)}
-                                    {printOptions(11)}
-                                    {printOptions(12)}
-                                    {printOptions(13)}
-                                    {printOptions(14)}
-                                    {printOptions(15)}
-                                    {printOptions(16)}
-                                    {printOptions(17)}
-                                    {printOptions(18)}
-                                    {printOptions(19)}
-                                    {printOptions(20)}
-                                </select>
+                                <div className="days-left">
+                                    <input id="use-within" type="number" min={0} max={65} defaultValue={props.daysleft}/>
+                                    <p className="FoodItemModal-text" id="days">Days</p>
+                                </div>
                             </div>
                             
                             <div className="Date-Added">
@@ -209,15 +171,16 @@ const FoodItemModal = (props) => {
                     <div className="FoodItemModal-Notes">
                         <label htmlFor="nt" className="headline">Notes</label>
                         <form>
-                            <textarea id="notes" className="Notes" placeholder="This item is for..."></textarea>
+                            <textarea id="notes" className="Notes" placeholder="This item is for...">{props.notes}</textarea>
                         </form>
                     </div>
                 </div>
                 <div className="FoodItemModal-footer">
                     <button onClick={grabInfo}>Add to Shopping List</button> 
-                    <button onClick={grabInformation}>Save</button>
+                    <button onClick={savedInformation}>Save</button>
                 </div>
             </div>
+            {renderInput()}
         </div>
     )
 }

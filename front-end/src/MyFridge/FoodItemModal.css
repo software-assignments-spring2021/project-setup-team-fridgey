@@ -24,6 +24,7 @@
   width: 21.875rem;
   background-color: #fff;
   transition: all 0.3s ease-in-out;
+  border-radius: 10px;
 }
 
 /* HEADER */
@@ -68,10 +69,24 @@
   padding: 0.125rem;
 }
 
+.days-left {
+  display: flex;
+}
+
+#days {
+  position: relative;
+  left: 2px;
+}
+
 #use-within {
+  position: relative;
+  top: 2px;
   background-color: #fff;
   border-radius: 45px;
   border: 0.1rem solid black;
+  height: 15px;
+  width: 30px;
+  padding-left: 9px;
 }
 
 .Date-Added {
@@ -220,4 +235,10 @@
   padding: 0.625rem;
   display: flex;
   justify-content: space-between;
+}
+
+.FoodItemModal-footer button {
+  border: 0.1rem solid black;
+  font-size: 14px;
+  border-radius: 10px;
 }
