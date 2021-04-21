@@ -88,16 +88,11 @@ export const GenerateData = (data) => {
     )
   ));
 };
-
-// function createKey(name,time)
-// {
-//   return name + "" + time;
-// }
  
 function trimTitle(title)
 {
-  if(title.length > 20)
-    return title.substring(0,18) + '...';
+  if(title.length > 19)
+    return title.substring(0,17) + '...';
   return title;
 }
 
