@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import NavBar from "../NavBar";
 import StorageTimeSearchList from "./StorageTimeSearchList";
 import StorageItem from "./StorageItem";
-import axios from "axios";
-import { useState } from "react";
 
 // uses a loop to go through all the items, and returns the general structure for list
 // (with navbar, header, StorageTimeSearchList, and the itemlist)

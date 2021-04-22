@@ -57,22 +57,18 @@ function App() {
           />
           <Route
             path="/Storage-Time-Search/ListFruits"
-            // component={StorageTimeSearchListFruits}
             render = {() => <StorageTimeSearchListFruits data={items}/>}
           />
           <Route
             path="/Storage-Time-Search/ListMeats"
-            // component={StorageTimeSearchListMeats}
             render = {() => <StorageTimeSearchListMeats data={items}/>}
           />
           <Route
             path="/Storage-Time-Search/ListDairy"
-            // component={StorageTimeSearchListDairy}
             render = {() => <StorageTimeSearchListDairy data={items}/>}
           />
           <Route
             path="/Storage-Time-Search/ListGrain"
-            // component={StorageTimeSearchListGrain}
             render = {() => <StorageTimeSearchListGrain data={items}/>}
           />
           <Route
