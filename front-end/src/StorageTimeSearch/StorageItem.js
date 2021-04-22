@@ -2,6 +2,7 @@ import React from "react";
 import EditStorageModal from "./EditStorageTimeModal";
 import { useState } from "react";
 import "./StorageItem.css";
+import axios from 'axios';
 
 // the general structure for every item within the list (button)
 // includes an item name, spoil time, and default time
@@ -15,16 +16,23 @@ export const StorageItem = ({ item, key }) => {
     setRadio(e.target.value);
     if (option == "Shorter"){
       item.defaultTime = item.shortTime
-      console.log(item.defaultTime)
     }
     if (option == "Average"){
       item.defaultTime = item.averageTime
-      console.log(item.defaultTime)
     }
     if (option == "Longer"){
       item.defaultTime = item.longTime
-      console.log(item.defaultTime)
     }
+
+  //   const editStorageItem = (defaultTime) => {
+  //     const obj = {
+  //       defaultTime: defaultTime,
+  //     };
+  //   }
+
+  //   axios.post("/storagetimeitems/editStorageItem", obj).then((res) => {
+  //     console.log(item.defaultTime);
+  //   })
   }
   return (
     <div>
