@@ -91,7 +91,9 @@ function pushIfNotAlreadyExists(key, currentSavedList)
 router.post("/RemoveRecipe", async (req,res) => {
   try {
     var currentSavedList = await SavedRecipe.find({_id: "607e927189dc61405c4f6e5a"});
-    currentSavedList[0].ids = currentSavedList[0].ids.filter((id) => id != req.body._id);
+    currentSavedList[0].ids = currentSavedList[0].ids.filter((id) => id != req.body.id);
+    console.log("removing " + req.body._id);
+    console.log(currentSavedList[0].ids);
 
     await SavedRecipe.updateOne(
       {"_id": "607e927189dc61405c4f6e5a"},
