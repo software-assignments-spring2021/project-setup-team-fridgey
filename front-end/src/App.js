@@ -17,25 +17,10 @@ import { SavedRecipes } from "./Recommendations/SavedRecipes";
 import Recipe from "./Recommendations/Recipe";
 import { ShoppingList } from "./ShoppingList/ShoppingList";
 import LoginPage from "./Login/LoginPage";
-import axios from "axios";
-import { useState, useEffect } from "react";
-
 
 // the app itself and the links for everything
 // the components are at the bottom and they are simply the pages and its contents
 function App() {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = async () => {
-    const axiosResult = await axios.get("/storagetimeitems");
-    let data = await axiosResult.data;
-    setItems(data);
-  };
-
   return (
     <div className="App">
       <Router>
@@ -57,19 +42,19 @@ function App() {
           />
           <Route
             path="/Storage-Time-Search/ListFruits"
-            render = {() => <StorageTimeSearchListFruits data={items}/>}
+            component={StorageTimeSearchListFruits}
           />
           <Route
             path="/Storage-Time-Search/ListMeats"
-            render = {() => <StorageTimeSearchListMeats data={items}/>}
+            component={StorageTimeSearchListMeats}
           />
           <Route
             path="/Storage-Time-Search/ListDairy"
-            render = {() => <StorageTimeSearchListDairy data={items}/>}
+            component={StorageTimeSearchListDairy}
           />
           <Route
             path="/Storage-Time-Search/ListGrain"
-            render = {() => <StorageTimeSearchListGrain data={items}/>}
+            component={StorageTimeSearchListGrain}
           />
           <Route
             path="/Login"
