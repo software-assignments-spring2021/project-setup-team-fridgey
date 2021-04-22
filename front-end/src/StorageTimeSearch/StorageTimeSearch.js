@@ -3,21 +3,26 @@ import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import "./StorageTimeSearch.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import fruits from "./images/fruits.png";
 import meats from "./images/meats.png";
 import dairy from "./images/dairy.png";
 import grain from "./images/grain.png";
+import StorageItem from "./StorageItem";
 
 const StorageTimeSearch = () => {
-  const [items, setItems] = useState(null)
+  const [items, setItems] = useState([])
 
-  const axiosResult = axios.get("/storagetimeitems")
+  useEffect(() => {
+    axiosGet();
+  }, []);
 
-  axiosResult.then(response => {
-    setItems(...[response.data])
-  })
+  const axiosGet = async () => {
+    const axiosResult = await axios.get("/storagetimeitems");
+    let data = await axiosResult.data;
+    setItems(...[data]);
+  };
 
   const [searchTerm, setSearchTerm] = useState("");
   const [focusSearch, setFocusSearch] = useState("");
@@ -40,8 +45,10 @@ const StorageTimeSearch = () => {
         <NavBar />
         <header className="App-header">
           <h1>Storage Time Search</h1>
-  
-          <input type="text" placeholder="Search for food" onChange={ handleChange } onClick={ changeClass } onBlur={ revertClass } id="StorageTime-Searchbar"/>
+          <form autoComplete="off">
+            <input type="text" placeholder="Search for food" onChange={ handleChange } onClick={ changeClass } id="StorageTime-Searchbar"/>
+          </form>
+          <Button onClick={ revertClass }>Back</Button>
             { items.filter((item) => {
                 if (searchTerm === "") {
                   return item
@@ -54,7 +61,7 @@ const StorageTimeSearch = () => {
                 if (searchTerm !== "") {
                   return (
                     <div>
-                      <Button>{item.name}</Button>
+                      <StorageItem key={item.id} item={item}></StorageItem>
                     </div>
                   );
                 } else {

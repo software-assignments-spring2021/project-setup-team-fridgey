@@ -14,13 +14,13 @@ export const StorageItem = ({ item, key }) => {
   const handleSubmit = (e) => {
     let option = e.target.value 
     setRadio(e.target.value);
-    if (option == "Shorter"){
+    if (option === "Shorter"){
       item.defaultTime = item.shortTime
     }
-    if (option == "Average"){
+    if (option === "Average"){
       item.defaultTime = item.averageTime
     }
-    if (option == "Longer"){
+    if (option === "Longer"){
       item.defaultTime = item.longTime
     }
 

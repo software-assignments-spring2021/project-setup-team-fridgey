@@ -24,7 +24,7 @@ export const useStyles = makeStyles((theme) => ({
   }));
 
 export const RecItem = (data) => {
-  const classes = useStyles();
+  // const classes = useStyles();
   return(
     <div className="recommendations-root">
         <Grid container spacing={0} >
@@ -88,22 +88,17 @@ export const GenerateData = (data) => {
     )
   ));
 };
-
-function createKey(name,time)
-{
-  return name + "" + time;
-}
  
 function trimTitle(title)
 {
-  if(title.length > 20)
-    return title.substring(0,18) + '...';
+  if(title.length > 19)
+    return title.substring(0,17) + '...';
   return title;
 }
 
 function headerSelection(page,button)
 {
-  if(page == button)
+  if(page === button)
     return "recommendations-usedButton";
   return "recommendations-unusedButton";
 }
@@ -132,7 +127,7 @@ const Recommendations = (props) => {
     },[]);
 
   function handleRemove(key,setButtonText){
-    const newList = recipeData.filter((item) => item.name != key);
+    const newList = recipeData.filter((item) => item.name !== key);
     setRecipeData(newList);
     setButtonText("Done");
   }

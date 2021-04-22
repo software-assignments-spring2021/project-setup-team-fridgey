@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 const SavedRecipes = (props) => {
-  const defaultRecipeData = require("../data/mock_recipes.json")
+  // const defaultRecipeData = require("../data/mock_recipes.json")
   const [recipeData,setRecipeData] = useState([]);
   useEffect(() => {
     axios.get("Recommendations/SavedRecipes").then(response => {
@@ -16,9 +16,9 @@ const SavedRecipes = (props) => {
 
   function handleRemove(item,setButtonText){
     axios.post("Recommendations/RemoveRecipe", item).then(response => {
+      console.log(response.data);
       setRecipeData(response.data);
     });
-    console.log(recipeData);
   }
 
   const GenerateButton = (title) => {

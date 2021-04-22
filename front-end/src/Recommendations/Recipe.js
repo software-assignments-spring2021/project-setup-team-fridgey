@@ -1,4 +1,4 @@
-import React,{useState,useEffect,useWindowDimensions} from "react";
+import React,{useState, useEffect} from "react";
 import AddIngredientBox from "./AddIngredientBox";
 import BackButton from "./BackButton";
 import "./Recipe.css";
@@ -6,27 +6,63 @@ import "../App.css";
 import WebpageModal from"./WebpageModal"
 import axios from 'axios';
 
-function search(source, title) {
-  let index=0;
-  let entry=null;
+// function search(source, title) {
+//   let index=0;
+//   let entry=null;
 
-  title = title.toUpperCase();
-  for (index = 0; index < source.length; ++index) {
-      entry = source[index];
-      if ( entry.name.toUpperCase()==title) {
-          return entry;
-      }
-  }
-}
+//   title = title.toUpperCase();
+//   for (index = 0; index < source.length; ++index) {
+//       entry = source[index];
+//       if ( entry.name.toUpperCase()==title) {
+//           return entry;
+//       }
+//   }
+// }
+
+
 
 function Recipe(props) {
+
+  const itemsCall = async () => {
+    let a = await axios.get("/fridgeData");
+    let items = a.data;
+    let fruits = items.filter((item) => item.type === 0);
+    let dairy = items.filter((item) => item.type === 1);
+    let grains = items.filter((item) => item.type === 2);
+    let meats = items.filter((item) => item.type === 3);
+    let data = [
+      ["Fruits", fruits],
+      ["Dairy", dairy],
+      ["Grain", grains],
+      ["Meat", meats],
+    ];
+    setFridgeData(data);
+  };
+
+  useEffect(() => {
+    itemsCall();
+  }, []);
+  
+
+  const itemList=[]
+  const [fridgeData, setFridgeData] = useState([]);
+  console.log(fridgeData)
+  for (let i=0;i<fridgeData.length;i++){
+    for (let j=0;j<fridgeData[i][1].length;j++){
+      itemList.push(fridgeData[i][1][j].title)
+    }
+  }
+  //console.log(itemList);
+
+  // data for MyFridge
+  
   
   // const recipes = require("../data/mock_recipes.json");
   // const dish = search(recipes, props.location.state.name); //Big Night Pizza as demo, replaced by props.name later
    
   const recipe=props.location.state.name;
   const ingredientList = recipe.ingredients.map((ingredient) => <AddIngredientBox
-    name={ingredient.name}
+    name={ingredient.name} list={itemList}
   > </AddIngredientBox>);
 
 
@@ -81,7 +117,7 @@ function Recipe(props) {
       <br></br>
       <p id="dishname">{recipe.name}</p>
       <button class="recipeSite" >
-        <img className = "recipe-img" src={recipe.imageURL} onClick={() => setShow(true)}></img>
+        <img alt="" className = "recipe-img" src={recipe.imageURL} onClick={() => setShow(true)}></img>
       </button>
       <WebpageModal orginalURL={recipe.originalURL} onClose={() => setShow(false)} show={show} />
       {ingredientList}

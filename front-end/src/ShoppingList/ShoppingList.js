@@ -15,7 +15,7 @@ import axios from "axios";
 const ShoppingListView = (props) => {
   const itemsCall = async () => {
     let b = await axios.get("/shopData");
-    let items = b.data
+    let items = b.data;
     let fruits = items.filter((item) => item.type === 0);
     let dairy = items.filter((item) => item.type === 1);
     let grains = items.filter((item) => item.type === 2);
@@ -39,14 +39,16 @@ const ShoppingListView = (props) => {
   const [showAddtoFridge, setShowAddtoFridge] = useState(false);
   const [showFridgeModal, setShowFridgeModal] = useState(false);
   const [showAddFridgeItemModal, setShowAddFridgeItemModal] = useState(false);
+  const [inputError, setInputError] = useState(0);
 
   // Deleting from Shopping List
-  const onDelete = (event) => {
+  const onDelete = async (event) => {
     event.preventDefault();
-    axios.delete(`/shopData/${shoppingItemId}`).then((res) => {
-      setShowDelete(false);
-      setShopData(res.data);
-    });
+
+    // sends this to ShoppingList-Routes
+    await axios.delete(`/shopData/${shoppingItemId}`);
+    setShowDelete(false);
+    await itemsCall();
   };
 
   // Adding Items to Fridge and Deleting from Shopping List
@@ -58,35 +60,49 @@ const ShoppingListView = (props) => {
     //   setItems(...[response.data])
     // })
     // let AddData = compileAddToFridgeItems(items);
-    let AddData = compileAddToFridgeItems();
+
+    let AddData = compileAddToFridgeItems(); // array of objects
     await axios.post("/shopData/addToFridge", AddData);
-    await axios.delete("/shopData", { data: AddData }).then((res) => {
-      setShopData(res.data);
-    });
+    await axios.delete("/shopData", { data: AddData });
+    itemsCall();
+
     let checkboxes = document.querySelectorAll(`input[name="itemCheckbox"]`);
     checkboxes.forEach((checkbox) => {
       checkbox.checked = false; // uncheck all checkboxes
     });
+
     setShowFridgeModal(false);
     setShowAddtoFridge(false);
   };
 
   // Adding items to the shopping list
-  const onAddToShoppingList = async (name, amount, typeFood) => {
-    var itemId = shopData[typeFood][1].length;
-
-    const obj = {
-      id: itemId + 1,
-      title: name,
-      amount: amount,
-      type: typeFood,
-      dateadded: { $date: { $numberLong: 161448318100 } },
-    };
-
-    await axios.post("/shopData/addToShoppingList", obj).then((res) => {
-      setShowAddFridgeItemModal(false);
-      setShopData(res.data);
-    });
+  const onAddToShoppingList = async (name, amount, typeFood, notesTaken) => {
+    setInputError(0);
+    try {
+      const obj = {
+        title: name,
+        amount: amount,
+        type: typeFood,
+        notes: notesTaken
+      };
+      await axios.post("/shopData/addToShoppingList", obj).then((res) => {
+        setShowAddFridgeItemModal(false);
+        setInputError(0);
+        console.log("HERE: " + inputError);
+        console.log("HERE2: " + inputError);
+        itemsCall();
+      });
+    } catch (error) {
+      let title = error.response.data.errors[0].value;
+      if (title.length > 28) {
+        alert("Title Must Be Less than 28 Characters. Please Try Again");
+        // EERROR MSGS WTIH STATES KINDA WORKS BUT FOR SOME REASON, IT DISABLES THE ADD TO SHOPPING LIST BUTTON*
+        // await setInputError(1);
+      } else if (title.length < 2) {
+        alert("Title Must Be Longer than 2 Characters. Please Try Again");
+        // await setInputError(2);
+      }
+    }
   };
 
   // Displaying Add to Fridge Button if a Checkbox is Marked
@@ -118,10 +134,9 @@ const ShoppingListView = (props) => {
     onCheck(); // So Add to Fridge button also appears
   }
 
-  const renderItem = (data) => {
+  const renderItem = (data, j) => {
     // Handling Delete Click
     const deleteClick = (event) => {
-      console.log(event);
       const title = event.currentTarget.getAttribute("title");
       const id = event.currentTarget.getAttribute("id");
       setShoppingItemName(title);
@@ -131,7 +146,7 @@ const ShoppingListView = (props) => {
 
     // Return Each Food Item
     return (
-      <tbody>
+      <tbody key={j}>
         <tr>
           <td>
             <span className="Shop-Checkbox">
@@ -139,11 +154,11 @@ const ShoppingListView = (props) => {
                 type="checkbox"
                 name="itemCheckbox"
                 // all values of each food
-                food={data.type}
+                id={data._id}
                 value={data.title}
-                id={data.id}
+                food={data.type}
                 amount={data.amount}
-                date={data.dateadded}
+                notes={data.notes}
                 onClick={() => onCheck()}
               />
             </span>
@@ -153,7 +168,7 @@ const ShoppingListView = (props) => {
           <td>
             <button
               title={data.title}
-              id={data.id}
+              id={data._id}
               type={data.type}
               onClick={deleteClick}
             >
@@ -238,10 +253,15 @@ const ShoppingListView = (props) => {
         onAddToFridge={onAddToFridge}
       />
       <AddNewFridgeItemModal
-        parentCallback={onAddToShoppingList}
-        onClose={() => setShowAddFridgeItemModal(false)}
+        onClose={() => {
+          setInputError(0);
+          console.log("HERE: " + inputError);
+          // console.log("HERE2: " + inputError1);
+          setShowAddFridgeItemModal(false);
+        }}
         show={showAddFridgeItemModal}
         onAddToShoppingList={onAddToShoppingList}
+        error={inputError}
       />
     </div>
   );

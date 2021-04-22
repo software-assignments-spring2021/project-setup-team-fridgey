@@ -1,19 +1,14 @@
 const { Router } = require("express");
-const fridgeDataJSON = require("../front-end/src/data/fridgeMockData.json");
-const shopDataJSON = require("../front-end/src/data/shoppingListMockData.json");
-const fridgeData = Object.entries(fridgeDataJSON[0]);
-const shopData = Object.entries(shopDataJSON[0]);
 const FridgeItem = require("./database/fridgeItem");
 const ShopItem = require("./database/shopItem");
+const { body, validationResult } = require("express-validator");
 const router = new Router();
 
 // Get Shopping List Data
 router.get("/", (req, res) => {
   ShopItem.find().then((result) => {
-    console.log(result)
-    res.json(result)
-  })
-  // res.status(200).json(shopData);
+    res.json(result);
+  });
 });
 
 // Add Items to Fridge from Shopping List
@@ -22,74 +17,82 @@ router.post("/addToFridge", (req, res) => {
   let array = [];
   for (let i = 0; i < AddData.length; i++) {
     const fridgeItem = {
-      id: AddData[i].id,
       title: AddData[i].title,
       amount: AddData[i].amount,
       daysleft: AddData[i].daysleft,
       type: AddData[i].type,
       dateadded: AddData[i].dateadded,
-      notes: "",
+      notes: AddData[i].notes,
     };
+    console.log(fridgeItem)
     array.push(fridgeItem);
   }
   FridgeItem.create(array).catch((err) => {
     return console.log(err);
   });
-
   res.status(200).json({ ok: true });
 });
 
 // Delete Multiple Items from Shopping List After Adding to Fridge
 router.delete("/", (req, res) => {
-  let AddData = req.body;
-  let deleted = false;
+  let AddData = req.body; // array of objects
   for (let i = 0; i < AddData.length; i++) {
-    const id = AddData[i].id; // Specific Item's Id
-    const type = AddData[i].type; // Specific Item's Food Type
-    var removeIndex = shopData[type][1]
-      .map(function (item) {
-        return item.id.toString(); // Since id param is a string
-      })
-      .indexOf(id);
-    if (removeIndex !== -1) {
-      shopData[type][1].splice(removeIndex, 1);
-      deleted = true;
-    }
+    var id = AddData[i].id; // Specific Item's Id
+    ShopItem.findByIdAndDelete(id, function (err, docs) {
+      if (err) console.log(err);
+      else {
+        console.log("Deleted : ", docs);
+        if (docs != null) {
+          res.send(docs);
+        }
+      }
+    });
   }
-  if (deleted) {
-    return res.status(200).json(shopData);
-  } else {
-    return res.status(200).json({ message: "Does not Exist" });
-  }
+  res.status(200);
 });
 
 // Delete a Specific Shopping Item
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
-  let deleted = false;
-  for (let i = 0; i < shopData.length; i++) {
-    var removeIndex = shopData[i][1]
-      .map(function (item) {
-        return item.id.toString(); // Since id param is a string
-      })
-      .indexOf(id);
-    if (removeIndex !== -1) {
-      shopData[i][1].splice(removeIndex, 1);
-      deleted = true;
+
+  ShopItem.findByIdAndDelete(id, function (err, docs) {
+    if (err) console.log(err);
+    else {
+      console.log("Deleted : ", docs);
+      if (docs != null) {
+        res.send(docs);
+      }
     }
-  }
-  if (deleted) {
-    res.status(200).json(shopData);
-  } else {
-    res.status(200).json({ message: "Does not Exist" });
-  }
+  });
+  res.status(200);
 });
 
 // Add Items to Shopping List within Shopping List
-router.post("/addToShoppingList", (req, res) => {
-  let addItem = req.body;
-  shopData[addItem.type][1].push(addItem);
-  res.status(200).json(shopData);
-});
+router.post(
+  "/addToShoppingList",
+  body("title").isLength({ min: 2, max: 28 }),
+  body("amount").isLength({ min: 2 }),
+  body("type").isFloat({ min: 0, max: 3 }),
+  (req, res) => {
+    console.log("inside add item");
+    // Finds the validation errors in this request and wraps them in an object with handy functions
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      // console.log(errors.array());
+      return res.status(302).json({ errors: errors.array() });
+    }
+    let addItem = req.body;
+    const shopItem = new ShopItem(addItem);
+    shopItem
+      .save()
+      .then((result) => {
+        res.send(result);
+        res.status(200);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+);
 
 module.exports = router;
