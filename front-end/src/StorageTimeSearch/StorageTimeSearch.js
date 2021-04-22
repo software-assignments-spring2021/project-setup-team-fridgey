@@ -45,8 +45,10 @@ const StorageTimeSearch = () => {
         <NavBar />
         <header className="App-header">
           <h1>Storage Time Search</h1>
-          <input type="text" placeholder="Search for food" onChange={ handleChange } onClick={ changeClass } autoComplete="new-password" id="StorageTime-Searchbar"/>
-          <Button onClick={ revertClass } >Back</Button>
+          <form autoComplete="off">
+            <input type="text" placeholder="Search for food" onChange={ handleChange } onClick={ changeClass } id="StorageTime-Searchbar"/>
+          </form>
+          <Button onClick={ revertClass }>Back</Button>
             { items.filter((item) => {
                 if (searchTerm === "") {
                   return item
