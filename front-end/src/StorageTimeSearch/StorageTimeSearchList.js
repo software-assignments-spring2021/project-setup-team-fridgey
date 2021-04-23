@@ -23,8 +23,8 @@ const StorageTimeSearchList = (props) => {
 
   return (
     <div>
-      <Button className="storage-back-button">
-        <Link to="/Storage-Time-Search">Back</Link>
+      <Button variant="outlined" size="small" className="storage-back-button">
+        <Link to="/Storage-Time-Search" className="button-text">Back</Link>
       </Button>
       <h1 className="food-group">{props.title}</h1>
     </div>

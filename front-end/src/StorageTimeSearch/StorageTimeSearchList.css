@@ -1,11 +1,18 @@
 .storage-back-button {
-  position: relative;
-  top: 0.5rem;
-  left: auto;
-  font-size: 10px;
-  margin: 20px;
-  margin-left: -26rem;
-  font-family: "Poppins", BlinkMacSystemFont, "Segoe UI", "Roboto";
+  top: 1.5rem;
+  left: -12rem;
+}
+
+.button-text {
+  text-decoration: none;
+}
+
+.button-text:active {
+  color: black;
+}
+
+.button-text:visited {
+  color: black;
 }
 
 .food-group {
