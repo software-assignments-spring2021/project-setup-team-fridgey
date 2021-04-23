@@ -1,10 +1,18 @@
 .storage-back-button {
   top: 1.5rem;
   left: -12rem;
+  padding-bottom: 2rem;
+}
+
+.button-outline {
+  padding-bottom: 3rem;
+  padding-right: 1.5rem;
 }
 
 .button-text {
   text-decoration: none;
+  font-family: "Poppins", BlinkMacSystemFont, "Segoe UI", "Roboto";
+  font-weight: 300;
 }
 
 .button-text:active {
