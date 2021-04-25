@@ -76,14 +76,21 @@ const ShoppingListView = (props) => {
   };
 
   // Adding items to the shopping list
-  const onAddToShoppingList = async (name, amount, typeFood, notesTaken) => {
+  const onAddToShoppingList = async (
+    userId,
+    name,
+    amount,
+    typeFood,
+    notesTaken
+  ) => {
     setInputError(0);
     try {
       const obj = {
+        userId: userId, // HARDCODING AS "12345" FOR NOW BUT WILL CHANGE
         title: name,
         amount: amount,
         type: typeFood,
-        notes: notesTaken
+        notes: notesTaken,
       };
       await axios.post("/shopData/addToShoppingList", obj).then((res) => {
         setShowAddFridgeItemModal(false);
