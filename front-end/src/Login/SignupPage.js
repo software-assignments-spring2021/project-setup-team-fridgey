@@ -2,8 +2,9 @@ import React from "react";
 import NavBar from "../NavBar";
 import "./login.css";
 import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
-class LoginPage extends React.Component {
+class SignupPage extends React.Component {
   state = {
     email: "",
     pwd: "",
@@ -22,6 +23,15 @@ class LoginPage extends React.Component {
       <div>
         <NavBar />
         <header className="App-header">
+          <Button
+            variant="outlined"
+            size="small"
+            className="storage-back-button"
+          >
+            <Link to="/Login" className="button-text">
+              Back to Login
+            </Link>
+          </Button>
           <h1 className="login-title">Fridgey</h1>
           <form onSubmit={this.handleSubmit}>
             <div className="login-form">
@@ -51,25 +61,15 @@ class LoginPage extends React.Component {
               </div>
               <div className="user-submitbox">
                 <button onSubmit={this.handleSubmit} className="login-submit">
-                  Log In
+                  Sign Up
                 </button>
               </div>
             </div>
           </form>
-          <text className="signup-subtitle">
-            Don't have an account yet? Sign up!
-          </text>
-          <div className="user-signupsubmitbox">
-            <button className="login-submit">
-              <Link to="/Signup" className="button-text">
-                Sign Up
-              </Link>
-            </button>
-          </div>
         </header>
       </div>
     );
   }
 }
 
-export default LoginPage;
+export default SignupPage;
