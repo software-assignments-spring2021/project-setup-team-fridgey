@@ -24,15 +24,16 @@ export const StorageItem = ({ item, key }) => {
       item.defaultTime = item.longTime
     }
 
-  //   const editStorageItem = (defaultTime) => {
-  //     const obj = {
-  //       defaultTime: defaultTime,
-  //     };
-  //   }
+    // const editStorageItem = (defaultTime) => {
+    //   const obj = {
+    //     defaultTime: defaultTime,
+    //   };
+    // }
 
-  //   axios.post("/storagetimeitems/editStorageItem", obj).then((res) => {
-  //     console.log(item.defaultTime);
-  //   })
+    axios.post("/storagetimeitems/editStorageItem", {id: item.id, defaultTime: item.defaultTime}).then((res) => {
+      console.log(res.body);
+    })
+
   }
   return (
     <div>

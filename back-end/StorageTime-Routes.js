@@ -8,20 +8,21 @@ router.get("/", (req, res) => {
   });
 });
 
-// router.post("/editStorageItem", (req, res) =>{
-//   let editStorageItem = req.body;
+router.post("/editStorageItem", (req, res) =>{
+  let editStorageItem = req.body;
 
-//   StorageItem.findByIdAndUpdate(editStorageItem.id,
-//     {defaultTime: editStorageItem.defaultTime},
-//     function(err, docs){
-//       if(err){
-//         console.log(err)
-//       } else{
-//         console.log("Updated defaultTime : ", docs);
-//       }
-//     }
-//   )
-//   res.status(200);
-// });
+  StorageItem.findByIdAndUpdate(editStorageItem.id,
+    {defaultTime: editStorageItem.defaultTime}, { new: true },
+    function(err, docs){
+      if (err){
+        console.log(err)
+      } else{
+        console.log("Updated defaultTime : ", docs);
+        res.send(docs);
+      }
+    }
+  )
+  res.status(200);
+});
 
 module.exports = router;
