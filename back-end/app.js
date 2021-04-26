@@ -14,11 +14,13 @@ const MyFridgeRoutes = require("./MyFridge-Routes");
 const ShoppingListRoutes = require("./ShoppingList-Routes");
 const RecommendationsRoutes = require("./Recommendations-Routes");
 const StorageTimeRoutes = require("./StorageTime-Routes");
+const UserDataRoutes = require("./UserData-Routes");
 
 app.use("/fridgeData", MyFridgeRoutes);
 app.use("/shopData", ShoppingListRoutes);
 app.use("/Recommendations", RecommendationsRoutes);
 app.use("/storagetimeitems", StorageTimeRoutes);
+app.use("/userdata", UserDataRoutes);
 
 
   
