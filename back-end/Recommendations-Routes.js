@@ -3,7 +3,8 @@ const recsRoute = require("../front-end/src/data/mock_recipes.json");
 const apiRoute = require("../front-end/src/data/spoonacular_recipes.json");
 const RecipeItem = require('./database/recipeItem');
 const SavedRecipe = require('./database/savedRecipe');
-var savedRecipes = [];
+const axios = require("axios");
+var pantryItems = ["Water" ,"Ice" ,"Flour" ,"Sugar","Cane Sugar" ,"Cooking Fat" ,"Cooking Oil" ,"Vegetable Oil" ,"Black Pepper" ,"Salt"];
 
 const router = new Router();
 
@@ -21,7 +22,7 @@ router.get("/RecipesOfTheDay", (req, res) => {
 
 router.get("/SavedRecipes", async (req, res) => {
   try {
-    retrieveSavedRecipes("607e927189dc61405c4f6e5a").then((result) => {
+    retrieveSavedRecipes("12345").then((result) => {
       res.json(result);
     })
     res.status(200);
@@ -30,7 +31,7 @@ router.get("/SavedRecipes", async (req, res) => {
   }
 });
 
-router.get("/ReadyToMake", (req, res) => {
+router.get("/asdf", (req, res) => {
   try {
     RecipeItem.find()
       .then((result) => {
@@ -48,17 +49,18 @@ router.post('/SaveRecipe', async (req, res) => {
   {
     const emptyList = new SavedRecipe(
       {
+        userId: "12345",
         ids: [],
       }
     )
     emptyList.save();
   }
   try {
-    var currentSavedList = await SavedRecipe.find({_id: "607e927189dc61405c4f6e5a"});
+    var currentSavedList = await SavedRecipe.find({userId: "12345"});
     currentSavedList[0].ids = pushIfNotAlreadyExists(req.body.id,currentSavedList[0].ids);
 
     await SavedRecipe.updateOne(
-      {"_id": "607e927189dc61405c4f6e5a"},
+      {"userId": "12345"},
       { $set: {"ids":currentSavedList[0].ids}}
     );
   } catch (error) {
@@ -66,10 +68,10 @@ router.post('/SaveRecipe', async (req, res) => {
   }
 });
 
-async function retrieveSavedRecipes(_id)
+async function retrieveSavedRecipes(userId)
 {
   var listOfRecipes;
-  await SavedRecipe.find({_id: _id}).then((result) => {
+  await SavedRecipe.find({userId: userId}).then((result) => {
     listOfRecipes = result[0].ids;
   })
   var returnList = [];
@@ -90,20 +92,20 @@ function pushIfNotAlreadyExists(key, currentSavedList)
 
 router.post("/RemoveRecipe", async (req,res) => {
   try {
-    var currentSavedList = await SavedRecipe.find({_id: "607e927189dc61405c4f6e5a"});
+    var currentSavedList = await SavedRecipe.find({userId: "12345"});
     currentSavedList[0].ids = currentSavedList[0].ids.filter((id) => id != req.body.id);
-    console.log("removing " + req.body._id);
+    console.log("removing " + req.body.userId);
     console.log(currentSavedList[0].ids);
 
     await SavedRecipe.updateOne(
-      {"_id": "607e927189dc61405c4f6e5a"},
+      {"userId": "12345"},
       { $set: {"ids":currentSavedList[0].ids}}
     );
   } catch (error) {
       res.status(404);
   }
   try {
-    retrieveSavedRecipes("607e927189dc61405c4f6e5a").then((result) => {
+    retrieveSavedRecipes("12345").then((result) => {
       res.json(result);
     })
     res.status(200);
@@ -168,3 +170,151 @@ function parseIngredients(recipe)
 }
 
 module.exports = router;
+
+router.get("/randomRecipes", async(req,res) => {
+  var recipes;
+  for(var e = 0;e<50;e++)
+  {
+    await axios.get("https://api.spoonacular.com/recipes/random?apiKey=58c8346e31744103b11be438798e44b0&number=100")
+      .then((response) => {
+        recipes = response.data.recipes;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    for(var i = 0;i<recipes.length;i++)
+    {
+      await parseRecipe(recipes[i]);
+    }
+  }
+  res.send("success");
+})
+
+router.post("/loopRecipes", async (req,res) => {
+  axios.get("/Recommendations/randomRecipes").then((result)=>{
+    console.log(result);
+  }).catch((error) => {
+    console.log("there is an error");
+  });
+  res.send("success");
+})
+
+router.get("/ReadyToMake", async (req,res) => {
+  var listOfRecipes;
+  await searchRecipesByIngredients().then((result) => 
+  {
+    listOfRecipes = result;
+  });
+  console.log(listOfRecipes)
+  try {
+    retrieveRecipes(listOfRecipes).then((result) => {
+      console.log(result)
+      res.json(result);
+    })
+    res.status(200);
+  } catch (error) {
+      res.status(404);
+  }
+})
+
+async function retrieveRecipes(listOfRecipes)
+{
+  var returnList = [];
+  for(var i = 0;i<listOfRecipes.length;i++)
+  {
+    await RecipeItem.find({id: listOfRecipes[i]}).then((result) => {
+      returnList.push(result[0]);
+    })
+  }
+  return returnList;
+}
+
+router.get("/test", async (req,res) => {
+  console.log(removePantryItems(["WATER","tilapia fillets","tomatoes","Rice","beans","chili powder","onion"]));
+})
+
+async function searchRecipesByIngredients()
+{
+  existingIngredients = ["Ground Beef","tilapia fillets","tomatoes","Rice","beans","chili powder","onion"];
+  existingIngredients = existingIngredients.map(function(x){ return x.toUpperCase(); });
+  existingIngredients = removePantryItems(existingIngredients);
+  var recipes;
+  var ReadyToMakeRecipes = [];
+  await RecipeItem.find()
+      .then((result) => {
+        recipes = result;
+      })
+      .catch((error) => {
+        console.log("theres an error");
+      })
+  
+  for(var i = 0;i<recipes.length;i++){
+    var totalIngredients = 0;
+    var usedIngredients = 0;
+    for(var j = 0;j<recipes[i].ingredients.length;j++)
+    {
+      try{
+        if(isPantryItem(recipes[i].ingredients[j].ingredientName.toUpperCase()))
+          continue;
+        totalIngredients++;
+        if(checkIngredients(existingIngredients,recipes[i].ingredients[j].ingredientName.toUpperCase()))
+        {
+          usedIngredients++;
+        }
+      }catch(error)
+      {
+        continue;
+      }
+    }
+    if(usedIngredients/totalIngredients > 0.4)
+    {
+      console.log("for recipe " + recipes[i].name + " we have " + usedIngredients + "/" + totalIngredients);
+      ReadyToMakeRecipes.push(recipes[i].id);
+    }
+  }
+  return ReadyToMakeRecipes;
+}
+
+pantryItems = pantryItems.map(function(x){ return x.toUpperCase(); })
+function isPantryItem(key)
+{
+  var returnValue = false;
+  pantryItems.forEach(function(pantryItem)
+  {
+    
+    if(pantryItem.includes(key))
+    {
+      returnValue = true;
+    }
+    else if(key.includes(pantryItem))
+    {
+      returnValue = true;
+    }
+  });
+  return returnValue;
+}
+function removePantryItems(existingIngredients)
+{
+  existingIngredients.forEach(function(ingredient){
+    if(isPantryItem(ingredient))
+      existingIngredients = existingIngredients.filter((id) => id != ingredient);
+  })
+  return existingIngredients;
+}
+function checkIngredients(existingIngredients, key)
+{
+  var returnValue = false;
+  existingIngredients.forEach(function(ingredient)
+  {
+    
+    if(ingredient.includes(key))
+    {
+      returnValue = true;
+    }
+    else if(key.includes(ingredient))
+    {
+      returnValue = true;
+    }
+  });
+  return returnValue;
+}
