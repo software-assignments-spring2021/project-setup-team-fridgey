@@ -1,4 +1,6 @@
 // import and instantiate express
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 const fs = require("fs");
 const express = require("express"); // CommonJS import style!
 const axios = require("axios");
@@ -20,7 +22,5 @@ app.use("/shopData", ShoppingListRoutes);
 app.use("/Recommendations", RecommendationsRoutes);
 app.use("/storagetimeitems", StorageTimeRoutes);
 
-
-  
 // export the express app we created to make it available to other modules
 module.exports = app;

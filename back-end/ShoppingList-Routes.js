@@ -7,7 +7,7 @@ const router = new Router();
 // Get Shopping List Data
 router.get("/", (req, res) => {
   ShopItem.find().then((result) => {
-    res.json(result);
+    res.status(200).json(result);
   });
 });
 
@@ -24,7 +24,7 @@ router.post("/addToFridge", (req, res) => {
       dateadded: AddData[i].dateadded,
       notes: AddData[i].notes,
     };
-    console.log(fridgeItem)
+    console.log(fridgeItem);
     array.push(fridgeItem);
   }
   FridgeItem.create(array).catch((err) => {
