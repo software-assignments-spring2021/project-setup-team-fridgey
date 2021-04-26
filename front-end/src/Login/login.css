@@ -58,3 +58,8 @@ h1.login-title {
 .login-text{
     text-align: left;
 }
+
+.signup-subtitle {
+    font-size: small;
+    padding-top: 2rem;
+}
