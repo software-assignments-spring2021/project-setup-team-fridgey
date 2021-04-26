@@ -3,6 +3,8 @@ node_js:
   - node
   - "12"
 sudo: required
+before_install:
+  - cd front-end
 env:
   globalç:
     - secure: hKNmpJaBvBkjvjB/Efo6wy6kihVc3ovCsI3a5W1a6JNFm4epZHg2LAr8lNeofsvNe1JBX2MoA9SF486SyhvfiT/YvworZXXwADdqx+dirJZyGDo3THSSUaz6vStCZlcBLXVZrBhcA4KZa8CTiLA9amLC2smYTQjLEf3IL0oz2nla78ZccIHyGv4rH66PmC1IYt+/MLndWFDYq1AhcGS+hipK17yimIGyT8zdgvucRfKnrxuBlMv3vvFah0ioHTqttlrV4pY4OGSvAfTWc00Mg8ph8VTlbC3kMyf9+EXOcRBv8xOIjz5zYHj1x3mQwqPnpMzhsldtpHKJ73ooK5aNU/4uBe5GfVwMgPx3mBLZC01VAHS7aOww+VOFnOT4PaA7GXr2n+H3IIKNuhalT4zLZU1Zdybp+J1KPFCTUNAZXQZ/4LFKW9CXXcLZP6mXhTr0u3UsI0Ho56yGffChuBM05FgIXqwyAlQRyiUNhp9r7VOADrfmM18zDN1k+pblF8M7tbMNNXfuibVgr/RBBF3Pc8g3OQjyL6UxR97ESiQdZreF/1b+V/1t9oXvmrGvm5ERUybj7o0QZJ6cs5lJ3scohXAaG3ssGlBcLb9b7mXu/siOBxNtn697ofp7CGhBYIHiFZ8YvKL+1wBAc10sKeK6Ju6bNZ/j1p+noI1oDBgm92U=
