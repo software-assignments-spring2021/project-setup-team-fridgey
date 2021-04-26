@@ -3,7 +3,7 @@ node_js:
   - node
   - "12"
 sudo: required
-# script: "true"
+script: "true"
 before_install:
   - cd front-end
 env:
