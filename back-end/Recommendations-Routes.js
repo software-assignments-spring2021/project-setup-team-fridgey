@@ -3,6 +3,7 @@ const recsRoute = require("../front-end/src/data/mock_recipes.json");
 const apiRoute = require("../front-end/src/data/spoonacular_recipes.json");
 const RecipeItem = require('./database/recipeItem');
 const SavedRecipe = require('./database/savedRecipe');
+const FridgeItem = require("./database/fridgeItem");
 const axios = require("axios");
 var pantryItems = ["Water" ,"Ice" ,"Flour" ,"Sugar","Cane Sugar" ,"Cooking Fat" ,"Cooking Oil" ,"Vegetable Oil" ,"Black Pepper" ,"Salt"];
 
@@ -22,17 +23,6 @@ router.get("/RecipesOfTheDay", (req, res) => {
 router.get("/SavedRecipes", async (req, res) => {
   try {
     retrieveSavedRecipes("12345").then((result) => {
-      res.json(result);
-    });
-    res.status(200);
-  } catch (error) {
-    res.status(404);
-  }
-});
-
-router.get("/asdf", (req, res) => {
-  try {
-    RecipeItem.find().then((result) => {
       res.json(result);
     });
     res.status(200);
@@ -221,12 +211,21 @@ async function retrieveRecipes(listOfRecipes)
 }
 
 router.get("/test", async (req,res) => {
-  console.log(removePantryItems(["WATER","tilapia fillets","tomatoes","Rice","beans","chili powder","onion"]));
+  console.log(await retrieveIngredients());
 })
+
+async function retrieveIngredients(){
+  let existingIngredients = await FridgeItem.find({userId: "12345"});
+  var ingredientsList = [];
+  for(var i = 0;i<existingIngredients.length;i++){
+    pushIfNotAlreadyExists(existingIngredients[i].title,ingredientsList);
+  }
+  return ingredientsList;
+}
 
 async function searchRecipesByIngredients()
 {
-  existingIngredients = ["Ground Beef","tilapia fillets","tomatoes","Rice","beans","chili powder","onion"];
+  existingIngredients = await retrieveIngredients();
   existingIngredients = existingIngredients.map(function(x){ return x.toUpperCase(); });
   existingIngredients = removePantryItems(existingIngredients);
   var recipes;
