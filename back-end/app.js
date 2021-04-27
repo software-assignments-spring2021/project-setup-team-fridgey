@@ -1,6 +1,4 @@
 // import and instantiate express
-import "core-js/stable";
-import "regenerator-runtime/runtime";
 const fs = require("fs");
 const express = require("express"); // CommonJS import style!
 const axios = require("axios");
