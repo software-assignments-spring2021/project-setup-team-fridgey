@@ -10,13 +10,12 @@ const router = new Router();
 
 router.get("/RecipesOfTheDay", (req, res) => {
   try {
-    RecipeItem.find()
-      .then((result) => {
-        res.json(result);
-      })
+    RecipeItem.find().then((result) => {
+      res.json(result);
+    });
     res.status(200);
   } catch (error) {
-      res.status(404);
+    res.status(404);
   }
 });
 
@@ -24,26 +23,25 @@ router.get("/SavedRecipes", async (req, res) => {
   try {
     retrieveSavedRecipes("12345").then((result) => {
       res.json(result);
-    })
+    });
     res.status(200);
   } catch (error) {
-      res.status(404);
+    res.status(404);
   }
 });
 
 router.get("/asdf", (req, res) => {
   try {
-    RecipeItem.find()
-      .then((result) => {
-        res.json(result);
-      })
+    RecipeItem.find().then((result) => {
+      res.json(result);
+    });
     res.status(200);
   } catch (error) {
-      res.status(404);
+    res.status(404);
   }
 });
 
-router.post('/SaveRecipe', async (req, res) => { 
+router.post("/SaveRecipe", async (req, res) => {
   var currentRecipeCount = await SavedRecipe.count();
   if(currentRecipeCount == 0) //initialize a list if empty
   {
@@ -64,7 +62,7 @@ router.post('/SaveRecipe', async (req, res) => {
       { $set: {"ids":currentSavedList[0].ids}}
     );
   } catch (error) {
-      res.status(404);
+    res.status(404);
   }
 });
 
@@ -73,24 +71,21 @@ async function retrieveSavedRecipes(userId)
   var listOfRecipes;
   await SavedRecipe.find({userId: userId}).then((result) => {
     listOfRecipes = result[0].ids;
-  })
+  });
   var returnList = [];
-  for(var i = 0;i<listOfRecipes.length;i++)
-  {
-    await RecipeItem.find({id: listOfRecipes[i]}).then((result) => {
+  for (var i = 0; i < listOfRecipes.length; i++) {
+    await RecipeItem.find({ id: listOfRecipes[i] }).then((result) => {
       returnList.push(result[0]);
-    })
+    });
   }
   return returnList;
 }
-function pushIfNotAlreadyExists(key, currentSavedList)
-{
-  if(currentSavedList.indexOf(key) == -1)
-    currentSavedList.push(key);
+function pushIfNotAlreadyExists(key, currentSavedList) {
+  if (currentSavedList.indexOf(key) == -1) currentSavedList.push(key);
   return currentSavedList;
 }
 
-router.post("/RemoveRecipe", async (req,res) => {
+router.post("/RemoveRecipe", async (req, res) => {
   try {
     var currentSavedList = await SavedRecipe.find({userId: "12345"});
     currentSavedList[0].ids = currentSavedList[0].ids.filter((id) => id != req.body.id);
@@ -102,47 +97,44 @@ router.post("/RemoveRecipe", async (req,res) => {
       { $set: {"ids":currentSavedList[0].ids}}
     );
   } catch (error) {
-      res.status(404);
+    res.status(404);
   }
   try {
     retrieveSavedRecipes("12345").then((result) => {
       res.json(result);
-    })
+    });
     res.status(200);
   } catch (error) {
-      res.status(404);
+    res.status(404);
   }
 });
 
-router.get("/add-item", (req,res) => {
-  for(var i = 0;i<recsRoute.length;i++)
-  {
+router.get("/add-item", (req, res) => {
+  for (var i = 0; i < recsRoute.length; i++) {
     recipeItem = new RecipeItem(recsRoute[i]);
-    recipeItem.save()
-    .then((result) => {
-      res.send(result)
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    recipeItem
+      .save()
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 });
 
-router.get("/add-recipes", async (req,res) => {
-  for(var i = 0;i<apiRoute.length;i++)
-  {
+router.get("/add-recipes", async (req, res) => {
+  for (var i = 0; i < apiRoute.length; i++) {
     await parseRecipe(apiRoute[i]);
   }
-})
+});
 
-async function parseRecipe(recipe)
-{
-  if(await RecipeItem.count({id: recipe.id}) != 0)
-  {
+async function parseRecipe(recipe) {
+  if ((await RecipeItem.count({ id: recipe.id })) != 0) {
     console.log("already in database");
     return;
   }
-  try{
+  try {
     const parsedRecipe = new RecipeItem({
       id: recipe.id,
       name: recipe.title,
@@ -152,18 +144,17 @@ async function parseRecipe(recipe)
       originalURL: recipe.sourceUrl,
     });
     await parsedRecipe.save();
-  }
-  catch(error)
-  {
+  } catch (error) {
     return;
   }
 }
-function parseIngredients(recipe)
-{
+function parseIngredients(recipe) {
   parsedIngredients = [];
-  for(var i = 0;i<recipe.extendedIngredients.length;i++)
-  {
-    var ingredientsObj = {name: recipe.extendedIngredients[i].original, ingredientName: recipe.extendedIngredients[i].nameClean};
+  for (var i = 0; i < recipe.extendedIngredients.length; i++) {
+    var ingredientsObj = {
+      name: recipe.extendedIngredients[i].original,
+      ingredientName: recipe.extendedIngredients[i].nameClean,
+    };
     parsedIngredients.push(ingredientsObj);
   }
   return parsedIngredients;
