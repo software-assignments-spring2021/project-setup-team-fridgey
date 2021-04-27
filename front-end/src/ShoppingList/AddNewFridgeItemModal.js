@@ -80,7 +80,7 @@ const AddNewFridgeItemModal = (props) => {
 
   const grabInformation = (event) => {
     // user ID
-    var userId = "12345";
+    var userId = "12345"; // HARDCODING AS "12345" FOR NOW BUT WILL CHANGE
     // item name
     var itemName = document.getElementById("itemName").value;
     // item amount

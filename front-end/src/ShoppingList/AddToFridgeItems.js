@@ -66,6 +66,7 @@ export function compileAddToFridgeItems() {
 
   // empty model object
   const foodItem = {
+    userId: "",
     title: "",
     amount: "",
     daysleft: 0,
@@ -75,15 +76,16 @@ export function compileAddToFridgeItems() {
   };
 
   let vals = getSelectedCheckboxItems("itemCheckbox");
-
+  // ALL VALUES FROM SCHEMA ARE PASS THROUGH HERE
   for (let i = 0; i < vals.length; i++) {
     let add = Object.create(foodItem);
     add.id = vals[i].getAttribute("id");
+    add.userId = vals[i].getAttribute("userId");
     add.title = vals[i].getAttribute("value");
     add.amount = vals[i].getAttribute("amount");
     add.type = vals[i].getAttribute("food");
-    add.notes = vals[i].getAttribute("notes")
-    add.dateadded = "April 12, 2021"
+    add.notes = vals[i].getAttribute("notes");
+    add.dateadded = "April 12, 2021";
 
     try {
       const findItem = storageitems.find((elem) => elem.food === add.title);
