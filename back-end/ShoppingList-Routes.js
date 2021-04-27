@@ -17,6 +17,7 @@ router.post("/addToFridge", (req, res) => {
   let array = [];
   for (let i = 0; i < AddData.length; i++) {
     const fridgeItem = {
+      userId: AddData[i].userId,
       title: AddData[i].title,
       amount: AddData[i].amount,
       daysleft: AddData[i].daysleft,
