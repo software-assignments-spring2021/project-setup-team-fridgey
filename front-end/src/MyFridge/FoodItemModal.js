@@ -108,6 +108,62 @@ const FoodItemModal = (props) => {
         }
     }
 
+    const convertDate = (date) => {
+        var str = date.substring(0, 10).split("-")
+        var month
+        var day = str[2]
+        var year = str[0]
+
+        if(str[1] === "01") {
+            month = "January"
+        } else if(str[1] === "02") {
+            month = "February"
+        } else if(str[1] === "03") {
+            month = "March"
+        } else if(str[1] === "04") {
+            month = "April"
+        } else if(str[1] === "05") {
+            month = "May"
+        } else if(str[1] === "06") {
+            month = "June"
+        } else if(str[1] === "07") {
+            month = "July"
+        } else if(str[1] === "08") {
+            month = "August"
+        } else if(str[1] === "09") {
+            month = "September"
+        } else if(str[1] === "10") {
+            month = "October"
+        } else if(str[1] === "11") {
+            month = "November"
+        } else if(str[1] === "12") {
+            month = "December"
+        }
+
+        var newDate = month + " " + day + ", " + year
+        return newDate
+    }
+
+    const updateDate = (daysleft, date) => {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        
+        // today = mm + '/' + dd + '/' + yyyy;
+        var str = date.substring(0, 10).split("-")
+        var date1 = new Date(mm + '/' + dd + '/' + yyyy)
+        var date2 = new Date(str[1] + '/' + str[2] + '/' + str[0])
+        const diffTime = Math.abs(date2 - date1)
+
+        var diff = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+
+        if(daysleft - diff < 0) {
+            return 0
+        }
+        return daysleft - diff
+    }
+
     return (
         <div 
             className={`FoodItemModal ${props.show ? "show" : ""}`}
@@ -139,7 +195,7 @@ const FoodItemModal = (props) => {
                             
                             <div className="Date-Added">
                                 <h5 className="FoodItemModal-text">Date Added</h5>
-                                <p className="FoodItemModal-text">{props.dateadded}</p>
+                                <p className="FoodItemModal-text">{convertDate(props.dateadded)}</p>
                             </div>
                         </div>
                     </div>   

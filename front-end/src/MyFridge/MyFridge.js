@@ -119,6 +119,27 @@ const MyFridge = (props) => {
       setItemModalNote(note);
     };
 
+    // const updateDate = (daysleft, date) => {
+    //   var today = new Date
+    //   // var today = new Date();
+    //   // var dd = String(today.getDate()).padStart(2, '0');
+    //   // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    //   // var yyyy = today.getFullYear();
+      
+    //   // // today = mm + '/' + dd + '/' + yyyy;
+    //   // var str = date.substring(0, 10).split("-")
+    //   // var date1 = new Date(mm + '/' + dd + '/' + yyyy)
+    //   // var date2 = new Date(str[1] + '/' + str[2] + '/' + str[0])
+    //   // const diffTime = Math.abs(date2 - date1)
+
+    //   // var diff = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+
+    //   // if(daysleft - diff < 0) {
+    //   //     return 0
+    //   // }
+    //   // return daysleft - diff
+    // }
+
     return (
       <tbody key={j}>
         <tr>
@@ -127,7 +148,7 @@ const MyFridge = (props) => {
             id={data._id}
             amount={data.amount}
             daysleft={data.daysleft}
-            dateadded={data.dateadded}
+            dateadded={data.createdAt}
             type={data.type}
             notes={data.notes}
             onClick={itemEvent}
