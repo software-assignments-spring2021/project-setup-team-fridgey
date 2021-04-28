@@ -24,10 +24,8 @@ export const StorageItem = ({ item, key }) => {
       item.defaultTime = item.longTime
     }
 
-    axios.post("/storagetimeitems/editStorageItem", {id: item.id, defaultTime: item.defaultTime}).then((res) => {
-      console.log(res.body);
-    })
-
+    //Call axios to post the updated times to MongoDB
+    axios.post("/storagetimeitems/editStorageItem", {_id: item._id, defaultTime: item.defaultTime}).then((res) => {})
   }
   return (
     <div>

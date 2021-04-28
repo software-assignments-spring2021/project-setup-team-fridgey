@@ -8,30 +8,25 @@ router.get("/", (req, res) => {
   });
 });
 
+//Update the MongoDB defaultTime when a user changes it for an item
 router.post("/editStorageItem", (req, res) =>{
   let editStorageItem = req.body;
-  console.log(editStorageItem);
 
-  try{
-  StorageItem.updateOne(
-    { "id" : editStorageItem.id },
-    { $set: { "defaultTime" : editStorageItem.defaultTime } }
-  );
-  } catch (e) {
-    print(e);
-  }
-  // StorageItem.updateOne(
-  //   editStorageItem.id,
-  //   {defaultTime: editStorageItem.defaultTime}, { new: true },
-  //   function(err, docs){
-  //     if (err){
-  //       console.log(err)
-  //     } else{
-  //       console.log("Updated defaultTime : ", docs);
-  //       res.send(docs);
-  //     }
-  //   }
-  // )
+  StorageItem.findByIdAndUpdate(
+    editStorageItem._id,
+    {
+      defaultTime: editStorageItem.defaultTime,
+    },
+    { new: true },
+    function (err, docs){
+      if (err){
+        console.log(err)
+      } else{
+        console.log("Updated defaultTime : ", docs);
+        res.send(docs);
+      }
+    }
+  )
   res.status(200);
 });
 
