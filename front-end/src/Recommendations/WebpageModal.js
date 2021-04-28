@@ -33,7 +33,7 @@ const WebpageModal = (props) => {
           <button className="back" onClick={props.onClose}>X</button>
         </div>
         <div className="webModal-body">
-          <embed  src="https://www.allrecipes.com/recipe/23600/worlds-best-lasagna/" width="450" height="500"></embed>
+          <embed  src={props.originalURL} width="450" height="500"></embed>
         </div>
         
       </div>

@@ -40,6 +40,7 @@ const ShoppingListView = (props) => {
   const [showFridgeModal, setShowFridgeModal] = useState(false);
   const [showAddFridgeItemModal, setShowAddFridgeItemModal] = useState(false);
   const [inputError, setInputError] = useState(0);
+  const [storageItems, setStorageItems] = useState(null);
 
   // Deleting from Shopping List
   const onDelete = async (event) => {
@@ -51,17 +52,23 @@ const ShoppingListView = (props) => {
     await itemsCall();
   };
 
+  //Retrieving the storage times array from the MongoDB collection
+  useEffect(() => {
+    getStorageData();
+  }, []);
+
+  const getStorageData = async () => {
+    const axiosStorageResult = await axios.get("/storagetimeitems");
+    let storagedata = await axiosStorageResult.data;
+    setStorageItems(storagedata);
+  };
+
   // Adding Items to Fridge and Deleting from Shopping List
   const onAddToFridge = async () => {
-    // THIS CODE IS TEMP -- currently not working because this isnt React, but fix later!
-    // const [items, setItems] = useState(null)
-    // const axiosResult = axios.get("/storagetimeitems")
-    // axiosResult.then(response => {
-    //   setItems(...[response.data])
-    // })
-    // let AddData = compileAddToFridgeItems(items);
+    //passing the storageItems array to get accurate storage times when adding to Shopping List
+    let AddData = compileAddToFridgeItems(storageItems);
 
-    let AddData = compileAddToFridgeItems(); // array of objects
+    // let AddData = compileAddToFridgeItems(); // array of objects
     await axios.post("/shopData/addToFridge", AddData);
     await axios.delete("/shopData", { data: AddData });
     itemsCall();
@@ -76,14 +83,21 @@ const ShoppingListView = (props) => {
   };
 
   // Adding items to the shopping list
-  const onAddToShoppingList = async (name, amount, typeFood, notesTaken) => {
+  const onAddToShoppingList = async (
+    userId,
+    name,
+    amount,
+    typeFood,
+    notesTaken
+  ) => {
     setInputError(0);
     try {
       const obj = {
+        userId: userId, // HARDCODING AS "12345" IN AddNewFridgeItemModal.js FOR NOW BUT WILL CHANGE
         title: name,
         amount: amount,
         type: typeFood,
-        notes: notesTaken
+        notes: notesTaken,
       };
       await axios.post("/shopData/addToShoppingList", obj).then((res) => {
         setShowAddFridgeItemModal(false);
@@ -155,6 +169,7 @@ const ShoppingListView = (props) => {
                 name="itemCheckbox"
                 // all values of each food
                 id={data._id}
+                userId={data.userId}
                 value={data.title}
                 food={data.type}
                 amount={data.amount}

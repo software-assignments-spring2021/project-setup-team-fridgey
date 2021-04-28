@@ -3,12 +3,15 @@ import "./AddNewFridgeItemModal.css";
 
 const AddNewFridgeItemModal = (props) => {
   const reset = () => {
-    
     document.getElementById("itemName").value = "";
-    
+
     document.getElementById("notes").value = "";
-    var amountChips = document.getElementById("NewItemAmount-chips").getElementsByClassName("chip");
-    var typeChips = document.getElementById("NewItemType-chips").getElementsByClassName("chip");
+    var amountChips = document
+      .getElementById("NewItemAmount-chips")
+      .getElementsByClassName("chip");
+    var typeChips = document
+      .getElementById("NewItemType-chips")
+      .getElementsByClassName("chip");
     var i, name;
 
     for (i in amountChips) {
@@ -57,7 +60,9 @@ const AddNewFridgeItemModal = (props) => {
         }
       }
     } else {
-      chips = document.getElementById("NewItemType-chips").getElementsByClassName("chip");
+      chips = document
+        .getElementById("NewItemType-chips")
+        .getElementsByClassName("chip");
 
       for (i in chips) {
         if (chips.hasOwnProperty(i)) {
@@ -74,14 +79,20 @@ const AddNewFridgeItemModal = (props) => {
   };
 
   const grabInformation = (event) => {
+    // user ID
+    var userId = "12345"; // HARDCODING AS "12345" FOR NOW BUT WILL CHANGE
     // item name
     var itemName = document.getElementById("itemName").value;
     // item amount
-    var amount = document.getElementById("NewItemAmount-chips").getElementsByClassName("chip pressed")[0].innerHTML;
+    var amount = document
+      .getElementById("NewItemAmount-chips")
+      .getElementsByClassName("chip pressed")[0].innerHTML;
     // item type
-    var type = document.getElementById("NewItemType-chips").getElementsByClassName("chip pressed")[0].innerHTML;
+    var type = document
+      .getElementById("NewItemType-chips")
+      .getElementsByClassName("chip pressed")[0].innerHTML;
     // item notes
-    var notes = document.getElementById("notes").value
+    var notes = document.getElementById("notes").value;
 
     if (type === "Fruit") {
       type = 0;
@@ -92,8 +103,8 @@ const AddNewFridgeItemModal = (props) => {
     } else if (type === "Meat") {
       type = 3;
     }
-    
-    props.onAddToShoppingList(itemName, amount, type, notes);
+
+    props.onAddToShoppingList(userId, itemName, amount, type, notes);
     reset();
     event.preventDefault();
     return;
@@ -103,118 +114,116 @@ const AddNewFridgeItemModal = (props) => {
     props.onClose();
     reset();
   };
-    
 
-    return (
-      <div className={`AddNewFridgeItemModal ${props.show ? "show" : ""}`}>
-        <div className="AddNewFridgeItemModal-content">
-          <div className="AddNewFridgeItemModal-header">
-            <h4 className="AddNewFridgeItemModal-title">Add New Item</h4>
-            <button onClick={closeModal}>x</button>
-          </div>
+  return (
+    <div className={`AddNewFridgeItemModal ${props.show ? "show" : ""}`}>
+      <div className="AddNewFridgeItemModal-content">
+        <div className="AddNewFridgeItemModal-header">
+          <h4 className="AddNewFridgeItemModal-title">Add New Item</h4>
+          <button onClick={closeModal}>x</button>
+        </div>
 
-          <div className="AddNewFridgeItemModal-body">
-            <div className="NewFridgeItemModal-itemName">
-              <label htmlFor="nt" className="headline">
-                Item
+        <div className="AddNewFridgeItemModal-body">
+          <div className="NewFridgeItemModal-itemName">
+            <label htmlFor="nt" className="headline">
+              Item
+            </label>
+            <textarea
+              className="itemName"
+              id="itemName"
+              placeholder="Enter your grocery here"
+            ></textarea>
+            <div>
+              {/* ERROR MSGS WORK BUT FOR SOME REASON, IT DISABLES THE ADD TO SHOPPING LIST BUTTON*/}
+              <label
+                className={`Error ${props.error === 1 ? "showError" : ""}`}
+              >
+                Name Must Be Less than 28 Characters
               </label>
-              <textarea
-                className="itemName"
-                id="itemName"
-                placeholder="Enter your grocery here"
-              ></textarea>
-              <div>
-                {/* ERROR MSGS WORK BUT FOR SOME REASON, IT DISABLES THE ADD TO SHOPPING LIST BUTTON*/}
-                <label
-                  className={`Error ${props.error === 1 ? "showError" : ""}`}
-                >
-                  Name Must Be Less than 28 Characters
-                </label>
-                <label
-                  className={`Error ${props.error === 2 ? "showError" : ""}`}
-                >
-                  Name Must Be More than 2 Characters
-                </label>
-              </div>
-            </div>
-
-            <div className="NewFridgeItemModal-amount">
-              <h5 className="NewFridgeItemModal-text">How Much?</h5>
-              <div id="NewItemAmount-chips">
-                <button
-                  onClick={() => changeData("amount", "Lots")}
-                  className={`chip chip-Lots pressed`}
-                >
-                  Lots
-                </button>
-
-                <button
-                  onClick={() => changeData("amount", "Some")}
-                  className={`chip chip-Some unpressed`}
-                >
-                  Some
-                </button>
-
-                <button
-                  onClick={() => changeData("amount", "Few")}
-                  className={`chip chip-Few unpressed`}
-                >
-                  Few
-                </button>
-              </div>
-            </div>
-
-            <div className="NewFridgeItemModal-type">
-              <h5 className="NewFridgeItemModal-text">What Type?</h5>
-              <div id="NewItemType-chips">
-                <button
-                  onClick={() => changeData("type", "Fruit")}
-                  className={`chip chip-food pressed`}
-                >
-                  Fruit
-                </button>
-
-                <button
-                  onClick={() => changeData("type", "Meat")}
-                  className={`chip chip-food unpressed`}
-                >
-                  Meat
-                </button>
-
-                <button
-                  onClick={() => changeData("type", "Dairy")}
-                  className={`chip chip-food unpressed`}
-                >
-                  Dairy
-                </button>
-
-                <button
-                  onClick={() => changeData("type", "Grain")}
-                  className={`chip chip-food unpressed`}
-                >
-                  Grain
-                </button>
-              </div>
-            </div>
-            <div className="NewFridgeItemModal-notes">
-              <label htmlFor="nt" className="headline">
-                Notes
+              <label
+                className={`Error ${props.error === 2 ? "showError" : ""}`}
+              >
+                Name Must Be More than 2 Characters
               </label>
-              <textarea
-                id="notes"
-                className="Notes"
-                placeholder="This item is for..."
-              ></textarea>
             </div>
           </div>
 
-          <div className="AddNewFridgeItemModal-footer">
-            <button onClick={grabInformation}>Add to Shopping List</button>
+          <div className="NewFridgeItemModal-amount">
+            <h5 className="NewFridgeItemModal-text">How Much?</h5>
+            <div id="NewItemAmount-chips">
+              <button
+                onClick={() => changeData("amount", "Lots")}
+                className={`chip chip-Lots pressed`}
+              >
+                Lots
+              </button>
+
+              <button
+                onClick={() => changeData("amount", "Some")}
+                className={`chip chip-Some unpressed`}
+              >
+                Some
+              </button>
+
+              <button
+                onClick={() => changeData("amount", "Few")}
+                className={`chip chip-Few unpressed`}
+              >
+                Few
+              </button>
+            </div>
+          </div>
+
+          <div className="NewFridgeItemModal-type">
+            <h5 className="NewFridgeItemModal-text">What Type?</h5>
+            <div id="NewItemType-chips">
+              <button
+                onClick={() => changeData("type", "Fruit")}
+                className={`chip chip-food pressed`}
+              >
+                Fruit
+              </button>
+
+              <button
+                onClick={() => changeData("type", "Meat")}
+                className={`chip chip-food unpressed`}
+              >
+                Meat
+              </button>
+
+              <button
+                onClick={() => changeData("type", "Dairy")}
+                className={`chip chip-food unpressed`}
+              >
+                Dairy
+              </button>
+
+              <button
+                onClick={() => changeData("type", "Grain")}
+                className={`chip chip-food unpressed`}
+              >
+                Grain
+              </button>
+            </div>
+          </div>
+          <div className="NewFridgeItemModal-notes">
+            <label htmlFor="nt" className="headline">
+              Notes
+            </label>
+            <textarea
+              id="notes"
+              className="Notes"
+              placeholder="This item is for..."
+            ></textarea>
           </div>
         </div>
-      </div>
-    );
-  }
 
+        <div className="AddNewFridgeItemModal-footer">
+          <button onClick={grabInformation}>Add to Shopping List</button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default AddNewFridgeItemModal;

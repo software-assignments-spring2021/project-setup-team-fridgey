@@ -17,6 +17,7 @@ import { SavedRecipes } from "./Recommendations/SavedRecipes";
 import Recipe from "./Recommendations/Recipe";
 import { ShoppingList } from "./ShoppingList/ShoppingList";
 import LoginPage from "./Login/LoginPage";
+import SignupPage from "./Login/SignupPage";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
@@ -74,6 +75,10 @@ function App() {
           <Route
             path="/Login"
             component={LoginPage}
+          />
+          <Route
+            path="/Signup"
+            component={SignupPage}
           />
         </Switch>
       </Router>

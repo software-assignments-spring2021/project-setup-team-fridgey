@@ -7,7 +7,7 @@ const router = new Router();
 // Get Shopping List Data
 router.get("/", (req, res) => {
   ShopItem.find().then((result) => {
-    res.json(result);
+    res.status(200).json(result);
   });
 });
 
@@ -17,6 +17,7 @@ router.post("/addToFridge", (req, res) => {
   let array = [];
   for (let i = 0; i < AddData.length; i++) {
     const fridgeItem = {
+      userId: AddData[i].userId,
       title: AddData[i].title,
       amount: AddData[i].amount,
       daysleft: AddData[i].daysleft,
@@ -24,7 +25,7 @@ router.post("/addToFridge", (req, res) => {
       dateadded: AddData[i].dateadded,
       notes: AddData[i].notes,
     };
-    console.log(fridgeItem)
+    console.log(fridgeItem);
     array.push(fridgeItem);
   }
   FridgeItem.create(array).catch((err) => {
@@ -36,19 +37,15 @@ router.post("/addToFridge", (req, res) => {
 // Delete Multiple Items from Shopping List After Adding to Fridge
 router.delete("/", (req, res) => {
   let AddData = req.body; // array of objects
+  let ids = [];
   for (let i = 0; i < AddData.length; i++) {
     var id = AddData[i].id; // Specific Item's Id
-    ShopItem.findByIdAndDelete(id, function (err, docs) {
-      if (err) console.log(err);
-      else {
-        console.log("Deleted : ", docs);
-        if (docs != null) {
-          res.send(docs);
-        }
-      }
-    });
+    ids.push(id);
   }
-  res.status(200);
+  ShopItem.deleteMany({ _id: { $in: ids } }).catch((err) => {
+    return console.log(err);
+  });
+  res.status(200).json({ ok: true });
 });
 
 // Delete a Specific Shopping Item
@@ -56,8 +53,9 @@ router.delete("/:id", (req, res) => {
   const { id } = req.params;
 
   ShopItem.findByIdAndDelete(id, function (err, docs) {
-    if (err) console.log(err);
-    else {
+    if (err) {
+      return console.log(err);
+    } else {
       console.log("Deleted : ", docs);
       if (docs != null) {
         res.send(docs);
@@ -91,6 +89,7 @@ router.post(
       })
       .catch((err) => {
         console.log(err);
+        return res.send({ success: false, err });
       });
   }
 );

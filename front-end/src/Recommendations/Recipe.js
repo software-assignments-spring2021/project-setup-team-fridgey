@@ -61,50 +61,12 @@ function Recipe(props) {
   // const dish = search(recipes, props.location.state.name); //Big Night Pizza as demo, replaced by props.name later
    
   const recipe=props.location.state.name;
-  const ingredientList = recipe.ingredients.map((ingredient) => <AddIngredientBox
-    name={ingredient.name} list={itemList}
-  > </AddIngredientBox>);
-
-
-
-
-  //  const [data, setData] = useState([])
-  // const [load, setLoad] = useState(true);
-  // const [name,setName]=useState('');
-  // const [ingredients, setIngredients] = useState([]);
-  // const [imgURL, setImgURL] = useState('');
-  // const [originalURL, setOriginalURL] = useState('');
-
+  const ingredientList = recipe.ingredients.map((ingredient) => 
   
-
-
-  // const requestRecipe=async()=>{
-  //   const items=axios.get("/getRecipe")
-
-  // items.then(response => {
-    
-  //   console.log(response.data.recipe.name)
-  //   console.log(response.data.recipe.ingredients)
-  //   console.log(response.data.recipe.imageURL)
-  //   console.log(ingredients)
-  //   setName(response.data.recipe.name)
-  //   setImgURL(response.data.recipe.imageURL)
-  //   setOriginalURL(response.data.recipe.originalURL)
-  //   setIngredients(response.data.recipe.ingredients)
-  // })
-
-  // };
-  // useEffect(() => {
-  //   requestRecipe();
-  // },[])
-    
-  
-
-
-  // console.log(ingredients)
-  // const ingredientList=(ingredients).map((ingredient)=><AddIngredientBox 
-  //   name={ingredient.name}>
-  // </AddIngredientBox>)
+    <AddIngredientBox
+    name={(ingredient.ingredientName==null ? ingredient.name : ingredient.ingredientName)} list={itemList}
+  > </AddIngredientBox>
+)
 
   
 
@@ -119,7 +81,7 @@ function Recipe(props) {
       <button class="recipeSite" >
         <img alt="" className = "recipe-img" src={recipe.imageURL} onClick={() => setShow(true)}></img>
       </button>
-      <WebpageModal orginalURL={recipe.originalURL} onClose={() => setShow(false)} show={show} />
+      <WebpageModal originalURL={recipe.originalURL} onClose={() => setShow(false)} show={show} />
       {ingredientList}
 
     </header>
