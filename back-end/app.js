@@ -20,7 +20,5 @@ app.use("/shopData", ShoppingListRoutes);
 app.use("/Recommendations", RecommendationsRoutes);
 app.use("/storagetimeitems", StorageTimeRoutes);
 
-
-  
 // export the express app we created to make it available to other modules
 module.exports = app;
