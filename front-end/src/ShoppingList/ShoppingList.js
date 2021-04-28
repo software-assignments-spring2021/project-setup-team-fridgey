@@ -40,6 +40,7 @@ const ShoppingListView = (props) => {
   const [showFridgeModal, setShowFridgeModal] = useState(false);
   const [showAddFridgeItemModal, setShowAddFridgeItemModal] = useState(false);
   const [inputError, setInputError] = useState(0);
+  const [storageItems, setStorageItems] = useState(null);
 
   // Deleting from Shopping List
   const onDelete = async (event) => {
@@ -51,17 +52,23 @@ const ShoppingListView = (props) => {
     await itemsCall();
   };
 
+  //Retrieving the storage times array from the MongoDB collection
+  useEffect(() => {
+    getStorageData();
+  }, []);
+
+  const getStorageData = async () => {
+    const axiosStorageResult = await axios.get("/storagetimeitems");
+    let storagedata = await axiosStorageResult.data;
+    setStorageItems(storagedata);
+  };
+
   // Adding Items to Fridge and Deleting from Shopping List
   const onAddToFridge = async () => {
-    // THIS CODE IS TEMP -- currently not working because this isnt React, but fix later!
-    // const [items, setItems] = useState(null)
-    // const axiosResult = axios.get("/storagetimeitems")
-    // axiosResult.then(response => {
-    //   setItems(...[response.data])
-    // })
-    // let AddData = compileAddToFridgeItems(items);
+    //passing the storageItems array to get accurate storage times when adding to Shopping List
+    let AddData = compileAddToFridgeItems(storageItems);
 
-    let AddData = compileAddToFridgeItems(); // array of objects
+    // let AddData = compileAddToFridgeItems(); // array of objects
     await axios.post("/shopData/addToFridge", AddData);
     await axios.delete("/shopData", { data: AddData });
     itemsCall();
