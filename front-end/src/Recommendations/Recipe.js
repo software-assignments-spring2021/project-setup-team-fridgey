@@ -6,6 +6,8 @@ import "../App.css";
 import WebpageModal from"./WebpageModal"
 import axios from 'axios';
 
+var pantryItems = ["Water" ,"Ice" ,"Flour" ,"Sugar","Cane Sugar" ,"Cooking Fat" ,"Cooking Oil" ,"Vegetable Oil" ,"Black Pepper" ,"Salt"];
+
 // function search(source, title) {
 //   let index=0;
 //   let entry=null;
@@ -21,7 +23,22 @@ import axios from 'axios';
 
 
 
+//////temp code
 function Recipe(props) {
+
+  const requestMyIngredients=async()=>{
+    const items=axios.get("/getMyIngredients")
+  
+  items.then(response => {
+    
+    console.log(response.id)
+  })
+  
+  };
+  useEffect(() => {
+    requestMyIngredients();
+  },[])
+  /////////temp code
 
   const itemsCall = async () => {
     let a = await axios.get("/fridgeData");
@@ -51,6 +68,10 @@ function Recipe(props) {
     for (let j=0;j<fridgeData[i][1].length;j++){
       itemList.push(fridgeData[i][1][j].title)
     }
+  }
+  
+  for(let i=0;i<pantryItems.length;i++){
+    itemList.push(pantryItems.length)
   }
   //console.log(itemList);
 
