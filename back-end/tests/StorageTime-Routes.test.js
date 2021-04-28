@@ -65,6 +65,56 @@
 //       .end((err, res) => {
 //         res.body.should.be.a("array");
 //         done();
+//      });
+//   });
+//   it("Return correct data", (done) => {
+//     chai
+//       .request(app)
+//       .get("/storagetimeitems")
+//       .end((err, res) => {
+//         const expected = data;
+//         const actual = res.body;
+//         expect(actual).to.deep.equal(expected);
+//         done();
+//       });
+//     });
+//   it("Spoil time should be in increasing order of shortTime, averageTime, longTime", (done) => {
+//     chai
+//       .request(app)
+//       .get("/storagetimeitems")
+//       .end((err, res) => {
+//         res.body = JSON.parse(res.text); //without this, res.body is an empty array (still need?)
+//         for (let i = 0; i < res.body.length; i++) {
+//           expect(res.body[i].longTime).to.be.above(res.body[i].averageTime);
+//           expect(res.body[i].averageTime).to.be.above(res.body[i].shortTime);
+//           }
+//         done();
+//       });
+//     })
+//   });
+
+// describe("Storage Time Data POST Route - Basic Functionality", () => {
+//     it("should edit an item", (done) => {
+//       chai
+//         .request(app)
+//         .post("/storagetimeitems/editStorageItem")
+//         .send({"defaultTime": 4.5,"id": 1})
+//         .end((err, res) => {
+//           res.body[0].defaultTime = 4.5
+//           expect(res.body[0].defaultTime).to.equal(4.5)
+//           expect(res.body[0].id).to.equal(1)
+//         })
+//       done()
+//     });
+//   });
+// describe("Storage Time Data GET Route - Basic Functionality", () => {
+//   it("Return an array", (done) => {
+//     chai
+//       .request(app)
+//       .get("/storagetimeitems")
+//       .end((err, res) => {
+//         res.body.should.be.a("array");
+//         done();
 //       });
 //   });
 //   it("Return correct data", (done) => {
