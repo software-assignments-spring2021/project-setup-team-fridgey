@@ -41,7 +41,7 @@ export function compileAddToFridgeItems(storageitems) {
       add.daysleft = findItem.defaultTime;
       console.log("Found item and retrieved accurate storage time of ", findItem.defaultTime)
     } catch (e) {
-      console.log("Couldn't find the item! Now using default storage times for added item.")
+      console.log("Couldn't find the item! Now using category storage times for added item.")
       if (add.type === 1) {
         add.daysleft = 5;
       } else if (add.type === 2) {
