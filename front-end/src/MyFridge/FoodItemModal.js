@@ -3,6 +3,7 @@ import "./FoodItemModal.css";
 
 const FoodItemModal = (props) => {
     const amount = props.amount
+    var newDay = false
 
     // resets progress
     const reset = () => {
@@ -63,9 +64,21 @@ const FoodItemModal = (props) => {
 
     // closes modal and resets progress
     const closeModal = (event) => {
-        props.onClose()
-        reset()
-        event.preventDefault()
+        if(newDay) {
+            // gets the amount
+            var pressedAmount = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip pressed")[0].innerHTML
+            // gets the notes
+            var notesTaken = document.getElementById("notes").value
+            // gets the days left
+            var useWithin = document.getElementById("use-within").value
+            
+            props.parentCallback(pressedAmount, useWithin, notesTaken)
+            event.preventDefault()
+        } else {
+            props.onClose()
+            reset()
+            event.preventDefault()
+        }
     }
 
     // displays text in freshness circle
@@ -101,13 +114,15 @@ const FoodItemModal = (props) => {
     // renders the daysleft and notes
     const renderInput = () => {
         if(document.getElementById("use-within") != null) {
-            document.getElementById("use-within").value = props.daysleft
+            document.getElementById("use-within").value = updateDate(props.daysleft)
+            // document.getElementById("use-within").value = props.daysleft
         }
         if(document.getElementById("notes") != null) {
             document.getElementById("notes").value = props.notes
         }
     }
 
+    // converts the created date into text format
     const convertDate = (date) => {
         var str = date.substring(0, 10).split("-")
         var month
@@ -144,24 +159,28 @@ const FoodItemModal = (props) => {
         return newDate
     }
 
-    const updateDate = (daysleft, date) => {
+    // updates the daysleft if a day has passed
+    const updateDate = (daysleft) => {
+        // today's date
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); 
         var yyyy = today.getFullYear();
-        
-        // today = mm + '/' + dd + '/' + yyyy;
-        var str = date.substring(0, 10).split("-")
         var date1 = new Date(mm + '/' + dd + '/' + yyyy)
+        // last updated date
+        var str = props.updatedAt.substring(0, 10).split("-")
         var date2 = new Date(str[1] + '/' + str[2] + '/' + str[0])
-        const diffTime = Math.abs(date2 - date1)
 
+        // difference between days
+        const diffTime = Math.abs(date2 - date1)
         var diff = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
 
-        if(daysleft - diff < 0) {
-            return 0
+        if(diff > 0) {
+            daysleft = daysleft - diff
+            newDay = true
         }
-        return daysleft - diff
+
+        return daysleft
     }
 
     return (
@@ -177,9 +196,9 @@ const FoodItemModal = (props) => {
                     <div className="FoodItemModal-info">
                         <div className="Fresh-bar">
                             <div className="background-ellipse">
-                                <div className={freshnessEllipse(props.daysleft)}>
+                                <div className={freshnessEllipse(updateDate(props.daysleft))}>
                                     <div className="white-ellipse">
-                                        <p className="freshness-text">{freshnessText(props.daysleft)}</p>
+                                        <p className="freshness-text">{freshnessText(updateDate(props.daysleft))}</p>
                                     </div>
                                 </div>
                             </div>
@@ -188,7 +207,7 @@ const FoodItemModal = (props) => {
                             <div className="Use-Within">
                                 <h5 className="FoodItemModal-text">Use Within</h5>
                                 <div className="days-left">
-                                    <input id="use-within" type="number" min={0} max={65} defaultValue={props.daysleft}/>
+                                    <input id="use-within" type="number" min={0} max={65} defaultValue={updateDate(props.daysleft)}/>
                                     <p className="FoodItemModal-text" id="days">Days</p>
                                 </div>
                             </div>
