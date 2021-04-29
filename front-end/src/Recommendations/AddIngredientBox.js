@@ -46,11 +46,11 @@ const [addButton, setAddButton] = useState("+");
 //filteredStrings = filterstrings.filter((str) => str.toLowerCase().includes(passedinstring.toLowerCase())
 const itemList=props.list.map((str)=>str.toLowerCase());
 console.log(itemList)
-if (props.list.includes(props.name.toLowerCase())){
+if (itemList.includes(props.name.toLowerCase())){
   return (
     <div>
     <div class="box">
-      <p class="text"> <span class="haveIt">{props.name}</span> </p>
+      <p class="text"> <span  style={{color:"black"}}>{props.name}</span> </p>
       <button class="ingredientButton" onClick={() => {
        
     //    axios.post("/addIngredientToSL", {"name":

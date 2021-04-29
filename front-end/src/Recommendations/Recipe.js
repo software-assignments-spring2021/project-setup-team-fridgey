@@ -6,7 +6,7 @@ import "../App.css";
 import WebpageModal from"./WebpageModal"
 import axios from 'axios';
 
-var pantryItems = ["Water" ,"Ice" ,"Flour" ,"Sugar","Cane Sugar" ,"Cooking Fat" ,"Cooking Oil" ,"Vegetable Oil" ,"Black Pepper" ,"Salt"];
+let pantryItems = ["Water" ,"Ice" ,"Flour" ,"Sugar","Cane Sugar" ,"Cooking Fat" ,"Cooking Oil" ,"Vegetable Oil" ,"Black Pepper" ,"Salt"];
 
 // function search(source, title) {
 //   let index=0;
@@ -71,7 +71,7 @@ function Recipe(props) {
   }
   
   for(let i=0;i<pantryItems.length;i++){
-    itemList.push(pantryItems.length)
+    itemList.push(pantryItems[i])
   }
   //console.log(itemList);
 
