@@ -14,7 +14,7 @@ const MyFridge = (props) => {
       let userId = await axios.get("userdata/signin");
       itemsCall(userId);
     } catch (error) {
-      let userId = "12345";
+      let userId = "12345"; // REPLACE W A NEW ROUTE THT MAKES TEMP ID
       itemsCall(userId);
     }
   };
