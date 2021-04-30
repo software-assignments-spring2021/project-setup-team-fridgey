@@ -1,11 +1,18 @@
-const { Router } = require("express");
-const router = new Router();
-const UserData = require("./database/userData");
+const router = require("express-promise-router")();
+const UsersController = require("./controllers/users");
+const { validateBody, schemas } = require("./helpers/routeHelpers");
+const passport = require("passport");
+const passportConf = require("./passport");
+const passportSignIn = passport.authenticate("local", { session: false })
+const passportJWT = passport.authenticate("jwt", { session: false })
 
-router.get("/", (req, res) => {
-  UserData.find().then((result) => {
-    res.json(result);
-  });
-});
+router.route("/signup")
+  .post(validateBody(schemas.authSchema), UsersController.signUp);
+
+router.route("/signin")
+  .post(validateBody(schemas.authSchema), passportSignIn, UsersController.signIn);
+
+router.route("/secret")
+  .get(passportJWT, UsersController.secret);
 
 module.exports = router;
