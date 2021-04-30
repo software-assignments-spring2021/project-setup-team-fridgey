@@ -41,6 +41,7 @@ const MyFridge = (props) => {
   const [itemModalDaysLeft, setItemModalDaysleft] = useState(0);
   const [itemModalDateAdded, setItemModalDateAdded] = useState("");
   const [itemModalType, setItemModalType] = useState(0);
+  const [itemModalUpdatedDate, setItemModalUpdatedDate] = useState("")
   const [itemModalNote, setItemModalNote] = useState("");
 
   // DeleteModal useState's
@@ -109,6 +110,7 @@ const MyFridge = (props) => {
       const date = event.currentTarget.getAttribute("dateadded");
       const type = event.currentTarget.getAttribute("type");
       const note = event.currentTarget.getAttribute("notes");
+      const updated = event.currentTarget.getAttribute("updatedAt")
       setItemModalType(type);
       setItemModalName(title);
       setShowItemModal(true);
@@ -116,8 +118,31 @@ const MyFridge = (props) => {
       setItemAmount(amount);
       setItemModalDaysleft(days);
       setItemModalDateAdded(date);
+      setItemModalUpdatedDate(updated)
       setItemModalNote(note);
     };
+
+    const updateDate = (daysleft) => {
+      // today's date
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+      var yyyy = today.getFullYear();
+      var date1 = new Date(mm + '/' + dd + '/' + yyyy)
+      // last updated date
+      var str = data.updatedAt.substring(0, 10).split("-")
+      var date2 = new Date(str[1] + '/' + str[2] + '/' + str[0])
+
+      // difference between days
+      const diffTime = Math.abs(date2 - date1)
+      var diff = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+
+      if(diff > 0) {
+        daysleft = daysleft - diff
+      }
+
+      return daysleft
+    }
 
     return (
       <tbody key={j}>
@@ -127,15 +152,16 @@ const MyFridge = (props) => {
             id={data._id}
             amount={data.amount}
             daysleft={data.daysleft}
-            dateadded={data.dateadded}
+            dateadded={data.createdAt}
+            updatedAt={data.updatedAt}
             type={data.type}
             notes={data.notes}
             onClick={itemEvent}
           >
-            <span>{dot(data.daysleft)}</span>
+            <span>{dot(updateDate(data.daysleft))}</span>
             <span className="title">{data.title}</span>
-            <span>{chipAmount(data.amount, data.daysleft)}</span>
-            <span>{chipDays(data.daysleft)}</span>
+            <span>{chipAmount(data.amount, updateDate(data.daysleft))}</span>
+            <span>{chipDays(updateDate(data.daysleft))}</span>
           </td>
           <td>
             <button
@@ -182,6 +208,7 @@ const MyFridge = (props) => {
         amount={itemAmount}
         type={itemModalType}
         daysleft={itemModalDaysLeft}
+        updatedAt={itemModalUpdatedDate}
         dateadded={itemModalDateAdded}
         notes={itemModalNote}
         addItemToShoppingList={addItem}
