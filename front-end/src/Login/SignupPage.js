@@ -3,6 +3,7 @@ import NavBar from "../NavBar";
 import "./login.css";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import axios from 'axios';
 
 class SignupPage extends React.Component {
   state = {
@@ -13,10 +14,16 @@ class SignupPage extends React.Component {
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
+
+    //name is "email" or "pwd" 
+    //value is what has been typed inside that 
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
+    axios.post("/userdata/signup", {email: this.state.email, password: this.state.pwd}).then((res) => {
+      console.log("Added a new user! Email:", this.state.email, "Password: ", this.state.pwd)
+    })
   };
   render() {
     return (

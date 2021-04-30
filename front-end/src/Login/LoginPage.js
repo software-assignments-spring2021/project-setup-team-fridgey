@@ -2,6 +2,8 @@ import React from "react";
 import NavBar from "../NavBar";
 import "./login.css";
 import { Link } from "react-router-dom";
+import axios from 'axios';
+import { useState, useEffect } from "react";
 
 class LoginPage extends React.Component {
   state = {
@@ -12,11 +14,18 @@ class LoginPage extends React.Component {
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
+
+    //name is "email" or "pwd" 
+    //value is what has been typed inside that 
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
+    axios.post("/userdata/signin", {email: this.state.email, password: this.state.pwd}).then((res) => {
+      console.log("Logging in user! Email:", this.state.email, "Password: ", this.state.pwd)
+    })
   };
+  
   render() {
     return (
       <div>
