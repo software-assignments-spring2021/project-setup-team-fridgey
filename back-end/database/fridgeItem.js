@@ -7,10 +7,9 @@ const fridgeItemSchema = new mongoose.Schema(
     amount: { type: String, required: true },
     daysleft: { type: Number, required: true },
     type: { type: Number, required: true },
-    dateadded: { type: String, required: true },
     notes: { type: String },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const FridgeItem = mongoose.model("FridgeItem", fridgeItemSchema);

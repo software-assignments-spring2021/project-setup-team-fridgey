@@ -3,6 +3,7 @@ import "./FoodItemModal.css";
 
 const FoodItemModal = (props) => {
     const amount = props.amount
+    var newDay = false
 
     // resets progress
     const reset = () => {
@@ -63,9 +64,21 @@ const FoodItemModal = (props) => {
 
     // closes modal and resets progress
     const closeModal = (event) => {
-        props.onClose()
-        reset()
-        event.preventDefault()
+        if(newDay) {
+            // gets the amount
+            var pressedAmount = document.getElementById("FoodItemModal-chips").getElementsByClassName("chip pressed")[0].innerHTML
+            // gets the notes
+            var notesTaken = document.getElementById("notes").value
+            // gets the days left
+            var useWithin = document.getElementById("use-within").value
+            
+            props.parentCallback(pressedAmount, useWithin, notesTaken)
+            event.preventDefault()
+        } else {
+            props.onClose()
+            reset()
+            event.preventDefault()
+        }
     }
 
     // displays text in freshness circle
@@ -101,11 +114,73 @@ const FoodItemModal = (props) => {
     // renders the daysleft and notes
     const renderInput = () => {
         if(document.getElementById("use-within") != null) {
-            document.getElementById("use-within").value = props.daysleft
+            document.getElementById("use-within").value = updateDate(props.daysleft)
+            // document.getElementById("use-within").value = props.daysleft
         }
         if(document.getElementById("notes") != null) {
             document.getElementById("notes").value = props.notes
         }
+    }
+
+    // converts the created date into text format
+    const convertDate = (date) => {
+        var str = date.substring(0, 10).split("-")
+        var month
+        var day = str[2]
+        var year = str[0]
+
+        if(str[1] === "01") {
+            month = "January"
+        } else if(str[1] === "02") {
+            month = "February"
+        } else if(str[1] === "03") {
+            month = "March"
+        } else if(str[1] === "04") {
+            month = "April"
+        } else if(str[1] === "05") {
+            month = "May"
+        } else if(str[1] === "06") {
+            month = "June"
+        } else if(str[1] === "07") {
+            month = "July"
+        } else if(str[1] === "08") {
+            month = "August"
+        } else if(str[1] === "09") {
+            month = "September"
+        } else if(str[1] === "10") {
+            month = "October"
+        } else if(str[1] === "11") {
+            month = "November"
+        } else if(str[1] === "12") {
+            month = "December"
+        }
+
+        var newDate = month + " " + day + ", " + year
+        return newDate
+    }
+
+    // updates the daysleft if a day has passed
+    const updateDate = (daysleft) => {
+        // today's date
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+        var yyyy = today.getFullYear();
+        var date1 = new Date(mm + '/' + dd + '/' + yyyy)
+        // last updated date
+        var str = props.updatedAt.substring(0, 10).split("-")
+        var date2 = new Date(str[1] + '/' + str[2] + '/' + str[0])
+
+        // difference between days
+        const diffTime = Math.abs(date2 - date1)
+        var diff = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+
+        if(diff > 0) {
+            daysleft = daysleft - diff
+            newDay = true
+        }
+
+        return daysleft
     }
 
     return (
@@ -121,9 +196,9 @@ const FoodItemModal = (props) => {
                     <div className="FoodItemModal-info">
                         <div className="Fresh-bar">
                             <div className="background-ellipse">
-                                <div className={freshnessEllipse(props.daysleft)}>
+                                <div className={freshnessEllipse(updateDate(props.daysleft))}>
                                     <div className="white-ellipse">
-                                        <p className="freshness-text">{freshnessText(props.daysleft)}</p>
+                                        <p className="freshness-text">{freshnessText(updateDate(props.daysleft))}</p>
                                     </div>
                                 </div>
                             </div>
@@ -132,14 +207,14 @@ const FoodItemModal = (props) => {
                             <div className="Use-Within">
                                 <h5 className="FoodItemModal-text">Use Within</h5>
                                 <div className="days-left">
-                                    <input id="use-within" type="number" min={0} max={65} defaultValue={props.daysleft}/>
+                                    <input id="use-within" type="number" min={0} max={65} defaultValue={updateDate(props.daysleft)}/>
                                     <p className="FoodItemModal-text" id="days">Days</p>
                                 </div>
                             </div>
                             
                             <div className="Date-Added">
                                 <h5 className="FoodItemModal-text">Date Added</h5>
-                                <p className="FoodItemModal-text">{props.dateadded}</p>
+                                <p className="FoodItemModal-text">{convertDate(props.dateadded)}</p>
                             </div>
                         </div>
                     </div>   
