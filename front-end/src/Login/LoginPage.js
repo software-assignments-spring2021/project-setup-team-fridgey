@@ -1,14 +1,16 @@
 import React from "react";
 import NavBar from "../NavBar";
 import "./login.css";
-import { Link } from "react-router-dom";
 import axios from 'axios';
-import { useState, useEffect } from "react";
+import { Link, Redirect } from "react-router-dom";
+import WelcomeModal from "./WelcomeModal";
+import Button from "@material-ui/core/Button"
 
 class LoginPage extends React.Component {
   state = {
     email: "",
     pwd: "",
+    success: false,
   };
 
   handleChange = (e) => {
@@ -21,11 +23,20 @@ class LoginPage extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("/userdata/signin", {email: this.state.email, password: this.state.pwd}).then((res) => {
-      console.log("Logging in user! Email:", this.state.email, "Password: ", this.state.pwd)
-    })
+    try {
+      axios.post("/userdata/signin", {email: this.state.email, password: this.state.pwd}).then((res) => {
+        console.log("Logging in user! Email:", this.state.email, "Password: ", this.state.pwd)
+        let savedID = res.data.id;
+        console.log("This is the savedID", savedID)
+        this.setState({success: true})
+        // this.state.success = true;
+      })
+    } catch (error) {
+      console.log("Login failed. Error:", error);
+    };
+    console.log("Success status:", this.state.success)
   };
-  
+
   render() {
     return (
       <div>
@@ -76,6 +87,19 @@ class LoginPage extends React.Component {
             </button>
           </div>
         </header>
+        <WelcomeModal
+            title="Success! You are now logged in."
+            onClose={() => this.setState({success: false})}
+            show={this.state.success}
+          >
+            <div>
+             <Button variant="outlined" size="small">
+                <Link to="/">
+                 Go to MyFridge
+                </Link>
+              </Button>
+            </div>
+          </WelcomeModal>
       </div>
     );
   }
