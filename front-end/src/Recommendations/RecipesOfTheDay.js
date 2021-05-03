@@ -12,7 +12,7 @@ const RecipesOfTheDay = (props) => {
   useEffect(async () => {
     user.current = await fetchCurrentUser();
     axios
-      .get("http://157.245.131.216:3000/Recommendations/RecipesOfTheDay")
+      .get("http://157.245.131.216:3001/Recommendations/RecipesOfTheDay")
       .then((response) => {
         setRecipeData(response.data);
       });
@@ -20,7 +20,7 @@ const RecipesOfTheDay = (props) => {
 
   function handleSave(item, setButtonText) {
     axios
-      .post("http://157.245.131.216:3000/Recommendations/SaveRecipe", {
+      .post("http://157.245.131.216:3001/Recommendations/SaveRecipe", {
         item: item,
         userId: user.current,
       })
