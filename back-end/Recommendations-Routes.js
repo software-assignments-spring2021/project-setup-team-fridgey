@@ -7,7 +7,10 @@ const FridgeItem = require("./database/fridgeItem");
 const axios = require("axios");
 var pantryItems = ["Water" ,"Ice" ,"Flour" ,"Sugar","Cane Sugar" ,"Cooking Fat" ,"Cooking Oil" ,"Vegetable Oil" ,"Black Pepper" ,"Salt"];
 
+var cors = require('cors');
+
 const router = new Router();
+app.use(cors());
 
 router.get("/RecipesOfTheDay", (req, res) => {
   try {
