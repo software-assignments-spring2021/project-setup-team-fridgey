@@ -119,9 +119,8 @@ export const CreatePage = (data) => {
 };
 
 export const fetchCurrentUser = async () => {
-  return await (
-    await axios.get("http://157.245.131.216:3001//userdata/getUser")
-  ).data;
+  return await (await axios.get("http://157.245.131.216:3001/userdata/getUser"))
+    .data;
 };
 
 const Recommendations = (props) => {
@@ -129,7 +128,7 @@ const Recommendations = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://157.245.131.216:3001//RecipesOfTheDay")
+      .get("http://157.245.131.216:3001/RecipesOfTheDay")
       .then((response) => {
         setRecipeData(response.data);
       });
