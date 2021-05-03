@@ -2,6 +2,7 @@
 const fs = require("fs");
 const express = require("express"); // CommonJS import style!
 const axios = require("axios");
+var cors = require('cors');
 
 require("dotenv").config({ silent: true });
 
@@ -9,6 +10,7 @@ const app = express(); // instantiate an Express object
 const bodyParser = require("body-parser");
 app.use(bodyParser.json()); // decode JSON-formatted incoming POST data
 app.use(bodyParser.urlencoded({ extended: true })); // decode url-encoded incoming POST
+app.use(cors());
 var request = require("request");
 const MyFridgeRoutes = require("./MyFridge-Routes");
 const ShoppingListRoutes = require("./ShoppingList-Routes");
