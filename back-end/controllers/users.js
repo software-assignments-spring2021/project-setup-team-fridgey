@@ -2,7 +2,8 @@ const JWT = require("jsonwebtoken");
 const UserData = require("../database/userData");
 const { JWT_SECRET } = require("../configuration");
 const { async } = require("regenerator-runtime");
-var currentUser;
+var uniqid = require('uniqid');
+var currentUser = "unassigned";
 
 signToken = user => {
   return JWT.sign({
@@ -49,6 +50,12 @@ module.exports = {
   },
 
   getUser: async(req,res,next) => {
-    console.log(currentUser);
+    if(currentUser == "unassigned")
+    {
+      currentUser = uniqid('temp-');
+      res.send(currentUser);
+    }
+    else
+      res.send(currentUser);
   }
 }
