@@ -1,13 +1,17 @@
 import Button from "@material-ui/core/Button";
 import "./Recommendations.css";
-import { useState,useEffect } from "react";
+import { useState,useEffect,useRef } from "react";
 import axios from 'axios';
 import {CreatePage} from "./Recommendations";
+import {fetchCurrentUser} from "./Recommendations";
 
 
 const RecipesOfTheDay = (props) => {
   const [recipeData,setRecipeData] = useState([]);
-    useEffect(() => {
+  const user = useRef();
+
+    useEffect(async () => {
+      user.current = (await fetchCurrentUser());
       axios.get("Recommendations/RecipesOfTheDay").then(response => {
         setRecipeData(response.data)
         
@@ -15,7 +19,10 @@ const RecipesOfTheDay = (props) => {
     },[]);
 
   function handleSave(item,setButtonText){
-    axios.post("Recommendations/SaveRecipe", item).then((response) => {
+    axios.post("Recommendations/SaveRecipe", {
+      item: item,
+      userId: user.current
+    }).then((response) => {
       console.log("success " + item);
     }, (error) => {
       console.log("error");

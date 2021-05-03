@@ -118,8 +118,13 @@ export const CreatePage = (data) => {
   )
 }
 
+export const fetchCurrentUser = async () => {
+  return await (await axios.get("/userdata/getUser")).data;
+}
+
 const Recommendations = (props) => {
   const [recipeData,setRecipeData] = useState([]);
+
     useEffect(() => {
       axios.get("/RecipesOfTheDay").then(response => {
         setRecipeData(response.data)
