@@ -10,7 +10,7 @@ var pantryItems = ["Water" ,"Ice" ,"Flour" ,"Sugar","Cane Sugar" ,"Cooking Fat" 
 var cors = require('cors');
 
 const router = new Router();
-app.use(cors());
+router.use(cors());
 
 router.get("/RecipesOfTheDay", (req, res) => {
   try {
