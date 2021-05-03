@@ -14,7 +14,7 @@ import axios from "axios";
 
 const ShoppingListView = (props) => {
   const itemsCall = async () => {
-    let b = await axios.get("/shopData");
+    let b = await axios.get("http://157.245.131.216:3001/shopData");
     let items = b.data;
     let fruits = items.filter((item) => item.type === 0);
     let dairy = items.filter((item) => item.type === 1);
@@ -47,7 +47,9 @@ const ShoppingListView = (props) => {
     event.preventDefault();
 
     // sends this to ShoppingList-Routes
-    await axios.delete(`/shopData/${shoppingItemId}`);
+    await axios.delete(
+      `http://157.245.131.216:3001/shopData/${shoppingItemId}`
+    );
     setShowDelete(false);
     await itemsCall();
   };
@@ -58,7 +60,9 @@ const ShoppingListView = (props) => {
   }, []);
 
   const getStorageData = async () => {
-    const axiosStorageResult = await axios.get("/storagetimeitems");
+    const axiosStorageResult = await axios.get(
+      "http://157.245.131.216:3001/storagetimeitems"
+    );
     let storagedata = await axiosStorageResult.data;
     setStorageItems(storagedata);
   };
@@ -69,8 +73,13 @@ const ShoppingListView = (props) => {
     let AddData = compileAddToFridgeItems(storageItems);
 
     // let AddData = compileAddToFridgeItems(); // array of objects
-    await axios.post("/shopData/addToFridge", AddData);
-    await axios.delete("/shopData", { data: AddData });
+    await axios.post(
+      "http://157.245.131.216:3001/shopData/addToFridge",
+      AddData
+    );
+    await axios.delete("http://157.245.131.216:3001/shopData", {
+      data: AddData,
+    });
     itemsCall();
 
     let checkboxes = document.querySelectorAll(`input[name="itemCheckbox"]`);
@@ -99,13 +108,15 @@ const ShoppingListView = (props) => {
         type: typeFood,
         notes: notesTaken,
       };
-      await axios.post("/shopData/addToShoppingList", obj).then((res) => {
-        setShowAddFridgeItemModal(false);
-        setInputError(0);
-        console.log("HERE: " + inputError);
-        console.log("HERE2: " + inputError);
-        itemsCall();
-      });
+      await axios
+        .post("http://157.245.131.216:3001/shopData/addToShoppingList", obj)
+        .then((res) => {
+          setShowAddFridgeItemModal(false);
+          setInputError(0);
+          console.log("HERE: " + inputError);
+          console.log("HERE2: " + inputError);
+          itemsCall();
+        });
     } catch (error) {
       let title = error.response.data.errors[0].value;
       if (title.length > 28) {
