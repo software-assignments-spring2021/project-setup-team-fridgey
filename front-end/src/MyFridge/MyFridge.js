@@ -9,8 +9,19 @@ import welcome_pic from "./MyFridge-Welcome-Pic.png";
 import axios from "axios";
 
 const MyFridge = (props) => {
-  const itemsCall = async () => {
-    let a = await axios.get("/fridgeData");
+  const getUserId = async () => {
+    try {
+      let userId = await axios.get("userdata/signin");
+      itemsCall(userId);
+    } catch (error) {
+      let userId = "12345"; // REPLACE W A NEW ROUTE THT MAKES TEMP ID
+      itemsCall(userId);
+    }
+  };
+
+  const itemsCall = async (id) => {
+    console.log("ITEMSCALL: " + id);
+    let a = await axios.get(`/fridgeData/${id}`);
     let items = a.data;
     let fruits = items.filter((item) => item.type === 0);
     let dairy = items.filter((item) => item.type === 1);
@@ -26,8 +37,9 @@ const MyFridge = (props) => {
   };
 
   useEffect(() => {
+    getUserId();
     // call it immediately
-    itemsCall();
+    // itemsCall(id);
   }, []);
 
   // data for MyFridge
@@ -41,7 +53,7 @@ const MyFridge = (props) => {
   const [itemModalDaysLeft, setItemModalDaysleft] = useState(0);
   const [itemModalDateAdded, setItemModalDateAdded] = useState("");
   const [itemModalType, setItemModalType] = useState(0);
-  const [itemModalUpdatedDate, setItemModalUpdatedDate] = useState("")
+  const [itemModalUpdatedDate, setItemModalUpdatedDate] = useState("");
   const [itemModalNote, setItemModalNote] = useState("");
 
   // DeleteModal useState's
@@ -81,7 +93,7 @@ const MyFridge = (props) => {
       title: title,
       amount: amount,
       type: parseInt(type),
-      notes: notesTaken
+      notes: notesTaken,
     };
 
     axios.post("/fridgeData/addItem", obj).then((res) => {
@@ -110,7 +122,7 @@ const MyFridge = (props) => {
       const date = event.currentTarget.getAttribute("dateadded");
       const type = event.currentTarget.getAttribute("type");
       const note = event.currentTarget.getAttribute("notes");
-      const updated = event.currentTarget.getAttribute("updatedAt")
+      const updated = event.currentTarget.getAttribute("updatedAt");
       setItemModalType(type);
       setItemModalName(title);
       setShowItemModal(true);
@@ -118,7 +130,7 @@ const MyFridge = (props) => {
       setItemAmount(amount);
       setItemModalDaysleft(days);
       setItemModalDateAdded(date);
-      setItemModalUpdatedDate(updated)
+      setItemModalUpdatedDate(updated);
       setItemModalNote(note);
     };
 
@@ -128,24 +140,24 @@ const MyFridge = (props) => {
       }
       // today's date
       var today = new Date();
-      var dd = String(today.getDate()).padStart(2, '0');
-      var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+      var dd = String(today.getDate()).padStart(2, "0");
+      var mm = String(today.getMonth() + 1).padStart(2, "0");
       var yyyy = today.getFullYear();
-      var date1 = new Date(mm + '/' + dd + '/' + yyyy)
+      var date1 = new Date(mm + "/" + dd + "/" + yyyy);
       // last updated date
-      var str = data.updatedAt.substring(0, 10).split("-")
-      var date2 = new Date(str[1] + '/' + str[2] + '/' + str[0])
+      var str = data.updatedAt.substring(0, 10).split("-");
+      var date2 = new Date(str[1] + "/" + str[2] + "/" + str[0]);
 
       // difference between days
-      const diffTime = Math.abs(date2 - date1)
-      var diff = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+      const diffTime = Math.abs(date2 - date1);
+      var diff = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-      if(diff > 0) {
-        daysleft = daysleft - diff
+      if (diff > 0) {
+        daysleft = daysleft - diff;
       }
 
-      return daysleft
-    }
+      return daysleft;
+    };
 
     return (
       <tbody key={j}>
