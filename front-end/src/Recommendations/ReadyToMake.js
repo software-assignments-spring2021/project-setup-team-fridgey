@@ -8,13 +8,13 @@ import {CreatePage} from "./Recommendations";
 const ReadyToMake = (props) => {
   const [recipeData,setRecipeData] = useState([]);
     useEffect(() => {
-      axios.get("Recommendations/ReadyToMake").then(response => {
+      axios.get("http://157.245.131.216:3001/Recommendations/ReadyToMake").then(response => {
         setRecipeData(response.data)
       });
     },[]);
 
   function handleSave(item,setButtonText){
-    axios.post("Recommendations/SaveRecipe", item).then((response) => {
+    axios.post("http://157.245.131.216:3001/Recommendations/SaveRecipe", item).then((response) => {
       console.log();
     }, (error) => {
       console.log();
