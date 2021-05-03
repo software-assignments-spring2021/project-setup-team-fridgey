@@ -11,7 +11,9 @@ import axios from "axios";
 const MyFridge = (props) => {
   const getUserId = async () => {
     try {
-      let userId = await axios.get("userdata/signin");
+      let userId = await axios.get(
+        "http://157.245.131.216:3001/userdata/signin"
+      );
       itemsCall(userId);
     } catch (error) {
       let userId = "12345"; // REPLACE W A NEW ROUTE THT MAKES TEMP ID
@@ -21,7 +23,7 @@ const MyFridge = (props) => {
 
   const itemsCall = async (id) => {
     console.log("ITEMSCALL: " + id);
-    let a = await axios.get(`/fridgeData/${id}`);
+    let a = await axios.get(`http://157.245.131.216:3001/fridgeData/${id}`);
     let items = a.data;
     let fruits = items.filter((item) => item.type === 0);
     let dairy = items.filter((item) => item.type === 1);
@@ -66,7 +68,7 @@ const MyFridge = (props) => {
     event.preventDefault();
 
     // sends this to MyFridge-Routes
-    await axios.delete(`/fridgeData/${itemId}`);
+    await axios.delete(`http://157.245.131.216:3001/fridgeData/${itemId}`);
     setShow(false);
     await itemsCall();
   };
@@ -81,10 +83,12 @@ const MyFridge = (props) => {
     };
 
     // sends to editItem post route
-    axios.post("/fridgeData/editItem", obj).then((res) => {
-      setShowItemModal(false);
-      itemsCall();
-    });
+    axios
+      .post("http://157.245.131.216:3001/fridgeData/editItem", obj)
+      .then((res) => {
+        setShowItemModal(false);
+        itemsCall();
+      });
   };
 
   // Adds Item from MyFridge to Shopping List
@@ -96,10 +100,12 @@ const MyFridge = (props) => {
       notes: notesTaken,
     };
 
-    axios.post("/fridgeData/addItem", obj).then((res) => {
-      setShowItemModal(false);
-      itemsCall();
-    });
+    axios
+      .post("http://157.245.131.216:3001/fridgeData/addItem", obj)
+      .then((res) => {
+        setShowItemModal(false);
+        itemsCall();
+      });
   };
 
   // Rendering an Item
