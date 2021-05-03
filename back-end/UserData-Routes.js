@@ -15,4 +15,7 @@ router.route("/signin")
 router.route("/secret")
   .get(passportJWT, UsersController.secret);
 
+router.route("/getUser")
+  .get(UsersController.getUser);
+
 module.exports = router;
