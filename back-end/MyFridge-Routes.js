@@ -5,8 +5,9 @@ const { body } = require("express-validator");
 const router = new Router();
 
 // Get Fridge Data
-router.get("/", (req, res) => {
-  FridgeItem.find().then((result) => {
+router.get("/:userId", (req, res) => {
+  const { userId } = req.params;
+  FridgeItem.find({ userId: userId }).then((result) => {
     res.json(result);
   });
 });
