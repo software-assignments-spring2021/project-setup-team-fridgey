@@ -85,9 +85,9 @@ const FoodItemModal = (props) => {
     const freshnessText = (daysLeft) => {
         var text = ""
 
-        if(daysLeft >= 3) {
+        if(daysLeft >= 5) {
             text = "Still Fresh"
-        } else if(daysLeft >= 1) {
+        } else if(daysLeft >= 3) {
             text = "Use Soon"
         } else {
             text = "Throw Out"
@@ -100,9 +100,9 @@ const FoodItemModal = (props) => {
     const freshnessEllipse = (daysLeft) => {
         var className = ""
 
-        if(daysLeft >= 3) {
+        if(daysLeft >= 5) {
             className = "fresh-ellipse"
-        } else if(daysLeft >= 1) {
+        } else if(daysLeft >= 3) {
             className = "halfFresh-ellipse"
         } else {
             className = "notFresh-ellipse"
@@ -161,6 +161,10 @@ const FoodItemModal = (props) => {
 
     // updates the daysleft if a day has passed
     const updateDate = (daysleft) => {
+        if(daysleft == 0) {
+            return daysleft;
+        }
+        
         // today's date
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
