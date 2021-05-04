@@ -6,6 +6,8 @@ import { Link, Redirect } from "react-router-dom";
 import WelcomeModal from "./WelcomeModal";
 import Button from "@material-ui/core/Button"
 
+var currentID = "";
+
 class LoginPage extends React.Component {
   state = {
     email: "",
@@ -28,6 +30,7 @@ class LoginPage extends React.Component {
         console.log("Logging in user! Email:", this.state.email, "Password: ", this.state.pwd)
         let savedID = res.data.id;
         console.log("This is the savedID", savedID)
+        currentID = savedID;
         this.setState({success: true})
         // this.state.success = true;
       })
@@ -107,4 +110,5 @@ class LoginPage extends React.Component {
   }
 }
 
+export {currentID}
 export default LoginPage;

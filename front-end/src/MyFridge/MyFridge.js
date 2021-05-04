@@ -10,15 +10,17 @@ import axios from "axios";
 
 const MyFridge = (props) => {
   const getUserId = async () => {
+    // let userId = await axios.get(
+    //   "http://157.245.131.216:3001/userdata/signin"
+    // );
+    // console.log(userId);
     try {
       let userId = await axios.get(
         "http://157.245.131.216:3001/userdata/signin"
       );
-      console.log("HERE")
       itemsCall(userId);
     } catch (error) {
       let userId = "12345"; // REPLACE W A NEW ROUTE THT MAKES TEMP ID
-      console.log("HERE2")
       itemsCall(userId);
     }
   };
