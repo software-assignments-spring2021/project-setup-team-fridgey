@@ -31,6 +31,8 @@ class LoginPage extends React.Component {
         this.setState({success: true})
         // this.state.success = true;
       })
+
+      
     } catch (error) {
       console.log("Login failed. Error:", error);
     };
