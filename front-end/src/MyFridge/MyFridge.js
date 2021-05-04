@@ -141,8 +141,8 @@ const MyFridge = (props) => {
     };
 
     const updateDate = (daysleft) => {
-      if(daysleft == 0) {
-        return daysleft;
+      if(daysleft <= 0) {
+        return 0;
       }
       // today's date
       var today = new Date();
