@@ -14,9 +14,11 @@ const MyFridge = (props) => {
       let userId = await axios.get(
         "http://157.245.131.216:3001/userdata/signin"
       );
+      console.log("HERE")
       itemsCall(userId);
     } catch (error) {
       let userId = "12345"; // REPLACE W A NEW ROUTE THT MAKES TEMP ID
+      console.log("HERE2")
       itemsCall(userId);
     }
   };
@@ -70,7 +72,7 @@ const MyFridge = (props) => {
     // sends this to MyFridge-Routes
     await axios.delete(`http://157.245.131.216:3001/fridgeData/${itemId}`);
     setShow(false);
-    await itemsCall();
+    await itemsCall("12345");
   };
 
   // Edit Item from MyFridge
@@ -87,7 +89,7 @@ const MyFridge = (props) => {
       .post("http://157.245.131.216:3001/fridgeData/editItem", obj)
       .then((res) => {
         setShowItemModal(false);
-        itemsCall();
+        itemsCall("12345");
       });
   };
 
@@ -104,7 +106,7 @@ const MyFridge = (props) => {
       .post("http://157.245.131.216:3001/fridgeData/addItem", obj)
       .then((res) => {
         setShowItemModal(false);
-        itemsCall();
+        itemsCall("12345");
       });
   };
 
