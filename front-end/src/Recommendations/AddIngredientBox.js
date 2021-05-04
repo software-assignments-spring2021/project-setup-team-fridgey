@@ -13,7 +13,7 @@ const AddIngredientBox = (props) => {
   // }
 
   const apiCall = async () => {
-    let b = await axios.get("/http://157.245.131.216:3001/shopData");
+    let b = await axios.get("http://157.245.131.216:3001/shopData");
     // console.log(b.data);
     setShopData(b.data);
   };
@@ -30,7 +30,7 @@ const AddIngredientBox = (props) => {
     };
 
     await axios
-      .post("/http://157.245.131.216:3001/shopData/addToShoppingList", obj)
+      .post("http://157.245.131.216:3001/shopData/addToShoppingList", obj)
       .then((res) => {
         setShowAddFridgeItemModal(false);
         setShopData(res.data);

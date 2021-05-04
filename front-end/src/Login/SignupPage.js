@@ -22,7 +22,7 @@ class SignupPage extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("/http://157.245.131.216:3001/userdata/signup", {
+      .post("http://157.245.131.216:3001/userdata/signup", {
         email: this.state.email,
         password: this.state.pwd,
       })
