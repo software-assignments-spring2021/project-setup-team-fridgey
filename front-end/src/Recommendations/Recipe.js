@@ -20,8 +20,17 @@ let pantryItems = [
 ];
 
 function Recipe(props) {
-  const itemsCall = async () => {
-    let a = await axios.get("http://157.245.131.216:3001/fridgeData");
+  const getUserId = async () => {
+    let userId = await (
+      await axios.get("http://157.245.131.216:3001/userdata/getUser")
+    ).data;
+    console.log("HERE " + userId);
+    itemsCall(userId);
+  };
+
+  const itemsCall = async (id) => {
+    console.log("ITEMSCALL: " + id);
+    let a = await axios.get(`http://157.245.131.216:3001/fridgeData/${id}`);
     let items = a.data;
     let fruits = items.filter((item) => item.type === 0);
     let dairy = items.filter((item) => item.type === 1);
@@ -37,7 +46,7 @@ function Recipe(props) {
   };
 
   useEffect(() => {
-    itemsCall();
+    getUserId();;
   }, []);
 
   const itemList = [];
