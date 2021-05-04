@@ -13,7 +13,7 @@ const AddIngredientBox = (props) => {
   // }
 
   const apiCall = async () => {
-    let b = await axios.get("/shopData");
+    let b = await axios.get("/http://157.245.131.216:3001/shopData");
     // console.log(b.data);
     setShopData(b.data);
   };
@@ -29,10 +29,12 @@ const AddIngredientBox = (props) => {
       notes: "",
     };
 
-    await axios.post("/shopData/addToShoppingList", obj).then((res) => {
-      setShowAddFridgeItemModal(false);
-      setShopData(res.data);
-    });
+    await axios
+      .post("/http://157.245.131.216:3001/shopData/addToShoppingList", obj)
+      .then((res) => {
+        setShowAddFridgeItemModal(false);
+        setShopData(res.data);
+      });
   };
   const [shopData, setShopData] = useState([]);
   const [showAddFridgeItemModal, setShowAddFridgeItemModal] = useState(false);
