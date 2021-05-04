@@ -93,12 +93,16 @@ const ShoppingListView = (props) => {
 
   // Adding items to the shopping list
   const onAddToShoppingList = async (
-    userId,
     name,
     amount,
     typeFood,
     notesTaken
   ) => {
+    let userId = await (
+      await axios.get("http://157.245.131.216:3001/userdata/getUser")
+    ).data;
+    console.log("HERE " + userId);
+
     setInputError(0);
     try {
       const obj = {
@@ -121,7 +125,7 @@ const ShoppingListView = (props) => {
       let title = error.response.data.errors[0].value;
       if (title.length > 28) {
         alert("Title Must Be Less than 28 Characters. Please Try Again");
-        // EERROR MSGS WTIH STATES KINDA WORKS BUT FOR SOME REASON, IT DISABLES THE ADD TO SHOPPING LIST BUTTON*
+        // ERROR MSGS WTIH STATES KINDA WORKS BUT FOR SOME REASON, IT DISABLES THE ADD TO SHOPPING LIST BUTTON*
         // await setInputError(1);
       } else if (title.length < 2) {
         alert("Title Must Be Longer than 2 Characters. Please Try Again");
