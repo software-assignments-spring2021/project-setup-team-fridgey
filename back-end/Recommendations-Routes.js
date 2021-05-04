@@ -7,11 +7,12 @@ const FridgeItem = require("./database/fridgeItem");
 const axios = require("axios");
 var pantryItems = ["Water" ,"Ice" ,"Flour" ,"Sugar","Cane Sugar" ,"Cooking Fat" ,"Cooking Oil" ,"Vegetable Oil" ,"Black Pepper" ,"Salt"];
 
+
 const router = new Router();
 
 router.get("/RecipesOfTheDay", (req, res) => {
   try {
-    RecipeItem.find().then((result) => {
+    retrieveSavedRecipes("default").then((result) => {
       res.json(result);
     });
     res.status(200);
@@ -21,8 +22,9 @@ router.get("/RecipesOfTheDay", (req, res) => {
 });
 
 router.get("/SavedRecipes", async (req, res) => {
+  console.log(req.query.userId);
   try {
-    retrieveSavedRecipes("12345").then((result) => {
+    retrieveSavedRecipes(req.query.userId).then((result) => {
       res.json(result);
     });
     res.status(200);
@@ -31,30 +33,90 @@ router.get("/SavedRecipes", async (req, res) => {
   }
 });
 
-router.post("/SaveRecipe", async (req, res) => {
-  var currentRecipeCount = await SavedRecipe.count();
-  if(currentRecipeCount == 0) //initialize a list if empty
-  {
-    const emptyList = new SavedRecipe(
-      {
-        userId: "12345",
-        ids: [],
-      }
-    )
-    emptyList.save();
-  }
-  try {
-    var currentSavedList = await SavedRecipe.find({userId: "12345"});
-    currentSavedList[0].ids = pushIfNotAlreadyExists(req.body.id,currentSavedList[0].ids);
+async function intializeList(userId,itemId)
+{
+  const emptyList = new SavedRecipe(
+    {
+      userId: userId,
+      ids: [itemId],
+    }
+  )
+  await emptyList.save();
+}
 
-    await SavedRecipe.updateOne(
-      {"userId": "12345"},
-      { $set: {"ids":currentSavedList[0].ids}}
-    );
-  } catch (error) {
-    res.status(404);
+router.post("/SaveRecipe", async (req, res) => {
+  var currentRecipeCount = await SavedRecipe.find({"userId":req.body.userId}).count();
+  if(currentRecipeCount == 0) //initialize a list if empty
+    await intializeList(req.body.userId,req.body.item.id);
+
+    // var currentSavedList = await SavedRecipe.find({userId: req.body.userId});
+    // currentSavedList[0].ids = pushIfNotAlreadyExists(req.body.item.id,currentSavedList[0].ids);
+
+    // await SavedRecipe.updateOne(
+    //   {"userId": req.body.userId},
+    //   { $set: {"ids":currentSavedList[0].ids}}
+    // );
+  else{
+    await SavedRecipe.updateOne({"userId": req.body.userId},{$push:{"ids": req.body.item.id}}).catch((error) => {
+      console.log(error);
+      res.json(404)
+    });
+    res.status(200);
   }
 });
+
+router.post("/addPopularRecipes", async(req, res ) => {
+  var recipes = ['715424',
+  '776505',
+  '715449',
+  '715560',
+  '716410',
+  '715467',
+  '715419',
+  '775585',
+  '716423',
+  '715421',
+  '715380',
+  '715437',
+  '715394',
+  '715544',
+  '715455',
+  '715562',
+  '715527',
+  '716426',
+  '715469',
+  '715541',
+  '715391',
+  '715545',
+  '715569',
+  '715559',
+  '715415',
+  '716431',
+  '715381',
+  '715563',
+  '715452',
+  '715550',
+  '715397',
+  '715439',
+  '775666',
+  '715523',
+  '715515',
+  '715477',
+  '716409',
+  '715385',
+  '735820',
+  '715495',
+  '715568',
+  '715511',
+  '637187']
+  const emptyList = new SavedRecipe(
+    {
+      userId: "default",
+      ids: recipes,
+    }
+  );
+  emptyList.save();
+})
 
 async function retrieveSavedRecipes(userId)
 {
@@ -77,20 +139,18 @@ function pushIfNotAlreadyExists(key, currentSavedList) {
 
 router.post("/RemoveRecipe", async (req, res) => {
   try {
-    var currentSavedList = await SavedRecipe.find({userId: "12345"});
-    currentSavedList[0].ids = currentSavedList[0].ids.filter((id) => id != req.body.id);
-    console.log("removing " + req.body.userId);
-    console.log(currentSavedList[0].ids);
+    var currentSavedList = await SavedRecipe.find({userId: req.body.userId});
+    currentSavedList[0].ids = currentSavedList[0].ids.filter((id) => id != req.body.item.id);
 
     await SavedRecipe.updateOne(
-      {"userId": "12345"},
+      {"userId": req.body.userId},
       { $set: {"ids":currentSavedList[0].ids}}
     );
   } catch (error) {
     res.status(404);
   }
   try {
-    retrieveSavedRecipes("12345").then((result) => {
+    retrieveSavedRecipes(req.body.userId).then((result) => {
       res.json(result);
     });
     res.status(200);
@@ -121,7 +181,7 @@ router.get("/add-recipes", async (req, res) => {
 
 async function parseRecipe(recipe) {
   if ((await RecipeItem.count({ id: recipe.id })) != 0) {
-    console.log("already in database");
+    console.log("\'" + recipe.id + "\'" + ",");
     return;
   }
   try {
@@ -134,6 +194,7 @@ async function parseRecipe(recipe) {
       originalURL: recipe.sourceUrl,
     });
     await parsedRecipe.save();
+    console.log("\'" + recipe.id + "\'" + ",");
   } catch (error) {
     return;
   }
@@ -186,10 +247,8 @@ router.get("/ReadyToMake", async (req,res) => {
   {
     listOfRecipes = result;
   });
-  console.log(listOfRecipes)
   try {
     retrieveRecipes(listOfRecipes).then((result) => {
-      console.log(result)
       res.json(result);
     })
     res.status(200);
