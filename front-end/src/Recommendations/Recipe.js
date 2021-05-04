@@ -21,7 +21,7 @@ let pantryItems = [
 
 function Recipe(props) {
   const itemsCall = async () => {
-    let a = await axios.get("/fridgeData");
+    let a = await axios.get("/http://157.245.131.216:3001/fridgeData");
     let items = a.data;
     let fruits = items.filter((item) => item.type === 0);
     let dairy = items.filter((item) => item.type === 1);
