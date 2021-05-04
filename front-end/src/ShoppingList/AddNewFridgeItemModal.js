@@ -80,7 +80,7 @@ const AddNewFridgeItemModal = (props) => {
 
   const grabInformation = (event) => {
     // user ID
-    var userId = "12345"; // HARDCODING AS "12345" FOR NOW BUT WILL CHANGE
+    // var userId = "12345"; // HARDCODING AS "12345" FOR NOW BUT WILL CHANGE
     // item name
     var itemName = document.getElementById("itemName").value;
     // item amount
@@ -104,7 +104,7 @@ const AddNewFridgeItemModal = (props) => {
       type = 3;
     }
 
-    props.onAddToShoppingList(userId, itemName, amount, type, notes);
+    props.onAddToShoppingList(itemName, amount, type, notes);
     reset();
     event.preventDefault();
     return;

@@ -93,12 +93,16 @@ const ShoppingListView = (props) => {
 
   // Adding items to the shopping list
   const onAddToShoppingList = async (
-    userId,
     name,
     amount,
     typeFood,
     notesTaken
   ) => {
+    let userId = await (
+      await axios.get("http://157.245.131.216:3001/userdata/getUser")
+    ).data;
+    console.log("HERE " + userId);
+
     setInputError(0);
     try {
       const obj = {

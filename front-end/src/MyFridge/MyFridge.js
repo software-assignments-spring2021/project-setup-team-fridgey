@@ -7,15 +7,14 @@ import { itemCount, num } from "./CountFridgeItems";
 import NavBar from "../NavBar";
 import welcome_pic from "./MyFridge-Welcome-Pic.png";
 import axios from "axios";
-import { currentID } from "../Login/LoginPage"
 
 const MyFridge = (props) => {
   const getUserId = async () => {
-    // let userId = await (
-    //   await axios.get("http://157.245.131.216:3001/userdata/getUser")
-    // ).data;
-    console.log("HERE " + currentID);
-    itemsCall(currentID);
+    let userId = await (
+      await axios.get("http://157.245.131.216:3001/userdata/getUser")
+    ).data;
+    console.log("HERE " + userId);
+    itemsCall(userId);
   };
 
   const itemsCall = async (id) => {

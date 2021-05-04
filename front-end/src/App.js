@@ -21,7 +21,6 @@ import SignupPage from "./Login/SignupPage";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-
 // the app itself and the links for everything
 // the components are at the bottom and they are simply the pages and its contents
 function App() {
@@ -32,7 +31,9 @@ function App() {
   }, []);
 
   const getData = async () => {
-    const axiosResult = await axios.get("/storagetimeitems");
+    const axiosResult = await axios.get(
+      "http://157.245.131.216:3001/storagetimeitems"
+    );
     let data = await axiosResult.data;
     setItems(data);
   };
@@ -58,28 +59,22 @@ function App() {
           />
           <Route
             path="/Storage-Time-Search/ListFruits"
-            render = {() => <StorageTimeSearchListFruits data={items}/>}
+            render={() => <StorageTimeSearchListFruits data={items} />}
           />
           <Route
             path="/Storage-Time-Search/ListMeats"
-            render = {() => <StorageTimeSearchListMeats data={items}/>}
+            render={() => <StorageTimeSearchListMeats data={items} />}
           />
           <Route
             path="/Storage-Time-Search/ListDairy"
-            render = {() => <StorageTimeSearchListDairy data={items}/>}
+            render={() => <StorageTimeSearchListDairy data={items} />}
           />
           <Route
             path="/Storage-Time-Search/ListGrain"
-            render = {() => <StorageTimeSearchListGrain data={items}/>}
+            render={() => <StorageTimeSearchListGrain data={items} />}
           />
-          <Route
-            path="/Login"
-            component={LoginPage}
-          />
-          <Route
-            path="/Signup"
-            component={SignupPage}
-          />
+          <Route path="/Login" component={LoginPage} />
+          <Route path="/Signup" component={SignupPage} />
         </Switch>
       </Router>
     </div>

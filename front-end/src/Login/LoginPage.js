@@ -1,12 +1,10 @@
 import React from "react";
 import NavBar from "../NavBar";
 import "./login.css";
-import axios from 'axios';
+import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
 import WelcomeModal from "./WelcomeModal";
-import Button from "@material-ui/core/Button"
-
-var currentID = "";
+import Button from "@material-ui/core/Button";
 
 class LoginPage extends React.Component {
   state = {
@@ -19,27 +17,34 @@ class LoginPage extends React.Component {
     const { name, value } = e.target;
     this.setState({ [name]: value });
 
-    //name is "email" or "pwd" 
-    //value is what has been typed inside that 
+    //name is "email" or "pwd"
+    //value is what has been typed inside that
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
     try {
-      axios.post("/userdata/signin", {email: this.state.email, password: this.state.pwd}).then((res) => {
-        console.log("Logging in user! Email:", this.state.email, "Password: ", this.state.pwd)
-        let savedID = res.data.id;
-        console.log("This is the savedID", savedID)
-        currentID = savedID;
-        this.setState({success: true})
-        // this.state.success = true;
-      })
-
-      
+      axios
+        .post("http://157.245.131.216:3001/userdata/signin", {
+          email: this.state.email,
+          password: this.state.pwd,
+        })
+        .then((res) => {
+          console.log(
+            "Logging in user! Email:",
+            this.state.email,
+            "Password: ",
+            this.state.pwd
+          );
+          let savedID = res.data.id;
+          console.log("This is the savedID", savedID);
+          this.setState({ success: true });
+          // this.state.success = true;
+        });
     } catch (error) {
       console.log("Login failed. Error:", error);
-    };
-    console.log("Success status:", this.state.success)
+    }
+    console.log("Success status:", this.state.success);
   };
 
   render() {
@@ -93,22 +98,19 @@ class LoginPage extends React.Component {
           </div>
         </header>
         <WelcomeModal
-            title="Success! You are now logged in."
-            onClose={() => this.setState({success: false})}
-            show={this.state.success}
-          >
-            <div>
-             <Button variant="outlined" size="small">
-                <Link to="/">
-                 Go to MyFridge
-                </Link>
-              </Button>
-            </div>
-          </WelcomeModal>
+          title="Success! You are now logged in."
+          onClose={() => this.setState({ success: false })}
+          show={this.state.success}
+        >
+          <div>
+            <Button variant="outlined" size="small">
+              <Link to="/">Go to MyFridge</Link>
+            </Button>
+          </div>
+        </WelcomeModal>
       </div>
     );
   }
 }
 
-export {currentID}
 export default LoginPage;
