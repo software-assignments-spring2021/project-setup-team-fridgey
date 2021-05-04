@@ -25,7 +25,7 @@ class LoginPage extends React.Component {
     e.preventDefault();
     try {
       axios
-        .post("/http://157.245.131.216:3001/userdata/signin", {
+        .post("http://157.245.131.216:3001/userdata/signin", {
           email: this.state.email,
           password: this.state.pwd,
         })

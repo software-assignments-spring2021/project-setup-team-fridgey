@@ -20,7 +20,7 @@ const StorageTimeSearch = () => {
 
   const axiosGet = async () => {
     const axiosResult = await axios.get(
-      "/http://157.245.131.216:3001/storagetimeitems"
+      "http://157.245.131.216:3001/storagetimeitems"
     );
     let data = await axiosResult.data;
     setItems(...[data]);
