@@ -7,22 +7,15 @@ import { itemCount, num } from "./CountFridgeItems";
 import NavBar from "../NavBar";
 import welcome_pic from "./MyFridge-Welcome-Pic.png";
 import axios from "axios";
+import { currentID } from "../Login/LoginPage"
 
 const MyFridge = (props) => {
   const getUserId = async () => {
-    // let userId = await axios.get(
-    //   "http://157.245.131.216:3001/userdata/signin"
-    // );
-    // console.log(userId);
-    try {
-      let userId = await axios.get(
-        "http://157.245.131.216:3001/userdata/signin"
-      );
-      itemsCall(userId);
-    } catch (error) {
-      let userId = "12345"; // REPLACE W A NEW ROUTE THT MAKES TEMP ID
-      itemsCall(userId);
-    }
+    // let userId = await (
+    //   await axios.get("http://157.245.131.216:3001/userdata/getUser")
+    // ).data;
+    console.log("HERE " + currentID);
+    itemsCall(currentID);
   };
 
   const itemsCall = async (id) => {
@@ -74,7 +67,8 @@ const MyFridge = (props) => {
     // sends this to MyFridge-Routes
     await axios.delete(`http://157.245.131.216:3001/fridgeData/${itemId}`);
     setShow(false);
-    await itemsCall("12345");
+    await getUserId();
+    // await itemsCall("12345");
   };
 
   // Edit Item from MyFridge
@@ -91,7 +85,8 @@ const MyFridge = (props) => {
       .post("http://157.245.131.216:3001/fridgeData/editItem", obj)
       .then((res) => {
         setShowItemModal(false);
-        itemsCall("12345");
+        getUserId();
+        // itemsCall("12345");
       });
   };
 
@@ -108,7 +103,8 @@ const MyFridge = (props) => {
       .post("http://157.245.131.216:3001/fridgeData/addItem", obj)
       .then((res) => {
         setShowItemModal(false);
-        itemsCall("12345");
+        getUserId();
+        // itemsCall("12345");
       });
   };
 
@@ -145,7 +141,7 @@ const MyFridge = (props) => {
     };
 
     const updateDate = (daysleft) => {
-      if(daysleft <= 0) {
+      if (daysleft <= 0) {
         return 0;
       }
       // today's date
