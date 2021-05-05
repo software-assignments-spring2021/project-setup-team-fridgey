@@ -14,6 +14,7 @@ const MyFridge = (props) => {
       await axios.get("http://157.245.131.216:3001/userdata/getUser")
     ).data;
     console.log("HERE " + userId);
+    setUserId(userId)
     itemsCall(userId);
   };
 
@@ -44,6 +45,7 @@ const MyFridge = (props) => {
   const [fridgeData, setFridgeData] = useState([]);
 
   // FoodItemModal useState's
+  const [userID, setUserId] = useState("")
   const [showItemModal, setShowItemModal] = useState(false);
   const [itemModalName, setItemModalName] = useState("");
   const [itemAmount, setItemAmount] = useState("");
@@ -91,7 +93,10 @@ const MyFridge = (props) => {
 
   // Adds Item from MyFridge to Shopping List
   const addItem = (title, amount, type, notesTaken) => {
+    console.log(userID)
+
     const obj = {
+      userId: userID,
       title: title,
       amount: amount,
       type: parseInt(type),
@@ -103,6 +108,7 @@ const MyFridge = (props) => {
       .then((res) => {
         setShowItemModal(false);
         getUserId();
+        console.log('here')
         // itemsCall("12345");
       });
   };
@@ -143,13 +149,14 @@ const MyFridge = (props) => {
       if (daysleft <= 0) {
         return 0;
       }
+
       // today's date
       var today = new Date();
       var dd = String(today.getDate()).padStart(2, "0");
       var mm = String(today.getMonth() + 1).padStart(2, "0");
       var yyyy = today.getFullYear();
       var date1 = new Date(mm + "/" + dd + "/" + yyyy);
-      console.log("date 1" , date1)
+
       // last updated date
       var str = data.updatedAt.substring(0, 10).split("-");
       var date2 = new Date(str[1] + "/" + str[2] + "/" + str[0]);

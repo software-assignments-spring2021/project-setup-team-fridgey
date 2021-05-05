@@ -61,6 +61,8 @@ router.post(
   body("amount").isLength({ min: 2 }),
   body("type").isFloat({ min: 0, max: 3 }),
   (req, res) => {
+
+
     let addItem = req.body;
     const shopItem = new ShopItem(addItem);
     shopItem
