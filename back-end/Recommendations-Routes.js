@@ -5,6 +5,7 @@ const RecipeItem = require('./database/recipeItem');
 const SavedRecipe = require('./database/savedRecipe');
 const FridgeItem = require("./database/fridgeItem");
 const axios = require("axios");
+
 var pantryItems = ["Water" ,"Ice" ,"Flour" ,"Sugar","Cane Sugar" ,"Cooking Fat" ,"Cooking Oil" ,"Vegetable Oil" ,"Black Pepper" ,"Salt"];
 
 
@@ -64,59 +65,6 @@ router.post("/SaveRecipe", async (req, res) => {
     res.status(200);
   }
 });
-
-router.post("/addPopularRecipes", async(req, res ) => {
-  var recipes = ['715424',
-  '776505',
-  '715449',
-  '715560',
-  '716410',
-  '715467',
-  '715419',
-  '775585',
-  '716423',
-  '715421',
-  '715380',
-  '715437',
-  '715394',
-  '715544',
-  '715455',
-  '715562',
-  '715527',
-  '716426',
-  '715469',
-  '715541',
-  '715391',
-  '715545',
-  '715569',
-  '715559',
-  '715415',
-  '716431',
-  '715381',
-  '715563',
-  '715452',
-  '715550',
-  '715397',
-  '715439',
-  '775666',
-  '715523',
-  '715515',
-  '715477',
-  '716409',
-  '715385',
-  '735820',
-  '715495',
-  '715568',
-  '715511',
-  '637187']
-  const emptyList = new SavedRecipe(
-    {
-      userId: "default",
-      ids: recipes,
-    }
-  );
-  emptyList.save();
-})
 
 async function retrieveSavedRecipes(userId)
 {
@@ -243,7 +191,7 @@ router.post("/loopRecipes", async (req,res) => {
 
 router.get("/ReadyToMake", async (req,res) => {
   var listOfRecipes;
-  await searchRecipesByIngredients().then((result) => 
+  await searchRecipesByIngredients(req.body.userId).then((result) => 
   {
     listOfRecipes = result;
   });
@@ -273,8 +221,8 @@ router.get("/test", async (req,res) => {
   console.log(await retrieveIngredients());
 })
 
-async function retrieveIngredients(){
-  let existingIngredients = await FridgeItem.find({userId: "12345"});
+async function retrieveIngredients(userId){
+  let existingIngredients = await FridgeItem.find({userId: userId});
   var ingredientsList = [];
   for(var i = 0;i<existingIngredients.length;i++){
     pushIfNotAlreadyExists(existingIngredients[i].title,ingredientsList);
@@ -282,9 +230,9 @@ async function retrieveIngredients(){
   return ingredientsList;
 }
 
-async function searchRecipesByIngredients()
+async function searchRecipesByIngredients(userId)
 {
-  existingIngredients = await retrieveIngredients();
+  existingIngredients = await retrieveIngredients(userId);
   existingIngredients = existingIngredients.map(function(x){ return x.toUpperCase(); });
   existingIngredients = removePantryItems(existingIngredients);
   var recipes;
