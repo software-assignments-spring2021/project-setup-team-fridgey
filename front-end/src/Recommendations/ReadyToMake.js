@@ -1,14 +1,19 @@
 import Button from "@material-ui/core/Button";
 import "./Recommendations.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import axios from "axios";
 import { CreatePage } from "./Recommendations";
+import { fetchCurrentUser } from "./Recommendations";
 
 const ReadyToMake = (props) => {
   const [recipeData, setRecipeData] = useState([]);
-  useEffect(() => {
+  const user = useRef();
+  useEffect(async () => {
+    user.current = await fetchCurrentUser();
     axios
-      .get("http://157.245.131.216:3001/Recommendations/ReadyToMake")
+      .get("http://157.245.131.216:3001/Recommendations/ReadyToMake",{
+        params: { userId: user.current },
+      })
       .then((response) => {
         setRecipeData(response.data);
       });
@@ -16,13 +21,16 @@ const ReadyToMake = (props) => {
 
   function handleSave(item, setButtonText) {
     axios
-      .post("http://157.245.131.216:3001/Recommendations/SaveRecipe", item)
+      .post("http://157.245.131.216:3001/Recommendations/SaveRecipe", {
+        item: item,
+        userId: user.current,
+      })
       .then(
         (response) => {
-          console.log();
+          console.log("success " + item);
         },
         (error) => {
-          console.log();
+          console.log("error");
         }
       );
     setButtonText("Saved!");
