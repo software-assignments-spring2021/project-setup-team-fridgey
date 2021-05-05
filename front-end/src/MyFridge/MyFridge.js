@@ -154,7 +154,10 @@ const MyFridge = (props) => {
       var date2 = new Date(str[1] + "/" + str[2] + "/" + str[0]);
 
       // difference between days
-      const diffTime = Math.abs(date2 - date1);
+      const diffTime = date2 - date1;
+      if(diffTime <= 0) {
+        return 0
+      }
       var diff = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
       if (diff > 0) {
