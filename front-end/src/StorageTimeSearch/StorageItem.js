@@ -12,6 +12,11 @@ export const StorageItem = ({ item, key }) => {
   const [radio, setRadio] = useState("Average");
 
   const handleSubmit = (e) => {
+    let userID = await (
+      await axios.get("http://157.245.131.216:3001/userdata/getUser")
+    ).data;
+
+    console.log("Currently under userID: ", userID);
     let option = e.target.value 
     setRadio(e.target.value);
     if (option === "Shorter"){
@@ -25,7 +30,7 @@ export const StorageItem = ({ item, key }) => {
     }
 
     //Call axios to post the updated times to MongoDB
-    axios.post("/storagetimeitems/editStorageItem", {_id: item._id, defaultTime: item.defaultTime}).then((res) => {})
+    axios.post("/storagetimeitems/editStorageItem", {_id: userID, defaultTime: item.defaultTime}).then((res) => {})
   }
   return (
     <div>
