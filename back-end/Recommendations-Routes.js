@@ -191,7 +191,7 @@ router.post("/loopRecipes", async (req,res) => {
 
 router.get("/ReadyToMake", async (req,res) => {
   var listOfRecipes;
-  await searchRecipesByIngredients(req.body.userId).then((result) => 
+  await searchRecipesByIngredients(req.query.userId).then((result) => 
   {
     listOfRecipes = result;
   });
