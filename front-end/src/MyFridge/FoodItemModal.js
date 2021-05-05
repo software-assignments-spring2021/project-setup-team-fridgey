@@ -175,6 +175,10 @@ const FoodItemModal = (props) => {
         var str = props.updatedAt.substring(0, 10).split("-")
         var date2 = new Date(str[1] + '/' + str[2] + '/' + str[0])
 
+        if(date2.valueOf() > date1.valueOf()) {
+            return daysleft
+        }
+
         // difference between days
         const diffTime = Math.abs(date2 - date1)
         var diff = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
