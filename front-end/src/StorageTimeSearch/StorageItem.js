@@ -12,9 +12,11 @@ export const StorageItem = ({ item, key }) => {
   const [radio, setRadio] = useState("Average");
 
   const handleSubmit = (e) => {
-    let userID = await (
-      await axios.get("http://157.245.131.216:3001/userdata/getUser")
-    ).data;
+    const getUserID = async() => {
+      let userID = await (
+        await axios.get("http://157.245.131.216:3001/userdata/getUser")
+      ).data;
+    }
 
     console.log("Currently under userID: ", userID);
     let option = e.target.value 
