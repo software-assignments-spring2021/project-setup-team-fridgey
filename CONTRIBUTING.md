@@ -1,3 +1,13 @@
+# Instructions for Using Fridgey
+
+Login with the following username and password to see an sample user's account
+- Username: john8@gmail.com
+- Password: 888
+
+If you are not logged in, you should be able to still use our app (ie. add items) since we create temporary IDs for not logged in users.
+
+Signup for a new account to see a blank slate of our app in the Login section by clicking the Signup button.
+
 # Team Norms
 ## Team Values 
 - Show up to class (*on time)
